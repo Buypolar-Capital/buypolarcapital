@@ -25,3 +25,6 @@ stock_data <- list(
 
 write_xlsx(stock_data, path = "stock_data.xlsx")
 
+sdasda
+
+
