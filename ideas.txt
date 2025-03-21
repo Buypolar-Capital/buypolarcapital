@@ -22,3 +22,29 @@ Crypto Basis Arbitrage – Trade mispricings in BTC/ETH perpetual futures vs. sp
 Norwegian Market Microstructure Study – Analyze tick-by-tick data for hidden trading patterns (e.g., iceberg orders).
 Central Bank Liquidity Effects – Quantify the impact of Norges Bank liquidity injections/withdrawals on asset prices.
 Macro Regime-Based Trading – Use macroeconomic indicators (interest rates, inflation) to adjust portfolio allocations.
+
+
+1-5: Stochastic & Mathematical Finance
+Stochastic Control for Optimal Execution – Solve the Almgren-Chriss framework for minimizing execution costs under market impact constraints.
+Path-Dependent Derivatives Pricing – Use Monte Carlo simulations for exotic options (e.g., Asian, Barrier, Lookback options).
+Heston Model Calibration – Implement the Heston stochastic volatility model and calibrate it using real options market data.
+Optimal Market Making via Reinforcement Learning – Apply Q-learning to optimize bid-ask spreads dynamically.
+Regime-Switching Models for Macro Trading – Implement a Hidden Markov Model (HMM) to identify shifts in economic regimes affecting assets.
+6-10: Numerical Methods & Computational Finance
+PDE-Based Options Pricing – Solve the Black-Scholes equation numerically using Finite Difference Methods (FDM) in Python/R.
+Fourier Transform for Pricing Exotic Derivatives – Use FFT-based Carr-Madan methods to price European and American options.
+High-Performance Monte Carlo Simulation – Parallelize Monte Carlo simulations using Cython or Numba for speed optimization.
+Sparse Grid Quadrature for High-Dimensional Integration – Improve efficiency of multi-asset option pricing using sparse grids.
+Automatic Differentiation for Risk Sensitivities (Greeks) – Implement AD (e.g., using JAX) to compute derivatives of pricing functions.
+11-15: Machine Learning & AI in Quant Finance
+Deep Hedging with Neural Networks – Use reinforcement learning to optimize delta-hedging strategies for options.
+Generative Adversarial Networks (GANs) for Financial Data – Train GANs to generate realistic market data for stress testing.
+Physics-Informed Neural Networks (PINNs) for PDEs – Solve Black-Scholes PDEs using deep learning techniques.
+Graph Neural Networks (GNNs) for Intermarket Relationships – Model complex dependencies in stock markets using GNNs.
+Autoencoders for Volatility Regime Detection – Use deep learning to compress high-dimensional market states and detect volatility shifts.
+16-20: High-Performance & Algorithmic Trading
+High-Frequency Trading (HFT) Simulation – Develop a limit order book simulator with realistic order flow dynamics.
+Kalman Filters for Statistical Arbitrage – Implement a dynamic mean-reverting pair trading strategy using Kalman filters.
+GPU-Accelerated Portfolio Optimization – Solve Markowitz portfolio allocation with CUDA for ultra-fast computation.
+Quantum Computing for Portfolio Optimization – Use D-Wave or Qiskit to explore quantum annealing for asset allocation.
+Market Microstructure Simulation with Agent-Based Models – Model how different trading strategies interact in a simulated exchange environment.
