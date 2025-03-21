@@ -1,0 +1,24 @@
+1-5: Core Trading Strategies
+Relative Value Arbitrage – Pair trading strategy identifying mispricings in highly correlated assets (e.g., A/B share discrepancies like Schibsted A/B).
+Index Effect Trading – Model stocks entering/leaving major indexes (e.g., OSEBX) to exploit systematic rebalancing effects.
+IPO Momentum & Mean Reversion – Analyze post-IPO price behaviors (short-term momentum, long-term mean reversion).
+Futures Basis Trading – Track mispricing between futures and spot markets to identify arbitrage opportunities.
+Fixed-Income Yield Curve Trades – Construct butterfly spreads, steepener/flattener trades on Norwegian and global yield curves.
+6-10: Statistical & ML-Based Strategies
+Machine Learning for Mean Reversion – Use ML classifiers (SVM, Random Forest) to detect overbought/oversold conditions.
+Bayesian Portfolio Optimization – Implement Black-Litterman model for optimal portfolio construction.
+Options Volatility Arbitrage – Trade implied vs. historical volatility using statistical arbitrage models.
+Sentiment-Based Trading – Scrape news sources (e.g., Bloomberg, E24) and analyze sentiment for trade signals.
+Intraday Liquidity Provision – Develop VWAP/TWAP-based strategies for low-risk, high-volume trading.
+11-15: Data Processing & Backtesting
+Backtesting Engine – Build a Python/R framework to test multiple strategies with configurable parameters.
+Live Market Data Collector – Automate scraping of stock, futures, and options data using Yahoo Finance, Eikon, or Alpaca API.
+Factor Investing Framework – Implement and backtest Fama-French factors on OSE stocks.
+Real-Time Risk Dashboard – Use Power BI to visualize exposure, VaR, and drawdowns.
+Portfolio Hedging & Scenario Analysis – Model how different economic shocks impact portfolio risk.
+16-20: Automation, Execution & Research
+Algorithmic Execution Engine – Simulate slippage, order routing, and market impact for trade execution optimization.
+Crypto Basis Arbitrage – Trade mispricings in BTC/ETH perpetual futures vs. spot markets.
+Norwegian Market Microstructure Study – Analyze tick-by-tick data for hidden trading patterns (e.g., iceberg orders).
+Central Bank Liquidity Effects – Quantify the impact of Norges Bank liquidity injections/withdrawals on asset prices.
+Macro Regime-Based Trading – Use macroeconomic indicators (interest rates, inflation) to adjust portfolio allocations.
