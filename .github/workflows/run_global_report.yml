@@ -2,8 +2,8 @@ name: Global Index Report
 
 on:
   schedule:
-    - cron: '0 6 * * *'  # Daily at 06:00 UTC
-  workflow_dispatch:
+    - cron: '0 6 * * *'  # Runs every day at 06:00 UTC
+  workflow_dispatch:      # Manual trigger button on GitHub
 
 jobs:
   build:
@@ -23,7 +23,8 @@ jobs:
           pip install yfinance pandas matplotlib
 
       - name: Run global report
-        run: python index-effect/python/global_report.py
+        run: |
+          python index-effect/python/global_report.py
 
       - name: Commit updated PDF
         run: |
@@ -52,3 +53,4 @@ jobs:
 
             - BuyPolar Capital
           attachments: index-effect/python/plots/global_index_report.pdf
+
