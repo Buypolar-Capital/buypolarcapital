@@ -51,4 +51,4 @@ jobs:
             Here is your latest Global Index Report. Stay frosty 🐻‍❄️📈
 
             - BuyPolar Capital
-          attachments: buypolarcapital/index-effect/python/plots/global_index_report.pdf
+          attachments: index-effect/python/plots/global_index_report.pdf
