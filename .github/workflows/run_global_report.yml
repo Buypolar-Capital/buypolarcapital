@@ -2,7 +2,7 @@ name: Global Index Report
 
 on:
   schedule:
-    - cron: '0 6 * * *'
+    - cron: '0 6 * * *'  # Daily at 06:00 UTC
   workflow_dispatch:
 
 jobs:
@@ -34,3 +34,21 @@ jobs:
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Email report
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 465
+          username: ${{ secrets.EMAIL_ADDRESS }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: 📈 Global Index Report from BuyPolar Capital
+          to: ${{ secrets.EMAIL_TO }}
+          from: BuyPolar Capital Bot <${{ secrets.EMAIL_ADDRESS }}>
+          body: |
+            Hi Egil,
+
+            Here is your latest Global Index Report. Stay frosty 🐻‍❄️📈
+
+            - BuyPolar Capital
+          attachments: buypolarcapital/index-effect/python/plots/global_index_report.pdf

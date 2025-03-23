@@ -13,7 +13,12 @@ os.makedirs("plots", exist_ok=True)
 indexes = {
     "OSEBX": "^OSEAX",
     "S&P 500": "^GSPC",
-    "Dow Jones": "^DJI"
+    "Dow Jones": "^DJI",
+    "NASDAQ": "^IXIC",
+    "MSCI World": "URTH",
+    "Emerging Markets": "EEM",
+    "China": "MCHI",
+    "Bitcoin": "BTC-USD"
 }
 
 start_date = "2020-01-01"
