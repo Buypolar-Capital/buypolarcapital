@@ -23,7 +23,7 @@ jobs:
           pip install yfinance pandas matplotlib
 
       - name: Run global report
-        run: python buypolarcapital/index-effect/python/global_report.py
+        run: python index-effect/python/global_report.py
 
       - name: Commit updated PDF
         run: |
