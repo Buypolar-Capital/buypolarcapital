@@ -10,12 +10,13 @@ START_DATE = '2024-01-01'
 END_DATE = '2024-12-31'
 THRESHOLDS = [0.01, 0.02, 0.03, 0.04, 0.05]  # Minimum thresholds: 1%, 2%, 3%, 4%, 5%
 INITIAL_CASH = 10000.0  # Starting cash for the portfolio
+RISK_FREE_RATE = 0.0  # Risk-free rate (assumed 0% for simplicity)
 
 # Get a list of S&P 500 tickers (we'll use a subset for simplicity)
 sp500_tickers = [
     'AAPL', 'MSFT', 'GOOGL', 'AMZN', 'META', 'TSLA', 'NVDA', 'JPM', 'V', 'WMT',
     'PG', 'KO', 'DIS', 'NFLX', 'CSCO', 'INTC', 'AMD', 'QCOM', 'ORCL', 'IBM'
-]  # 20 stocks for this example; expand as needed
+]
 
 def fetch_stock_data(tickers, start_date, end_date):
     """
@@ -32,26 +33,41 @@ def fetch_stock_data(tickers, start_date, end_date):
             print(f"No data for {ticker}")
     return pd.DataFrame(data)
 
+def calculate_metrics(portfolio_values, dates):
+    """
+    Calculate return, risk (std dev of daily returns), and Sharpe ratio
+    """
+    # Calculate daily returns
+    portfolio_values = np.array(portfolio_values)
+    daily_returns = (portfolio_values[1:] - portfolio_values[:-1]) / portfolio_values[:-1]
+    
+    # Total return
+    total_return = (portfolio_values[-1] - INITIAL_CASH) / INITIAL_CASH * 100
+    
+    # Risk (standard deviation of daily returns)
+    risk = np.std(daily_returns) * 100  # In percentage
+    
+    # Sharpe ratio (annualized)
+    mean_daily_return = np.mean(daily_returns)
+    sharpe_ratio = (mean_daily_return - RISK_FREE_RATE) / np.std(daily_returns) * np.sqrt(252)
+    
+    return total_return, risk, sharpe_ratio
+
 def simulate_portfolio(tickers, start_date, end_date, min_threshold):
     """
     Simulate the portfolio using the dynamic percentage change strategy
-    If a stock drops X% (X >= min_threshold), buy $X worth; if it rises X% (X >= min_threshold), sell $X worth
     """
-    # Fetch stock data
     stock_prices = fetch_stock_data(tickers, start_date, end_date)
     
-    # Initialize portfolio
     cash = INITIAL_CASH
-    holdings = {ticker: 0.0 for ticker in tickers}  # Shares owned
+    holdings = {ticker: 0.0 for ticker in tickers}
     portfolio_values = []
     dates = stock_prices.index
     
-    # Iterate through each trading day
     for i in range(1, len(dates)):
         date = dates[i]
         prev_date = dates[i-1]
         
-        # Calculate portfolio value at the start of the day
         portfolio_value = cash
         for ticker in tickers:
             if ticker in stock_prices.columns:
@@ -61,43 +77,36 @@ def simulate_portfolio(tickers, start_date, end_date, min_threshold):
         
         portfolio_values.append(portfolio_value)
         
-        # Apply the trading strategy
         for ticker in tickers:
             if ticker not in stock_prices.columns:
                 continue
             
-            # Get current and previous day's closing prices
             current_price = stock_prices.loc[date, ticker]
             prev_price = stock_prices.loc[prev_date, ticker]
             
             if np.isnan(current_price) or np.isnan(prev_price):
                 continue
             
-            # Calculate price change percentage
             price_change = (current_price - prev_price) / prev_price
-            trade_amount = abs(price_change) * 100  # Convert percentage to dollars (e.g., 8% = $8)
+            trade_amount = abs(price_change) * 100
             
-            # Only trade if the absolute price change exceeds the minimum threshold
             if abs(price_change) < min_threshold:
                 continue
             
-            # Buy if price drops
-            if price_change < 0:  # Price dropped
+            if price_change < 0:
                 shares_to_buy = trade_amount / current_price
                 if cash >= trade_amount:
                     holdings[ticker] += shares_to_buy
                     cash -= trade_amount
                     print(f"Threshold {min_threshold*100}% - {date.date()}: Bought {shares_to_buy:.4f} shares of {ticker} at ${current_price:.2f} (drop of {abs(price_change)*100:.2f}%)")
             
-            # Sell if price rises
-            elif price_change > 0:  # Price rose
+            elif price_change > 0:
                 shares_to_sell = trade_amount / current_price
                 if holdings[ticker] >= shares_to_sell:
                     holdings[ticker] -= shares_to_sell
                     cash += trade_amount
                     print(f"Threshold {min_threshold*100}% - {date.date()}: Sold {shares_to_sell:.4f} shares of {ticker} at ${current_price:.2f} (rise of {price_change*100:.2f}%)")
     
-    # Final portfolio value
     final_value = cash
     for ticker in tickers:
         if ticker in stock_prices.columns:
@@ -110,19 +119,15 @@ def simulate_portfolio(tickers, start_date, end_date, min_threshold):
 def simulate_equally_weighted_portfolio(tickers, start_date, end_date):
     """
     Simulate an equally weighted portfolio (buy and hold)
-    Invest an equal amount in each stock at the start and hold until the end
     """
-    # Fetch stock data
     stock_prices = fetch_stock_data(tickers, start_date, end_date)
     
-    # Initialize portfolio
     num_stocks = len(tickers)
-    cash_per_stock = INITIAL_CASH / num_stocks  # Equal allocation
-    holdings = {ticker: 0.0 for ticker in tickers}  # Shares owned
+    cash_per_stock = INITIAL_CASH / num_stocks
+    holdings = {ticker: 0.0 for ticker in tickers}
     portfolio_values = []
     dates = stock_prices.index
     
-    # Invest equally on the first day
     for ticker in tickers:
         if ticker in stock_prices.columns:
             first_price = stock_prices.loc[dates[0], ticker]
@@ -131,7 +136,6 @@ def simulate_equally_weighted_portfolio(tickers, start_date, end_date):
                 holdings[ticker] = shares_to_buy
                 print(f"Equally Weighted - {dates[0].date()}: Bought {shares_to_buy:.4f} shares of {ticker} at ${first_price:.2f}")
     
-    # Track portfolio value over time
     for i in range(len(dates)):
         date = dates[i]
         portfolio_value = 0.0
@@ -145,20 +149,70 @@ def simulate_equally_weighted_portfolio(tickers, start_date, end_date):
     final_value = portfolio_values[-1]
     return dates, portfolio_values, final_value
 
-def plot_portfolios(dates, threshold_results, equally_weighted_result):
+def plot_trading_strategies(dates, threshold_results):
     """
-    Plot the portfolio values for different thresholds and the equally weighted portfolio
+    Plot only the trading strategies
     """
     plt.figure(figsize=(12, 8))
     
-    # Plot each threshold strategy
     colors = ['blue', 'green', 'red', 'purple', 'orange']
     for i, (min_threshold, (portfolio_values, final_value)) in enumerate(threshold_results.items()):
-        plt.plot(dates[1:], portfolio_values, label=f'Threshold {min_threshold*100}% (Final: ${final_value:.2f})', color=colors[i])
+        total_return, risk, sharpe = calculate_metrics(portfolio_values, dates[1:])
+        plt.plot(dates[1:], portfolio_values, label=f'Threshold {min_threshold*100}% (Return: {total_return:.2f}%, Risk: {risk:.2f}%, Sharpe: {sharpe:.2f})', color=colors[i])
     
-    # Plot the equally weighted portfolio
+    plt.title('Portfolio Performance: Dynamic Trading Strategies (2024)', fontsize=14)
+    plt.xlabel('Date', fontsize=12)
+    plt.ylabel('Portfolio Value ($)', fontsize=12)
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.xticks(rotation=45)
+    plt.legend()
+    plt.tight_layout()
+    
+    plots_dir = 'c:/Users/ofurn/Dokumenter/Github/buypolarcapital/hft/Python/plots'
+    os.makedirs(plots_dir, exist_ok=True)
+    save_path = os.path.join(plots_dir, 'trading_strategies_2024.pdf')
+    plt.savefig(save_path, format='pdf')
+    print(f"Trading strategies plot saved as '{save_path}'")
+    plt.show()
+
+def plot_basket(dates_eq, portfolio_values_eq, final_value_eq):
+    """
+    Plot only the equally weighted portfolio
+    """
+    plt.figure(figsize=(12, 8))
+    
+    total_return, risk, sharpe = calculate_metrics(portfolio_values_eq, dates_eq)
+    plt.plot(dates_eq, portfolio_values_eq, label=f'Equally Weighted (Return: {total_return:.2f}%, Risk: {risk:.2f}%, Sharpe: {sharpe:.2f})', color='black', linestyle='--')
+    
+    plt.title('Portfolio Performance: Equally Weighted Portfolio (2024)', fontsize=14)
+    plt.xlabel('Date', fontsize=12)
+    plt.ylabel('Portfolio Value ($)', fontsize=12)
+    plt.grid(True, linestyle='--', alpha=0.7)
+    plt.xticks(rotation=45)
+    plt.legend()
+    plt.tight_layout()
+    
+    plots_dir = 'c:/Users/ofurn/Dokumenter/Github/buypolarcapital/hft/Python/plots'
+    os.makedirs(plots_dir, exist_ok=True)
+    save_path = os.path.join(plots_dir, 'equally_weighted_2024.pdf')
+    plt.savefig(save_path, format='pdf')
+    print(f"Equally weighted plot saved as '{save_path}'")
+    plt.show()
+
+def plot_combined(dates, threshold_results, equally_weighted_result):
+    """
+    Plot the combined portfolio values (trading strategies + equally weighted)
+    """
+    plt.figure(figsize=(12, 8))
+    
+    colors = ['blue', 'green', 'red', 'purple', 'orange']
+    for i, (min_threshold, (portfolio_values, final_value)) in enumerate(threshold_results.items()):
+        total_return, risk, sharpe = calculate_metrics(portfolio_values, dates[1:])
+        plt.plot(dates[1:], portfolio_values, label=f'Threshold {min_threshold*100}% (Return: {total_return:.2f}%, Risk: {risk:.2f}%, Sharpe: {sharpe:.2f})', color=colors[i])
+    
     dates_eq, portfolio_values_eq, final_value_eq = equally_weighted_result
-    plt.plot(dates_eq, portfolio_values_eq, label=f'Equally Weighted (Final: ${final_value_eq:.2f})', color='black', linestyle='--')
+    total_return_eq, risk_eq, sharpe_eq = calculate_metrics(portfolio_values_eq, dates_eq)
+    plt.plot(dates_eq, portfolio_values_eq, label=f'Equally Weighted (Return: {total_return_eq:.2f}%, Risk: {risk_eq:.2f}%, Sharpe: {sharpe_eq:.2f})', color='black', linestyle='--')
     
     plt.title('Portfolio Performance: Dynamic Strategy vs. Equally Weighted (2024)', fontsize=14)
     plt.xlabel('Date', fontsize=12)
@@ -168,12 +222,11 @@ def plot_portfolios(dates, threshold_results, equally_weighted_result):
     plt.legend()
     plt.tight_layout()
     
-    # Save the plot as PDF
     plots_dir = 'c:/Users/ofurn/Dokumenter/Github/buypolarcapital/hft/Python/plots'
     os.makedirs(plots_dir, exist_ok=True)
-    save_path = os.path.join(plots_dir, 'portfolio_simulation_2024.pdf')
+    save_path = os.path.join(plots_dir, 'combined_portfolio_simulation_2024.pdf')
     plt.savefig(save_path, format='pdf')
-    print(f"Portfolio plot saved as '{save_path}'")
+    print(f"Combined plot saved as '{save_path}'")
     plt.show()
 
 # Run the simulation
@@ -199,4 +252,6 @@ if __name__ == "__main__":
     print(f"Equally Weighted - Total Return: {((final_value_eq - INITIAL_CASH) / INITIAL_CASH) * 100:.2f}%")
     
     # Plot the results
-    plot_portfolios(dates, threshold_results, (dates_eq, portfolio_values_eq, final_value_eq))
+    plot_trading_strategies(dates, threshold_results)
+    plot_basket(dates_eq, portfolio_values_eq, final_value_eq)
+    plot_combined(dates, threshold_results, (dates_eq, portfolio_values_eq, final_value_eq))
