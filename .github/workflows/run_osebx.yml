@@ -1,0 +1,38 @@
+name: OSEBX Monitor Job
+
+on:
+  schedule:
+    - cron: '0 6 * * *'  # Runs every day at 06:00 UTC
+  workflow_dispatch:     # Optional manual trigger
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repo
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.11'
+
+    - name: Install dependencies
+      run: |
+        pip install yfinance pandas matplotlib
+
+    - name: Run osebx.py
+      run: python buypolarcapital/index-effect/python/osebx.py
+
+    # OPTIONAL: Commit PDF back to repo
+    - name: Commit updated PDF
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@users.noreply.github.com'
+        git add buypolarcapital/index-effect/python/osebx_monitor.pdf
+        git commit -m "Update OSEBX monitor PDF [auto]" || echo "No changes to commit"
+        git push
+      env:
+        # GitHub token needed for push
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

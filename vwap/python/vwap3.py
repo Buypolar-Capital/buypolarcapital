@@ -120,3 +120,4 @@ plt.close()
 print("Simulation complete! Plot saved as 'portfolio_comparison_relative_smoothed.pdf' in the 'plots' folder.")
 print(f"Final VWAP Portfolio Value: ${vwap_portfolio['Total'].iloc[-1]:.2f} (Relative: {vwap_portfolio['Total'].iloc[-1] / initial_cash:.3f})")
 print(f"Final Equal-Weighted Portfolio Value: ${equal_portfolio['Total'].iloc[-1]:.2f} (Relative: {equal_portfolio['Total'].iloc[-1] / initial_cash:.3f})")
+
