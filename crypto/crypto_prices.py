@@ -13,6 +13,9 @@ exchange = ccxt.binance({
 # List of the 5 most popular cryptos (based on current trends)
 crypto_pairs = ['BTC/USDT', 'ETH/USDT', 'BNB/USDT', 'SOL/USDT', 'XRP/USDT']
 
+# Define absolute base path
+BASE_PATH = 'c:/Users/ofurn/Dokumenter/Github/buypolarcapital'
+
 def fetch_historical_prices(symbols, timeframe='1d', limit=90):
     """
     Fetch historical OHLCV data for 2025 up to March 23
@@ -64,10 +67,10 @@ def plot_relative_profits(price_data, plot_all=True, btc_only=False):
     
     if plot_all:
         plt.title('Top 5 Cryptocurrency Relative Profits (Jan 1 - March 23, 2025)', fontsize=14)
-        save_path = 'crypto_relative_profits_2025.png'
+        save_path = os.path.join(BASE_PATH, 'crypto', 'Python', 'crypto_relative_profits_2025.png')
     elif btc_only:
         plt.title('Bitcoin Relative Profits (Jan 1 - March 23, 2025)', fontsize=14)
-        plots_dir = '../plots'
+        plots_dir = os.path.join(BASE_PATH, 'crypto', 'plots')
         os.makedirs(plots_dir, exist_ok=True)
         save_path = os.path.join(plots_dir, 'bitcoin_relative_profits_2025.png')
     
@@ -95,7 +98,7 @@ if __name__ == "__main__":
         plot_relative_profits(price_data, plot_all=False, btc_only=True)
         
         # Ensure the masterdata directory exists
-        masterdata_dir = '../../../masterdata'
+        masterdata_dir = os.path.join(BASE_PATH, 'masterdata')
         os.makedirs(masterdata_dir, exist_ok=True)
         
         # Save data to CSV with percentage change
@@ -108,8 +111,8 @@ if __name__ == "__main__":
                 # Save BTC data to the masterdata folder
                 filename = os.path.join(masterdata_dir, 'BTC_USDT_2025_profits.csv')
             else:
-                # Save other cryptos to the current directory
-                filename = f"{symbol.replace('/', '_')}_2025_profits.csv"
+                # Save other cryptos to the Python directory
+                filename = os.path.join(BASE_PATH, 'crypto', 'Python', f"{symbol.replace('/', '_')}_2025_profits.csv")
                 
             df.to_csv(filename, index=False)
             print(f"Saved {symbol} data to {filename}")
