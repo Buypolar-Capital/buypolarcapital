@@ -6,9 +6,10 @@ from pathlib import Path
 # Define the stocks and parameters
 stocks = ["AAPL", "MSFT", "AMZN", "GOOGL", "NVDA"]
 initial_cash = 10000  # $10,000 starting capital
-shares_per_trade = 5  # Smaller trades for more action
-window = 3  # 3-day rolling VWAP for faster response
-mispricing_threshold = 0.005  # 0.5% threshold for trades
+shares_per_trade = 10  # Bigger trades
+window = 5  # 5-day rolling VWAP
+mispricing_threshold = 0.005  # 0.5% threshold
+smooth_window = 7  # 7-day rolling average for plot
 
 # Create 'plots' directory if it doesn't exist
 Path("plots").mkdir(exist_ok=True)
@@ -30,7 +31,7 @@ for stock in stocks:
         exit(1)
 
 # Function to calculate rolling VWAP
-def calculate_rolling_vwap(df, window=3):
+def calculate_rolling_vwap(df, window=5):
     typical_price = (df['High'] + df['Low'] + df['Close']) / 3
     price_volume = typical_price * df['Volume']
     cum_price_volume = price_volume.cumsum()
@@ -44,7 +45,7 @@ def calculate_rolling_vwap(df, window=3):
     result['VWAP'] = vwap
     return result.dropna()
 
-# VWAP Strategy Simulation (daily with tight VWAP)
+# VWAP Strategy Simulation
 vwap_portfolio = pd.DataFrame(index=data["AAPL"].index)
 vwap_cash = initial_cash
 vwap_holdings = {stock: 0 for stock in stocks}
@@ -57,7 +58,7 @@ for stock in stocks:
         price = daily_data.loc[date, 'Close']
         vwap = daily_data.loc[date, 'VWAP']
         
-        # Buy if price is below VWAP by threshold, sell if above by threshold
+        # Buy if price is 0.5% below VWAP, sell if 0.5% above
         if price < vwap * (1 - mispricing_threshold) and vwap_cash >= price * shares_per_trade:
             vwap_holdings[stock] += shares_per_trade
             vwap_cash -= price * shares_per_trade
@@ -65,13 +66,16 @@ for stock in stocks:
             vwap_holdings[stock] -= shares_per_trade
             vwap_cash += price * shares_per_trade
         
-        # Update portfolio value
+        # Update portfolio value (holdings + cash)
         vwap_portfolio.loc[date, f"{stock}_Value"] = vwap_holdings[stock] * price
 
-# Total VWAP portfolio value
+# Total VWAP portfolio value (include cash explicitly)
 vwap_portfolio['Total'] = vwap_portfolio[[f"{stock}_Value" for stock in stocks]].sum(axis=1) + vwap_cash
 
-# Equal-Weighted Portfolio Simulation (weekly for comparison)
+# Debug: Print first few VWAP totals
+print("First 5 VWAP Portfolio Totals:", vwap_portfolio['Total'].head().tolist())
+
+# Equal-Weighted Portfolio Simulation (weekly)
 equal_portfolio = pd.DataFrame(index=data["AAPL"].resample('W').last().index)
 equal_cash = initial_cash
 equal_holdings = {}
@@ -79,36 +83,40 @@ equal_holdings = {}
 for stock in stocks:
     weekly_data = data[stock][['Close']].resample('W').last().dropna()
     first_price = weekly_data['Close'].iloc[0]
-    shares = (equal_cash * 0.2) // first_price
+    # Use fractional shares to fully invest $2000 per stock
+    shares = (equal_cash * 0.2) / first_price  # No integer constraint
     equal_holdings[stock] = shares
     equal_portfolio[f"{stock}_Value"] = weekly_data['Close'] * shares
 
 # Total equal-weighted portfolio value
 equal_portfolio['Total'] = equal_portfolio[[f"{stock}_Value" for stock in stocks]].sum(axis=1)
 
-# Resample VWAP portfolio to weekly for plotting
+# Debug: Print first few equal-weighted totals
+print("First 5 Equal-Weighted Portfolio Totals:", equal_portfolio['Total'].head().tolist())
+
+# Resample VWAP portfolio to weekly
 vwap_portfolio_weekly = vwap_portfolio.resample('W').last()
 
-# Normalize to relative value (start at 1.0)
+# Normalize to relative value and smooth
 vwap_relative = vwap_portfolio_weekly['Total'] / initial_cash
 equal_relative = equal_portfolio['Total'] / initial_cash
+vwap_smooth = vwap_relative.rolling(window=smooth_window, min_periods=1).mean()
+equal_smooth = equal_relative.rolling(window=smooth_window, min_periods=1).mean()
 
-# Plotting relative performance
+# Plotting smoothed relative performance
 plt.figure(figsize=(12, 6))
-plt.plot(vwap_relative.index, vwap_relative, label="VWAP Strategy (3-Day Rolling)", color="blue")
-plt.plot(equal_relative.index, equal_relative, label="Equal-Weighted (20%)", color="orange")
-plt.title("Relative Portfolio Performance: VWAP Strategy vs. Equal-Weighted (2023)")
+plt.plot(vwap_smooth.index, vwap_smooth, label="VWAP Strategy (5-Day Rolling, Smoothed)", color="blue")
+plt.plot(equal_smooth.index, equal_smooth, label="Equal-Weighted (20%, Smoothed)", color="orange")
+plt.title("Smoothed Relative Portfolio Performance: VWAP Strategy vs. Equal-Weighted (2023)")
 plt.xlabel("Date")
 plt.ylabel("Portfolio Value (Relative to Initial $10,000)")
 plt.legend()
 plt.grid(True)
 
 # Save plot to PDF
-plt.savefig("plots/portfolio_comparison_relative.pdf", format="pdf")
+plt.savefig("plots/portfolio_comparison_relative_smoothed.pdf", format="pdf")
 plt.close()
 
-print("Simulation complete! Plot saved as 'portfolio_comparison_relative.pdf' in the 'plots' folder.")
+print("Simulation complete! Plot saved as 'portfolio_comparison_relative_smoothed.pdf' in the 'plots' folder.")
 print(f"Final VWAP Portfolio Value: ${vwap_portfolio['Total'].iloc[-1]:.2f} (Relative: {vwap_portfolio['Total'].iloc[-1] / initial_cash:.3f})")
 print(f"Final Equal-Weighted Portfolio Value: ${equal_portfolio['Total'].iloc[-1]:.2f} (Relative: {equal_portfolio['Total'].iloc[-1] / initial_cash:.3f})")
-
-
