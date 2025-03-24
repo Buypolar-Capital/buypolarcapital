@@ -1,12 +1,14 @@
-
 library(tidyquant)
-library(ggplot2)
-library(dplyr)
+library(tidyverse)
+library(fpp3)
 library(scales)
 library(zoo)
+library(gridExtra)
 
 # Create directory if it doesn't exist
 if (!dir.exists("plots")) dir.create("plots")
+
+# === PART 1: Time Series Summary Plots (ggplot2) ===
 
 # Futures tickers from Yahoo Finance
 futures_tickers <- c(
@@ -44,7 +46,7 @@ futures_volatility <- futures_returns %>%
   mutate(rolling_vol = rollapply(daily_return, width = 30, FUN = sd, fill = NA, align = "right")) %>%
   ungroup()
 
-# Start PDF device
+# Create PDF with all summary plots
 pdf("plots/futures_analysis.pdf", width = 10, height = 6)
 
 # --- Plot 1: Normalized Prices ---
@@ -71,11 +73,11 @@ plot3 <- ggplot(futures_volatility, aes(x = date, y = rolling_vol, color = symbo
        y = "Volatility (Std Dev of Daily Returns)", x = "Date", color = "Contract") +
   theme_minimal()
 
-# Save all to PDF
-pdf("plots/futures_analysis.pdf", width = 10, height = 6)
 print(plot1)
 print(plot2)
 print(plot3)
 dev.off()
 
 message("??? PDF with all plots saved to /plots/futures_analysis.pdf")
+
+
