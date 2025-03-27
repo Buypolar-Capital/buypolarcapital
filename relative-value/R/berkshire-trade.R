@@ -96,10 +96,10 @@ plot_strategy <- function(simulation, log_scale = FALSE, label = "") {
   
   p <- ggplot(plot_data, aes(x = date, y = PortfolioValue, color = Series)) +
     geom_line(size = 1.1) +
-    geom_segment(data = rebalance_segments,
-                 aes(x = xstart, xend = xend, y = y, yend = y),
-                 inherit.aes = FALSE,
-                 color = "gray40", linewidth = 0.8) +
+    geom_point(data = rebalance_segments,
+               aes(x = date, y = y),
+               inherit.aes = FALSE,
+               color = "red", size = 0.5, shape = 18) +
     labs(
       title = paste("Strategy vs BRK.A and BRK.B", label),
       subtitle = "Simulated $10M portfolio, rebalanced when BRK.A / BRK.B deviates from 1500",
