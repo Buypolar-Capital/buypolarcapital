@@ -2,8 +2,13 @@ library(tidyquant)
 library(tidyverse)
 library(lubridate)
 library(scales)
-library(ggthemes)
 library(zoo)
+library(ggthemes)
+library(showtext)
+
+# Google Fonts ??? close to Goldman Sachs look
+font_add_google("Montserrat", "gs_font")
+showtext_auto()
 
 # SETTINGS
 tickerA <- "GOOG"
@@ -52,7 +57,7 @@ simulate_strategy <- function(prices, colA, colB, threshold, initial_capital) {
   return(portfolio)
 }
 
-# Fetch & prepare data
+# Get and prep data
 prices <- tq_get(c(tickerA, tickerB), from = "2010-01-01", to = Sys.Date()) %>%
   select(date, symbol, adjusted) %>%
   pivot_wider(names_from = symbol, values_from = adjusted) %>%
@@ -80,7 +85,7 @@ for (yr in years) {
     select(date, value) %>%
     rename(strategy = value)
   
-  # Benchmarks scaled to same initial capital
+  # Benchmarks
   rebased <- df_year %>%
     select(date, !!sym(tickerA), !!sym(tickerB)) %>%
     mutate(
@@ -89,30 +94,53 @@ for (yr in years) {
     ) %>%
     select(date, A_val, B_val)
   
-  # Merge all
+  # Merge and rename types
   merged <- left_join(strat, rebased, by = "date") %>%
-    pivot_longer(cols = c("strategy", "A_val", "B_val"), names_to = "type", values_to = "value")
+    pivot_longer(cols = c("strategy", "A_val", "B_val"), names_to = "type", values_to = "value") %>%
+    mutate(type = recode(type,
+                         strategy = "Dual Strategy",
+                         A_val = tickerA,
+                         B_val = tickerB))
   
-  label_map <- c(strategy = "Dual Strategy", A_val = tickerA, B_val = tickerB)
+  # Color mapping Goldman style
+  color_map <- c(
+    "Dual Strategy" = "#003366",  # deep navy
+    tickerA = "#b30000",          # GS red
+    tickerB = "#006d2c"           # GS green
+  )
+  
+  # GS-style theme
+  theme_gs <- theme_minimal(base_family = "gs_font") +
+    theme(
+      plot.title = element_text(face = "bold", size = 18, hjust = 0.5),
+      plot.subtitle = element_text(size = 12, hjust = 0.5, margin = margin(b = 10)),
+      axis.title = element_text(size = 11),
+      axis.text = element_text(size = 10, color = "#333333"),
+      legend.position = "top",
+      legend.title = element_blank(),
+      legend.margin = margin(b = -5),
+      panel.grid.major = element_line(color = "#cccccc", size = 0.2),
+      panel.grid.minor = element_blank(),
+      plot.caption = element_text(size = 9, face = "italic", hjust = 0)
+    )
   
   p <- ggplot(merged, aes(x = date, y = value, color = type)) +
-    geom_line(size = 1.1) +
-    labs(
-      title = paste("Year", yr, "-", tickerA, "vs", tickerB),
-      subtitle = paste("Dual Arbitrage vs Benchmarks | Rolling", rolling_window, "d | Threshold ??", threshold),
-      x = "Date", y = "Portfolio Value (USD)",
-      caption = "Data: Yahoo Finance | Strategy: BuyPolar Capital"
-    ) +
-    scale_color_manual(values = c("Dual Strategy" = "#1b9e77", tickerA = "#d95f02", tickerB = "#7570b3"),
-                       labels = label_map, name = NULL) +
+    geom_line(linewidth = .5) +
+    scale_color_manual(values = color_map) +
     scale_y_continuous(labels = dollar_format(scale = 1e-6, suffix = "M")) +
-    theme_economist_white()
+    labs(
+      title = paste("Dual Arbitrage Strategy vs Benchmarks ???", yr),
+      subtitle = paste(tickerA, "vs", tickerB, "| Rolling", rolling_window, "d | Threshold ??", threshold),
+      x = NULL, y = "Portfolio Value (USD)",
+      caption = "Source: Yahoo Finance ?? Strategy: BuyPolar Capital"
+    ) +
+    theme_gs
   
   plot_list[[as.character(yr)]] <- p
 }
 
-# Export PDF
+# Output PDF
 if (!dir.exists("plots")) dir.create("plots")
-pdf("plots/dual_arbitrage_yoy_vs_benchmarks_GOOG_GOOGL.pdf", width = 11, height = 7)
+pdf("plots/dual_arbitrage_goldman_GOOG_GOOGL.pdf", width = 11, height = 7)
 for (p in plot_list) print(p)
 dev.off()
