@@ -27,7 +27,7 @@ fx_raw = yf.download(list(fx_pairs.keys()), start="2024-01-01", group_by="ticker
 fx_data = pd.DataFrame()
 for ticker in fx_pairs.keys():
     try:
-        fx_data[ticker] = fx_raw[ticker]["Close"]
+        fx_data[ticker] = fx_raw[ticker].get("Close", pd.Series(dtype=float))
     except Exception:
         st.warning(f"⚠️ No data for {ticker}, skipping.")
 
@@ -52,7 +52,6 @@ st.dataframe((fx_returns * 100).to_frame(name="Daily PnL (%)"))
 # ----------------------
 st.header("🏛️ Real US Treasury Yields")
 
-# Define Yahoo tickers for treasury yields
 yield_tickers = {
     "3M": "^IRX",
     "5Y": "^FVX",
@@ -61,42 +60,46 @@ yield_tickers = {
 }
 
 yields_dict = {}
-
 for label, ticker in yield_tickers.items():
     try:
-        data = yf.download(ticker, start="2024-01-01")["Close"]
-        if not data.empty:
-            yields_dict[label] = data
+        data = yf.download(ticker, start="2024-01-01", auto_adjust=True)
+        if isinstance(data, pd.DataFrame) and "Close" in data.columns and not data["Close"].dropna().empty:
+            yields_dict[label] = data["Close"]
         else:
-            st.warning(f"⚠️ No data returned for {label} ({ticker})")
+            st.warning(f"⚠️ No usable data for {label} ({ticker})")
     except Exception:
         st.warning(f"⚠️ Error retrieving {label} ({ticker})")
 
-# Only proceed if we have data
+# Check again
 if not yields_dict:
-    st.error("❌ No yield data available. Try again later.")
+    st.error("❌ No yield data retrieved.")
     st.stop()
 
-# Create DataFrame from valid yield series
-yields_df = pd.DataFrame(yields_dict).dropna()
+# Construct DataFrame from clean series
+try:
+    yields_df = pd.concat(yields_dict.values(), axis=1)
+    yields_df.columns = yields_dict.keys()
+    yields_df.dropna(inplace=True)
+except Exception as e:
+    st.error(f"❌ Error building yields dataframe: {e}")
+    st.stop()
 
 # Show latest yields
 latest_yields = yields_df.iloc[-1]
 st.subheader("📈 Current US Treasury Yields (%)")
 st.dataframe(latest_yields.to_frame(name="Yield (%)"))
 
-# Plot historical yields
+# Plot history
 st.subheader("📉 Yield History Over Time")
 st.plotly_chart(px.line(yields_df, title="US Treasury Yields Over Time"), use_container_width=True)
 
-# Plot yield curve snapshot
+# Yield curve snapshot
 yc_snapshot = pd.DataFrame({
     "Maturity": latest_yields.index,
     "Yield": latest_yields.values
 })
 yc_snapshot["Maturity"] = pd.Categorical(yc_snapshot["Maturity"], categories=["3M", "5Y", "10Y", "30Y"], ordered=True)
-yc_snapshot = yc_snapshot.sort_values("Maturity")
+yc_snapshot.sort_values("Maturity", inplace=True)
 
 st.subheader("🔩 Yield Curve Snapshot")
-fig_curve = px.line(yc_snapshot, x="Maturity", y="Yield", markers=True, title="US Treasury Yield Curve")
-st.plotly_chart(fig_curve, use_container_width=True)
+st.plotly_chart(px.line(yc_snapshot, x="Maturity", y="Yield", markers=True, title="US Treasury Yield Curve"), use_container_width=True)
