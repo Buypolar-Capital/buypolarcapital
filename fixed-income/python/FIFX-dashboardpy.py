@@ -12,7 +12,7 @@ st.title("📊 BPC Capital Dashboard")
 st.header("💱 BuyPolar Capital – Fixed Income & FX Focus")
 
 # ----------------------
-# FX Market Section
+# FX Portfolio Section
 # ----------------------
 st.subheader("🌍 FX Portfolio Performance")
 
@@ -22,17 +22,14 @@ fx_pairs = {
     "JPYUSD=X": 0.3,
 }
 
-# Download FX data
 fx_raw = yf.download(list(fx_pairs.keys()), start="2024-01-01", group_by="ticker", auto_adjust=True)
 
-# Extract 'Close' price from multi-index structure
 fx_data = pd.DataFrame()
 for ticker in fx_pairs.keys():
     try:
         fx_data[ticker] = fx_raw[ticker]["Close"]
-    except KeyError:
+    except Exception:
         st.warning(f"⚠️ No data for {ticker}, skipping.")
-        continue
 
 fx_data.dropna(how="all", inplace=True)
 
@@ -40,46 +37,66 @@ if fx_data.empty:
     st.error("❌ No FX data retrieved. Please check ticker symbols or internet connection.")
     st.stop()
 
-# Normalize and calculate portfolio
 fx_norm = fx_data / fx_data.iloc[0]
 fx_weights = pd.Series(fx_pairs)
 fx_portfolio = (fx_norm * fx_weights).sum(axis=1)
 fx_returns = fx_portfolio.pct_change().dropna()
 fx_cum_returns = (1 + fx_returns).cumprod()
 
-# Plot cumulative FX return
 st.plotly_chart(px.line(fx_cum_returns, title="Cumulative FX Portfolio Return"), use_container_width=True)
-
-# Show daily FX PnL
 st.subheader("💸 Daily FX PnL (%)")
 st.dataframe((fx_returns * 100).to_frame(name="Daily PnL (%)"))
 
 # ----------------------
-# Fixed Income Section
+# Real US Yield Curve Section
 # ----------------------
-st.header("🏦 Fixed Income – Yield Curve Snapshot")
+st.header("🏛️ Real US Treasury Yields")
 
-# Mock data – replace later with OECD or FRED API
-maturities = ["1Y", "2Y", "5Y", "10Y", "30Y"]
-yields_today = [3.2, 3.4, 3.7, 3.9, 4.1]
-yields_last_month = [2.9, 3.1, 3.5, 3.7, 3.9]
+# Define Yahoo tickers for treasury yields
+yield_tickers = {
+    "3M": "^IRX",
+    "5Y": "^FVX",
+    "10Y": "^TNX",
+    "30Y": "^TYX"
+}
 
-yields_df = pd.DataFrame({
-    "Maturity": maturities * 2,
-    "Yield": yields_today + yields_last_month,
-    "Date": ["Today"] * len(maturities) + ["Last Month"] * len(maturities)
+yields_dict = {}
+
+for label, ticker in yield_tickers.items():
+    try:
+        data = yf.download(ticker, start="2024-01-01")["Close"]
+        if not data.empty:
+            yields_dict[label] = data
+        else:
+            st.warning(f"⚠️ No data returned for {label} ({ticker})")
+    except Exception:
+        st.warning(f"⚠️ Error retrieving {label} ({ticker})")
+
+# Only proceed if we have data
+if not yields_dict:
+    st.error("❌ No yield data available. Try again later.")
+    st.stop()
+
+# Create DataFrame from valid yield series
+yields_df = pd.DataFrame(yields_dict).dropna()
+
+# Show latest yields
+latest_yields = yields_df.iloc[-1]
+st.subheader("📈 Current US Treasury Yields (%)")
+st.dataframe(latest_yields.to_frame(name="Yield (%)"))
+
+# Plot historical yields
+st.subheader("📉 Yield History Over Time")
+st.plotly_chart(px.line(yields_df, title="US Treasury Yields Over Time"), use_container_width=True)
+
+# Plot yield curve snapshot
+yc_snapshot = pd.DataFrame({
+    "Maturity": latest_yields.index,
+    "Yield": latest_yields.values
 })
+yc_snapshot["Maturity"] = pd.Categorical(yc_snapshot["Maturity"], categories=["3M", "5Y", "10Y", "30Y"], ordered=True)
+yc_snapshot = yc_snapshot.sort_values("Maturity")
 
-# Yield curve plot
-fig_yield = px.line(yields_df, x="Maturity", y="Yield", color="Date",
-                    markers=True, title="Yield Curve Comparison")
-st.plotly_chart(fig_yield, use_container_width=True)
-
-# Yield curve delta
-st.subheader("📉 Yield Curve Change (bps)")
-delta_yields = np.array(yields_today) - np.array(yields_last_month)
-delta_df = pd.DataFrame({
-    "Maturity": maturities,
-    "Change (bps)": delta_yields * 100
-})
-st.dataframe(delta_df.set_index("Maturity"))
+st.subheader("🔩 Yield Curve Snapshot")
+fig_curve = px.line(yc_snapshot, x="Maturity", y="Yield", markers=True, title="US Treasury Yield Curve")
+st.plotly_chart(fig_curve, use_container_width=True)
