@@ -1,4 +1,6 @@
 import streamlit as st
+st.set_page_config(page_title="BuyPolar Capital FI and FX", layout="wide")
+
 import pandas as pd
 import numpy as np
 import plotly.express as px
@@ -7,7 +9,6 @@ import yfinance as yf
 # ----------------------
 # Page Setup
 # ----------------------
-st.set_page_config(page_title="BuyPolar Capital FI and FX", layout="wide")
 st.title("📊 BPC Capital Dashboard")
 st.header("💱 BuyPolar Capital – Fixed Income & FX Focus")
 
