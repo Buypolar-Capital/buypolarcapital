@@ -113,3 +113,4 @@ st.metric("Logistic Regression Signal", "Buy" if latest_lr > 0.5 else "Sell", f"
 st.metric("XGBoost Signal", "Buy" if latest_xgb > 0.5 else "Sell", f"{latest_xgb:.2%}")
 
 st.caption("🚨 Disclaimer: Signals are experimental and not investment advice.")
+
