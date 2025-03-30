@@ -10,3 +10,4 @@ plot_prices(
   save_pdf = TRUE,
   filename = "aapl_2023_price.pdf"
 )
+
