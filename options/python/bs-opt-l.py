@@ -150,3 +150,5 @@ leader_df = leader_df.sort_values(by="TotalPnL", ascending=False)
 print(leader_df[["Ticker", "Country", "Type", "AvgPnL", "TotalPnL"]].round(2).to_string(index=False))
 
 print(f"\n📄 Final multi-page PDF saved to: {pdf_path}")
+
+
