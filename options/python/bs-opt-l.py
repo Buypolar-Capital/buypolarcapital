@@ -47,35 +47,38 @@ set_bpc_style()
 # === Tickers and Labels ===
 stocks = {
     "AAPL": "USA",
-    "EQNR.OL": "Norway",
-    "SHEL.L": "UK",
-    "6758.T": "Japan",
-    "SAP.DE": "Germany",
-    "MC.PA": "France",
-    "SHOP.TO": "Canada",
-    "0700.HK": "China",
-    "INFY.NS": "India",
-    "PETR4.SA": "Brazil"
+    "EQNR": "Norway",      # US ADR for Equinor
+    "SHEL": "UK",          # US listing of Shell
+    "SONY": "Japan",       # US listing of Sony
+    "SAP": "Germany",      # US listing of SAP
+    "LVMUY": "France",     # LVMH ADR
+    "SHOP": "Canada",      # US listing of Shopify
+    "TCEHY": "China",      # Tencent ADR
+    "INFY": "India",       # US listing of Infosys
+    "PBR": "Brazil"        # Petrobras ADR
 }
 
 r = 0.05  # risk-free rate
-
-# === Output Directory ===
 output_dir = os.path.join(os.getcwd(), "plots")
 os.makedirs(output_dir, exist_ok=True)
 pdf_path = os.path.join(output_dir, "global_bs_market_pnl.pdf")
+
+leaderboard = []
 
 with PdfPages(pdf_path) as pdf:
     for ticker, country in stocks.items():
         try:
             yf_ticker = yf.Ticker(ticker)
+            options = yf_ticker.options
+            if not options:
+                raise Exception("No options available")
+
             spot = yf_ticker.history(period="1d")["Close"].iloc[-1]
-            expiry = yf_ticker.options[0]
+            expiry = options[0]
             T = (pd.to_datetime(expiry) - datetime.today()).days / 365
             chain = yf_ticker.option_chain(expiry)
             history = yf_ticker.history(period="1mo").reset_index()
 
-            # Process both calls and puts
             for option_type, df in zip(["call", "put"], [chain.calls, chain.puts]):
                 df["impliedVolatility"] = df["impliedVolatility"].fillna(0.25)
                 df["Market_Price"] = (df["bid"] + df["ask"]) / 2
@@ -89,20 +92,29 @@ with PdfPages(pdf_path) as pdf:
                                            row["BS_Price"], row["Market_Price"]), axis=1
                 )
 
-                # === PLOT ===
+                # Track summary stats for leaderboard
+                avg_pnl = df["PnL"].mean()
+                total_pnl = df["PnL"].sum()
+                leaderboard.append({
+                    "Ticker": ticker,
+                    "Country": country,
+                    "Type": option_type,
+                    "AvgPnL": avg_pnl,
+                    "TotalPnL": total_pnl
+                })
+
+                # Plot it
                 fig, axes = plt.subplots(3, 1, figsize=(12, 10),
                                          gridspec_kw={"height_ratios": [1, 1.2, 1.1]})
                 fig.suptitle(f"{ticker} ({country}) — {option_type.upper()}S\nExpiry: {expiry}",
                              fontsize=15, fontweight="bold")
 
-                # Stock history
                 axes[0].plot(history["Date"], history["Close"], color="blue", label="Price")
                 axes[0].axhline(spot, linestyle="--", color="gray", label=f"Spot = ${spot:.2f}")
                 axes[0].set_ylabel("Stock Price ($)")
                 axes[0].legend()
                 axes[0].grid(True)
 
-                # BS vs Market
                 axes[1].plot(df["strike"], df["Market_Price"], label="Market", marker="o")
                 axes[1].plot(df["strike"], df["BS_Price"], label="BS Model", marker="x")
                 axes[1].axvline(spot, color="gray", linestyle="--", linewidth=1)
@@ -112,7 +124,6 @@ with PdfPages(pdf_path) as pdf:
                 axes[1].legend()
                 axes[1].grid(True)
 
-                # Mispricing P&L
                 axes[2].bar(df["strike"], df["PnL"], color="green" if option_type=="call" else "purple")
                 axes[2].axhline(0, color="black", linewidth=0.7)
                 axes[2].set_xlabel("Strike")
@@ -120,7 +131,6 @@ with PdfPages(pdf_path) as pdf:
                 axes[2].set_title("PnL if Held to Expiry (Model-Based Strategy)")
                 axes[2].grid(True)
 
-                # Footer
                 fig.text(0.01, 0.01, f"Source: Yahoo Finance | Strategy: BuyPolar Capital",
                          fontsize=9, style="italic", color="#333333")
 
@@ -131,6 +141,12 @@ with PdfPages(pdf_path) as pdf:
                 print(f"✅ Added {ticker} ({country}) {option_type}s to report.")
 
         except Exception as e:
-            print(f"❌ Failed for {ticker} ({country}): {e}")
+            print(f"❌ Skipped {ticker} ({country}): {e}")
+
+# === Print leaderboard summary ===
+print("\n📊 PnL Leaderboard (Sorted by Total PnL):")
+leader_df = pd.DataFrame(leaderboard)
+leader_df = leader_df.sort_values(by="TotalPnL", ascending=False)
+print(leader_df[["Ticker", "Country", "Type", "AvgPnL", "TotalPnL"]].round(2).to_string(index=False))
 
 print(f"\n📄 Final multi-page PDF saved to: {pdf_path}")
