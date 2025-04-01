@@ -84,3 +84,19 @@ def plot_prices(df, title="Price over Time", y_label="Price",
     if show:
         plt.show()
 
+def set_bpc_style():
+    plt.rcParams.update({
+        "axes.edgecolor": "#cccccc",
+        "axes.grid": True,
+        "grid.color": "#cccccc",
+        "grid.linestyle": "-",
+        "grid.linewidth": 0.25,
+        "axes.titlesize": 16,
+        "axes.titleweight": "bold",
+        "axes.labelsize": 11,
+        "legend.fontsize": 10,
+        "legend.frameon": False,
+        "figure.facecolor": "white",
+        "axes.facecolor": "white",
+        "font.family": "sans-serif",
+    })
