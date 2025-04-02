@@ -1,5 +1,6 @@
 from scipy.stats import gaussian_kde
 
+
 fig, ax = plt.subplots(figsize=(12, 6))
 for label, samples in posterior_samples_dict.items():
     samples = np.array(samples).flatten()
