@@ -14,9 +14,9 @@ def compute_slippage(executed_price, vwap, side):
         raise ValueError("Side must be 'buy' or 'sell'")
 
 def compute_execution_price(price_data, volume_data, aggressiveness, notional):
-    weights = aggressiveness / (aggressiveness.sum() + 1e-8)  # (n_minutes,)
-    total_shares = notional / price_data.mean()  # Total shares to trade
-    trade_volumes = weights * total_shares  # Shares per minute
+    weights = aggressiveness / (aggressiveness.sum() + 1e-8)
+    total_shares = notional / price_data.mean()
+    trade_volumes = weights * total_shares
     exec_price = np.sum(price_data * trade_volumes) / total_shares
     return exec_price, trade_volumes
 
@@ -30,6 +30,21 @@ def summarize_slippages(slippages):
     print(f"Median Slippage: {df['slippage'].median():.4f}")
     print(f"VWAP or better: {(df['slippage'] <= 0).mean() * 100:.1f}% of days")
     return df
+
+def compute_metrics(slippages, label="Model"):
+    df = pd.DataFrame(slippages)
+    sharpe = df["slippage"].mean() / (df["slippage"].std() + 1e-8)
+    hit_ratio = (df["slippage"] < df["twap_slippage"]).mean()
+    max_dd = (df["slippage"].cumsum().cummax() - df["slippage"].cumsum()).max()
+    summary = {
+        "model": label,
+        "avg_slip": df["slippage"].mean(),
+        "std_slip": df["slippage"].std(),
+        "sharpe": sharpe,
+        "hit_ratio": hit_ratio,
+        "max_drawdown": max_dd
+    }
+    return summary
 
 def print_leaderboard(slippages, top_n=5):
     df = pd.DataFrame(slippages).copy()
@@ -99,6 +114,7 @@ def plot_loss_curve(losses, save_path="plots/loss_curve.pdf"):
     plt.savefig(save_path)
     print(f"Saved loss curve to {save_path}")
     plt.close()
+
 
 def plot_daily_execution_overlay(slippages, model, save_path="plots/daily_exec_analytics.pdf"):
     os.makedirs(os.path.dirname(save_path), exist_ok=True)
