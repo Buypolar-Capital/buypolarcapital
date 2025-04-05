@@ -7,8 +7,8 @@ class VWAPExecutionDataset:
     def __init__(self, ticker="AAPL", days_back=30, interval="1m"):
         self.ticker = ticker
         self.interval = interval
-        self.end = datetime.today().date() - timedelta(days=1)  # Yesterday
-        self.start = self.end - timedelta(days=days_back - 1)   # 30 days back
+        self.end = datetime.today().date() - timedelta(days=1)
+        self.start = self.end - timedelta(days=days_back - 1)
         print(f"Dataset range: {self.start} to {self.end}")
 
         self.raw_df = self._load_data()
@@ -60,10 +60,9 @@ class VWAPExecutionDataset:
 
         for i, day in enumerate(unique_days):
             day_df = df[df["Date"] == day].copy()
-            if len(day_df) < 200:  # Skip incomplete days
+            if len(day_df) < 200:
                 continue
 
-            # Time-based features
             day_df["elapsed_minutes"] = ((day_df["Datetime"] - day_df["Datetime"].iloc[0]).dt.total_seconds() // 60).astype(int)
             day_df["minute_of_day"] = day_df["elapsed_minutes"]
             day_df["log_price"] = np.log(day_df["Close"])
@@ -71,27 +70,22 @@ class VWAPExecutionDataset:
             day_df["volatility"] = day_df["return"].rolling(20).std().fillna(0)
             day_df["normalized_volume"] = day_df["Volume"] / day_df["Volume"].rolling(20).mean().fillna(1)
 
-            # VWAP calculation
             day_df["cum_volume"] = day_df["Volume"].cumsum()
             day_df["cum_pv"] = (day_df["Close"] * day_df["Volume"]).cumsum()
             day_df["vwap"] = day_df["cum_pv"] / day_df["cum_volume"]
 
-            # Execution direction
             execution_side = "buy" if i % 2 == 0 else "sell"
             day_df["side"] = execution_side
 
-            # Features and targets
-            features = day_df[[
-                "log_price", "return", "volatility", "normalized_volume", "minute_of_day"
-            ]].copy()
+            features = day_df[["log_price", "return", "volatility", "normalized_volume", "minute_of_day"]].copy()
 
             session = {
                 "date": day,
                 "side": execution_side,
                 "features": features.reset_index(drop=True),
-                "price_series": day_df["Close"].reset_index(drop=True),
+                "price_series": day_df["Close"].values.flatten(),  # Force 1D
                 "vwap": day_df["vwap"].iloc[-1],
-                "volume": day_df["Volume"].reset_index(drop=True)
+                "volume": day_df["Volume"].values.flatten()  # Force 1D
             }
             daily_sessions.append(session)
 

@@ -15,7 +15,7 @@ def compute_slippage(executed_price, vwap, side):
 
 def compute_execution_price(price_data, volume_data, aggressiveness, notional):
     weights = aggressiveness / (aggressiveness.sum() + 1e-8)
-    trade_volumes = weights * notional / np.sum(price_data)  # Dollars traded per minute
+    trade_volumes = weights * notional / price_data.mean()  # Dollars per minute
     exec_price = np.sum(price_data * trade_volumes) / np.sum(trade_volumes)
     return exec_price, trade_volumes
 
@@ -104,9 +104,9 @@ def plot_daily_execution_overlay(slippages, model, save_path="plots/daily_exec_a
 
     with PdfPages(save_path) as pdf:
         for session in slippages:
-            # Fresh variables
-            day_prices = np.array(session["prices"]).copy()
-            day_aggr = np.array(session["aggressiveness"]).flatten().copy()
+            # Fresh variables with raw NumPy
+            day_prices = np.array(session["prices"]).flatten()  # Force 1D
+            day_aggr = np.array(session["aggressiveness"]).flatten()  # Already 1D
             day_side = session["side"]
             day_date = session["date"]
             day_vwap = session["vwap"]
@@ -115,12 +115,14 @@ def plot_daily_execution_overlay(slippages, model, save_path="plots/daily_exec_a
 
             # Recalculate trade volumes and shares
             _, day_trade_volumes = compute_execution_price(day_prices, None, day_aggr, 100000)
-            day_shares = day_trade_volumes / day_prices  # Shares per minute
+            day_shares = day_trade_volumes / day_prices  # Element-wise division
             day_shares = np.nan_to_num(day_shares, nan=0.0, posinf=0.0, neginf=0.0)  # Clean NaNs/Infs
             cum_shares = np.cumsum(day_shares)
 
             # Debug
-            print(f"{day_date}: prices ({len(day_prices)}), aggr ({len(day_aggr)}), shares ({len(day_shares)}), max_shares ({np.max(day_shares):.2f}), total_shares ({cum_shares[-1]:.2f})")
+            print(f"{day_date}: prices ({len(day_prices)}), aggr ({len(day_aggr)}), trade_volumes ({len(day_trade_volumes)}), shares ({len(day_shares)}), max_shares ({np.max(day_shares):.2f}), total_shares ({cum_shares[-1]:.2f})")
+            print(f"Trade volumes sample: {day_trade_volumes[:5]}")
+            print(f"Shares sample: {day_shares[:5]}")
 
             # Check lengths
             if len(day_prices) != len(day_aggr) or len(day_shares) != len(day_prices):

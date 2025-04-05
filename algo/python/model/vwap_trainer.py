@@ -75,16 +75,14 @@ class VWAPExecutionTrainer:
 
         slippages = []
         for session in self.test_sessions:
-            # Align all arrays with features
             features = session["features"].values
-            price_data = session["price_series"].values[:len(features)]  # Renamed
-            volume_data = session["volume"].values[:len(features)]      # Renamed
+            price_data = session["price_series"].flatten()[:len(features)]  # Double flatten
+            volume_data = session["volume"].flatten()[:len(features)]      # Double flatten
 
             X = torch.tensor(features, dtype=torch.float32)
             with torch.no_grad():
                 aggressiveness = self.model(X).squeeze().numpy()
 
-            # Final length check
             if len(price_data) != len(aggressiveness) or len(volume_data) != len(aggressiveness):
                 print(f"Skipping {session['date']}: price_data ({len(price_data)}) != aggressiveness ({len(aggressiveness)}) or volume_data ({len(volume_data)})")
                 continue
@@ -98,7 +96,6 @@ class VWAPExecutionTrainer:
             twap = compute_twap(price_data)
             twap_slippage = compute_slippage(twap, vwap, side)
 
-            # Construct slippage entry
             slippage_entry = {
                 "date": session["date"],
                 "side": side,
@@ -108,10 +105,9 @@ class VWAPExecutionTrainer:
                 "slippage": slippage,
                 "twap_slippage": twap_slippage,
                 "aggressiveness": aggressiveness.copy(),
-                "prices": price_data.copy(),  # Keep key as "prices" for consistency
+                "prices": price_data.copy(),  # Already 1D
                 "features": features.copy()
             }
-            # Log lengths for debugging
             print(f"Added {session['date']}: price_data ({len(price_data)}), aggressiveness ({len(aggressiveness)})")
             slippages.append(slippage_entry)
 
