@@ -209,3 +209,48 @@ Classification: is the next 3 min window "adverse"?
 
 Helps you wait for better conditions
 Build a framework that blends signal outputs across timescales (e.g., 1m, 1h, 1d) using an attention or decay-weighted ensemble.
+
+
+
+🧮 Stochastic Finance & Calculus Projects
+1. Black-Scholes PDE vs Martingale Pricing: Solve the same vanilla call/put option using both PDE transformation (to the heat equation) and the martingale measure approach. Compare speed, clarity, numerical stability​mat4735 bok - nicolas p….
+
+2. Simulate and hedge exotic options: Implement pricing and dynamic hedging of Asian, barrier, and lookback options using discrete-time Monte Carlo with variance reduction​mat4735 bok - nicolas p….
+
+3. American option pricing via optimal stopping: Backward induction using Least Squares Monte Carlo (LSM) vs binomial tree with early exercise optimization​mat4735 bok - nicolas p….
+
+4. Risk-minimizing hedging under jump-diffusion models: Price and hedge options under a compound Poisson process with finite activity jumps​mat4735 bok - nicolas p….
+
+5. Compare implied vs local volatility surfaces: Calibrate local volatility from market option prices and compare it to implied vol; visualize term structures​mat4735 bok - nicolas p….
+
+6. Simulate Lévy processes with Malliavin Greeks: Calculate sensitivities (Δ, Γ) using Malliavin calculus for European options under jump models​mat4740 bok - bernt øks….
+
+7. Use Girsanov’s Theorem in jump models: Shift between real-world and risk-neutral measures in Poisson jump-diffusion environments​mat4735 bok - nicolas p….
+
+8. Backtest mean-variance hedging under jumps: Implement a risk-minimizing portfolio strategy where the market is incomplete​mat4735 bok - nicolas p….
+
+9. Simulate the Vasicek and CIR short rate models: Fit bond prices, simulate interest rate paths, and visualize zero-coupon curves​mat4735 bok - nicolas p….
+
+10. Optimal exercise boundaries for American options: Use free-boundary PDEs and verify numerically the exercise region​mat4735 bok - nicolas p….
+
+📊 Statistical Modeling & Bayesian Inference Projects
+11. Bayesian estimation of volatility from returns: Use conjugate priors (inverse gamma, normal) to estimate variance of asset returns and update daily​stk1110 bok - devore be….
+
+12. Bayesian credible intervals vs confidence intervals: For stock betas, compare Bayesian 95% credible intervals to standard frequentist confidence bounds​stk1110 bok - devore be….
+
+13. Posterior updating in exponential families: Apply Bayesian inference to Poisson and exponential distributed financial events (default times, tick arrivals)​stk1110 bok - devore be….
+
+14. Multivariate GLMs in financial time series: Model portfolio returns using logistic/probit models for binary outcomes (e.g. up/down days)​stk1110 bok - devore be….
+
+15. MLE vs MAP in parameter estimation: Compare max likelihood and Bayesian MAP estimates on GARCH(1,1) volatility forecasts.
+
+📐 Optimization & Linear Programming Projects
+16. Robust portfolio optimization via MAD: Use linear programming with Mean Absolute Deviation instead of variance as a risk measure​mat3100 bok - robert j ….
+
+17. Quadratic programming for Markowitz frontier: Build full risk-return efficient frontier and select portfolios with specific Sharpe constraints​mat3100 bok - robert j ….
+
+18. Integer programming for discrete asset allocation: Introduce real-world constraints like "at most 5 assets in portfolio" or "round lots only"​mat3100 bok - robert j ….
+
+19. Pricing bounds with duality in LP: Formulate lower and upper bounds for derivative prices based on no-arbitrage via LP duals​mat3100 bok - robert j ….
+
+20. Stochastic control via dynamic programming: Use Bellman equations to model consumption-investment decisions with stochastic returns​mat4735 bok - nicolas p….
