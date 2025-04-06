@@ -274,6 +274,61 @@ A collection of super technical and practical quant projects to level up my skil
 
 ---
 
+## 🇳🇴 Internship-Aligned Projects
+
+### 📊 For NBIM – Market Strategies
+
+- [ ] **Global Factor Dashboard**  
+  - Track time-series of value, momentum, carry, and quality factors.  
+
+- [ ] **Yield Curve Risk Premium Forecasting**  
+  - Forecast bond excess returns using macro-finance factor models.  
+
+- [ ] **FX Exposure Analyzer**  
+  - Model portfolio sensitivity to global macro factor risk.  
+
+- [ ] **ESG vs Non-ESG Alpha Comparison**  
+  - Decompose return drivers across ESG strategies.  
+
+- [ ] **Interactive Scenario Simulator**  
+  - Simulate portfolio impact under macroeconomic stress scenarios.  
+
+### ⚡ For Statkraft – Quantitative Risk
+
+- [ ] **Monte Carlo Energy Portfolio Valuation**  
+  - Price power portfolios with stochastic simulation.  
+
+- [ ] **Mean-Reverting Time Series Toolkit**  
+  - Calibrate and forecast OU processes for power and gas.  
+
+- [ ] **Weather-Driven Volatility Model**  
+  - Model energy output uncertainty from weather features.  
+
+- [ ] **Credit Risk Exposure in Energy Contracts**  
+  - Estimate CVaR and expected loss for bilateral power agreements.  
+
+- [ ] **Real Options for Renewable Projects**  
+  - Value flexibility in wind/solar investments using real options.  
+
+### 📉 For Pareto – Electronic Trading
+
+- [x] **VWAP Execution Neural Net**  
+  - Learn trading aggressiveness via supervised deep learning.  
+
+- [ ] **Order Book Dynamics Simulator**  
+  - Simulate LOB microstructure with agent-based modeling.  
+
+- [ ] **Adverse Selection Classifier**  
+  - Flag toxic market conditions using microstructure stats.  
+
+- [ ] **Optimal Inventory Control**  
+  - Implement market maker strategies under risk constraints.  
+
+- [ ] **Real-Time Trade Signal Engine**  
+  - Stream tick data and generate real-time trading signals.
+
+---
+
 ## ✅ Tips to Level Up
 
 - **Data Sources**: yfinance, Binance API, Alpaca, Eikon, Quandl, Kaggle  
