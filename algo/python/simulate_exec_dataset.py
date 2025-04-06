@@ -1,6 +1,4 @@
 # File: simulate_exec_dataset.py
-# Purpose: Generate simulated execution samples from minute-level stock data
-
 import pandas as pd
 import numpy as np
 from pathlib import Path
@@ -89,13 +87,16 @@ def simulate_sample(df, ticker):
         minutes_since_open = (first_idx - first_idx.normalize().replace(hour=9, minute=30)).total_seconds() / 60
 
         print(f"{ticker}: Iteration {i} - Calculating volume metrics")
-        cum_volume_before = float(df.loc[df.index < first_idx, "Volume"].sum())
-        total_volume_day = float(df["Volume"].sum())
+        cum_volume_before = df.loc[df.index < first_idx, "Volume"].sum().item()  # Extract scalar
+        total_volume_day = df["Volume"].sum().item()  # Extract scalar
         print(f"{ticker}: Iteration {i} - Cum volume: {cum_volume_before}, Total volume: {total_volume_day}, Type: {type(total_volume_day)}")
         if total_volume_day > 0:
             volume_ratio = cum_volume_before / total_volume_day
         else:
             volume_ratio = 0.0
+
+        print(f"{ticker}: Iteration {i} - Calculating price volatility")
+        price_volatility = np.nan_to_num(slice_df["Close"].std(), nan=0.0)
 
         print(f"{ticker}: Iteration {i} - Appending sample")
         samples.append({
@@ -108,7 +109,8 @@ def simulate_sample(df, ticker):
             "exec_price": avg_exec_price,
             "slippage": slippage,
             "minutes_since_open": minutes_since_open,
-            "volume_ratio": volume_ratio
+            "volume_ratio": volume_ratio,
+            "price_volatility": price_volatility
         })
     return samples
 
@@ -121,6 +123,11 @@ def main():
             print(f"\nProcessing {ticker}:")
             print(f"Raw data index range: {df.index.min()} to {df.index.max()}")
             print(f"Unique dates in raw data: {sorted(set(df.index.date))}")
+
+            # Ensure flat DataFrame structure
+            if isinstance(df.columns, pd.MultiIndex):
+                df.columns = df.columns.get_level_values(0)  # Keep only Price level (Close, Volume, etc.)
+            df = df.reset_index(level='Ticker', drop=True) if 'Ticker' in df.index.names else df
 
             # Filter only data for the last valid trading day
             df.index = pd.to_datetime(df.index, utc=True).tz_convert('US/Eastern')
@@ -137,6 +144,7 @@ def main():
             print(f"❌ Error processing {ticker}: {e}")
 
     df_all = pd.DataFrame(all_samples)
+    print(f"Column dtypes before saving:\n{df_all.dtypes}")
     df_all.to_parquet(SAVE_PATH / "exec_dataset.parquet", index=False)
     print(f"📦 Saved {len(df_all)} total samples to {SAVE_PATH}/exec_dataset.parquet")
 

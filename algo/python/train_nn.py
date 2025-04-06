@@ -26,7 +26,7 @@ def load_data():
 
     # Feature engineering
     df["log_order_size"] = np.log1p(df["order_size"])
-    features = df[["order_size", "duration", "minutes_since_open", "volume_ratio", "log_order_size"]]
+    features = df[["order_size", "duration", "minutes_since_open", "volume_ratio", "log_order_size", "price_volatility"]]  # Added price_volatility
     target = df["slippage"]
 
     scaler = StandardScaler()
@@ -44,7 +44,6 @@ def load_data():
     )
 
 def train_model():
-    # Optional: remove previous model
     if MODEL_PATH.exists():
         os.remove(MODEL_PATH)
         print(f"🧹 Removed existing model: {MODEL_PATH}")
@@ -54,23 +53,34 @@ def train_model():
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
     criterion = nn.MSELoss()
 
-    for epoch in range(20):
+    best_test_loss = float('inf')
+    patience = 10
+    patience_counter = 0
+
+    for epoch in range(100):  # Increased to 100
         model.train()
         y_pred = model(X_train)
         loss = criterion(y_pred, y_train)
-
         optimizer.zero_grad()
         loss.backward()
         optimizer.step()
 
-        print(f"Epoch {epoch+1}/20 | Train Loss: {loss.item():.5f}")
+        model.eval()
+        with torch.no_grad():
+            test_loss = criterion(model(X_test), y_test)
+        print(f"Epoch {epoch+1}/100 | Train Loss: {loss.item():.5f} | Test Loss: {test_loss.item():.5f}")
 
-    model.eval()
-    test_loss = criterion(model(X_test), y_test)
-    print(f"Test Loss: {test_loss.item():.5f}")
+        if test_loss < best_test_loss:
+            best_test_loss = test_loss
+            patience_counter = 0
+            torch.save(model.state_dict(), MODEL_PATH)
+        else:
+            patience_counter += 1
+            if patience_counter >= patience:
+                print(f"Early stopping at epoch {epoch+1}")
+                break
 
-    torch.save(model.state_dict(), MODEL_PATH)
-    print(f"✅ Model saved to {MODEL_PATH}")
+    print(f"✅ Model saved to {MODEL_PATH} with best test loss: {best_test_loss:.5f}")
 
 if __name__ == "__main__":
     train_model()

@@ -20,7 +20,7 @@ def load_data():
 
     # Features and target
     df["log_order_size"] = np.log1p(df["order_size"])
-    features = df[["order_size", "duration", "minutes_since_open", "volume_ratio", "log_order_size"]]
+    features = df[["order_size", "duration", "minutes_since_open", "volume_ratio", "log_order_size", "price_volatility"]]  # Added price_volatility
     target = df["slippage"]
 
     scaler = StandardScaler()
@@ -34,7 +34,7 @@ def main():
 
     # Init + load model
     model = SimpleMLP(input_dim=X.shape[1])
-    model.load_state_dict(torch.load(MODEL_PATH), strict=True)
+    model.load_state_dict(torch.load(MODEL_PATH, weights_only=True), strict=True)
     model.eval()
 
     # Predict
