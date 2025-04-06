@@ -57,7 +57,7 @@ def train_model():
     patience = 10
     patience_counter = 0
 
-    for epoch in range(100):  # Increased to 100
+    for epoch in range(200):  # Increased to 100
         model.train()
         y_pred = model(X_train)
         loss = criterion(y_pred, y_train)
