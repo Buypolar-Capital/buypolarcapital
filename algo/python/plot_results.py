@@ -132,16 +132,15 @@ with PdfPages(PLOT_DIR / "model_performance.pdf") as pdf:
     pdf.savefig()
     plt.close()
 
-    # 18. Portfolio Simulation (Simple Example)
-    portfolio = pred_df.groupby("ticker").apply(
-        lambda x: np.cumsum(x["order_size"] * (x["vwap"] - x["predicted_slippage"])), include_groups=False
-    )
-    twap_portfolio = pred_df.groupby("ticker").apply(
-        lambda x: np.cumsum(x["order_size"] * x["vwap"]), include_groups=False
-    )
+    # 18. Portfolio Simulation (Corrected)
+    # Sort by ticker and minutes_since_open to ensure chronological order
+    pred_df = pred_df.sort_values(["ticker", "minutes_since_open"])
+    # Calculate cumulative portfolio value across all trades
+    portfolio = np.cumsum(pred_df["order_size"] * (pred_df["vwap"] - pred_df["predicted_slippage"]))
+    twap_portfolio = np.cumsum(pred_df["order_size"] * pred_df["vwap"])
     plt.figure(figsize=(10, 6))
-    plt.plot(portfolio.mean(), label="Model-Based")
-    plt.plot(twap_portfolio.mean(), label="TWAP")
+    plt.plot(range(len(portfolio)), portfolio, label="Model-Based")
+    plt.plot(range(len(twap_portfolio)), twap_portfolio, label="TWAP")
     plt.title("Portfolio Value Simulation")
     plt.xlabel("Trade Index")
     plt.ylabel("Cumulative Value")
