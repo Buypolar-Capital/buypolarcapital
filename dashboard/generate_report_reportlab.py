@@ -1,13 +1,19 @@
+import os
+import sys
 import datetime
 import pandas as pd
-import os
+import numpy as np
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import (
-    BaseDocTemplate, Frame, PageTemplate, Paragraph, Spacer, Table, TableStyle, Image
+    BaseDocTemplate, Paragraph, Spacer, Table, TableStyle, Image, PageBreak
 )
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.lib import colors
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
+
+from plotting.plotting import plot_prices, set_bpc_style
+
 
 # --- Setup ---
 base_dir = os.path.dirname(__file__)
@@ -32,13 +38,43 @@ signals = load_data(os.path.join(signals_dir, 'signals.csv'))
 
 today = datetime.date.today().isoformat()
 
-# --- Styles ---
-styles = getSampleStyleSheet()
-section_style = styles['Heading2']
-section_style.fontSize = 10
-body_style = ParagraphStyle(name='Body', fontSize=8, leading=10)
+# --- Get Top Movers ---
+def get_top_movers(*datasets, top_n=3):
+    combined = []
+    for dataset in datasets:
+        for row in dataset:
+            try:
+                ret = float(str(row['1D_return']).replace('%', '').replace(',', '.'))
+                combined.append({'name': row['name'], 'return': ret})
+            except Exception:
+                continue
+    sorted_combined = sorted(combined, key=lambda x: x['return'], reverse=True)
+    return sorted_combined[:top_n], sorted_combined[-top_n:][::-1]
 
-# --- PDF Layout Setup ---
+# --- Generate Price Graphs ---
+def simulate_price_data(name):
+    dates = pd.date_range(end=datetime.datetime.today(), periods=30)
+    prices = pd.Series(100 + (pd.Series(range(30)).apply(lambda x: x * 0.2)).cumsum() +
+                       pd.Series(np.random.randn(30)).cumsum())
+    df = pd.DataFrame({"date": dates, "price": prices, "ticker": name})
+    plot_prices(df, title=f"{name} Price Trend", save_pdf=True, export_png=True,
+                filename=f"{name}_trend.png", show=False)
+
+for asset in ["indices", "commodities", "fixed_income", "crypto"]:
+    simulate_price_data(asset)
+
+# --- Helper: Make Table ---
+def make_table(data, headers):
+    table_data = [headers] + [[row.get("name", ""), row.get("1D_return", row.get("return", ""))] for row in data]
+    table = Table(table_data)
+    table.setStyle(TableStyle([
+        ('FONTSIZE', (0, 0), (-1, -1), 8),
+        ('GRID', (0, 0), (-1, -1), 0.25, colors.black),
+        ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
+    ]))
+    return table
+
+# --- PDF Init ---
 doc = BaseDocTemplate(
     os.path.join(output_dir, f"morning_report_{today}.pdf"),
     pagesize=letter,
@@ -48,69 +84,54 @@ doc = BaseDocTemplate(
     bottomMargin=0.5*inch,
 )
 
-frame_width = (doc.width - 0.2*inch) / 2
-frame_height = doc.height
+from reportlab.platypus import Frame, PageTemplate
+frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id='normal')
+doc.addPageTemplates([PageTemplate(id='basic', frames=frame)])
 
-frame_left = Frame(doc.leftMargin, doc.bottomMargin, frame_width, frame_height, id='left')
-frame_right = Frame(doc.leftMargin + frame_width + 0.2*inch, doc.bottomMargin, frame_width, frame_height, id='right')
-
-doc.addPageTemplates([PageTemplate(id='TwoCol', frames=[frame_left, frame_right])])
-
-# --- Helper: Make a Table from a dict list ---
-def make_table(data, display_headers, keys):
-    table_data = [display_headers] + [[row[k] for k in keys] for row in data]
-    table = Table(table_data)
-    table.setStyle(TableStyle([
-        ('FONTSIZE', (0, 0), (-1, -1), 8),
-        ('GRID', (0, 0), (-1, -1), 0.25, colors.black),
-        ('BACKGROUND', (0, 0), (-1, 0), colors.lightgrey),
-    ]))
-    return table
-
-# --- Build Content ---
+styles = getSampleStyleSheet()
+section_style = styles['Heading2']
+body_style = ParagraphStyle(name='Body', fontSize=8, leading=10)
 content = []
 
-# Title
-content.append(Paragraph(f"<b>BuyPolar Capital Global One-Pager — {today}</b>", styles['Heading1']))
+# --- Title ---
+content.append(Paragraph(f"<b>📈 BuyPolar Capital Global One-Pager — {today}</b>", styles['Heading1']))
 content.append(Spacer(1, 0.1*inch))
 
-# Section: Major Indices
-content.append(Paragraph("📊 Major Indices", section_style))
-content.append(make_table(indices, ["Index", "1D Return (%)"], ["name", "1D_return"]))
-content.append(Image(os.path.join(plot_dir, "sparkline_indices.png"), width=frame_width, height=0.8*inch))
-content.append(Image(os.path.join(plot_dir, "indices_returns.png"), width=frame_width, height=0.8*inch))
+# --- Top Gainers & Losers ---
+gainers, losers = get_top_movers(indices, commodities, fixed_income, crypto)
+content.append(Paragraph("🏆 Top Gainers", section_style))
+content.append(make_table(gainers, ["Name", "Return (%)"]))
 content.append(Spacer(1, 0.1*inch))
 
-# Section: Commodities
-content.append(Paragraph("🛢 Commodities", section_style))
-content.append(make_table(commodities, ["Asset", "1D Return (%)"], ["name", "1D_return"]))
-content.append(Image(os.path.join(plot_dir, "commodities_returns.png"), width=frame_width, height=0.8*inch))
-content.append(Spacer(1, 0.1*inch))
+content.append(Paragraph("💔 Top Losers", section_style))
+content.append(make_table(losers, ["Name", "Return (%)"]))
+content.append(PageBreak())
 
-# Section: Fixed Income
-content.append(Paragraph("💰 Fixed Income", section_style))
-content.append(make_table(fixed_income, ["Instrument", "1D Return (%)"], ["name", "1D_return"]))
-content.append(Image(os.path.join(plot_dir, "fixed_income_returns.png"), width=frame_width, height=0.8*inch))
-content.append(Spacer(1, 0.1*inch))
+# --- Section Templates ---
+def add_section(title, data, plotname):
+    content.append(Paragraph(title, section_style))
+    content.append(make_table(data, ["Name", "1D_Return"]))
+    plot_path = os.path.join(plot_dir, plotname)
+    if os.path.exists(plot_path):
+        content.append(Image(plot_path, width=doc.width, height=2.5*inch))
+    content.append(PageBreak())
 
-# Section: Crypto
-content.append(Paragraph("🪙 Crypto", section_style))
-content.append(make_table(crypto, ["Coin", "1D Return (%)"], ["name", "1D_return"]))
-content.append(Image(os.path.join(plot_dir, "sparkline_crypto.png"), width=frame_width, height=0.8*inch))
-content.append(Image(os.path.join(plot_dir, "crypto_returns.png"), width=frame_width, height=0.8*inch))
-content.append(Spacer(1, 0.1*inch))
+add_section("📊 Major Indices", indices, "indices_trend.png")
+add_section("🛢 Commodities", commodities, "commodities_trend.png")
+add_section("💰 Fixed Income", fixed_income, "fixed_income_trend.png")
+add_section("🪙 Crypto", crypto, "crypto_trend.png")
 
-# Section: Commentary
+# --- Commentary ---
 content.append(Paragraph("🧠 LLM Commentary", section_style))
 commentary_clean = summary['commentary'].replace("#", "").replace("&", "and")
 content.append(Paragraph(commentary_clean, body_style))
-content.append(Spacer(1, 0.1*inch))
+content.append(PageBreak())
 
-# Section: Signals
+# --- Signals ---
 content.append(Paragraph("📈 Signal Selection", section_style))
-content.append(make_table(signals, ["Name", "Signal", "Return"], ["name", "signal", "return"]))
-content.append(Image(os.path.join(plot_dir, "grid_returns.png"), width=frame_width, height=0.8*inch))
+content.append(make_table(signals, ["Name", "Signal", "Return"]))
+content.append(Image(os.path.join(plot_dir, "grid_returns.png"), width=doc.width, height=2*inch))
 
-# --- Finalize ---
+# --- Finalize PDF ---
 doc.build(content)
 print(f"✅ Report saved to {doc.filename}")
