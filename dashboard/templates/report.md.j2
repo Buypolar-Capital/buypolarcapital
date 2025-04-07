@@ -1,69 +1,71 @@
 ---
-geometry: margin=0.7cm
+title: "BuyPolar Capital Global One-Pager"
 fontsize: 9pt
+geometry: margin=0.6in
+header-includes:
+  - \usepackage{graphicx}
+  - \usepackage{multicol}
+  - \pagenumbering{gobble}
 ---
 
-# BuyPolar – Global Market One-Pager  
-**Date:** {{ date }}
+\begin{multicols}{2}
 
----
+\section*{Global Snapshot {{ date }}}
 
-### Major Indices
+\subsection*{Major Indices}
 
-| Index        | Return (%) |
-|--------------|------------|
+| Index        | 1D Return (%) |
+|--------------|---------------|
 {% for row in indices %}
-| {{ row.name }} | {{ row['1D_return'] }} |
+| {{ row.name | replace("&", "\\&") }} | {{ row['1D_return'] }} |
 {% endfor %}
 
-### Commodities
+\includegraphics[width=\linewidth]{{ output_dir }}/sparkline_indices.png}
+\includegraphics[width=\linewidth]{{ output_dir }}/indices_returns.png}
 
-| Asset        | Return (%) |
-|--------------|------------|
+\subsection*{🛢 Commodities}
+
+| Asset        | 1D Return (%) |
+|--------------|---------------|
 {% for row in commodities %}
 | {{ row.name }} | {{ row['1D_return'] }} |
 {% endfor %}
 
-### Fixed Income
+\includegraphics[width=\linewidth]{{ output_dir }}/commodities_returns.png}
 
-| Instrument   | Return (%) |
-|--------------|------------|
+\subsection*{Fixed Income}
+
+| Instrument     | 1D Return (%) |
+|----------------|---------------|
 {% for row in fixed_income %}
 | {{ row.name }} | {{ row['1D_return'] }} |
 {% endfor %}
 
-### Crypto
+\includegraphics[width=\linewidth]{{ output_dir }}/fixed_income_returns.png}
 
-| Coin         | Return (%) |
-|--------------|------------|
+\subsection*{Crypto}
+
+| Coin       | 1D Return (%) |
+|------------|---------------|
 {% for row in crypto %}
 | {{ row.name }} | {{ row['1D_return'] }} |
 {% endfor %}
 
----
+\includegraphics[width=\linewidth]{{ output_dir }}/sparkline_crypto.png}
+\includegraphics[width=\linewidth]{{ output_dir }}/crypto_returns.png}
 
-### Index Return Chart
+\subsection*{LLM Commentary}
 
-![Index Returns](./indices_returns.pdf)
+{{ commentary | replace("#", "") }}
 
----
+\subsection*{Signal Selection}
 
-### Market Return Grid
+| Name         | Signal  | Return |
+|--------------|---------|--------|
+{% for row in signals %}
+| {{ row.name }} | {{ row.signal }} | {{ row.return }} |
+{% endfor %}
 
-![Grid Returns](./grid_returns.pdf)
+\includegraphics[width=\linewidth]{{ output_dir }}/grid_returns.png}
 
----
-
-### 5-Day Trends
-
-**Indices Sparkline**  
-![Sparkline Indices](./sparkline_indices.pdf)
-
-**Crypto Sparkline**  
-![Sparkline Crypto](./sparkline_crypto.pdf)
-
----
-
-### Commentary
-
-{{ commentary }}
+\end{multicols}

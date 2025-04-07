@@ -1,19 +1,25 @@
 import os
-import matplotlib.pyplot as plt
 import pandas as pd
+import matplotlib.pyplot as plt
 
-def plot_table(data_path, title, filename):
-    df = pd.read_csv(data_path, sep=';').sort_values(by='1D_return')
-    plt.figure(figsize=(8, 5))
+os.makedirs("dashboard/plots", exist_ok=True)
+
+def save_bar_plot(category, filename, title):
+    csv_file = "major_indices.csv" if category == "indices" else f"{category}.csv"
+    path = f"dashboard/data/{category}/{csv_file}"
+    df = pd.read_csv(path, sep=";").sort_values(by="1D_return")
+
+    plt.figure(figsize=(6, 4))
     plt.barh(df["name"], df["1D_return"])
     plt.title(title)
-    plt.grid(True, axis='x', linestyle='--', alpha=0.4)
+    plt.grid(True, axis="x", linestyle="--", alpha=0.4)
     plt.tight_layout()
-    os.makedirs("dashboard/plots", exist_ok=True)
-    plt.savefig(f"dashboard/plots/{filename}")
+    output_path = f"dashboard/plots/{filename}.png"
+    plt.savefig(output_path)
     plt.close()
+    print(f"✅ Saved {category} → {output_path}")
 
-plot_table("dashboard/data/indices/major_indices.csv", "Major Indices – 1D Return", "indices_returns.pdf")
-# (Add more plots here later if you want)
-
-print("✅ All plots saved.")
+save_bar_plot("indices", "indices_returns", "Major Indices")
+save_bar_plot("commodities", "commodities_returns", "Commodities")
+save_bar_plot("fixed_income", "fixed_income_returns", "Fixed Income")
+save_bar_plot("crypto", "crypto_returns", "Crypto")

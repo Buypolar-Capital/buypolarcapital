@@ -5,19 +5,24 @@ import yfinance as yf
 
 os.makedirs("dashboard/plots", exist_ok=True)
 
-def load_and_plot(category, title, filename):
-    path = f"dashboard/data/{category}/{category}.csv"
+# --- Individual Bar Plots (used in grid and separately) ---
+def plot_category_grid(category, title):
+    filename = "major_indices.csv" if category == "indices" else f"{category}.csv"
+    path = f"dashboard/data/{category}/{filename}"
     df = pd.read_csv(path, sep=';').sort_values(by="1D_return")
-    plt.barh(df["name"], df["1D_return"])
-    plt.title(title)
-    plt.grid(True, axis='x', linestyle='--', alpha=0.4)
+
+    fig, ax = plt.subplots(figsize=(6, 4))
+    ax.barh(df["name"], df["1D_return"])
+    ax.set_title(title)
+    ax.grid(True, axis='x', linestyle='--', alpha=0.4)
     plt.tight_layout()
-    plt.savefig(f"dashboard/plots/{filename}")
+    output_path = f"dashboard/plots/{category}_grid.png"
+    plt.savefig(output_path)
     plt.close()
+    print(f"✅ Saved {category} plot to {output_path}")
 
-# Grid of bar plots (4 subplots)
+# --- Overview Grid of All ---
 fig, axs = plt.subplots(2, 2, figsize=(11, 7))
-
 categories = [
     ("indices", "Indices"),
     ("commodities", "Commodities"),
@@ -27,22 +32,21 @@ categories = [
 
 for ax, (cat, title) in zip(axs.flatten(), categories):
     filename = "major_indices.csv" if cat == "indices" else f"{cat}.csv"
-    df = pd.read_csv(f"dashboard/data/{cat}/{filename}", sep=";")
-    df = df.sort_values(by="1D_return")
+    df = pd.read_csv(f"dashboard/data/{cat}/{filename}", sep=";").sort_values(by="1D_return")
     ax.barh(df["name"], df["1D_return"])
     ax.set_title(title)
     ax.grid(True, axis='x', linestyle='--', alpha=0.3)
 
 plt.tight_layout()
-plt.savefig("dashboard/plots/grid_returns.pdf")
+plt.savefig("dashboard/plots/grid_returns.png")
 plt.close()
-print("✅ Saved grid plot to dashboard/plots/grid_returns.pdf")
+print("✅ Saved overview grid to dashboard/plots/grid_returns.png")
 
-# Sparkline price trends
+# --- Sparklines ---
 def fetch_and_plot(ticker_dict, title, filename):
     tickers = list(ticker_dict.values())
     prices = yf.download(tickers, period="7d", interval="1d")["Close"]
-    if isinstance(prices, pd.Series):  # Single ticker
+    if isinstance(prices, pd.Series):
         prices = prices.to_frame()
 
     plt.figure(figsize=(10, 4))
@@ -52,13 +56,14 @@ def fetch_and_plot(ticker_dict, title, filename):
     plt.xticks(rotation=45)
     plt.legend(fontsize=7)
     plt.tight_layout()
-    plt.savefig(f"dashboard/plots/{filename}")
+    out_path = f"dashboard/plots/{filename.replace('.pdf', '.png')}"
+    plt.savefig(out_path)
     plt.close()
-    print(f"✅ Saved sparkline: {filename}")
+    print(f"✅ Saved sparkline: {out_path}")
 
-# Reuse the same tickers as in build_data_v2
+# Tickers for sparklines
 index_tickers = {
-    "OSEBX": "^OSEAX", "S&P 500": "^GSPC", "NASDAQ": "^IXIC", "DOW JONES": "^DJI"
+    "OSEBX": "^OSEAX", "S\\&P 500": "^GSPC", "NASDAQ": "^IXIC", "DOW JONES": "^DJI"
 }
 fetch_and_plot(index_tickers, "Sparkline: Major Indices", "sparkline_indices.pdf")
 
