@@ -1,0 +1,69 @@
+---
+geometry: margin=0.7cm
+fontsize: 9pt
+---
+
+# BuyPolar – Global Market One-Pager  
+**Date:** {{ date }}
+
+---
+
+### Major Indices
+
+| Index        | Return (%) |
+|--------------|------------|
+{% for row in indices %}
+| {{ row.name }} | {{ row['1D_return'] }} |
+{% endfor %}
+
+### Commodities
+
+| Asset        | Return (%) |
+|--------------|------------|
+{% for row in commodities %}
+| {{ row.name }} | {{ row['1D_return'] }} |
+{% endfor %}
+
+### Fixed Income
+
+| Instrument   | Return (%) |
+|--------------|------------|
+{% for row in fixed_income %}
+| {{ row.name }} | {{ row['1D_return'] }} |
+{% endfor %}
+
+### Crypto
+
+| Coin         | Return (%) |
+|--------------|------------|
+{% for row in crypto %}
+| {{ row.name }} | {{ row['1D_return'] }} |
+{% endfor %}
+
+---
+
+### Index Return Chart
+
+![Index Returns](./indices_returns.pdf)
+
+---
+
+### Market Return Grid
+
+![Grid Returns](./grid_returns.pdf)
+
+---
+
+### 5-Day Trends
+
+**Indices Sparkline**  
+![Sparkline Indices](./sparkline_indices.pdf)
+
+**Crypto Sparkline**  
+![Sparkline Crypto](./sparkline_crypto.pdf)
+
+---
+
+### Commentary
+
+{{ commentary }}
