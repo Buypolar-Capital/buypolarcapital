@@ -5,17 +5,22 @@ import pandas as pd
 import numpy as np
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import (
-    BaseDocTemplate, Paragraph, Spacer, Table, TableStyle, Image, PageBreak
+    BaseDocTemplate, Frame, PageTemplate,
+    Paragraph, Spacer, Table, TableStyle,
+    Image, PageBreak
 )
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.lib.units import inch
 from reportlab.lib import colors
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
 
+# Add custom plotting module
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
 from plotting.plotting import plot_prices, set_bpc_style
 
+# Set style globally
+set_bpc_style()
 
-# --- Setup ---
+# --- Setup paths ---
 base_dir = os.path.dirname(__file__)
 output_dir = os.path.join(base_dir, 'report_outputs')
 data_dir = os.path.join(base_dir, 'data')
@@ -38,7 +43,28 @@ signals = load_data(os.path.join(signals_dir, 'signals.csv'))
 
 today = datetime.date.today().isoformat()
 
-# --- Get Top Movers ---
+# --- Load Trend Data for Plotting ---
+def load_price_csv(name):
+    path = os.path.join(data_dir, name, f"{name}.csv")
+    if os.path.exists(path):
+        df = pd.read_csv(path, sep=';')
+        if 'date' not in df.columns or 'price' not in df.columns:
+            print(f"[⚠] Skipping {name} — missing 'date' or 'price' column.")
+            return pd.DataFrame()
+        df['date'] = pd.to_datetime(df['date'])
+        return df[df['date'] > datetime.datetime.today() - datetime.timedelta(days=30)]
+    else:
+        print(f"[⚠] No file found for: {name}")
+    return pd.DataFrame()
+
+
+for asset in ["indices", "commodities", "fixed_income", "crypto"]:
+    df = load_price_csv(asset)
+    if not df.empty:
+        plot_prices(df, title=f"{asset.title()} Trends", filename=f"{asset}_trend.png",
+                    save_pdf=True, export_png=True, show=False)
+
+# --- Top Movers ---
 def get_top_movers(*datasets, top_n=3):
     combined = []
     for dataset in datasets:
@@ -51,19 +77,7 @@ def get_top_movers(*datasets, top_n=3):
     sorted_combined = sorted(combined, key=lambda x: x['return'], reverse=True)
     return sorted_combined[:top_n], sorted_combined[-top_n:][::-1]
 
-# --- Generate Price Graphs ---
-def simulate_price_data(name):
-    dates = pd.date_range(end=datetime.datetime.today(), periods=30)
-    prices = pd.Series(100 + (pd.Series(range(30)).apply(lambda x: x * 0.2)).cumsum() +
-                       pd.Series(np.random.randn(30)).cumsum())
-    df = pd.DataFrame({"date": dates, "price": prices, "ticker": name})
-    plot_prices(df, title=f"{name} Price Trend", save_pdf=True, export_png=True,
-                filename=f"{name}_trend.png", show=False)
-
-for asset in ["indices", "commodities", "fixed_income", "crypto"]:
-    simulate_price_data(asset)
-
-# --- Helper: Make Table ---
+# --- Make Table Helper ---
 def make_table(data, headers):
     table_data = [headers] + [[row.get("name", ""), row.get("1D_return", row.get("return", ""))] for row in data]
     table = Table(table_data)
@@ -84,7 +98,6 @@ doc = BaseDocTemplate(
     bottomMargin=0.5*inch,
 )
 
-from reportlab.platypus import Frame, PageTemplate
 frame = Frame(doc.leftMargin, doc.bottomMargin, doc.width, doc.height, id='normal')
 doc.addPageTemplates([PageTemplate(id='basic', frames=frame)])
 
@@ -97,7 +110,7 @@ content = []
 content.append(Paragraph(f"<b>📈 BuyPolar Capital Global One-Pager — {today}</b>", styles['Heading1']))
 content.append(Spacer(1, 0.1*inch))
 
-# --- Top Gainers & Losers ---
+# --- Gainers / Losers ---
 gainers, losers = get_top_movers(indices, commodities, fixed_income, crypto)
 content.append(Paragraph("🏆 Top Gainers", section_style))
 content.append(make_table(gainers, ["Name", "Return (%)"]))
@@ -107,7 +120,7 @@ content.append(Paragraph("💔 Top Losers", section_style))
 content.append(make_table(losers, ["Name", "Return (%)"]))
 content.append(PageBreak())
 
-# --- Section Templates ---
+# --- Section with Plots ---
 def add_section(title, data, plotname):
     content.append(Paragraph(title, section_style))
     content.append(make_table(data, ["Name", "1D_Return"]))

@@ -10,7 +10,10 @@ def format_dollar(x, pos):
     return f"${x:,.0f}"
 
 def get_stats_text(df):
-    prices = df["price"]
+    prices = pd.to_numeric(df["price"], errors="coerce").dropna()
+    if len(prices) == 0:
+        return "No valid price data."
+
     total_return = (prices.iloc[-1] / prices.iloc[0] - 1) * 100
     return (
         f"BuyPolar Metrics\n\n"
@@ -21,6 +24,7 @@ def get_stats_text(df):
         f"Volatility: {prices.std():.2f}\n"
         f"Days:       {len(prices)}"
     )
+
 
 def plot_prices(df, title="Price over Time", y_label="Price",
                 save_pdf=False, filename=None, source="Yahoo Finance",
