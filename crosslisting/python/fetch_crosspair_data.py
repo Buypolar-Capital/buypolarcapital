@@ -17,9 +17,9 @@ def download_stock_data():
         
         # Stock pair configuration
         PAIR_CONFIG = {
-            "name": "schibsted_vs_aapl",
-            "eu_ticker": "SCHA.OL",  # Oslo Børs: Schibsted A
-            "us_ticker": "AAPL"      # NASDAQ
+            "name": "sap_vs_sap",
+            "eu_ticker": "SAP.DE",  # Oslo Børs: Schibsted A
+            "us_ticker": "SAP"      # NASDAQ
         }
 
         print(f"📥 Downloading 5m data for: {PAIR_CONFIG['eu_ticker']} and {PAIR_CONFIG['us_ticker']}")
