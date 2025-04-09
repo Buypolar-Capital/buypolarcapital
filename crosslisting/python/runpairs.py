@@ -18,18 +18,19 @@ PLOTS_DIR = os.path.join(BASE_DIR, "plots")
 os.makedirs(DATA_DIR, exist_ok=True)
 os.makedirs(PLOTS_DIR, exist_ok=True)
 
-for pair in PAIRS:
-    print(f"\n🚀 Running: {pair['name']}")
-    csv_path = fetch_and_save_data(pair)
-    if csv_path is not None:
-        output_path = os.path.join(PLOTS_DIR, f"{pair['name']}_price_data.pdf")
-        try:
+def main():
+    for pair in PAIRS:
+        print(f"\n🚀 Processing: {pair['name']}")
+        csv_path = fetch_and_save_data(pair)
+        if csv_path:
+            output_path = os.path.join(PLOTS_DIR, f"{pair['name']}_price_data.pdf")
             plot_price_data(
-                pair['name'],
-                pair['eu_label'],
-                pair['us_label'],
+                pair["name"],
+                pair["eu_label"],
+                pair["us_label"],
                 data_path=csv_path,
                 output_path=output_path
             )
-        except Exception as e:
-            print(f"❌ Failed plotting {pair['name']}: {e}")
+
+if __name__ == "__main__":
+    main()
