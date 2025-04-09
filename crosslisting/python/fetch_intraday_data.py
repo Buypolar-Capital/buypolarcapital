@@ -5,37 +5,26 @@ import yfinance as yf
 BASE_DIR = os.path.dirname(__file__)
 DATA_PATH = os.path.join(BASE_DIR, "data", "shel_intraday_utc.csv")
 
-# Download data
-shel_us = yf.download("SHEL", period="1d", interval="1m", prepost=True)
-shel_eu = yf.download("SHEL.L", period="1d", interval="1m")
+print("⏳ Downloading 5m data for last 30 days...")
+shel_us = yf.download("SHEL", period="30d", interval="5m", prepost=True)
+shel_eu = yf.download("SHEL.L", period="30d", interval="5m")
 
-print("US data shape:", shel_us.shape)
-print("EU data shape:", shel_eu.shape)
+# Check shapes
+print("✔️ SHEL (NYSE) shape:", shel_us.shape)
+print("✔️ SHEL.L (LSE) shape:", shel_eu.shape)
 
-# Check if either is empty
-if shel_us.empty:
-    raise ValueError("❌ shel_us (SHEL - NYSE) returned empty DataFrame!")
-if shel_eu.empty:
-    raise ValueError("❌ shel_eu (SHEL.L - London) returned empty DataFrame!")
+# Timezone setup
+shel_us.index = shel_us.index.tz_convert("UTC") if shel_us.index.tzinfo else shel_us.index.tz_localize("UTC")
+shel_eu.index = shel_eu.index.tz_convert("UTC") if shel_eu.index.tzinfo else shel_eu.index.tz_localize("UTC")
 
-# Convert index to UTC
-shel_us.index = shel_us.index.tz_convert("UTC")
-shel_eu.index = shel_eu.index.tz_convert("UTC")
+# Unwrap the inner columns
+shel_us_close = shel_us["Close"].iloc[:, 0] if isinstance(shel_us["Close"], pd.DataFrame) else shel_us["Close"]
+shel_eu_close = shel_eu["Close"].iloc[:, 0] if isinstance(shel_eu["Close"], pd.DataFrame) else shel_eu["Close"]
 
-# Extract just the series (not wrapped inside a DataFrame)
-shel_us_close = shel_us["Close"]
-if isinstance(shel_us_close, pd.DataFrame):
-    shel_us_close = shel_us_close.iloc[:, 0]
+print("🔍 SHEL (NYSE) Close sample:\n", shel_us_close.head())
+print("🔍 SHEL.L (LSE) Close sample:\n", shel_eu_close.head())
 
-shel_eu_close = shel_eu["Close"]
-if isinstance(shel_eu_close, pd.DataFrame):
-    shel_eu_close = shel_eu_close.iloc[:, 0]
-
-# Confirm they are Series
-print("US Close type:", type(shel_us_close))
-print("EU Close type:", type(shel_eu_close))
-
-# Combine into one DataFrame
+# Combine and align
 df = pd.DataFrame({
     "shel_us": shel_us_close,
     "shel_eu": shel_eu_close
@@ -44,4 +33,4 @@ df = pd.DataFrame({
 # Save
 os.makedirs(os.path.dirname(DATA_PATH), exist_ok=True)
 df.to_csv(DATA_PATH)
-print(f"✅ Saved intraday data to {DATA_PATH}")
+print(f"✅ Saved to {DATA_PATH}")
