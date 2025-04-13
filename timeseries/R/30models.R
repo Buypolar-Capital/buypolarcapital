@@ -82,3 +82,4 @@ for (i in 1:ceiling(length(plots) / 6)) {
   ggsave(sprintf("plots/aapl_forecast_models_page_%d.pdf", i),
          plot = layout, width = 14, height = 9)
 }
+
