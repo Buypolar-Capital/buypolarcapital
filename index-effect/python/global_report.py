@@ -1,5 +1,7 @@
 
 
+import matplotlib
+matplotlib.use("Agg")  # Use non-GUI backend suitable for headless environments
 import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -34,7 +36,8 @@ with PdfPages("plots/global_index_report.pdf") as pdf:
             continue
 
         latest_date = data.index[-1].strftime('%Y-%m-%d')
-        latest_price = float(data['Close'].iloc[-1])
+        latest_price = float(data['Close'].iloc[-1].item())
+
 
         # Plot
         plt.figure(figsize=(12, 6))
