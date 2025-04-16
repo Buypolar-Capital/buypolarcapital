@@ -30,8 +30,9 @@ jobs:
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@users.noreply.github.com'
-          git add index-effect/python/plots/global_index_report.pdf
-          git commit -m "📘 Update global index report [auto]" || echo "No changes to commit"
+          git add -f index-effect/python/plots/global_index_report.pdf
+          LATEST_DATE=$(date -u '+%Y-%m-%d')
+          git commit -m "📘 Update global index report for $LATEST_DATE [auto]" || echo "No changes to commit"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

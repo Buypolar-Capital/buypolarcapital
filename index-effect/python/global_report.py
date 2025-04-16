@@ -1,17 +1,22 @@
-
-
 import matplotlib
 matplotlib.use("Agg")  # Use non-GUI backend suitable for headless environments
+
 import yfinance as yf
 import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
+from datetime import datetime
 import os
 
-# Ensure plots directory exists
+# Ensure 'plots' directory exists
 os.makedirs("plots", exist_ok=True)
 
-# Indexes to include
+# Force overwrite of existing report
+pdf_path = "plots/global_index_report.pdf"
+if os.path.exists(pdf_path):
+    os.remove(pdf_path)
+
+# Index tickers
 indexes = {
     "OSEBX": "^OSEAX",
     "S&P 500": "^GSPC",
@@ -25,8 +30,8 @@ indexes = {
 
 start_date = "2020-01-01"
 
-# Create the PDF writer
-with PdfPages("plots/global_index_report.pdf") as pdf:
+# Create the PDF report
+with PdfPages(pdf_path) as pdf:
     for name, ticker in indexes.items():
         print(f"Fetching data for {name} ({ticker})...")
         data = yf.download(ticker, start=start_date)
@@ -36,10 +41,9 @@ with PdfPages("plots/global_index_report.pdf") as pdf:
             continue
 
         latest_date = data.index[-1].strftime('%Y-%m-%d')
-        latest_price = float(data['Close'].iloc[-1].item())
+        latest_price = float(data['Close'].iloc[-1])
 
-
-        # Plot
+        # Plot index data
         plt.figure(figsize=(12, 6))
         plt.plot(data.index, data['Close'], label=f"{name} Index Level", linewidth=2)
         plt.title(f"{name} Index Level since 2020", fontsize=16)
@@ -48,13 +52,17 @@ with PdfPages("plots/global_index_report.pdf") as pdf:
         plt.grid(True)
         plt.tight_layout()
 
-        # Annotate last point
+        # Annotate latest price
         plt.annotate(f"{latest_date}\n{latest_price:.2f}",
                      xy=(data.index[-1], latest_price),
                      xytext=(-100, -100),
                      textcoords='offset points',
                      arrowprops=dict(arrowstyle='->', lw=1.5),
                      bbox=dict(boxstyle="round,pad=0.3", edgecolor='black', facecolor='white'))
+
+        # Add timestamp for Git diffing
+        timestamp = datetime.utcnow().strftime("Generated: %Y-%m-%d %H:%M UTC")
+        plt.figtext(0.99, 0.01, timestamp, ha='right', fontsize=8)
 
         plt.legend()
         pdf.savefig()
