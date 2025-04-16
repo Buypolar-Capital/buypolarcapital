@@ -1,0 +1,10 @@
+# Exclude build-related files from language stats
+Makefile linguist-vendored
+Cargo.lock linguist-vendored
+Cargo.toml linguist-vendored
+
+# Optional: mark common generated files (if you use these)
+*.ipynb linguist-generated
+*.mat linguist-generated
+*.pdf linguist-generated
+*.svg linguist-generated
