@@ -79,3 +79,6 @@ with PdfPages(pdf_path) as pdf:
         plt.close()
 
 print("✅ Global index report saved to: plots/global_index_report.pdf")
+
+
+
