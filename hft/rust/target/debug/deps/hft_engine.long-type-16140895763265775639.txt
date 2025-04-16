@@ -1,1 +1,0 @@
-Map<Enumerate<std::slice::Iter<'_, Trade>>, {closure@src\plot.rs:112:49: 112:57}>
