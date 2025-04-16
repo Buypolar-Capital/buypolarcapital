@@ -14,3 +14,7 @@ __pycache__/
 
 # VS Code settings
 .vscode/
+
+# Ignore all target folders in all subdirs
+**/target/
+
