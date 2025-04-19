@@ -1,4 +1,4 @@
-# export_pdf.py
+# notebooks/reporting/quiz/python/export_pdf.py
 
 from fpdf import FPDF
 from datetime import datetime
@@ -8,11 +8,11 @@ def generate_pdf(questions: list, output_path: str):
     pdf.add_page()
     pdf.set_font("Arial", size=12)
 
-    pdf.cell(200, 10, txt="📊 Daily Finance Quiz", ln=True, align="C")
+    pdf.cell(200, 10, txt="Daily Finance Quiz", ln=True, align="C")  # Removed emoji
     pdf.ln(10)
 
-    for i, (q, _) in enumerate(questions, 1):
-        pdf.multi_cell(0, 10, f"Q{i}: {q}")
+    for i, q in enumerate(questions, 1):
+        pdf.multi_cell(0, 10, f"Q{i}: {q['question']}")
         pdf.ln(2)
 
     pdf.ln(10)

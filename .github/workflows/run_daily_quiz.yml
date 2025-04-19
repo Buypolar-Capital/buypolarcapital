@@ -3,7 +3,7 @@ name: Daily Finance Quiz
 on:
   schedule:
     - cron: '0 6 * * *'  # Runs every day at 06:00 UTC
-  workflow_dispatch:      # Manual trigger button on GitHub
+  workflow_dispatch:      # Manual trigger
 
 jobs:
   build:
@@ -24,7 +24,7 @@ jobs:
 
       - name: Run daily quiz
         run: |
-          python notebooks/reporting/quiz/python/generate_and_send_quiz.py --email ${{ secrets.EMAIL_TO }}
+          python notebooks/reporting/quiz/python/generate_quiz.py --email ${{ secrets.EMAIL_TO }}
         env:
           BPC_EMAIL: ${{ secrets.EMAIL_USERNAME }}
           BPC_EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
@@ -36,32 +36,8 @@ jobs:
           LATEST_DATE=$(date -u '+%Y-%m-%d')
           git add -f notebooks/reporting/quiz/python/plots/daily_finance_quiz_${LATEST_DATE}.pdf
           git add -f notebooks/reporting/quiz/python/plots/daily_finance_quiz_${LATEST_DATE}.html
+          git add -f notebooks/reporting/quiz/python/plots/daily_finance_quiz_${LATEST_DATE}.md
           git commit -m "📊 Update daily finance quiz for $LATEST_DATE [auto]" || echo "No changes to commit"
           git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Email quiz
-        uses: dawidd6/action-send-mail@v3
-        with:
-          server_address: smtp.gmail.com
-          server_port: 465
-          username: ${{ secrets.EMAIL_USERNAME }}
-          password: ${{ secrets.EMAIL_PASSWORD }}
-          subject: 📊 Daily Finance Quiz from BuyPolar Capital
-          to: ${{ secrets.EMAIL_TO }}
-          from: BuyPolar Capital Bot <${{ secrets.EMAIL_USERNAME }}>
-          body: |
-            Hi there,
-
-            Here is your latest Daily Finance Quiz. Have fun! 🐻‍❄️📊
-
-            - BuyPolar Capital
-          attachments: |
-            notebooks/reporting/quiz/python/plots/daily_finance_quiz_${{ env.LATEST_DATE }}.pdf,
-            notebooks/reporting/quiz/python/plots/daily_finance_quiz_${{ env.LATEST_DATE }}.html
-        env:
-          LATEST_DATE: ${{ steps.date.outputs.date }}
-      - name: Set date environment variable
-        id: date
-        run: echo "date=$(date -u '+%Y-%m-%d')" >> $GITHUB_ENV

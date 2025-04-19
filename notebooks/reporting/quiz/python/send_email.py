@@ -1,5 +1,4 @@
-
-# quizzes/python/send_email.py
+# notebooks/reporting/quiz/python/send_email.py
 
 import smtplib
 import os
@@ -18,13 +17,13 @@ def send_quiz_email(
     from_password=None,
 ):
     """
-    Send an email with optional PDF/HTML attachments.
+    Send an email with optional PDF/HTML/Markdown attachments.
 
     Args:
         subject: Email subject line
         to_email: Recipient email address
         body_text: Email body in plain text
-        attachments: List of file paths to attach (e.g., PDF/HTML)
+        attachments: List of file paths to attach (e.g., PDF/HTML/MD)
         smtp_server: SMTP server address
         smtp_port: SMTP port (default Gmail TLS)
         from_email: Sender email (or set via ENV VARS)
