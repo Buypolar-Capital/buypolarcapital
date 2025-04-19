@@ -26,8 +26,8 @@ jobs:
         run: |
           python notebooks/reporting/quiz/python/generate_quiz.py --email ${{ secrets.EMAIL_TO }}
         env:
-          BPC_EMAIL: ${{ secrets.EMAIL_USERNAME }}
-          BPC_EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          BPC_EMAIL: ${{ secrets.BPC_EMAIL }}
+          BPC_EMAIL_PASSWORD: ${{ secrets.BPC_EMAIL_PASSWORD }}
 
       - name: Commit updated quiz files
         run: |
