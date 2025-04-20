@@ -34,4 +34,56 @@ __pycache__/
 **/*.lot
 **/*.fls
 **/*.fdb_latexmk
+**/*.nav
+**/*.snm
 
+# Keep .tex and .bib files (tracked by default)
+
+# --- Optional: PDF rules (adjust as needed) ---
+
+# # Ignore intermediate or test PDFs (keep only outputs you want tracked)
+# # Comment out if you want to keep all final reports
+# **/temp*.pdf
+# **/test*.pdf
+# **/scratch*.pdf
+
+# # --- Output & Build Artifacts ---
+
+# # Ignore generated HTML/Markdown from reporting scripts
+# **/report_outputs/*.html
+# **/report_outputs/*.md
+# **/notebooks/**/quiz/plots/*.md
+# **/notebooks/**/quiz/plots/*.html
+
+# # Ignore auto-generated figures unless explicitly tracked
+# **/plots/*.png
+# **/plots/*.svg
+# **/plots/*.jpg
+
+# Ignore Jupyter/IPython checkpoint artifacts
+**/.ipynb_checkpoints
+
+# --- Compiled Code / Model Artifacts ---
+
+# PyTorch / ML model binaries
+**/*.pt
+**/*.pth
+
+# Julia artifacts
+**/Manifest.toml
+**/Project.toml
+**/*.jl.cov
+
+# Rust build artifacts (in case some slip through)
+**/target/
+**/*.rlib
+**/*.d
+**/*.rmeta
+**/*.pdb
+**/*.exe
+
+# --- R Session and History Files ---
+
+.Rhistory
+.RData
+.Rproj.user/
