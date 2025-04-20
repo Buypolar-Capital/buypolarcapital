@@ -8,6 +8,7 @@ import copy
 from typing import List, Tuple, Set
 import math
 from multiprocessing import Pool, cpu_count, freeze_support
+import matplotlib.colors as mcolors
 
 # Sudoku boards (9x9): 0 represents empty cells
 boards = {
@@ -48,21 +49,18 @@ boards = {
 
 # Helper function to check if a number is valid in a position
 def is_valid(board: np.ndarray, row: int, col: int, num: int) -> bool:
-    # Check row
     if num in board[row, :]:
         return False
-    # Check column
     if num in board[:, col]:
         return False
-    # Check 3x3 box
     box_row, box_col = 3 * (row // 3), 3 * (col // 3)
     if num in board[box_row:box_row+3, box_col:box_col+3]:
         return False
     return True
 
 # 1. Backtracking Algorithm
-def backtracking(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int]:
-    nodes = [0]  # Track nodes explored
+def backtracking(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int, int]:
+    nodes = [0]
     def solve(board: np.ndarray) -> bool:
         nodes[0] += 1
         empty = None
@@ -87,17 +85,16 @@ def backtracking(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int]:
     start_time = time.time()
     solved = solve(board_copy)
     time_taken = time.time() - start_time
-    return solved, board_copy, time_taken, nodes[0]
+    return solved, board_copy, time_taken, nodes[0], 0  # No conflicts for exact algorithms
 
 # 2. Constraint Propagation with Backtracking
-def constraint_propagation(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int]:
-    nodes = [0]  # Track nodes explored
+def constraint_propagation(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int, int]:
+    nodes = [0]
     possibilities = [[set(range(1, 10)) if board[i, j] == 0 else {board[i, j]} 
                       for j in range(9)] for i in range(9)]
     
     def propagate(board: np.ndarray, possibilities: List[List[Set[int]]], row: int, col: int, num: int):
         possibilities[row][col] = {num}
-        # Update row, column, and box
         for j in range(9):
             if j != col and num in possibilities[row][j]:
                 possibilities[row][j].discard(num)
@@ -112,7 +109,6 @@ def constraint_propagation(board: np.ndarray) -> Tuple[bool, np.ndarray, float, 
     
     def solve(board: np.ndarray, possibilities: List[List[Set[int]]]) -> bool:
         nodes[0] += 1
-        # Find cell with fewest possibilities
         min_poss, empty = float('inf'), None
         for i in range(9):
             for j in range(9):
@@ -137,11 +133,11 @@ def constraint_propagation(board: np.ndarray) -> Tuple[bool, np.ndarray, float, 
     start_time = time.time()
     solved = solve(board_copy, possibilities)
     time_taken = time.time() - start_time
-    return solved, board_copy, time_taken, nodes[0]
+    return solved, board_copy, time_taken, nodes[0], 0  # No conflicts for exact algorithms
 
 # 3. Dancing Links (Algorithm X)
-def dancing_links(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int]:
-    nodes = [0]  # Track nodes explored
+def dancing_links(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int, int]:
+    nodes = [0]
     def create_matrix():
         matrix = []
         for r in range(9):
@@ -150,13 +146,9 @@ def dancing_links(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int]:
                     for n in range(1, 10):
                         if is_valid(board, r, c, n):
                             row = []
-                            # Row constraints
                             row.extend([1 if i == r else 0 for i in range(9)])
-                            # Column constraints
                             row.extend([1 if i == c else 0 for i in range(9)])
-                            # Number constraints
                             row.extend([1 if i == n-1 else 0 for i in range(9)])
-                            # Box constraints
                             box = 3 * (r // 3) + c // 3
                             row.extend([1 if i == box else 0 for i in range(9)])
                             matrix.append((r, c, n, row))
@@ -189,7 +181,6 @@ def dancing_links(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int]:
         nodes[0] += 1
         if not matrix:
             return True
-        # Choose column with fewest 1s
         min_ones = float('inf')
         min_col = None
         for col in range(36):
@@ -221,10 +212,10 @@ def dancing_links(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int]:
             if board_copy[r, c] == 0:
                 board_copy[r, c] = n
     time_taken = time.time() - start_time
-    return solved, board_copy, time_taken, nodes[0]
+    return solved, board_copy, time_taken, nodes[0], 0  # No conflicts for exact algorithms
 
 # 4. Simulated Annealing
-def simulated_annealing(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int]:
+def simulated_annealing(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int, int]:
     iterations = [0]
     def get_conflicts(board: np.ndarray) -> int:
         conflicts = 0
@@ -241,13 +232,12 @@ def simulated_annealing(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int
     
     board_copy = board.copy()
     empty_cells = get_empty_cells(board_copy)
-    # Initialize with random valid numbers
     for i, j in empty_cells:
         valid_nums = [n for n in range(1, 10) if is_valid(board_copy, i, j, n)]
         board_copy[i, j] = random.choice(valid_nums) if valid_nums else 1
     
-    temp = 1000
-    cooling_rate = 0.995
+    temp = 2000
+    cooling_rate = 0.99
     start_time = time.time()
     
     while temp > 0.1 and get_conflicts(board_copy) > 0:
@@ -267,14 +257,14 @@ def simulated_annealing(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int
     
     time_taken = time.time() - start_time
     solved = get_conflicts(board_copy) == 0
-    return solved, board_copy, time_taken, iterations[0]
+    return solved, board_copy, time_taken, iterations[0], get_conflicts(board_copy)
 
 # 5. Genetic Algorithm
-def genetic_algorithm(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int]:
+def genetic_algorithm(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int, int]:
     iterations = [0]
-    population_size = 50
+    population_size = 100
     mutation_rate = 0.1
-    max_generations = 1000
+    max_generations = 2000
     
     def fitness(board: np.ndarray) -> int:
         conflicts = 0
@@ -320,7 +310,7 @@ def genetic_algorithm(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int]:
         population = sorted(population, key=fitness, reverse=True)
         if fitness(population[0]) == 0:
             break
-        new_population = population[:10]  # Elitism
+        new_population = population[:10]
         while len(new_population) < population_size:
             parent1, parent2 = random.choices(population[:20], k=2)
             child = crossover(parent1, parent2)
@@ -331,28 +321,69 @@ def genetic_algorithm(board: np.ndarray) -> Tuple[bool, np.ndarray, float, int]:
     time_taken = time.time() - start_time
     best_board = population[0]
     solved = fitness(best_board) == 0
-    return solved, best_board, time_taken, iterations[0]
+    return solved, best_board, time_taken, iterations[0], -fitness(best_board)
 
-# Wrapper function for multiprocessing
+# Wrapper function for multiprocessing (handles both heuristic and non-heuristic)
 def run_algorithm(args):
-    diff, algo_name, algo_func, board = args
-    solved, solved_board, time_taken, nodes = algo_func(board)
-    return diff, algo_name, {
-        'solved': solved,
-        'board': solved_board,
-        'time': time_taken,
-        'nodes': nodes
-    }
+    if len(args) == 5:  # Heuristic algorithm with num_runs
+        diff, algo_name, algo_func, board, num_runs = args
+        print(f"Running {algo_name} on {diff} with {num_runs} runs")
+        successes = 0
+        total_time = 0
+        total_nodes = 0
+        total_conflicts = 0
+        best_board = None
+        best_time = float('inf')
+        
+        for _ in range(num_runs):
+            solved, solved_board, time_taken, nodes, conflicts = algo_func(board)
+            if solved:
+                successes += 1
+            total_time += time_taken
+            total_nodes += nodes
+            total_conflicts += conflicts
+            if solved and time_taken < best_time:
+                best_board = solved_board
+                best_time = time_taken
+        
+        success_rate = successes / num_runs
+        avg_time = total_time / num_runs
+        avg_nodes = total_nodes / num_runs
+        avg_conflicts = total_conflicts / num_runs
+        return diff, algo_name, {
+            'solved': successes > 0,
+            'board': best_board if best_board is not None else solved_board,
+            'time': avg_time,
+            'nodes': int(avg_nodes),
+            'conflicts': int(avg_conflicts),
+            'success_rate': success_rate
+        }
+    else:  # Non-heuristic algorithm
+        diff, algo_name, algo_func, board = args
+        print(f"Running {algo_name} on {diff}")
+        solved, solved_board, time_taken, nodes, conflicts = algo_func(board)
+        return diff, algo_name, {
+            'solved': solved,
+            'board': solved_board,
+            'time': time_taken,
+            'nodes': nodes,
+            'conflicts': conflicts,
+            'success_rate': None
+        }
 
-# Plot Sudoku board
-def plot_board(board: np.ndarray, title: str, ax: plt.Axes):
+# Plot Sudoku board with colors
+def plot_board(board: np.ndarray, initial_board: np.ndarray, title: str, ax: plt.Axes):
     ax.set_title(title, fontsize=12)
     ax.axis('off')
-    ax.table(cellText=[[str(num) if num != 0 else '' for num in row] for row in board],
-             loc='center', cellLoc='center', bbox=[0, 0, 1, 1])
+    cell_colors = [['#ADD8E6' if initial_board[i, j] != 0 else '#FFFFFF' for j in range(9)] for i in range(9)]
+    if 'Solved' in title:
+        cell_colors = [['#90EE90' if initial_board[i, j] == 0 else '#ADD8E6' for j in range(9)] for i in range(9)]
+    table = ax.table(cellText=[[str(num) if num != 0 else '' for num in row] for row in board],
+                     loc='center', cellLoc='center', cellColours=cell_colors, bbox=[0, 0, 1, 1])
+    table.set_fontsize(12)
     for i in range(10):
-        ax.axhline(i, color='black', linewidth=1 if i % 3 == 0 else 0.5)
-        ax.axvline(i, color='black', linewidth=1 if i % 3 == 0 else 0.5)
+        ax.axhline(i, color='black', linewidth=2 if i % 3 == 0 else 1)
+        ax.axvline(i, color='black', linewidth=2 if i % 3 == 0 else 1)
 
 # Plot performance comparison
 def plot_comparison(results: dict, pdf: PdfPages):
@@ -365,7 +396,7 @@ def plot_comparison(results: dict, pdf: PdfPages):
     width = 0.15
     for i, algo in enumerate(algorithms):
         times = [results[diff][algo]['time'] for diff in difficulties]
-        ax.bar(x + i * width, times, width, label=algo)
+        ax.bar(x + i * width, times, width, label=algo, color=mcolors.TABLEAU_COLORS[list(mcolors.TABLEAU_COLORS)[i]])
     ax.set_xlabel('Difficulty')
     ax.set_ylabel('Time Taken (seconds)')
     ax.set_title('Algorithm Time Comparison')
@@ -375,27 +406,63 @@ def plot_comparison(results: dict, pdf: PdfPages):
     pdf.savefig(fig, bbox_inches='tight')
     plt.close(fig)
     
+    # Scatter plot: Time vs. Nodes/Iterations
+    fig, ax = plt.subplots(figsize=(10, 6))
+    colors = list(mcolors.TABLEAU_COLORS.values())
+    for i, algo in enumerate(algorithms):
+        for j, diff in enumerate(difficulties):
+            res = results[diff][algo]
+            ax.scatter(res['nodes'], res['time'], color=colors[i], label=algo if j == 0 else None, 
+                       s=100, alpha=0.7, marker='o' if diff == 'easy' else 's' if diff == 'medium' else '^')
+    ax.set_xlabel('Nodes/Iterations')
+    ax.set_ylabel('Time Taken (seconds)')
+    ax.set_title('Time vs. Nodes/Iterations by Algorithm and Difficulty')
+    ax.legend()
+    ax.grid(True, alpha=0.3)
+    pdf.savefig(fig, bbox_inches='tight')
+    plt.close(fig)
+    
+    # Success rate bar chart (for heuristic algorithms)
+    fig, ax = plt.subplots(figsize=(8, 5))
+    x = np.arange(len(difficulties))
+    width = 0.2
+    for i, algo in enumerate(['Sim. Annealing', 'Genetic Alg.']):
+        success_rates = [results[diff][algo]['success_rate'] for diff in difficulties]
+        ax.bar(x + i * width, success_rates, width, label=algo, color=colors[i+3])
+    ax.set_xlabel('Difficulty')
+    ax.set_ylabel('Success Rate')
+    ax.set_title('Success Rate for Heuristic Algorithms')
+    ax.set_xticks(x + width * 0.5)
+    ax.set_xticklabels([d.capitalize() for d in difficulties])
+    ax.legend()
+    pdf.savefig(fig, bbox_inches='tight')
+    plt.close(fig)
+    
     # Metrics table
-    fig, ax = plt.subplots(figsize=(12, 8))
+    fig, ax = plt.subplots(figsize=(14, 10))
     ax.axis('off')
-    table_data = [['Algorithm', 'Difficulty', 'Solved', 'Time (s)', 'Nodes/Iterations']]
+    table_data = [['Algorithm', 'Difficulty', 'Solved', 'Time (s)', 'Nodes/Iter.', 'Success Rate', 'Conflicts']]
     for diff in difficulties:
         for algo in algorithms:
             res = results[diff][algo]
+            success_rate = f"{res['success_rate']:.2%}" if res['success_rate'] is not None else '-'
+            conflicts = f"{res['conflicts']}" if res['conflicts'] > 0 else '-'
             table_data.append([
                 algo,
                 diff.capitalize(),
                 'Yes' if res['solved'] else 'No',
                 f"{res['time']:.4f}",
-                f"{res['nodes']:,}"
+                f"{res['nodes']:,}",
+                success_rate,
+                conflicts
             ])
-    ax.table(cellText=table_data, colWidths=[0.25, 0.15, 0.1, 0.15, 0.35], loc='center')
-    ax.set_title('Algorithm Performance Summary')
+    ax.table(cellText=table_data, colWidths=[0.2, 0.12, 0.08, 0.12, 0.15, 0.12, 0.12], loc='center', cellLoc='center')
+    ax.set_title('Algorithm Performance Summary', fontsize=14)
     pdf.savefig(fig, bbox_inches='tight')
     plt.close(fig)
 
 if __name__ == '__main__':
-    freeze_support()  # Required for Windows multiprocessing with executables
+    freeze_support()
     random.seed(42)
     os.makedirs('plots', exist_ok=True)
     pdf_path = 'plots/sudoku_solver_results.pdf'
@@ -410,8 +477,14 @@ if __name__ == '__main__':
     }
 
     # Prepare tasks for multiprocessing
-    tasks = [(diff, algo_name, algo_func, boards[diff]) 
-             for diff in boards for algo_name, algo_func in algorithms.items()]
+    num_runs = 5  # Number of runs for heuristic algorithms
+    tasks = []
+    for diff in boards:
+        for algo_name, algo_func in algorithms.items():
+            if algo_name in ['Sim. Annealing', 'Genetic Alg.']:
+                tasks.append((diff, algo_name, algo_func, boards[diff], num_runs))
+            else:
+                tasks.append((diff, algo_name, algo_func, boards[diff]))
 
     # Run algorithms in parallel
     print(f"Using {cpu_count()} CPU cores for multiprocessing")
@@ -426,14 +499,18 @@ if __name__ == '__main__':
         for diff in boards:
             for algo_name in algorithms:
                 res = results[diff][algo_name]
-                solved, solved_board, time_taken, nodes = res['solved'], res['board'], res['time'], res['nodes']
+                solved, solved_board, time_taken, nodes, conflicts = res['solved'], res['board'], res['time'], res['nodes'], res['conflicts']
+                success_rate = res.get('success_rate', None)
                 
                 # Plot initial and solved boards
-                fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
-                plot_board(boards[diff], f"{diff.capitalize()} Initial Board", ax1)
-                plot_board(solved_board, f"{diff.capitalize()} Solved ({algo_name})", ax2)
-                fig.suptitle(f"{algo_name} on {diff.capitalize()} Board\n"
-                             f"Time: {time_taken:.4f}s, Nodes/Iterations: {nodes:,}", fontsize=12)
+                fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 6))
+                plot_board(boards[diff], boards[diff], f"{diff.capitalize()} Initial Board", ax1)
+                plot_board(solved_board, boards[diff], f"{diff.capitalize()} Solved ({algo_name})", ax2)
+                stats_text = f"Time: {time_taken:.4f}s\nNodes/Iterations: {nodes:,}\n"
+                stats_text += f"Conflicts: {conflicts if conflicts > 0 else '-'}\n"
+                if success_rate is not None:
+                    stats_text += f"Success Rate: {success_rate:.2%}"
+                fig.suptitle(f"{algo_name} on {diff.capitalize()} Board\n{stats_text}", fontsize=14)
                 pdf.savefig(fig, bbox_inches='tight')
                 plt.close(fig)
         
