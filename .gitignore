@@ -1,3 +1,5 @@
+# --- Existing Rules ---
+
 # Ignore downloaded API data
 masterdata/
 .cache/
@@ -17,4 +19,19 @@ __pycache__/
 
 # Ignore all target folders in all subdirs
 **/target/
+
+# --- New LaTeX Rules ---
+
+# Ignore LaTeX build files everywhere
+**/*.aux
+**/*.log
+**/*.out
+**/*.toc
+**/*.synctex.gz
+**/*.bbl
+**/*.blg
+**/*.lof
+**/*.lot
+**/*.fls
+**/*.fdb_latexmk
 
