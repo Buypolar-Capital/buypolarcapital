@@ -42,8 +42,3 @@ plt.ylabel('spread')
 plt.legend()
 plt.show()
 
-
-
-
-
-
