@@ -17,8 +17,3 @@ plt.xlabel("date")
 plt.ylabel("price")
 plt.title("moving average")
 plt.show()
-
-
-
-
-
