@@ -67,3 +67,22 @@ words = ['cat', 'window', 'defenestrate']
 for w in words:
     print(w, len(w))
 
+users = {'Hans':'active', 'Eleonore':'inactive', '您好':'active'}
+print(users)
+
+for user, status in users.copy().items():
+    if status == 'inactive':
+        del users[user]
+
+active_users = {}
+for user, status in users.items():
+    if status == 'active':
+        active_users[user] = status
+
+a = ['mary', 'had', 'a', 'little', 'lamb']
+for i in range(len(a)):
+    print(i, a[i])
+
+print(sum(range(4)))
+
+# 4.4. break and continue Statements
