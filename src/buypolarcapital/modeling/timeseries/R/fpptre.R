@@ -1,65 +1,114 @@
-library(tidyverse)
+
 library(fpp3)
 library(tidyquant)
-library(ggfortify)
-library(fable)
-library(fabletools)
-library(lubridate)
+library(tidyverse)
 
-# 1. Get Data
-aapl <- tq_get("AAPL", from = "2020-01-01", to = "2024-12-31") %>% 
-  select(symbol, date, close, volume) %>% 
-  as_tsibble(index = date)
+if (!dir.exists("plots")) dir.create("plots")
+pdf("plots/all_plots.pdf", onefile = TRUE, width = 10, height = 6)
+# dev.off()
 
-# 2. Plot Raw Series
-p1 <- aapl %>% autoplot(close) + theme_bw() + labs(title = "AAPL Close (Daily)")
-p2 <- aapl %>% autoplot(volume) + theme_bw() + labs(title = "AAPL Volume (Daily)")
+aus_production %>% 
+  autoplot(Beer) +
+  theme_minimal() 
 
-# 3. STL on aggregated series
-aapl_m <- aapl %>% 
-  mutate(month = as.Date(cut(date, "month"))) %>% 
-  group_by(month) %>% 
-  summarise(
-    close = mean(close),
-    volume = sum(volume),
-    .groups = "drop"
-  )
+aapl <- tq_get(x = "AAPL", get = "stock.prices", 
+              from = "2010-01-01", to = "2025-01-01")
 
-close_ts <- ts(aapl_m$close, start = c(2020, 1), frequency = 12)
-close_stl <- stl(close_ts, s.window = "periodic")
-p3 <- autoplot(close_stl) + theme_bw() + labs(title = "STL Decomposition of AAPL Close")
+aapl %>%
+  as_tsibble(index = date) %>% 
+  autoplot(close) +
+  theme_minimal()
 
-# 4. fpp3 Forecasting
-aapl_monthly <- aapl %>%
-  index_by(month = yearmonth(date)) %>%
-  summarise(close = mean(close, na.rm = TRUE))
+y <- tsibble(
+  Year = 2015:2019,
+  Observation = c(123, 39, 78, 52, 110),
+  index = Year
+)
 
-fit_all <- aapl_monthly %>%
-  model(
-    ets     = ETS(close),
-    arima   = ARIMA(close),
-    stl_ets = decomposition_model(STL(close ~ season(window = "periodic")), ETS(season_adjust)),
-    naive   = NAIVE(close),
-    drift   = RW(close ~ drift()),
-    mean    = MEAN(close)
-  )
+y %>% autoplot()
 
-fc_all <- fit_all %>% forecast(h = "12 months")
+olympic_running %>% distinct(Sex)
+unique(olympic_running$Sex)
 
-# 5. Plot All Forecasts Faceted
-p4 <- fc_all %>%
-  autoplot(aapl_monthly, level = NULL) +
-  facet_wrap(~ .model, scales = "free_y") +
-  labs(title = "AAPL Close Forecasts: Model Comparison", y = "Price") +
-  theme_bw()
+PBS %>% 
+  filter(ATC2 == "A10") %>% 
+  select(Month, Concession, Type, Cost) %>% 
+  summarise(TotalC = sum(Cost)) %>% 
+  mutate(Cost = TotalC/1e6) %>% 
+  autoplot(Cost)
 
-# 6. Save Plots to /plots Folder
-dir.create("plots", showWarnings = FALSE)
 
-ggsave("plots/aapl_close_daily.pdf", plot = p1, width = 12, height = 6)
-ggsave("plots/aapl_volume_daily.pdf", plot = p2, width = 12, height = 6)
-ggsave("plots/aapl_stl_decomposition.pdf", plot = p3, width = 12, height = 6)
-ggsave("plots/aapl_forecast_models.pdf", plot = p4, width = 12, height = 6)
+ansett %>% 
+  filter(Airports == "MEL-SYD", 
+         Class == "Economy") %>% 
+  mutate(Passengers = Passengers/1000) %>% 
+  autoplot(Passengers) +
+  labs(title = "Ansett airlines economy class",
+       subtitle = "Melbourne-Sydney",
+       y = "Passengers ('000)") +
+  theme_grey()
 
-# 7. Optional: Show accuracy table
-fit_all %>% accuracy()
+aus_production %>% 
+  autoplot(Bricks)
+
+aus_production %>% 
+  gg_season(Beer, labels = "both")
+
+# vic_elec %>% 
+#   gg_season(Demand, period = "day") +
+#   theme(legend.position = "none") +
+#   labs(y = "MWh", title = "Electricity demand: Victoria")
+
+vic_elec %>%  
+  gg_season(Demand, period = "year") 
+
+aus_production %>% 
+  gg_subseries(Beer) 
+
+aus_accommodation %>%
+  filter(State == "Australian Capital Territory") %>% 
+  gg_subseries(Occupancy)
+
+holidays <- tourism %>% 
+  filter(Purpose == "Holiday") %>% 
+  group_by(State) %>% 
+  summarise(Trips = sum(Trips))
+
+autoplot(holidays, Trips)
+
+vic_elec %>% 
+  filter(year(Time) == 2014) %>% 
+  autoplot(Demand)
+
+vic_elec %>% 
+  filter(year(Time) == 2014) %>% 
+  autoplot(Temperature)
+
+vic_elec %>% 
+  filter(year(Time) == 2014) %>% 
+  ggplot(aes(x = Temperature, y = Demand)) +
+  geom_point()
+
+visitors <- tourism %>% 
+  group_by(State) %>% 
+  summarise(Trips = sum(Trips))
+
+visitors %>% 
+  ggplot(aes(x = Quarter, y = Trips)) +
+  geom_line() +
+  facet_grid(vars(State), scales = "free_y")
+
+visitors %>% 
+  pivot_wider(values_from = Trips, 
+              names_from = State) %>% 
+  GGally::ggpairs(columns = 2:9)
+
+dev.off()
+
+
+
+
+
+
+
+
