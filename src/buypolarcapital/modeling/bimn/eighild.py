@@ -93,7 +93,71 @@ def fib(n):
         a, b = b, a+b
     print()
 
-fib(10**100)
+fib(10**2)
+
+print("yo")
+
+def fib2(n):
+    result = []
+    a, b = 0, 1
+    while a < n:
+        result.append(a)
+        a, b = b, a+b
+    return result 
+
+f100 = fib2(100)
+f100  
+print(f100)
+
+
+print(f'\n')
+
+
+def ask_ok(prompt, retries=4, reminder='Please try again!'):
+    while True:
+        reply = input(prompt)
+        if reply in {'y', 'ye', 'yes'}:
+            return True
+        if reply in {'n', 'no', 'nope'}:
+            return False
+        retries = retries - 1
+        if retries < 0:
+            raise ValueError('invalid user response')
+        print(reminder)
+
+# ask_ok(prompt="Hey there: ")
+
+
+def f(a, L=[]):
+    L.append(a)
+    return L
+
+print(f(1))
+print(f(4))
+print(f(1))
+
+
+def cheeseshop(kind, *arguments, **keywords):
+    print("-- Do you have any", kind, "?")
+    print("-- I'm sorry we're all out of", kind)
+    for arg in arguments:
+        print(arg)
+    print('-'*40)
+    for kw in keywords:
+        print(kw, ":", keywords[kw])
+
+cheeseshop("limburger", "its very runny sir", "its really very veryr unny sir", shopkeeper="michael palin")
+    
+
+
+
+def foo(name, /, **kwds):
+    return 'name' in kwds
+
+print(foo(1, **{'name':2}))
+print('\n')
+
+
 
 
 
