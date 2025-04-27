@@ -4,7 +4,7 @@ library(tidyquant)
 library(tidyverse)
 
 if (!dir.exists("plots")) dir.create("plots")
-pdf("plots/all_plots.pdf", onefile = TRUE, width = 10, height = 6)
+pdf("plots/fpptre_plots.pdf", onefile = TRUE, width = 10, height = 6)
 # dev.off()
 
 aus_production %>% 
