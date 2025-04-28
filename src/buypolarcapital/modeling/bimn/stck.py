@@ -38,7 +38,7 @@ print(vec2)
 
 # create a list of 2-tuples like (number, square)
 
-df = [(x, x**2) for x in range(10000)]
+df = [(x, x**2) for x in range(10)]
 print(df)
 
 
@@ -47,11 +47,17 @@ df = [num for elem in vec for num in elem]
 print(df)
 
 from math import pi
-df = [str(round(pi, i)) for i in range(10000)]
+df = [str(round(pi, i)) for i in range(10)]
 print(df)
 
 
+matrix = [
+    [1,2,3],
+    [4,5,6],
+    [7,8,9]
+]
 
+print(matrix)
 
-
+print([[row[i] for row in matrix] for i in range(3)])
 
