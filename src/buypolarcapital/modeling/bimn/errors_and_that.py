@@ -56,12 +56,32 @@ except OSError:
     raise RuntimeError('unable to handle error')
 
 
-modname.attribute = 42
-print(modname.attribute)
-print(modname)
-print(attribute)
+
+import numpy as np
+np.hellyeah = 50
+print(np.hellyeah)
 
 
+def scopte_test():
+    def do_local():
+        spam = "local spam"
+    
+    def do_nonlocal():
+        nonlocal spam
+        spam = "nonlocal spam"
 
+    def do_global():
+        global spam
+        spam = "global spam"
 
+    spam = "test spam"
+    do_local()
+    print("after local assignment:", spam)
+    do_nonlocal()
+    print("after nonlocal assignment:", spam)
+    do_global()
+    print("after global assignment:", spam)
+    
+scopte_test()
+print("in global scope:", spam)
 
