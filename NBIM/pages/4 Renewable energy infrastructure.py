@@ -4,6 +4,7 @@ import plotly.express as px
 
 # === Settings ===
 st.set_page_config(layout="wide")
+st.image("assets/logo.png", width=150)
 st.title("Renewable Energy Infrastructure")
 
 # === Load data ===
