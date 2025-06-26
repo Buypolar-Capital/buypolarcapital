@@ -5,6 +5,7 @@ from utils.load_data import load_fixed_income_data
 
 # === Settings ===
 st.set_page_config(layout="wide")
+st.image("assets/logo.png", width=150)
 st.title("Fixed income")
 
 # === Load data ===
