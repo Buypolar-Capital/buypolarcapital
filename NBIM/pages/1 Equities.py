@@ -123,48 +123,41 @@ elif show_all and st.button("Show less –"):
     st.session_state["show_all"] = False
 
 
-
-# === Historic investment chart ===
+# === Historic development ===
 st.markdown("### Historic development")
 
-historic_df = pd.DataFrame({
-    "Equities": df_eq.sum(axis=1)
-}).dropna().tail(10)
-historic_df["Date"] = historic_df.index.strftime("%b %d")
-historic_df["Total"] = historic_df["Equities"]
+# Compute total equity values
+historic_df = df_eq.copy().dropna().tail(10)
+historic_df["Total"] = df_eq.sum(axis=1).dropna().tail(10)
+historic_df["Date_str"] = historic_df.index.strftime("%b %d")
 
-fig_bar = px.bar(
+# Compute y-range
+ymin = historic_df["Total"].min() * 0.95
+ymax = historic_df["Total"].max() * 1.05
+
+# Plot bar chart
+fig = px.bar(
     historic_df,
-    x="Date",
-    y="Equities",
+    x="Date_str",
+    y="Total",
     color_discrete_sequence=["#001538"],
-    labels={"Equities": "Value (NOK)", "Date": "Date"},
+    labels={"Total": "Value (NOK)", "Date_str": "Date"},
     height=400
 )
 
-fig_line = px.line(
-    historic_df,
-    x="Date",
-    y="Total"
-)
-for trace in fig_line.data:
-    trace.name = "Total"
-    trace.line.color = "#d65218"
-    trace.line.width = 2
-    fig_bar.add_trace(trace)
-
-fig_bar.update_layout(
-    barmode="stack",
-    legend_title="",
+fig.update_layout(
+    yaxis_range=[ymin, ymax],
     xaxis_title="Date",
     yaxis_title="Value (NOK)",
     xaxis_type="category",
     margin={"r": 0, "t": 0, "l": 0, "b": 0},
     plot_bgcolor="white",
-    paper_bgcolor="white"
+    paper_bgcolor="white",
+    showlegend=False
 )
 
-st.plotly_chart(fig_bar, use_container_width=True)
+st.plotly_chart(fig, use_container_width=True)
+
 
 # === Footer ===
 st.markdown("---")

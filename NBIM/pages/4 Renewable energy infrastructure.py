@@ -5,7 +5,7 @@ import plotly.express as px
 # === Settings ===
 st.set_page_config(layout="wide")
 st.image("assets/logo.png", width=150)
-st.title("⚡ Renewable Energy Infrastructure")
+st.title("Renewable Energy Infrastructure")
 
 # === Load data ===
 df_renewable = pd.read_excel("data/nbim_top10_renewable.xlsx", index_col=0, parse_dates=True, decimal=",")
@@ -111,14 +111,20 @@ if len(df_table) > 2:
     elif show_all and st.button("Show less –", key="less_renewable"):
         st.session_state["show_all_renewable"] = False
 
-# === Historic chart ===
+# === Historic development ===
 st.markdown("### Historic development")
+
+# Prepare total series
 historic_df = pd.DataFrame({
     "Renewable": df_renewable.sum(axis=1)
 }).dropna().tail(10)
 historic_df["Date"] = historic_df.index.strftime("%b %d")
-historic_df["Total"] = historic_df["Renewable"]
 
+# Dynamic y-axis
+ymin = historic_df["Renewable"].min() * 0.95
+ymax = historic_df["Renewable"].max() * 1.05
+
+# Bar chart (total only)
 fig_bar = px.bar(
     historic_df,
     x="Date",
@@ -128,29 +134,19 @@ fig_bar = px.bar(
     height=400
 )
 
-fig_line = px.line(
-    historic_df,
-    x="Date",
-    y="Total"
-)
-for trace in fig_line.data:
-    trace.name = "Total"
-    trace.line.color = "#d65218"
-    trace.line.width = 2
-    fig_bar.add_trace(trace)
-
 fig_bar.update_layout(
-    barmode="stack",
-    legend_title="",
+    yaxis_range=[ymin, ymax],
     xaxis_title="Date",
     yaxis_title="Value (NOK)",
     xaxis_type="category",
     margin={"r": 0, "t": 0, "l": 0, "b": 0},
     plot_bgcolor="white",
-    paper_bgcolor="white"
+    paper_bgcolor="white",
+    showlegend=False
 )
 
 st.plotly_chart(fig_bar, use_container_width=True)
+
 
 # === Footer ===
 st.markdown("---")

@@ -113,15 +113,20 @@ if not show_all and st.button("Show 5 more +", key="more_bonds"):
 elif show_all and st.button("Show less –", key="less_bonds"):
     st.session_state["show_all_bonds"] = False
 
-# === Historic development chart ===
+# === Historic development ===
 st.markdown("### Historic development")
 
+# Prepare time series
 historic_df = pd.DataFrame({
     "Fixed income": df_bonds.sum(axis=1)
 }).dropna().tail(10)
 historic_df["Date"] = historic_df.index.strftime("%b %d")
-historic_df["Total"] = historic_df["Fixed income"]
 
+# Compute y-axis range with padding
+ymin = historic_df["Fixed income"].min() * 0.95
+ymax = historic_df["Fixed income"].max() * 1.05
+
+# Create bar chart
 fig_bar = px.bar(
     historic_df,
     x="Date",
@@ -131,29 +136,19 @@ fig_bar = px.bar(
     height=400
 )
 
-fig_line = px.line(
-    historic_df,
-    x="Date",
-    y="Total"
-)
-for trace in fig_line.data:
-    trace.name = "Total"
-    trace.line.color = "#d65218"
-    trace.line.width = 2
-    fig_bar.add_trace(trace)
-
 fig_bar.update_layout(
-    barmode="stack",
-    legend_title="",
+    yaxis_range=[ymin, ymax],
     xaxis_title="Date",
     yaxis_title="Value (NOK)",
     xaxis_type="category",
     margin={"r": 0, "t": 0, "l": 0, "b": 0},
     plot_bgcolor="white",
-    paper_bgcolor="white"
+    paper_bgcolor="white",
+    showlegend=False
 )
 
 st.plotly_chart(fig_bar, use_container_width=True)
+
 
 # === Footer ===
 st.markdown("---")
