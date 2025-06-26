@@ -87,3 +87,10 @@ __pycache__/
 .Rhistory
 .RData
 .Rproj.user/
+
+
+# === Keep specific NBIM data files for Streamlit ===
+!NBIM/data/nbim_top10_bonds.csv
+!NBIM/data/nbim_top10_equities.csv
+!NBIM/data/nbim_top10_realestate.xlsx
+!NBIM/data/nbim_top10_renewable.xlsx
