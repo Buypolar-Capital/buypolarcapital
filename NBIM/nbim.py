@@ -4,7 +4,7 @@ import pandas as pd
 import plotly.express as px
 
 st.set_page_config(page_title="NBIM Dashboard", layout="wide")
-st.image("assets/logo.svg", width=150)
+st.image("assets/logo.png", width=150)
 
 # === Load data ===
 df_eq = pd.read_csv("data/nbim_top10_equities.csv", index_col=0, parse_dates=True)
