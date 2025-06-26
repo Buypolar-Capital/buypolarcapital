@@ -5,7 +5,6 @@ from utils.load_data import load_equity_data
 
 # === Settings ===
 st.set_page_config(layout="wide")
-st.image("../assets/logo.png", width=150)
 st.title("Equities")
 
 # === Load data ===
