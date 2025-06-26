@@ -3,9 +3,9 @@
 # Ignore downloaded API data
 masterdata/
 .cache/
-*.csv
-*.json
-*.xlsx
+# *.csv
+# *.json
+# *.xlsx
 
 # Ignore environment files with secrets
 .env
