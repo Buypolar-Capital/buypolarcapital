@@ -2,10 +2,11 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from utils.load_data import load_equity_data
+import os
 
 # === Settings ===
 st.set_page_config(layout="wide")
-st.image("assets/logo.png", width=150)
+st.image(os.path.join(os.path.dirname(__file__), "../assets/logo.png"), width=150)
 st.title("Equities")
 
 # === Load data ===
