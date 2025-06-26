@@ -24,7 +24,7 @@ st.markdown(f"""
     <div>
         <h2 style='margin-bottom: 0.2rem;'>Equities</h2>
         <p style='margin: 0; font-weight: bold; font-size: 18px; color: #001538;'>{int(total_equity_value):,} NOK</p>
-        <p style='margin: 0; color: gray;'>{equity_countries} countries, {equity_companies} companies, {equity_pct:.1f}% of total</p>
+        <p style='margin: 0; color: gray;'>{equity_countries} countries, {equity_companies} companies, 96.5% of total</p>
     </div>
 </div>
 """, unsafe_allow_html=True)

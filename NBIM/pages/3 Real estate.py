@@ -2,114 +2,152 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
+# === Settings ===
 st.set_page_config(layout="wide")
-st.title("Real Estate")
+st.title("Real estate")
 
-# Load data (using hardcoded total value from image)
-total_real_estate_value = 363_583_276_805  # Matching the image value
-countries = 14
-investments = 910
-percentage = "1.8% of all investments"
+# === Load data ===
+df_realestate = pd.read_excel("data/nbim_top10_realestate.xlsx", index_col=0, parse_dates=True, decimal=",")
+latest = df_realestate.iloc[-1].dropna()
+total_real_estate_value = latest.sum()
+real_estate_properties = len(latest)
+real_estate_countries = 5  # Adjust if desired
 
-# Display header info
+# === Estimate total portfolio value to calculate %
+total_portfolio_value = st.session_state.get("total_value", total_real_estate_value / 0.018)
+real_estate_pct = 100 * total_real_estate_value / total_portfolio_value
+
+# === Header ===
 st.markdown(f"""
-    <div style='display: flex; justify-content: space-between; align-items: center;'>
-        <div>
-            <h2 style='margin: 0;'>Real estate</h2>
-            <p style='margin: 0;'>{total_real_estate_value:,} NOK</p>
-            <p style='margin: 0;'>{countries} countries, {investments} investments, {percentage}</p>
-        </div>
-        <div>
-            <select style='padding: 5px;'>
-                <option>Year (as at 31.12) 2024</option>
-            </select>
-            <select style='padding: 5px;'>
-                <option>Investments in 3 regions, {countries} countries</option>
-            </select>
-            <select style='padding: 5px;'>
-                <option>All</option>
-            </select>
-        </div>
+<div style='display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 1.5rem;'>
+    <div>
+        <h2 style='margin-bottom: 0.2rem;'>Real estate</h2>
+        <p style='margin: 0; font-weight: bold; font-size: 18px; color: #001538;'>{int(total_real_estate_value):,} NOK</p>
+        <p style='margin: 0; color: gray;'>{real_estate_countries} countries, {real_estate_properties} properties, 0.0% of total</p>
     </div>
+</div>
 """, unsafe_allow_html=True)
 
-# World map
+# === Map view ===
 country_map = {
-    "France": 1, "Germany": 1, "United States": 1
+    "France": 1, "Germany": 1, "United States": 1, "United Kingdom": 1, "Switzerland": 1
 }
-df_map = pd.DataFrame({
-    "Country": list(set(country_map.keys())),  # Unique countries
-    "Invested": [1] * len(set(country_map.keys()))  # Same length as countries, all 1
-})
-fig_map = px.choropleth(df_map, locations="Country", locationmode="country names",
-                        color="Invested", color_continuous_scale="Blues",
-                        labels={"Invested": "Invested"}, title="",
-                        height=300)
-fig_map.update_layout(coloraxis_showscale=False, margin={"r": 0, "t": 30, "l": 0, "b": 0})
+df_map = pd.DataFrame({"Country": list(country_map.keys()), "Invested": list(country_map.values())})
+fig_map = px.choropleth(
+    df_map,
+    locations="Country",
+    locationmode="country names",
+    color="Invested",
+    color_continuous_scale="Blues",
+    height=400
+)
+fig_map.update_layout(coloraxis_showscale=False, margin={"r": 0, "t": 0, "l": 0, "b": 0})
 st.plotly_chart(fig_map, use_container_width=True)
 
-# Search and download section
-st.markdown("""
-    <div style='display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;'>
-        <input type='text' placeholder='Search for company' style='padding: 5px; width: 200px;'>
-    </div>
-""", unsafe_allow_html=True)
+# === Top properties (static metadata) ===
+st.markdown("### Top properties")
+st.markdown("<hr style='margin-top: -1rem; margin-bottom: 1rem;'>", unsafe_allow_html=True)
 
-# Table data (based on the image)
-data = {
-    "Partners": [
-        "AXA", "AXA", "Alexandria Real Estate and MetLife", "Boston Properties", "AXA"
-    ],
-    "Properties": [
-        "Victor Hugo, 28-32 Avenue Victor Hugo, 75016, Paris, France",
-        "Kranzler Eck Berlin, Kurfürstendamm 19-24, 10719, Berlin, Germany",
-        "50-60 Binney Street, 02142, Cambridge, United States",
-        "73-89 Oxford Street & 1 Dean Street, W1D 3RB, London, United Kingdom",
-        "Bahnhofstrasse 1, 8001, Zurich, Switzerland"
-    ],
-    "Ownership": [50.00, 50.00, 41.00, 45.00, 45.00],
-    "Sectors": ["Office"] * 5,
-    "Countries": ["France", "Germany", "United States", "United Kingdom", "Switzerland"]
+property_meta = {
+    "Victor Hugo, 28-32 Avenue Victor Hugo, 75016, Paris, France": {"Partner": "AXA", "Sector": "Office", "Country": "France", "Ownership (%)": 50.00},
+    "Kranzler Eck Berlin, Kurfürstendamm 19-24, 10719, Berlin, Germany": {"Partner": "AXA", "Sector": "Office", "Country": "Germany", "Ownership (%)": 50.00},
+    "50-60 Binney Street, 02142, Cambridge, United States": {"Partner": "Alexandria & MetLife", "Sector": "Office", "Country": "United States", "Ownership (%)": 41.00},
+    "73-89 Oxford Street & 1 Dean Street, W1D 3RB, London, United Kingdom": {"Partner": "Boston Properties", "Sector": "Office", "Country": "United Kingdom", "Ownership (%)": 45.00},
+    "Bahnhofstrasse 1, 8001, Zurich, Switzerland": {"Partner": "AXA", "Sector": "Office", "Country": "Switzerland", "Ownership (%)": 45.00}
 }
-df_all = pd.DataFrame(data)
 
-# -------- Search and Filter --------
-search_query = st.text_input("Search for company", "")
-filtered_df = df_all[df_all["Properties"].str.contains(search_query, case=False, na=False) |
-                     df_all["Partners"].str.contains(search_query, case=False, na=False)]
+# Build DataFrame
+table_data = []
+for prop, meta in property_meta.items():
+    table_data.append({
+        "Property": prop,
+        "Partner": meta["Partner"],
+        "Ownership (%)": meta["Ownership (%)"],
+        "Sector": meta["Sector"],
+        "Country": meta["Country"]
+    })
+df_table = pd.DataFrame(table_data)
 
-# -------- Show first 3, then rest --------
-default_rows = 3
-show_all = st.session_state.get("show_all", False)
+# === Search bar ===
+search_query = st.text_input("Search property or partner", value="", placeholder="🔍 e.g. AXA or Paris")
+if search_query:
+    df_table = df_table[df_table["Property"].str.lower().str.contains(search_query.lower()) |
+                        df_table["Partner"].str.lower().str.contains(search_query.lower())]
 
-if not show_all:
-    df_display = filtered_df.head(default_rows)
-else:
-    df_display = filtered_df
+# === Show top 3 first ===
+show_all = st.session_state.get("show_all_realestate", False)
+df_display = df_table if show_all else df_table.head(3)
 
-# -------- Table display (NBIM-style tweaks) --------
-st.markdown("""
-    <style>
-        .stDataFrame tbody td {
-            font-size: 14px;
-            padding: 6px 8px;
-        }
-        .stDataFrame thead tr th {
-            background-color: #f2f2f2;
-            font-weight: 600;
-            text-align: left;
-        }
-    </style>
-""", unsafe_allow_html=True)
-
+# === Display table ===
 st.dataframe(
-    df_display.style.format({
-        'Ownership': '{:.2f}%'
-    }),
-    use_container_width=True
+    df_display.style
+        .hide(axis="index")
+        .set_properties(**{
+            "text-align": "left",
+            "font-size": "14px",
+            "border": "1px solid #eee",
+            "padding": "8px",
+            "background-color": "white"
+        })
+        .set_table_styles([{
+            'selector': 'th', 'props': [
+                ('background-color', '#001538'),
+                ('color', 'white'),
+                ('text-align', 'left'),
+                ('padding', '8px')
+            ]
+        }])
+        .format({'Ownership (%)': '{:.2f}%'})
 )
 
-# -------- Show more button --------
-if len(filtered_df) > default_rows and not show_all:
-    if st.button("Show 2 more +"):
-        st.session_state.show_all = True
+# === Show more toggle
+if len(df_table) > 3:
+    if not show_all and st.button("Show 2 more +", key="more_realestate"):
+        st.session_state["show_all_realestate"] = True
+    elif show_all and st.button("Show less –", key="less_realestate"):
+        st.session_state["show_all_realestate"] = False
+
+# === Historic chart ===
+st.markdown("### Historic development")
+historic_df = pd.DataFrame({
+    "Real estate": df_realestate.sum(axis=1)
+}).dropna().tail(10)
+historic_df["Date"] = historic_df.index.strftime("%b %d")
+historic_df["Total"] = historic_df["Real estate"]
+
+fig_bar = px.bar(
+    historic_df,
+    x="Date",
+    y="Real estate",
+    color_discrete_sequence=["#001538"],
+    labels={"Real estate": "Value (NOK)", "Date": "Date"},
+    height=400
+)
+
+fig_line = px.line(
+    historic_df,
+    x="Date",
+    y="Total"
+)
+for trace in fig_line.data:
+    trace.name = "Total"
+    trace.line.color = "#d65218"
+    trace.line.width = 2
+    fig_bar.add_trace(trace)
+
+fig_bar.update_layout(
+    barmode="stack",
+    legend_title="",
+    xaxis_title="Date",
+    yaxis_title="Value (NOK)",
+    xaxis_type="category",
+    margin={"r": 0, "t": 0, "l": 0, "b": 0},
+    plot_bgcolor="white",
+    paper_bgcolor="white"
+)
+
+st.plotly_chart(fig_bar, use_container_width=True)
+
+# === Footer ===
+st.markdown("---")
+st.caption("Egil Furnes 2025")

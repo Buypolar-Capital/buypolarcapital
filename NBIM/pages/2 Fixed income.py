@@ -24,7 +24,7 @@ st.markdown(f"""
     <div>
         <h2 style='margin-bottom: 0.2rem;'>Fixed income</h2>
         <p style='margin: 0; font-weight: bold; font-size: 18px; color: #001538;'>{int(total_bond_value):,} NOK</p>
-        <p style='margin: 0; color: gray;'>{bond_countries} countries, {bond_issuers} issuers, {bond_pct:.1f}% of total</p>
+        <p style='margin: 0; color: gray;'>{bond_countries} countries, {bond_issuers} issuers, 3.5% of total</p>
     </div>
 </div>
 """, unsafe_allow_html=True)
@@ -52,12 +52,15 @@ st.markdown("<hr style='margin-top: -1rem; margin-bottom: 1rem;'>", unsafe_allow
 
 # Example issuer metadata (static)
 issuer_meta = {
-    "ABB Finance BV": {"Sector": "Corporate Bonds", "Country": "Switzerland"},
-    "ABN AMRO Bank NV": {"Sector": "Corporate/Securitized", "Country": "Netherlands"},
-    "AGCO Corp": {"Sector": "Corporate Bonds", "Country": "United States"},
-    "AIA Group Ltd": {"Sector": "Corporate Bonds", "Country": "Hong Kong"},
-    "AIB Group PLC": {"Sector": "Corporate Bonds", "Country": "Ireland"}
+    "Japan Government Bonds": {"Sector": "Government Bonds", "Country": "Japan"},
+    "UK Gilts": {"Sector": "Government Bonds", "Country": "United Kingdom"},
+    "Eurozone Bonds": {"Sector": "Government Bonds", "Country": "Eurozone"},
+    "Emerging Markets Bonds": {"Sector": "Government Bonds", "Country": "Emerging Markets"},
+    "US Treasuries (Long-term)": {"Sector": "Government Bonds", "Country": "United States"},
+    "Global Bonds (ex-US)": {"Sector": "Government Bonds", "Country": "Global ex-US"},
+    "Canada Bonds": {"Sector": "Government Bonds", "Country": "Canada"}
 }
+
 
 # Build table dynamically
 latest_row = df_bonds.iloc[-1].dropna().sort_values(ascending=False)

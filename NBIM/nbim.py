@@ -38,23 +38,35 @@ if st.button("Refresh"):
     st.write("")
 
 # === Metadata values (dynamically computed) ===
-equity_value = df_eq.iloc[-1].sum()
-equity_companies = df_eq.shape[1]
-equity_countries = 10  # Adjust if you build from ticker-country map
+latest_eq = df_eq.iloc[-1].dropna()
+latest_bonds = df_bonds.iloc[-1].dropna()
+latest_realestate = df_realestate.iloc[-1].dropna()
+latest_renewable = df_renewable.iloc[-1].dropna()
 
-bond_value = df_bonds.iloc[-1].sum()
-bond_issuers = df_bonds.shape[1]
-bond_countries = 8  # Based on tickers
+equity_value = latest_eq.sum()
+bond_value = latest_bonds.sum()
+real_estate_value = latest_realestate.sum()
+renewable_value = latest_renewable.sum()
 
-real_estate_value = df_realestate.iloc[-1].sum()
-real_estate_properties = df_realestate.shape[1]
+equity_companies = len(latest_eq)
+bond_issuers = len(latest_bonds)
+real_estate_properties = len(latest_realestate)
+renewable_projects = len(latest_renewable)
+
+# Optional: replace with dynamic detection if desired
+equity_countries = 10
+bond_countries = 8
 real_estate_countries = 5
-
-renewable_value = df_renewable.iloc[-1].sum()
-renewable_projects = df_renewable.shape[1]
 renewable_countries = 3
 
+# === Total portfolio value
 total_value = equity_value + bond_value + real_estate_value + renewable_value
+
+# === Category percentages
+equity_pct = 100 * equity_value / total_value
+bond_pct = 100 * bond_value / total_value
+real_estate_pct = 100 * real_estate_value / total_value
+renewable_pct = 100 * renewable_value / total_value
 
 # === Dashboard content ===
 st.header("All investments")
@@ -70,11 +82,11 @@ def card(link, title, value, note):
         st.switch_page(f"pages/{link}")
 
 with col1:
-    card("1 Equities.py", "Equities", int(equity_value), f"{equity_countries} countries, {equity_companies} companies")
-    card("2 Fixed income.py", "Fixed income", int(bond_value), f"{bond_countries} countries, {bond_issuers} bonds")
+    card("1 Equities.py", "Equities", int(equity_value), f"{equity_countries} countries, {equity_companies} companies, {equity_pct:.1f}%")
+    card("2 Fixed income.py", "Fixed income", int(bond_value), f"{bond_countries} countries, {bond_issuers} bonds, {bond_pct:.1f}%")
 with col2:
-    card("3 Real estate.py", "Real estate", int(real_estate_value), f"{real_estate_countries} countries, {real_estate_properties} properties")
-    card("4 Renewable energy infrastructure.py", "Renewable", int(renewable_value), f"{renewable_countries} countries, {renewable_projects} projects")
+    card("3 Real estate.py", "Real estate", int(real_estate_value), f"{real_estate_countries} countries, {real_estate_properties} properties, {real_estate_pct:.1f}%")
+    card("4 Renewable energy infrastructure.py", "Renewable", int(renewable_value), f"{renewable_countries} countries, {renewable_projects} projects, {renewable_pct:.1f}%")
 with col3:
     country_map = {
         ".HK": "China", ".KS": "South Korea", ".T": "Japan", ".PA": "France",
@@ -159,3 +171,6 @@ fig_bar.update_layout(
 
 st.plotly_chart(fig_bar, use_container_width=True)
 
+# === Footer ===
+st.markdown("---")
+st.caption("Egil Furnes 2025")
