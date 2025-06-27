@@ -9,7 +9,8 @@ st.image(os.path.join(os.path.dirname(__file__), "../assets/logo.png"), width=15
 st.title("Real estate")
 
 # === Load data ===
-df_realestate = pd.read_excel("data/nbim_top10_realestate.xlsx", index_col=0, parse_dates=True, decimal=",")
+data_path = os.path.join(os.path.dirname(__file__), "..", "data", "nbim_top10_realestate.xlsx")
+df_realestate = pd.read_excel(data_path, index_col=0, parse_dates=True, decimal=",")
 latest = df_realestate.iloc[-1].dropna()
 total_real_estate_value = latest.sum()
 real_estate_properties = len(latest)

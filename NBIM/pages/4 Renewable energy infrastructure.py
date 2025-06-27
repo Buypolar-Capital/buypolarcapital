@@ -9,7 +9,8 @@ st.image(os.path.join(os.path.dirname(__file__), "../assets/logo.png"), width=15
 st.title("Renewable Energy Infrastructure")
 
 # === Load data ===
-df_renewable = pd.read_excel("data/nbim_top10_renewable.xlsx", index_col=0, parse_dates=True, decimal=",")
+data_path = os.path.join(os.path.dirname(__file__), "..", "data", "nbim_top10_renewable.xlsx")
+df_renewable = pd.read_excel(data_path, index_col=0, parse_dates=True, decimal=",")
 latest = df_renewable.iloc[-1].dropna()
 total_renewable_value = latest.sum()
 renewable_projects = len(latest)
