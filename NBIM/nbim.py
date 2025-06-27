@@ -2,17 +2,34 @@ import streamlit as st
 import time
 import pandas as pd
 import plotly.express as px
+# import os
+
+# st.set_page_config(page_title="NBIM Dashboard", layout="wide")
+# st.image(os.path.join(os.path.dirname(__file__), "assets/logo.png"), width=150)
+
+
+# # === Load data ===
+# df_eq = pd.read_csv("data/nbim_top10_equities.csv", index_col=0, parse_dates=True)
+# df_bonds = pd.read_csv("data/nbim_top10_bonds.csv", index_col=0, parse_dates=True)
+# df_realestate = pd.read_excel("data/nbim_top10_realestate.xlsx", index_col=0, parse_dates=True, decimal=",")
+# df_renewable = pd.read_excel("data/nbim_top10_renewable.xlsx", index_col=0, parse_dates=True, decimal=",")
+
 import os
 
-st.set_page_config(page_title="NBIM Dashboard", layout="wide")
-st.image(os.path.join(os.path.dirname(__file__), "assets/logo.png"), width=150)
+# Base path relative to this file
+base_path = os.path.dirname(__file__)
+data_path = os.path.join(base_path, "data")
 
+# Logo
+st.set_page_config(page_title="NBIM Dashboard", layout="wide")
+st.image(os.path.join(base_path, "assets", "logo.png"), width=150)
 
 # === Load data ===
-df_eq = pd.read_csv("data/nbim_top10_equities.csv", index_col=0, parse_dates=True)
-df_bonds = pd.read_csv("data/nbim_top10_bonds.csv", index_col=0, parse_dates=True)
-df_realestate = pd.read_excel("data/nbim_top10_realestate.xlsx", index_col=0, parse_dates=True, decimal=",")
-df_renewable = pd.read_excel("data/nbim_top10_renewable.xlsx", index_col=0, parse_dates=True, decimal=",")
+df_eq = pd.read_csv(os.path.join(data_path, "nbim_top10_equities.csv"), index_col=0, parse_dates=True)
+df_bonds = pd.read_csv(os.path.join(data_path, "nbim_top10_bonds.csv"), index_col=0, parse_dates=True)
+df_realestate = pd.read_excel(os.path.join(data_path, "nbim_top10_realestate.xlsx"), index_col=0, parse_dates=True, decimal=",")
+df_renewable = pd.read_excel(os.path.join(data_path, "nbim_top10_renewable.xlsx"), index_col=0, parse_dates=True, decimal=",")
+
 
 # === Build dynamic portfolio value timeseries ===
 portfolio = df_eq.add(df_bonds, fill_value=0).add(df_realestate, fill_value=0).add(df_renewable, fill_value=0)
