@@ -83,7 +83,7 @@ class StreamlinedReorganizer:
             new_full = self.base_path / new_path
             
             if old_full.exists():
-                print(f"📦 Moving {old_path} -> {new_path}")
+                print(f"Moving {old_path} -> {new_path}")
                 try:
                     if new_full.exists():
                         self.merge_directories(old_full, new_full)
@@ -168,7 +168,7 @@ setup(
         with open(setup_path, 'w') as f:
             f.write(setup_content)
         
-        print("📝 Created simplified setup.py")
+        print("Created simplified setup.py")
     
     def create_migration_guide(self):
         """Create a simple migration guide."""
