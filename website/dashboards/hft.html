@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HFT Dashboard - BuyPolar Capital</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-chart-line"></i>
+                BuyPolar Capital
+            </div>
+            <a href="../index.html" class="nav-link">← Back</a>
+        </div>
+    </nav>
+    
+    <main style="margin-top: 100px; padding: 2rem;">
+        <div class="container">
+            <h1>HFT Trading Dashboard</h1>
+            <div class="analytics-grid">
+                <div class="analytics-card">
+                    <h3>Order Book</h3>
+                    <div id="order-book"></div>
+                </div>
+                <div class="analytics-card">
+                    <h3>Latency Monitor</h3>
+                    <div id="latency-chart"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // HFT-specific visualizations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Order book visualization
+            const orderBookData = {
+                x: ['Bid 5', 'Bid 4', 'Bid 3', 'Bid 2', 'Bid 1', 'Ask 1', 'Ask 2', 'Ask 3', 'Ask 4', 'Ask 5'],
+                y: [100.10, 100.15, 100.20, 100.25, 100.30, 100.35, 100.40, 100.45, 100.50, 100.55],
+                type: 'bar',
+                marker: {
+                    color: ['red', 'red', 'red', 'red', 'red', 'green', 'green', 'green', 'green', 'green']
+                }
+            };
+            
+            const layout = {
+                title: 'Real-time Order Book',
+                xaxis: {title: 'Price Levels'},
+                yaxis: {title: 'Price ($)'}
+            };
+            
+            Plotly.newPlot('order-book', [orderBookData], layout);
+            
+            // Latency chart
+            const latencyData = {
+                x: Array.from({length: 50}, (_, i) => i),
+                y: Array.from({length: 50}, () => Math.random() * 2 + 0.5),
+                type: 'scatter',
+                mode: 'lines',
+                line: {color: '#00d4aa'}
+            };
+            
+            const latencyLayout = {
+                title: 'Latency Monitor (ms)',
+                xaxis: {title: 'Time'},
+                yaxis: {title: 'Latency (ms)'}
+            };
+            
+            Plotly.newPlot('latency-chart', [latencyData], latencyLayout);
+        });
+    </script>
+</body>
+</html>

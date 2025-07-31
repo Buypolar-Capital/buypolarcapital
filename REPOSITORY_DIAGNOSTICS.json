@@ -1,54 +1,43 @@
 {
-  "timestamp": "2025-07-31T22:28:06.660946",
+  "timestamp": "2025-07-31T22:41:15.676603",
   "repository_path": ".",
   "statistics": {
-    "total_files": 976,
-    "total_dirs": 242,
+    "total_files": 603,
+    "total_dirs": 119,
     "file_types": {
-      "": 17,
-      ".md": 7,
-      ".svg": 2,
-      ".json": 2,
+      "": 8,
+      ".md": 5,
+      ".svg": 1,
       ".txt": 7,
-      ".py": 197,
-      ".r": 60,
-      ".pdf": 339,
-      ".png": 77,
-      ".csv": 85,
+      ".py": 160,
+      ".r": 32,
+      ".pdf": 196,
+      ".png": 62,
+      ".csv": 74,
       ".gif": 3,
-      ".parquet": 65,
-      ".pyc": 27,
-      ".m": 36,
-      ".rs": 9,
+      ".parquet": 11,
+      ".pyc": 13,
+      ".m": 3,
+      ".rs": 8,
       ".xlsx": 3,
+      ".json": 1,
       ".rmd": 2,
       ".sh": 1,
       ".tex": 2,
       ".log": 2,
       ".j2": 1,
-      ".html": 6,
-      ".yml": 1,
-      ".duckdb": 1,
       ".aux": 1,
       ".out": 1,
       ".gz": 1,
-      ".cpp": 1,
-      ".jl": 9,
-      ".dat": 1,
-      ".mod": 1,
-      ".run": 1,
-      ".pt": 1,
-      ".ps": 1,
-      ".lock": 1,
-      ".toml": 3,
+      ".html": 3,
       ".js": 1,
       ".css": 1
     },
-    "python_files_count": 197,
-    "documentation_files_count": 16,
-    "data_files_count": 155,
+    "python_files_count": 160,
+    "documentation_files_count": 14,
+    "data_files_count": 89,
     "empty_files_count": 10,
-    "duplicate_files_count": 20,
+    "duplicate_files_count": 18,
     "old_backups_count": 0
   },
   "issues": {
@@ -69,8 +58,8 @@
         "filename": "chordcaged.py",
         "size": 4681,
         "locations": [
-          "core\\models\\algorithms\\chordcaged.py",
-          "core\\strategies\\relative_value\\chordcaged.py"
+          "core\\models\\algo\\chordcaged.py",
+          "core\\strategies\\rv\\chordcaged.py"
         ]
       },
       {
@@ -78,8 +67,7 @@
         "size": 603,
         "locations": [
           "core\\strategies\\ie\\R\\buypolarcapital.R",
-          "core\\strategies\\ipo\\R\\buypolarcapital.R",
-          "src\\buypolarcapital\\modeling\\algo\\R\\buypolarcapital.R"
+          "core\\strategies\\ipo\\R\\buypolarcapital.R"
         ]
       },
       {
@@ -209,77 +197,22 @@
           "dashboards\\plots\\sparkline_indices_1_1.png",
           "dashboards\\report_outputs\\sparkline_indices_1_1.png"
         ]
-      },
-      {
-        "filename": "volatile_stocks_lag1_return_facet.pdf",
-        "size": 372147,
-        "locations": [
-          "src\\buypolarcapital\\assets\\credit\\R\\plots\\volatile_stocks_lag1_return_facet.pdf",
-          "src\\buypolarcapital\\risk\\R\\plots\\volatile_stocks_lag1_return_facet.pdf"
-        ]
-      },
-      {
-        "filename": "shipping_sector_multipage_2x2.pdf",
-        "size": 153279,
-        "locations": [
-          "src\\buypolarcapital\\assets\\industry\\shipping\\R\\plots\\shipping_sector_multipage_2x2.pdf",
-          "src\\buypolarcapital\\risk\\R\\plots\\shipping_sector_multipage_2x2.pdf"
-        ]
       }
     ],
     "old_backups": [],
     "structure_issues": [
-      "Deep nesting detected: .\\src\\buypolarcapital\\assets\\industry\\healthcare\\R\\plots (depth: 7)",
-      "Deep nesting detected: .\\src\\buypolarcapital\\assets\\industry\\overall\\R\\plots (depth: 7)",
-      "Deep nesting detected: .\\src\\buypolarcapital\\assets\\industry\\shipping\\R\\plots (depth: 7)",
-      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\data\\raw (depth: 7)",
-      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\data\\raw\\minute (depth: 8)",
-      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\data\\simulated (depth: 7)",
-      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\data\\__pycache__ (depth: 7)",
-      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\model\\__pycache__ (depth: 7)",
-      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\plots\\AAPL (depth: 7)",
-      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\plots\\MSFT (depth: 7)",
-      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\plots\\NVDA (depth: 7)",
-      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\plots\\TSLA (depth: 7)",
-      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\results\\AAPL (depth: 7)",
-      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\results\\MSFT (depth: 7)",
-      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\results\\NVDA (depth: 7)",
-      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\results\\TSLA (depth: 7)",
-      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\utils\\__pycache__ (depth: 7)",
-      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\stochastic\\rust\\scratchpad\\src (depth: 7)",
       "Mixed case directory: ./NBIM",
       "Mixed case directory: .\\assets\\commodities/R",
       "Mixed case directory: .\\assets\\equities/R",
       "Mixed case directory: .\\core\\strategies\\ie/R",
       "Mixed case directory: .\\core\\strategies\\ipo/R",
-      "Mixed case directory: .\\core\\strategies\\rv/R",
-      "Mixed case directory: .\\src\\buypolarcapital\\assets\\credit/R",
-      "Mixed case directory: .\\src\\buypolarcapital\\assets\\futures/R",
-      "Mixed case directory: .\\src\\buypolarcapital\\assets\\industry\\healthcare/R",
-      "Mixed case directory: .\\src\\buypolarcapital\\assets\\industry\\overall/R",
-      "Mixed case directory: .\\src\\buypolarcapital\\assets\\industry\\shipping/R",
-      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo/R",
-      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo\\python\\plots/AAPL",
-      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo\\python\\plots/MSFT",
-      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo\\python\\plots/NVDA",
-      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo\\python\\plots/TSLA",
-      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo\\python\\results/AAPL",
-      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo\\python\\results/MSFT",
-      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo\\python\\results/NVDA",
-      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo\\python\\results/TSLA",
-      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\ml/R",
-      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\timeseries/R",
-      "Mixed case directory: .\\src\\buypolarcapital\\risk/R"
+      "Mixed case directory: .\\core\\strategies\\rv/R"
     ]
   },
   "largest_files": [
     {
       "path": "core\\strategies\\initial_equity\\data\\processed\\features_2010_2022.csv",
       "size_mb": 7.146017074584961
-    },
-    {
-      "path": "src\\buypolarcapital\\assets\\industry\\overall\\R\\plots\\sector_data_raw.csv",
-      "size_mb": 4.661705017089844
     },
     {
       "path": "core\\strategies\\rv\\R\\plots\\dual_arbitrage_facet_SSL_SOLJO.pdf",
@@ -342,16 +275,20 @@
       "size_mb": 1.7499189376831055
     },
     {
-      "path": "src\\buypolarcapital\\modeling\\timeseries\\R\\plots\\all_plots.pdf",
-      "size_mb": 1.547616958618164
-    },
-    {
-      "path": "src\\buypolarcapital\\modeling\\timeseries\\R\\plots\\fpptre_plots.pdf",
-      "size_mb": 1.547616958618164
-    },
-    {
       "path": "assets\\crypto\\python\\report\\BTCUSDT_2024-03-01_ticks_zoomed.pdf",
       "size_mb": 1.3769245147705078
+    },
+    {
+      "path": "assets\\crypto\\python\\report\\BTCUSDT_2024-03-01_ticks.pdf",
+      "size_mb": 1.333531379699707
+    },
+    {
+      "path": "core\\strategies\\relative_value\\data\\aapl_intraday_alphavantage.csv",
+      "size_mb": 1.2526845932006836
+    },
+    {
+      "path": "data\\masterdata\\aapl_intraday_alphavantage.csv",
+      "size_mb": 1.2526845932006836
     }
   ]
 }

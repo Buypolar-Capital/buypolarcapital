@@ -1,7 +1,0 @@
-model vwap.mod;
-data vwap.dat;
-
-solve;
-
-display x;
-display Total_Cost;
