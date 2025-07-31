@@ -22,13 +22,13 @@ buypolarcapital/
 │   └── utils/              # Utilities
 ├── assets/                 # Asset classes
 ├── dashboards/             # Interactive dashboards
-├── website/                # 🌟 Quant web interface
+├── index.html              # 🌟 Main quant interface
 └── data/                   # Market data
 ```
 
 ## 🌐 Interactive Website
 
-Open `website/index.html` for:
+Open `index.html` for:
 - Real-time market data
 - Interactive calculators
 - Strategy backtesting
@@ -37,7 +37,7 @@ Open `website/index.html` for:
 ## 🎯 Quick Start
 
 1. Clone repository
-2. Open `website/index.html`
+2. Open `index.html`
 3. Explore quant tools
 4. Build strategies
 
