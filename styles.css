@@ -156,6 +156,7 @@ p {
     justify-content: space-between;
     align-items: center;
     height: 80px;
+    gap: var(--spacing-md);
 }
 
 .nav-logo {
@@ -164,6 +165,7 @@ p {
     gap: var(--spacing-sm);
     text-decoration: none;
     color: inherit;
+    flex-shrink: 0;
 }
 
 .logo-image {
@@ -198,6 +200,8 @@ p {
     list-style: none;
     gap: var(--spacing-lg);
     align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .nav-link {
@@ -1099,6 +1103,18 @@ section {
 
 .game-btn:hover {
     background-color: var(--secondary-black);
+    transform: translateY(-1px);
+}
+
+.reset-btn {
+    background-color: var(--accent-red);
+    color: var(--pure-white);
+    border: 2px solid var(--accent-red);
+}
+
+.reset-btn:hover {
+    background-color: #b71c1c;
+    border-color: #b71c1c;
     transform: translateY(-1px);
 }
 

@@ -1654,6 +1654,15 @@ function updateRouletteStats() {
     document.getElementById('total-spins').textContent = rouletteStats.total;
 }
 
+function resetRoulette() {
+    rouletteStats = { red: 0, black: 0, green: 0, total: 0 };
+    rouletteHistory = [];
+    updateRouletteStats();
+    updateRouletteChart();
+    document.getElementById('roulette-wheel').style.transform = 'rotate(0deg)';
+    document.querySelector('.wheel-number').textContent = '0';
+}
+
 function updateRouletteChart() {
     const trace = {
         x: ['Red', 'Black', 'Green'],
@@ -1860,6 +1869,16 @@ function updateBlackjackStats() {
     const rate = blackjackStats.wins + blackjackStats.losses > 0 ? 
         ((blackjackStats.wins / (blackjackStats.wins + blackjackStats.losses)) * 100).toFixed(1) : '0';
     document.getElementById('blackjack-rate').textContent = rate + '%';
+}
+
+function resetBlackjack() {
+    blackjackStats = { wins: 0, losses: 0 };
+    currentDeck = [];
+    playerHand = [];
+    dealerHand = [];
+    gameInProgress = false;
+    updateBlackjackStats();
+    displayBlackjackHands();
 }
 
 // Dice Game
@@ -2597,6 +2616,12 @@ function loadPlotsData() {
         })
         .then(data => {
             plotsData = data.plots || data;
+            // Fix plot paths to point to the correct location
+            plotsData.forEach(plot => {
+                if (plot.path && !plot.path.startsWith('plots/')) {
+                    plot.path = 'plots/' + plot.filename;
+                }
+            });
             renderPlotsGrid();
         })
         .catch(error => {
@@ -2865,4 +2890,69 @@ function closePlotModal() {
     
     // Restore body scroll
     document.body.style.overflow = 'auto';
+}
+
+// Reset functions for games
+function resetDice() {
+    diceStats = { total: 0, rolls: [], average: 0 };
+    updateDiceStats();
+    updateDiceChart();
+    document.getElementById('dice1').textContent = '⚀';
+    document.getElementById('dice2').textContent = '⚀';
+}
+
+function resetRandomWalk() {
+    document.getElementById('final-position').textContent = '-';
+    document.getElementById('max-distance').textContent = '-';
+    document.getElementById('return-origin').textContent = '-';
+    // Clear the chart
+    const chartContainer = document.getElementById('random-walk-chart');
+    chartContainer.innerHTML = '';
+}
+
+function resetPoker() {
+    document.getElementById('hand-type').textContent = '-';
+    document.getElementById('hand-probability').textContent = '-';
+    document.getElementById('total-hands').textContent = '0';
+    document.getElementById('poker-hand').innerHTML = '';
+    // Clear the chart
+    const chartContainer = document.getElementById('poker-chart');
+    chartContainer.innerHTML = '';
+}
+
+function resetMontyHall() {
+    document.getElementById('monty-wins').textContent = '0';
+    document.getElementById('monty-losses').textContent = '0';
+    document.getElementById('monty-rate').textContent = '0%';
+    // Reset doors
+    document.querySelectorAll('.door').forEach(door => {
+        door.className = 'door';
+        door.textContent = '🚪';
+    });
+}
+
+function resetKelly() {
+    document.getElementById('kelly-fraction').textContent = '-';
+    document.getElementById('expected-value').textContent = '-';
+    document.getElementById('growth-rate').textContent = '-';
+    // Reset inputs to defaults
+    document.getElementById('win-probability').value = '0.6';
+    document.getElementById('win-amount').value = '1';
+    document.getElementById('loss-amount').value = '1';
+    // Clear the chart
+    const chartContainer = document.getElementById('kelly-chart');
+    chartContainer.innerHTML = '';
+}
+
+function resetRiskOfRuin() {
+    document.getElementById('ruin-probability').textContent = '-';
+    document.getElementById('expected-sessions').textContent = '-';
+    document.getElementById('max-drawdown').textContent = '-';
+    // Reset inputs to defaults
+    document.getElementById('initial-bankroll').value = '1000';
+    document.getElementById('bet-size').value = '100';
+    document.getElementById('win-rate').value = '0.52';
+    // Clear the chart
+    const chartContainer = document.getElementById('ruin-chart');
+    chartContainer.innerHTML = '';
 }
