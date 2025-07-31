@@ -18,7 +18,7 @@ class StreamlinedReorganizer:
         
     def create_simplified_structure(self):
         """Create a simplified, focused folder structure."""
-        print("🏗️ Creating simplified folder structure...")
+        print("Creating simplified folder structure...")
         
         # Essential directories only
         essential_dirs = [
@@ -38,7 +38,7 @@ class StreamlinedReorganizer:
         for dir_path in essential_dirs:
             full_path = self.base_path / dir_path
             full_path.mkdir(parents=True, exist_ok=True)
-            print(f"✅ Created: {dir_path}")
+            print(f"Created: {dir_path}")
             
         # Create __init__.py files for Python packages
         python_dirs = [
@@ -51,11 +51,11 @@ class StreamlinedReorganizer:
             init_file = self.base_path / dir_path / "__init__.py"
             if not init_file.exists():
                 init_file.touch()
-                print(f"📄 Created: {dir_path}/__init__.py")
+                print(f"Created: {dir_path}/__init__.py")
     
     def backup_existing_structure(self):
         """Create a backup of the existing structure."""
-        print(f"💾 Creating backup at: {self.backup_path}")
+        print(f"Creating backup at: {self.backup_path}")
         
         if self.base_path.exists():
             shutil.copytree(self.base_path, self.backup_path, 
@@ -63,7 +63,7 @@ class StreamlinedReorganizer:
     
     def migrate_essential_files(self):
         """Migrate only essential files to the new structure."""
-        print("🔄 Migrating essential files...")
+        print("Migrating essential files...")
         
         # Simple migration mapping
         migrations = {
