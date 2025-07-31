@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BuyPolar Capital - Quantitative Finance Hub</title>
+    <title>BuyPolar Capital - Quantitative Finance</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/mathjs@11.8.0/lib/browser/math.min.js"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -19,8 +18,9 @@
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#quant" class="nav-link">Quant Tools</a></li>
+                <li><a href="#tools" class="nav-link">Tools</a></li>
                 <li><a href="#strategies" class="nav-link">Strategies</a></li>
+                <li><a href="#plots" class="nav-link">Plots</a></li>
                 <li><a href="#analytics" class="nav-link">Analytics</a></li>
             </ul>
         </div>
@@ -29,14 +29,14 @@
     <main>
         <section id="home" class="hero">
             <div class="hero-content">
-                <h1>Quantitative Finance Hub</h1>
+                <h1>Quantitative Finance</h1>
                 <p>Advanced algorithms, real-time analytics, and cutting-edge research</p>
                 <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="scrollToSection('quant')">
-                        <i class="fas fa-calculator"></i> Quant Tools
+                    <button class="btn btn-primary" onclick="scrollToSection('tools')">
+                        <i class="fas fa-calculator"></i> Tools
                     </button>
-                    <button class="btn btn-secondary" onclick="openStrategyBuilder()">
-                        <i class="fas fa-robot"></i> Strategy Builder
+                    <button class="btn btn-secondary" onclick="scrollToSection('plots')">
+                        <i class="fas fa-chart-bar"></i> Plots
                     </button>
                 </div>
             </div>
@@ -45,7 +45,7 @@
             </div>
         </section>
 
-        <section id="quant" class="section">
+        <section id="tools" class="section">
             <div class="container">
                 <h2>Quantitative Tools</h2>
                 <div class="tools-grid">
@@ -105,6 +105,30 @@
             </div>
         </section>
 
+        <section id="plots" class="section">
+            <div class="container">
+                <h2>Research Plots</h2>
+                <div class="plots-grid">
+                    <div class="plot-card" onclick="viewPlot('arbitrage')">
+                        <h3>Arbitrage Analysis</h3>
+                        <p>Cross-listing arbitrage opportunities</p>
+                    </div>
+                    <div class="plot-card" onclick="viewPlot('hft')">
+                        <h3>HFT Performance</h3>
+                        <p>High-frequency trading metrics</p>
+                    </div>
+                    <div class="plot-card" onclick="viewPlot('risk')">
+                        <h3>Risk Analysis</h3>
+                        <p>Portfolio risk metrics</p>
+                    </div>
+                    <div class="plot-card" onclick="viewPlot('equities')">
+                        <h3>Equity Analysis</h3>
+                        <p>Stock market analysis</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <section id="analytics" class="section">
             <div class="container">
                 <h2>Real-Time Analytics</h2>
@@ -121,6 +145,14 @@
             </div>
         </section>
     </main>
+
+    <!-- Plot Viewer Modal -->
+    <div id="plot-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="plot-content"></div>
+        </div>
+    </div>
 
     <!-- Calculator Modal -->
     <div id="calculator-modal" class="modal">

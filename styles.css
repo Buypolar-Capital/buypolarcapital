@@ -1,12 +1,13 @@
-/* Quant-Focused CSS */
+/* Black/White Theme CSS */
 :root {
-    --primary: #00d4aa;
-    --secondary: #0099cc;
-    --accent: #ff6b6b;
-    --dark: #1a1a2e;
-    --light: #f8f9fa;
-    --gradient: linear-gradient(135deg, #00d4aa 0%, #0099cc 100%);
-    --shadow: 0 4px 20px rgba(0, 212, 170, 0.15);
+    --black: #000000;
+    --white: #ffffff;
+    --gray-dark: #1a1a1a;
+    --gray-light: #f5f5f5;
+    --gray-medium: #666666;
+    --accent: #ffffff;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    --shadow-hover: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
 * {
@@ -17,8 +18,8 @@
 
 body {
     font-family: 'Courier New', monospace;
-    background: var(--dark);
-    color: var(--light);
+    background: var(--black);
+    color: var(--white);
     line-height: 1.6;
 }
 
@@ -30,9 +31,8 @@ body {
 
 /* Navigation */
 .navbar {
-    background: rgba(26, 26, 46, 0.95);
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid var(--primary);
+    background: var(--black);
+    border-bottom: 1px solid var(--white);
     position: fixed;
     width: 100%;
     z-index: 1000;
@@ -48,7 +48,7 @@ body {
 .nav-brand {
     font-size: 1.5rem;
     font-weight: bold;
-    color: var(--primary);
+    color: var(--white);
     display: flex;
     align-items: center;
     gap: 0.5rem;
@@ -61,14 +61,14 @@ body {
 }
 
 .nav-link {
-    color: var(--light);
+    color: var(--white);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s;
 }
 
 .nav-link:hover {
-    color: var(--primary);
+    color: var(--gray-light);
 }
 
 /* Hero Section */
@@ -76,7 +76,8 @@ body {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: var(--gradient);
+    background: var(--black);
+    border-bottom: 1px solid var(--white);
     padding: 0 2rem;
     margin-top: 70px;
 }
@@ -90,12 +91,13 @@ body {
     font-size: 3.5rem;
     margin-bottom: 1rem;
     font-weight: 700;
+    color: var(--white);
 }
 
 .hero p {
     font-size: 1.2rem;
     margin-bottom: 2rem;
-    opacity: 0.9;
+    color: var(--gray-light);
 }
 
 .hero-buttons {
@@ -105,8 +107,8 @@ body {
 
 .btn {
     padding: 12px 24px;
-    border: none;
-    border-radius: 8px;
+    border: 1px solid var(--white);
+    border-radius: 0;
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s;
@@ -114,17 +116,27 @@ body {
     align-items: center;
     gap: 0.5rem;
     font-family: 'Courier New', monospace;
+    text-decoration: none;
 }
 
 .btn-primary {
-    background: var(--dark);
-    color: var(--primary);
+    background: var(--white);
+    color: var(--black);
+}
+
+.btn-primary:hover {
+    background: var(--gray-light);
+    transform: translateY(-2px);
 }
 
 .btn-secondary {
     background: transparent;
-    color: var(--dark);
-    border: 2px solid var(--dark);
+    color: var(--white);
+}
+
+.btn-secondary:hover {
+    background: var(--white);
+    color: var(--black);
 }
 
 .btn-small {
@@ -141,21 +153,21 @@ body {
 #live-chart {
     width: 400px;
     height: 300px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
+    background: var(--gray-dark);
+    border: 1px solid var(--white);
 }
 
 /* Sections */
 .section {
     padding: 5rem 0;
+    border-bottom: 1px solid var(--white);
 }
 
 .section h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 3rem;
-    color: var(--primary);
+    color: var(--white);
 }
 
 /* Tools Grid */
@@ -166,10 +178,9 @@ body {
 }
 
 .tool-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--gray-dark);
     padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid var(--primary);
+    border: 1px solid var(--white);
     cursor: pointer;
     transition: all 0.3s;
     text-align: center;
@@ -177,13 +188,19 @@ body {
 
 .tool-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow-hover);
+    background: var(--white);
+    color: var(--black);
 }
 
 .tool-card i {
     font-size: 3rem;
-    color: var(--primary);
+    color: var(--white);
     margin-bottom: 1rem;
+}
+
+.tool-card:hover i {
+    color: var(--black);
 }
 
 .tool-card h3 {
@@ -199,10 +216,9 @@ body {
 }
 
 .strategy-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--gray-dark);
     padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid var(--secondary);
+    border: 1px solid var(--white);
 }
 
 .strategy-metrics {
@@ -212,11 +228,38 @@ body {
 }
 
 .strategy-metrics span {
-    background: var(--secondary);
-    color: var(--light);
+    background: var(--white);
+    color: var(--black);
     padding: 0.5rem 1rem;
-    border-radius: 20px;
     font-size: 0.9rem;
+}
+
+/* Plots Grid */
+.plots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.plot-card {
+    background: var(--gray-dark);
+    padding: 2rem;
+    border: 1px solid var(--white);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-align: center;
+}
+
+.plot-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-hover);
+    background: var(--white);
+    color: var(--black);
+}
+
+.plot-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 /* Analytics Grid */
@@ -227,10 +270,14 @@ body {
 }
 
 .analytics-card {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--gray-dark);
     padding: 2rem;
-    border-radius: 12px;
-    border: 1px solid var(--accent);
+    border: 1px solid var(--white);
+}
+
+.analytics-card h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
 }
 
 /* Modal */
@@ -242,21 +289,22 @@ body {
     top: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.9);
 }
 
 .modal-content {
-    background-color: var(--dark);
+    background-color: var(--black);
     margin: 5% auto;
     padding: 2rem;
-    border: 1px solid var(--primary);
-    border-radius: 12px;
-    width: 80%;
-    max-width: 600px;
+    border: 1px solid var(--white);
+    width: 90%;
+    max-width: 800px;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
 .close {
-    color: var(--primary);
+    color: var(--white);
     float: right;
     font-size: 28px;
     font-weight: bold;
@@ -264,7 +312,24 @@ body {
 }
 
 .close:hover {
-    color: var(--accent);
+    color: var(--gray-light);
+}
+
+/* Data rows */
+.data-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--gray-medium);
+}
+
+.data-row:last-child {
+    border-bottom: none;
+}
+
+.value {
+    font-weight: bold;
+    color: var(--white);
 }
 
 /* Responsive */

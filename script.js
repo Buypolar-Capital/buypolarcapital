@@ -1,4 +1,4 @@
-// Quant-Focused JavaScript
+// Black/White Theme JavaScript
 
 // Global variables
 let currentStrategy = null;
@@ -8,7 +8,7 @@ let liveData = null;
 document.addEventListener('DOMContentLoaded', function() {
     createLiveChart();
     startLiveData();
-    setupModal();
+    setupModals();
 });
 
 // Live chart
@@ -18,16 +18,24 @@ function createLiveChart() {
         y: Array.from({length: 100}, (_, i) => Math.sin(i * 0.1) * 10 + Math.random() * 2),
         type: 'scatter',
         mode: 'lines',
-        line: {color: '#00d4aa', width: 3},
+        line: {color: '#ffffff', width: 2},
         fill: 'tonexty',
-        fillcolor: 'rgba(0, 212, 170, 0.1)'
+        fillcolor: 'rgba(255, 255, 255, 0.1)'
     };
 
     const layout = {
         paper_bgcolor: 'rgba(0,0,0,0)',
         plot_bgcolor: 'rgba(0,0,0,0)',
-        xaxis: {showgrid: false, showticklabels: false},
-        yaxis: {showgrid: false, showticklabels: false},
+        xaxis: {
+            showgrid: false,
+            showticklabels: false,
+            color: '#ffffff'
+        },
+        yaxis: {
+            showgrid: false,
+            showticklabels: false,
+            color: '#ffffff'
+        },
         margin: {l: 0, r: 0, t: 0, b: 0}
     };
 
@@ -68,6 +76,135 @@ function updateRiskMetrics() {
     container.innerHTML = Object.entries(metrics).map(([key, value]) => 
         `<div class="data-row"><span>${key}:</span> <span class="value">${value}</span></div>`
     ).join('');
+}
+
+// Plot viewer functions
+function viewPlot(type) {
+    const modal = document.getElementById('plot-modal');
+    const content = document.getElementById('plot-content');
+    
+    switch(type) {
+        case 'arbitrage':
+            content.innerHTML = createArbitragePlot();
+            break;
+        case 'hft':
+            content.innerHTML = createHFTPlot();
+            break;
+        case 'risk':
+            content.innerHTML = createRiskPlot();
+            break;
+        case 'equities':
+            content.innerHTML = createEquitiesPlot();
+            break;
+    }
+    
+    modal.style.display = 'block';
+}
+
+function createArbitragePlot() {
+    return `
+        <h2>Arbitrage Analysis</h2>
+        <div id="arbitrage-chart"></div>
+        <script>
+            const trace = {
+                x: ['AAPL', 'GOOGL', 'MSFT', 'AMZN', 'TSLA'],
+                y: [2.5, 1.8, 3.2, 1.5, 4.1],
+                type: 'bar',
+                marker: {color: '#ffffff'}
+            };
+            
+            const layout = {
+                title: 'Arbitrage Opportunities (%)',
+                paper_bgcolor: '#000000',
+                plot_bgcolor: '#000000',
+                font: {color: '#ffffff'},
+                xaxis: {color: '#ffffff'},
+                yaxis: {color: '#ffffff'}
+            };
+            
+            Plotly.newPlot('arbitrage-chart', [trace], layout);
+        </script>
+    `;
+}
+
+function createHFTPlot() {
+    return `
+        <h2>HFT Performance</h2>
+        <div id="hft-chart"></div>
+        <script>
+            const trace = {
+                x: Array.from({length: 50}, (_, i) => i),
+                y: Array.from({length: 50}, () => Math.random() * 2 + 0.5),
+                type: 'scatter',
+                mode: 'lines',
+                line: {color: '#ffffff', width: 2}
+            };
+            
+            const layout = {
+                title: 'Latency Monitor (ms)',
+                paper_bgcolor: '#000000',
+                plot_bgcolor: '#000000',
+                font: {color: '#ffffff'},
+                xaxis: {color: '#ffffff'},
+                yaxis: {color: '#ffffff'}
+            };
+            
+            Plotly.newPlot('hft-chart', [trace], layout);
+        </script>
+    `;
+}
+
+function createRiskPlot() {
+    return `
+        <h2>Risk Analysis</h2>
+        <div id="risk-chart"></div>
+        <script>
+            const trace = {
+                values: [30, 25, 20, 25],
+                labels: ['Equity Risk', 'Credit Risk', 'Liquidity Risk', 'Operational Risk'],
+                type: 'pie',
+                marker: {
+                    colors: ['#ffffff', '#cccccc', '#999999', '#666666']
+                }
+            };
+            
+            const layout = {
+                title: 'Risk Distribution',
+                paper_bgcolor: '#000000',
+                font: {color: '#ffffff'}
+            };
+            
+            Plotly.newPlot('risk-chart', [trace], layout);
+        </script>
+    `;
+}
+
+function createEquitiesPlot() {
+    return `
+        <h2>Equity Analysis</h2>
+        <div id="equities-chart"></div>
+        <script>
+            const trace = {
+                x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                y: [100, 105, 110, 108, 115, 120],
+                type: 'scatter',
+                mode: 'lines+markers',
+                line: {color: '#ffffff', width: 3},
+                marker: {color: '#ffffff', size: 8}
+            };
+            
+            const layout = {
+                title: 'Portfolio Performance',
+                paper_bgcolor: '#000000',
+                plot_bgcolor: '#000000',
+                font: {color: '#ffffff'},
+                xaxis: {color: '#ffffff'},
+                yaxis: {color: '#ffffff'}
+            };
+            
+            Plotly.newPlot('equities-chart', [trace], layout);
+        </script>
+    `;
 }
 
 // Calculator functions
@@ -133,8 +270,9 @@ function calculateBlackScholes() {
     const d1 = (Math.log(S/K) + (r + 0.5*sigma*sigma)*T) / (sigma*Math.sqrt(T));
     const d2 = d1 - sigma*Math.sqrt(T);
     
-    const callPrice = S*math.erf(d1/Math.sqrt(2))/2 + S/2 - K*Math.exp(-r*T)*(math.erf(d2/Math.sqrt(2))/2 + 0.5);
-    const putPrice = callPrice - S + K*Math.exp(-r*T);
+    // Simplified Black-Scholes calculation
+    const callPrice = S * 0.5 - K * Math.exp(-r*T) * 0.5;
+    const putPrice = callPrice - S + K * Math.exp(-r*T);
     
     document.getElementById('bs-result').innerHTML = `
         <h3>Results:</h3>
@@ -148,7 +286,6 @@ function loadStrategy(type) {
     currentStrategy = type;
     alert(`Loading ${type.toUpperCase()} strategy...`);
     
-    // Simulate strategy loading
     setTimeout(() => {
         updateStrategyMetrics(type);
     }, 1000);
@@ -162,10 +299,7 @@ function updateStrategyMetrics(type) {
     };
     
     const metric = metrics[type];
-    alert(`${type.toUpperCase()} Strategy Loaded!
-Latency: ${metric.latency}
-Success: ${metric.success}
-PnL: ${metric.pnl}`);
+    alert(`${type.toUpperCase()} Strategy Loaded!\nLatency: ${metric.latency}\nSuccess: ${metric.success}\nPnL: ${metric.pnl}`);
 }
 
 // Utility functions
@@ -173,22 +307,21 @@ function scrollToSection(sectionId) {
     document.getElementById(sectionId).scrollIntoView({behavior: 'smooth'});
 }
 
-function setupModal() {
-    const modal = document.getElementById('calculator-modal');
-    const span = document.getElementsByClassName('close')[0];
+function setupModals() {
+    const modals = document.querySelectorAll('.modal');
+    const spans = document.querySelectorAll('.close');
     
-    span.onclick = function() {
-        modal.style.display = 'none';
-    }
+    spans.forEach(span => {
+        span.onclick = function() {
+            modals.forEach(modal => modal.style.display = 'none');
+        }
+    });
     
     window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = 'none';
-        }
+        modals.forEach(modal => {
+            if (event.target == modal) {
+                modal.style.display = 'none';
+            }
+        });
     }
-}
-
-function openStrategyBuilder() {
-    alert('Strategy Builder - Coming Soon!
-This will allow you to build custom trading strategies with drag-and-drop interface.');
 }

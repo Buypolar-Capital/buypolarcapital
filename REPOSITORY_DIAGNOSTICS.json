@@ -1,15 +1,19 @@
 {
-  "timestamp": "2025-07-31T22:41:15.676603",
+  "timestamp": "2025-07-31T23:01:02.851798",
   "repository_path": ".",
   "statistics": {
-    "total_files": 603,
-    "total_dirs": 119,
+    "total_files": 605,
+    "total_dirs": 117,
     "file_types": {
       "": 8,
-      ".md": 5,
+      ".md": 6,
+      ".html": 3,
       ".svg": 1,
+      ".json": 2,
       ".txt": 7,
-      ".py": 160,
+      ".js": 1,
+      ".py": 161,
+      ".css": 1,
       ".r": 32,
       ".pdf": 196,
       ".png": 62,
@@ -20,22 +24,17 @@
       ".m": 3,
       ".rs": 8,
       ".xlsx": 3,
-      ".json": 1,
       ".rmd": 2,
       ".sh": 1,
       ".tex": 2,
       ".log": 2,
-      ".j2": 1,
       ".aux": 1,
       ".out": 1,
-      ".gz": 1,
-      ".html": 3,
-      ".js": 1,
-      ".css": 1
+      ".gz": 1
     },
-    "python_files_count": 160,
-    "documentation_files_count": 14,
-    "data_files_count": 89,
+    "python_files_count": 161,
+    "documentation_files_count": 15,
+    "data_files_count": 90,
     "empty_files_count": 10,
     "duplicate_files_count": 18,
     "old_backups_count": 0
@@ -58,8 +57,8 @@
         "filename": "chordcaged.py",
         "size": 4681,
         "locations": [
-          "core\\models\\algo\\chordcaged.py",
-          "core\\strategies\\rv\\chordcaged.py"
+          "core\\models\\algorithms\\chordcaged.py",
+          "core\\strategies\\relative_value\\chordcaged.py"
         ]
       },
       {
