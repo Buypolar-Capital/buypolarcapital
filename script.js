@@ -138,38 +138,49 @@ function initializePerformanceChart() {
     const layout = {
         title: {
             text: 'Portfolio Performance vs Benchmark',
-            font: {
+            font: { 
+                family: 'Inter, sans-serif',
                 size: 16,
                 color: '#000000'
-            }
+            },
+            x: 0.5,
+            xanchor: 'center'
         },
-        xaxis: {
-            title: 'Date',
-            gridcolor: '#e0e0e0',
-            showgrid: true
+        xaxis: { 
+            title: { 
+                text: 'Date',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
         },
-        yaxis: {
-            title: 'Portfolio Value ($)',
-            gridcolor: '#e0e0e0',
-            showgrid: true
+        yaxis: { 
+            title: { 
+                text: 'Portfolio Value ($)',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
         },
         plot_bgcolor: '#ffffff',
         paper_bgcolor: '#ffffff',
-        font: {
-            family: 'Inter, sans-serif',
-            color: '#000000'
-        },
+        font: { family: 'Inter, sans-serif' },
         legend: {
             orientation: 'h',
-            y: -0.2
+            y: -0.2,
+            bgcolor: 'rgba(255, 255, 255, 0.8)',
+            bordercolor: '#e0e0e0',
+            borderwidth: 1,
+            font: { family: 'Inter, sans-serif', size: 11 }
         },
-        margin: {
-            l: 60,
-            r: 40,
-            t: 60,
-            b: 80
-        },
-        hovermode: 'x unified'
+        margin: { l: 60, r: 30, t: 60, b: 80 },
+        hovermode: 'x unified',
+        hoverlabel: {
+            bgcolor: '#000000',
+            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
+        }
     };
     
     const config = {
@@ -239,13 +250,44 @@ function createBitcoinChart() {
     };
     
     const layout = {
-        title: 'Bitcoin Price Movement',
-        xaxis: { title: 'Date' },
-        yaxis: { title: 'Price (USDT)' },
+        title: {
+            text: 'Bitcoin Price Movement',
+            font: { 
+                family: 'Inter, sans-serif',
+                size: 16,
+                color: '#000000'
+            },
+            x: 0.5,
+            xanchor: 'center'
+        },
+        xaxis: { 
+            title: { 
+                text: 'Date',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
+        yaxis: { 
+            title: { 
+                text: 'Price (USDT)',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
         plot_bgcolor: '#ffffff',
         paper_bgcolor: '#ffffff',
         font: { family: 'Inter, sans-serif' },
-        margin: { l: 50, r: 20, t: 40, b: 50 }
+        margin: { l: 60, r: 30, t: 60, b: 60 },
+        showlegend: false,
+        hovermode: 'x unified',
+        hoverlabel: {
+            bgcolor: '#000000',
+            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
+        }
     };
     
     Plotly.newPlot('btc-chart', [trace], layout, { responsive: true, displayModeBar: false });
@@ -269,13 +311,44 @@ function createCryptoPortfolioChart() {
     };
     
     const layout = {
-        title: 'Crypto Portfolio Returns (%)',
-        xaxis: { title: 'Asset' },
-        yaxis: { title: 'Return (%)' },
+        title: {
+            text: 'Crypto Portfolio Returns (%)',
+            font: { 
+                family: 'Inter, sans-serif',
+                size: 16,
+                color: '#000000'
+            },
+            x: 0.5,
+            xanchor: 'center'
+        },
+        xaxis: { 
+            title: { 
+                text: 'Asset',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
+        yaxis: { 
+            title: { 
+                text: 'Return (%)',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
         plot_bgcolor: '#ffffff',
         paper_bgcolor: '#ffffff',
         font: { family: 'Inter, sans-serif' },
-        margin: { l: 50, r: 20, t: 40, b: 50 }
+        margin: { l: 60, r: 30, t: 60, b: 60 },
+        showlegend: false,
+        hovermode: 'x unified',
+        hoverlabel: {
+            bgcolor: '#000000',
+            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
+        }
     };
     
     Plotly.newPlot('crypto-portfolio', [trace], layout, { responsive: true, displayModeBar: false });
@@ -293,13 +366,44 @@ function createIPOChart() {
     };
     
     const layout = {
-        title: 'IPO Performance Comparison',
-        xaxis: { title: 'Company' },
-        yaxis: { title: 'Return (%)' },
+        title: {
+            text: 'IPO Performance Comparison',
+            font: { 
+                family: 'Inter, sans-serif',
+                size: 16,
+                color: '#000000'
+            },
+            x: 0.5,
+            xanchor: 'center'
+        },
+        xaxis: { 
+            title: { 
+                text: 'Company',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
+        yaxis: { 
+            title: { 
+                text: 'Return (%)',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
         plot_bgcolor: '#ffffff',
         paper_bgcolor: '#ffffff',
         font: { family: 'Inter, sans-serif' },
-        margin: { l: 50, r: 20, t: 40, b: 50 }
+        margin: { l: 60, r: 30, t: 60, b: 60 },
+        showlegend: false,
+        hovermode: 'x unified',
+        hoverlabel: {
+            bgcolor: '#000000',
+            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
+        }
     };
     
     Plotly.newPlot('ipo-chart', [trace], layout, { responsive: true, displayModeBar: false });
@@ -324,13 +428,44 @@ function createCARChart() {
     };
     
     const layout = {
-        title: 'Cumulative Abnormal Returns (Event Study)',
-        xaxis: { title: 'Event Day' },
-        yaxis: { title: 'CAR (%)' },
+        title: {
+            text: 'Cumulative Abnormal Returns (Event Study)',
+            font: { 
+                family: 'Inter, sans-serif',
+                size: 16,
+                color: '#000000'
+            },
+            x: 0.5,
+            xanchor: 'center'
+        },
+        xaxis: { 
+            title: { 
+                text: 'Event Day',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
+        yaxis: { 
+            title: { 
+                text: 'CAR (%)',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
         plot_bgcolor: '#ffffff',
         paper_bgcolor: '#ffffff',
         font: { family: 'Inter, sans-serif' },
-        margin: { l: 50, r: 20, t: 40, b: 50 }
+        margin: { l: 60, r: 30, t: 60, b: 60 },
+        showlegend: false,
+        hovermode: 'x unified',
+        hoverlabel: {
+            bgcolor: '#000000',
+            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
+        }
     };
     
     Plotly.newPlot('car-chart', [trace], layout, { responsive: true, displayModeBar: false });
@@ -361,13 +496,52 @@ function createUnileverChart() {
     };
     
     const layout = {
-        title: 'Unilever vs UL Price Spread',
-        xaxis: { title: 'Time' },
-        yaxis: { title: 'Price' },
+        title: {
+            text: 'Unilever vs UL Price Spread',
+            font: { 
+                family: 'Inter, sans-serif',
+                size: 16,
+                color: '#000000'
+            },
+            x: 0.5,
+            xanchor: 'center'
+        },
+        xaxis: { 
+            title: { 
+                text: 'Time',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
+        yaxis: { 
+            title: { 
+                text: 'Price',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
         plot_bgcolor: '#ffffff',
         paper_bgcolor: '#ffffff',
         font: { family: 'Inter, sans-serif' },
-        margin: { l: 50, r: 20, t: 40, b: 50 }
+        margin: { l: 60, r: 30, t: 60, b: 60 },
+        showlegend: true,
+        legend: {
+            x: 0.02,
+            y: 0.98,
+            bgcolor: 'rgba(255, 255, 255, 0.8)',
+            bordercolor: '#e0e0e0',
+            borderwidth: 1,
+            font: { family: 'Inter, sans-serif', size: 11 }
+        },
+        hovermode: 'x unified',
+        hoverlabel: {
+            bgcolor: '#000000',
+            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
+        }
     };
     
     Plotly.newPlot('unilever-chart', [trace1, trace2], layout, { responsive: true, displayModeBar: false });
@@ -389,13 +563,44 @@ function createArbitrageSignalsChart() {
     };
     
     const layout = {
-        title: 'Arbitrage Signal Strength',
-        xaxis: { title: 'Time' },
-        yaxis: { title: 'Signal Strength (%)' },
+        title: {
+            text: 'Arbitrage Signal Strength',
+            font: { 
+                family: 'Inter, sans-serif',
+                size: 16,
+                color: '#000000'
+            },
+            x: 0.5,
+            xanchor: 'center'
+        },
+        xaxis: { 
+            title: { 
+                text: 'Time',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
+        yaxis: { 
+            title: { 
+                text: 'Signal Strength (%)',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
         plot_bgcolor: '#ffffff',
         paper_bgcolor: '#ffffff',
         font: { family: 'Inter, sans-serif' },
-        margin: { l: 50, r: 20, t: 40, b: 50 }
+        margin: { l: 60, r: 30, t: 60, b: 60 },
+        showlegend: false,
+        hovermode: 'x unified',
+        hoverlabel: {
+            bgcolor: '#000000',
+            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
+        }
     };
     
     Plotly.newPlot('arbitrage-signals', [trace], layout, { responsive: true, displayModeBar: false });
@@ -415,13 +620,44 @@ function createLatencyChart() {
     };
     
     const layout = {
-        title: 'HFT Latency Distribution',
-        xaxis: { title: 'Latency (microseconds)' },
-        yaxis: { title: 'Frequency' },
+        title: {
+            text: 'HFT Latency Distribution',
+            font: { 
+                family: 'Inter, sans-serif',
+                size: 16,
+                color: '#000000'
+            },
+            x: 0.5,
+            xanchor: 'center'
+        },
+        xaxis: { 
+            title: { 
+                text: 'Latency (microseconds)',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
+        yaxis: { 
+            title: { 
+                text: 'Frequency',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
         plot_bgcolor: '#ffffff',
         paper_bgcolor: '#ffffff',
         font: { family: 'Inter, sans-serif' },
-        margin: { l: 50, r: 20, t: 40, b: 50 }
+        margin: { l: 60, r: 30, t: 60, b: 60 },
+        showlegend: false,
+        hovermode: 'x unified',
+        hoverlabel: {
+            bgcolor: '#000000',
+            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
+        }
     };
     
     Plotly.newPlot('latency-chart', [trace], layout, { responsive: true, displayModeBar: false });
@@ -451,14 +687,53 @@ function createOrderBookChart() {
     };
     
     const layout = {
-        title: 'Order Book Snapshot',
-        xaxis: { title: 'Volume' },
-        yaxis: { title: 'Price' },
+        title: {
+            text: 'Order Book Snapshot',
+            font: { 
+                family: 'Inter, sans-serif',
+                size: 16,
+                color: '#000000'
+            },
+            x: 0.5,
+            xanchor: 'center'
+        },
+        xaxis: { 
+            title: { 
+                text: 'Volume',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
+        yaxis: { 
+            title: { 
+                text: 'Price',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
         plot_bgcolor: '#ffffff',
         paper_bgcolor: '#ffffff',
         font: { family: 'Inter, sans-serif' },
-        margin: { l: 50, r: 20, t: 40, b: 50 },
-        barmode: 'overlay'
+        margin: { l: 60, r: 30, t: 60, b: 60 },
+        barmode: 'overlay',
+        showlegend: true,
+        legend: {
+            x: 0.02,
+            y: 0.98,
+            bgcolor: 'rgba(255, 255, 255, 0.8)',
+            bordercolor: '#e0e0e0',
+            borderwidth: 1,
+            font: { family: 'Inter, sans-serif', size: 11 }
+        },
+        hovermode: 'x unified',
+        hoverlabel: {
+            bgcolor: '#000000',
+            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
+        }
     };
     
     Plotly.newPlot('orderbook-chart', [trace1, trace2], layout, { responsive: true, displayModeBar: false });
@@ -1138,11 +1413,44 @@ function updateRouletteChart() {
     };
     
     const layout = {
-        title: 'Roulette Results Distribution',
+        title: {
+            text: 'Roulette Results Distribution',
+            font: { 
+                family: 'Inter, sans-serif',
+                size: 16,
+                color: '#000000'
+            },
+            x: 0.5,
+            xanchor: 'center'
+        },
+        xaxis: { 
+            title: { 
+                text: 'Color',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
+        yaxis: { 
+            title: { 
+                text: 'Frequency',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
         plot_bgcolor: '#ffffff',
         paper_bgcolor: '#ffffff',
         font: { family: 'Inter, sans-serif' },
-        margin: { l: 50, r: 20, t: 40, b: 50 }
+        margin: { l: 60, r: 30, t: 60, b: 60 },
+        showlegend: false,
+        hovermode: 'x unified',
+        hoverlabel: {
+            bgcolor: '#000000',
+            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
+        }
     };
     
     Plotly.newPlot('roulette-chart', [trace], layout, { responsive: true, displayModeBar: false });
@@ -1386,13 +1694,44 @@ function updateDiceChart() {
     };
     
     const layout = {
-        title: 'Dice Roll Distribution',
-        xaxis: { title: 'Roll Total' },
-        yaxis: { title: 'Frequency' },
+        title: {
+            text: 'Dice Roll Distribution',
+            font: { 
+                family: 'Inter, sans-serif',
+                size: 16,
+                color: '#000000'
+            },
+            x: 0.5,
+            xanchor: 'center'
+        },
+        xaxis: { 
+            title: { 
+                text: 'Roll Total',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
+        yaxis: { 
+            title: { 
+                text: 'Frequency',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
         plot_bgcolor: '#ffffff',
         paper_bgcolor: '#ffffff',
         font: { family: 'Inter, sans-serif' },
-        margin: { l: 50, r: 20, t: 40, b: 50 }
+        margin: { l: 60, r: 30, t: 60, b: 60 },
+        showlegend: false,
+        hovermode: 'x unified',
+        hoverlabel: {
+            bgcolor: '#000000',
+            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
+        }
     };
     
     Plotly.newPlot('dice-chart', [trace], layout, { responsive: true, displayModeBar: false });
@@ -1459,13 +1798,44 @@ function updateRandomWalkChart(walk, allWalks = null) {
     };
     
     const layout = {
-        title: 'Random Walk Simulation',
-        xaxis: { title: 'Step' },
-        yaxis: { title: 'Position' },
+        title: {
+            text: 'Random Walk Simulation',
+            font: { 
+                family: 'Inter, sans-serif',
+                size: 16,
+                color: '#000000'
+            },
+            x: 0.5,
+            xanchor: 'center'
+        },
+        xaxis: { 
+            title: { 
+                text: 'Step',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
+        yaxis: { 
+            title: { 
+                text: 'Position',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
         plot_bgcolor: '#ffffff',
         paper_bgcolor: '#ffffff',
         font: { family: 'Inter, sans-serif' },
-        margin: { l: 50, r: 20, t: 40, b: 50 }
+        margin: { l: 60, r: 30, t: 60, b: 60 },
+        showlegend: false,
+        hovermode: 'x unified',
+        hoverlabel: {
+            bgcolor: '#000000',
+            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
+        }
     };
     
     Plotly.newPlot('random-walk-chart', [trace], layout, { responsive: true, displayModeBar: false });
@@ -1597,13 +1967,44 @@ function updatePokerChart() {
     };
     
     const layout = {
-        title: 'Poker Hand Distribution',
-        xaxis: { title: 'Hand Type' },
-        yaxis: { title: 'Frequency' },
+        title: {
+            text: 'Poker Hand Distribution',
+            font: { 
+                family: 'Inter, sans-serif',
+                size: 16,
+                color: '#000000'
+            },
+            x: 0.5,
+            xanchor: 'center'
+        },
+        xaxis: { 
+            title: { 
+                text: 'Hand Type',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
+        yaxis: { 
+            title: { 
+                text: 'Frequency',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
         plot_bgcolor: '#ffffff',
         paper_bgcolor: '#ffffff',
         font: { family: 'Inter, sans-serif' },
-        margin: { l: 50, r: 20, t: 40, b: 50 }
+        margin: { l: 60, r: 30, t: 60, b: 60 },
+        showlegend: false,
+        hovermode: 'x unified',
+        hoverlabel: {
+            bgcolor: '#000000',
+            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
+        }
     };
     
     Plotly.newPlot('poker-chart', [trace], layout, { responsive: true, displayModeBar: false });
@@ -1752,13 +2153,44 @@ function updateKellyChart(p, b, a) {
     };
     
     const layout = {
-        title: 'Kelly Criterion Growth Rate',
-        xaxis: { title: 'Fraction of Bankroll' },
-        yaxis: { title: 'Growth Rate' },
+        title: {
+            text: 'Kelly Criterion Growth Rate',
+            font: { 
+                family: 'Inter, sans-serif',
+                size: 16,
+                color: '#000000'
+            },
+            x: 0.5,
+            xanchor: 'center'
+        },
+        xaxis: { 
+            title: { 
+                text: 'Fraction of Bankroll',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
+        yaxis: { 
+            title: { 
+                text: 'Growth Rate',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
         plot_bgcolor: '#ffffff',
         paper_bgcolor: '#ffffff',
         font: { family: 'Inter, sans-serif' },
-        margin: { l: 50, r: 20, t: 40, b: 50 }
+        margin: { l: 60, r: 30, t: 60, b: 60 },
+        showlegend: false,
+        hovermode: 'x unified',
+        hoverlabel: {
+            bgcolor: '#000000',
+            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
+        }
     };
     
     Plotly.newPlot('kelly-chart', [trace], layout, { responsive: true, displayModeBar: false });
@@ -1841,13 +2273,44 @@ function updateRuinChart(initialBankroll, betSize, winRate) {
     };
     
     const layout = {
-        title: 'Risk of Ruin Simulation',
-        xaxis: { title: 'Session' },
-        yaxis: { title: 'Bankroll' },
+        title: {
+            text: 'Risk of Ruin Simulation',
+            font: { 
+                family: 'Inter, sans-serif',
+                size: 16,
+                color: '#000000'
+            },
+            x: 0.5,
+            xanchor: 'center'
+        },
+        xaxis: { 
+            title: { 
+                text: 'Session',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
+        yaxis: { 
+            title: { 
+                text: 'Bankroll',
+                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+            },
+            gridcolor: '#f0f0f0',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+        },
         plot_bgcolor: '#ffffff',
         paper_bgcolor: '#ffffff',
         font: { family: 'Inter, sans-serif' },
-        margin: { l: 50, r: 20, t: 40, b: 50 }
+        margin: { l: 60, r: 30, t: 60, b: 60 },
+        showlegend: false,
+        hovermode: 'x unified',
+        hoverlabel: {
+            bgcolor: '#000000',
+            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
+        }
     };
     
     Plotly.newPlot('ruin-chart', [trace], layout, { responsive: true, displayModeBar: false });

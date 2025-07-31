@@ -1295,6 +1295,116 @@ section {
         flex-direction: column;
         align-items: center;
     }
+    
+    /* Enhanced mobile chart responsiveness */
+    .chart-container {
+        height: 300px;
+        overflow: hidden;
+    }
+    
+    .research-card .chart-container {
+        height: 250px;
+    }
+    
+    .game-card .chart-container {
+        height: 200px;
+    }
+    
+    /* Mobile-friendly game interfaces */
+    .roulette-wheel {
+        width: 200px;
+        height: 200px;
+        font-size: 0.8rem;
+    }
+    
+    .dice-container {
+        flex-wrap: wrap;
+        gap: var(--spacing-sm);
+    }
+    
+    .dice {
+        width: 50px;
+        height: 50px;
+        font-size: 1.5rem;
+    }
+    
+    .cards {
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+    }
+    
+    .card {
+        width: 35px;
+        height: 50px;
+        font-size: 0.8rem;
+    }
+    
+    .poker-card {
+        width: 35px;
+        height: 50px;
+        font-size: 0.8rem;
+    }
+    
+    /* Mobile form improvements */
+    .tool-inputs input,
+    .tool-inputs select,
+    .tool-inputs textarea {
+        font-size: 16px; /* Prevents zoom on iOS */
+        padding: 12px;
+    }
+    
+    .application-form input,
+    .application-form textarea,
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 16px;
+        padding: 12px;
+    }
+    
+    /* Mobile navigation improvements */
+    .nav-link {
+        padding: 1rem 0;
+        font-size: 1.1rem;
+    }
+    
+    /* Mobile spacing adjustments */
+    .section-header {
+        padding: var(--spacing-lg) 0;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+        margin-bottom: var(--spacing-sm);
+    }
+    
+    .section-header p {
+        font-size: 1rem;
+    }
+    
+    /* Mobile performance metrics */
+    .metrics-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-sm);
+    }
+    
+    .metric {
+        padding: var(--spacing-sm);
+    }
+    
+    .metric-value {
+        font-size: 1.5rem;
+    }
+    
+    /* Mobile game stats */
+    .game-stats {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-sm);
+    }
+    
+    .game-stats .stat {
+        padding: var(--spacing-sm);
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
