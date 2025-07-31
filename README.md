@@ -37,7 +37,7 @@ buypolarcapital/
 ### Quick Start
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/egil10/buypolarcapital.git
+   git clone https://github.com/Buypolar-Capital/buypolarcapital.git
    cd buypolarcapital
    ```
 
