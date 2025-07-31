@@ -3,164 +3,309 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BuyPolar Capital - Quantitative Finance</title>
+    <title>Buypolar Capital - Navigating Market Extremes with Precision</title>
+    <meta name="description" content="Quantitative hedge fund leveraging advanced algorithms and data science to navigate market volatility. From bull to bear, we find balance.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="nav-brand">
-                <i class="fas fa-chart-line"></i>
-                BuyPolar Capital
+            <div class="nav-logo">
+                <span class="logo-text">Buypolar</span>
+                <span class="logo-subtitle">Capital</span>
             </div>
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#tools" class="nav-link">Tools</a></li>
-                <li><a href="#strategies" class="nav-link">Strategies</a></li>
-                <li><a href="#plots" class="nav-link">Plots</a></li>
-                <li><a href="#analytics" class="nav-link">Analytics</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#approach" class="nav-link">Approach</a></li>
+                <li><a href="#performance" class="nav-link">Performance</a></li>
+                <li><a href="#careers" class="nav-link">Careers</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
-    <main>
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Quantitative Finance</h1>
-                <p>Advanced algorithms, real-time analytics, and cutting-edge research</p>
-                <div class="hero-buttons">
-                    <button class="btn btn-primary" onclick="scrollToSection('tools')">
-                        <i class="fas fa-calculator"></i> Tools
-                    </button>
-                    <button class="btn btn-secondary" onclick="scrollToSection('plots')">
-                        <i class="fas fa-chart-bar"></i> Plots
-                    </button>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="market-grid"></div>
+            <div class="polar-bear-silhouette"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">
+                <span class="title-main">Buypolar Capital</span>
+                <span class="title-subtitle">Navigating Market Extremes with Precision</span>
+            </h1>
+            <p class="hero-description">
+                Harnessing quantitative strategies to thrive in bull and bear markets. 
+                From market poles to profitable outcomes.
+            </p>
+            <div class="hero-cta">
+                <button class="cta-primary" onclick="scrollToSection('approach')">Discover Our Approach</button>
+                <button class="cta-secondary" onclick="scrollToSection('performance')">View Performance</button>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Buypolar Capital</h2>
+                <p>Leveraging advanced algorithms and data science to navigate market volatility</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Our Mission</h3>
+                    <p>
+                        Founded to balance risk and reward in turbulent markets, Buypolar Capital 
+                        represents the convergence of cutting-edge technology and financial expertise. 
+                        We thrive on market duality, finding opportunity in both bull and bear cycles.
+                    </p>
+                    <h3>Our Philosophy</h3>
+                    <p>
+                        Markets are inherently bipolar - oscillating between extremes. Our name 
+                        reflects our ability to navigate these poles with precision, turning 
+                        volatility into advantage through quantitative rigor.
+                    </p>
+                </div>
+                <div class="about-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">$2.4B</div>
+                        <div class="stat-label">Assets Under Management</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15.2%</div>
+                        <div class="stat-label">Annualized Return</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">1.8</div>
+                        <div class="stat-label">Sharpe Ratio</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">47</div>
+                        <div class="stat-label">Team Members</div>
+                    </div>
                 </div>
             </div>
-            <div class="hero-chart">
-                <div id="live-chart"></div>
-            </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="tools" class="section">
-            <div class="container">
-                <h2>Quantitative Tools</h2>
+    <!-- Approach Section -->
+    <section id="approach" class="approach">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Approach</h2>
+                <p>Mastering bull and bear markets through quantitative excellence</p>
+            </div>
+            <div class="approach-grid">
+                <div class="approach-card">
+                    <div class="card-icon">📊</div>
+                    <h3>Data Science</h3>
+                    <p>Processing terabytes of market data through advanced machine learning algorithms to identify patterns invisible to human traders.</p>
+                </div>
+                <div class="approach-card">
+                    <div class="card-icon">⚡</div>
+                    <h3>Algorithmic Trading</h3>
+                    <p>High-frequency and systematic trading strategies that execute with millisecond precision across global markets.</p>
+                </div>
+                <div class="approach-card">
+                    <div class="card-icon">🛡️</div>
+                    <h3>Risk Management</h3>
+                    <p>Sophisticated risk models that continuously monitor and adjust positions to maintain optimal risk-adjusted returns.</p>
+                </div>
+                <div class="approach-card">
+                    <div class="card-icon">🧠</div>
+                    <h3>Quantitative Research</h3>
+                    <p>Rigorous academic approach to financial modeling, drawing from the latest research in mathematics and statistics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Performance Section -->
+    <section id="performance" class="performance">
+        <div class="container">
+            <div class="section-header">
+                <h2>Performance Dashboard</h2>
+                <p>Real-time metrics and historical performance</p>
+            </div>
+            <div class="performance-grid">
+                <div class="performance-card">
+                    <h3>Portfolio Performance</h3>
+                    <div id="performance-chart" class="chart-container"></div>
+                </div>
+                <div class="performance-card">
+                    <h3>Risk Metrics</h3>
+                    <div class="metrics-grid">
+                        <div class="metric">
+                            <span class="metric-label">Sharpe Ratio</span>
+                            <span class="metric-value">1.84</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Max Drawdown</span>
+                            <span class="metric-value">-8.2%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Volatility</span>
+                            <span class="metric-value">12.4%</span>
+                        </div>
+                        <div class="metric">
+                            <span class="metric-label">Beta</span>
+                            <span class="metric-value">0.32</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="tools-section">
+                <h3>Quantitative Tools</h3>
                 <div class="tools-grid">
-                    <div class="tool-card" onclick="openCalculator('black-scholes')">
-                        <i class="fas fa-calculator"></i>
-                        <h3>Black-Scholes</h3>
-                        <p>Option pricing calculator</p>
-                    </div>
-                    <div class="tool-card" onclick="openCalculator('monte-carlo')">
-                        <i class="fas fa-dice"></i>
-                        <h3>Monte Carlo</h3>
-                        <p>Simulation engine</p>
-                    </div>
-                    <div class="tool-card" onclick="openCalculator('risk-metrics')">
-                        <i class="fas fa-shield-alt"></i>
-                        <h3>Risk Metrics</h3>
-                        <p>VaR, CVaR, Sharpe</p>
-                    </div>
-                    <div class="tool-card" onclick="openCalculator('portfolio-opt')">
-                        <i class="fas fa-chart-pie"></i>
-                        <h3>Portfolio Opt</h3>
-                        <p>Mean-variance optimization</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="strategies" class="section">
-            <div class="container">
-                <h2>Trading Strategies</h2>
-                <div class="strategy-grid">
-                    <div class="strategy-card">
-                        <h3>HFT Engine</h3>
-                        <div class="strategy-metrics">
-                            <span>Latency: < 1ms</span>
-                            <span>Success: 95%</span>
+                    <div class="tool-card">
+                        <h4>Black-Scholes Calculator</h4>
+                        <div class="tool-inputs">
+                            <input type="number" id="bs-stock" placeholder="Stock Price" value="100">
+                            <input type="number" id="bs-strike" placeholder="Strike Price" value="100">
+                            <input type="number" id="bs-time" placeholder="Time to Expiry" value="1">
+                            <input type="number" id="bs-rate" placeholder="Risk-Free Rate" value="0.05">
+                            <input type="number" id="bs-vol" placeholder="Volatility" value="0.2">
                         </div>
-                        <button class="btn btn-small" onclick="loadStrategy('hft')">Load</button>
+                        <button onclick="calculateBlackScholes()">Calculate</button>
+                        <div id="bs-result" class="tool-result"></div>
                     </div>
-                    <div class="strategy-card">
-                        <h3>Arbitrage Bot</h3>
-                        <div class="strategy-metrics">
-                            <span>Sharpe: 2.1</span>
-                            <span>Max DD: 8%</span>
+                    <div class="tool-card">
+                        <h4>Monte Carlo Simulation</h4>
+                        <div class="tool-inputs">
+                            <input type="number" id="mc-price" placeholder="Initial Price" value="100">
+                            <input type="number" id="mc-steps" placeholder="Time Steps" value="252">
+                            <input type="number" id="mc-sims" placeholder="Simulations" value="1000">
+                            <input type="number" id="mc-drift" placeholder="Drift" value="0.08">
+                            <input type="number" id="mc-vol" placeholder="Volatility" value="0.2">
                         </div>
-                        <button class="btn btn-small" onclick="loadStrategy('arb')">Load</button>
-                    </div>
-                    <div class="strategy-card">
-                        <h3>ML Predictor</h3>
-                        <div class="strategy-metrics">
-                            <span>Accuracy: 87%</span>
-                            <span>ROI: 15%</span>
-                        </div>
-                        <button class="btn btn-small" onclick="loadStrategy('ml')">Load</button>
+                        <button onclick="runMonteCarlo()">Simulate</button>
+                        <div id="mc-result" class="tool-result"></div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <section id="plots" class="section">
-            <div class="container">
-                <h2>Research Plots</h2>
-                <div class="plots-grid">
-                    <div class="plot-card" onclick="viewPlot('arbitrage')">
-                        <h3>Arbitrage Analysis</h3>
-                        <p>Cross-listing arbitrage opportunities</p>
-                    </div>
-                    <div class="plot-card" onclick="viewPlot('hft')">
-                        <h3>HFT Performance</h3>
-                        <p>High-frequency trading metrics</p>
-                    </div>
-                    <div class="plot-card" onclick="viewPlot('risk')">
-                        <h3>Risk Analysis</h3>
-                        <p>Portfolio risk metrics</p>
-                    </div>
-                    <div class="plot-card" onclick="viewPlot('equities')">
-                        <h3>Equity Analysis</h3>
-                        <p>Stock market analysis</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="analytics" class="section">
-            <div class="container">
-                <h2>Real-Time Analytics</h2>
-                <div class="analytics-grid">
-                    <div class="analytics-card">
-                        <h3>Market Data</h3>
-                        <div id="market-data"></div>
-                    </div>
-                    <div class="analytics-card">
-                        <h3>Risk Dashboard</h3>
-                        <div id="risk-dashboard"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Plot Viewer Modal -->
-    <div id="plot-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="plot-content"></div>
         </div>
-    </div>
+    </section>
 
-    <!-- Calculator Modal -->
-    <div id="calculator-modal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div id="calculator-content"></div>
+    <!-- Careers Section -->
+    <section id="careers" class="careers">
+        <div class="container">
+            <div class="section-header">
+                <h2>Join Our Team</h2>
+                <p>Love solving hard problems? Join us to tackle market puzzles</p>
+            </div>
+            <div class="careers-content">
+                <div class="careers-text">
+                    <h3>We Thrive on Intellectual Rigor</h3>
+                    <p>
+                        At Buypolar Capital, we believe that the best ideas come from curious minds 
+                        working together. Our culture emphasizes collaboration, continuous learning, 
+                        and the pursuit of excellence in quantitative finance.
+                    </p>
+                    <h3>Open Positions</h3>
+                    <div class="positions-list">
+                        <div class="position">
+                            <h4>Quantitative Researcher</h4>
+                            <p>Develop and implement cutting-edge trading strategies</p>
+                        </div>
+                        <div class="position">
+                            <h4>Software Engineer</h4>
+                            <p>Build high-performance trading systems and infrastructure</p>
+                        </div>
+                        <div class="position">
+                            <h4>Risk Manager</h4>
+                            <p>Design and maintain sophisticated risk models</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="careers-form">
+                    <h3>Apply Now</h3>
+                    <form class="application-form">
+                        <input type="text" placeholder="Full Name" required>
+                        <input type="email" placeholder="Email" required>
+                        <select required>
+                            <option value="">Select Position</option>
+                            <option value="quant">Quantitative Researcher</option>
+                            <option value="engineer">Software Engineer</option>
+                            <option value="risk">Risk Manager</option>
+                        </select>
+                        <textarea placeholder="Why are you interested in joining Buypolar Capital?" rows="4"></textarea>
+                        <button type="submit" class="submit-btn">Submit Application</button>
+                    </form>
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact Us</h2>
+                <p>Get in touch with our team</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="office">
+                        <h3>New York</h3>
+                        <p>350 Park Avenue<br>New York, NY 10022</p>
+                        <p>+1 (212) 555-0123</p>
+                    </div>
+                    <div class="office">
+                        <h3>London</h3>
+                        <p>30 St Mary Axe<br>London, EC3A 8BF</p>
+                        <p>+44 20 7123 4567</p>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <input type="text" placeholder="Name" required>
+                        <input type="email" placeholder="Email" required>
+                        <input type="text" placeholder="Subject" required>
+                        <textarea placeholder="Message" rows="5" required></textarea>
+                        <button type="submit" class="submit-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-text">Buypolar</span>
+                    <span class="logo-subtitle">Capital</span>
+                </div>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#approach">Approach</a>
+                    <a href="#careers">Careers</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Buypolar Capital. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
