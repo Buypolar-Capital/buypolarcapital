@@ -75,8 +75,43 @@ const ipoData = {
 
 // Initialize the website
 document.addEventListener('DOMContentLoaded', function() {
-    initializeWebsite();
+    // Wait for external scripts to load
+    waitForExternalScripts().then(() => {
+        initializeWebsite();
+    }).catch(() => {
+        // If external scripts fail, still initialize the website
+        console.log('External scripts failed to load, initializing with fallbacks');
+        initializeWebsite();
+    });
 });
+
+function waitForExternalScripts() {
+    return new Promise((resolve, reject) => {
+        let attempts = 0;
+        const maxAttempts = 50; // 5 seconds
+        
+        function checkScripts() {
+            attempts++;
+            
+            // Check if Plotly is loaded
+            if (typeof Plotly !== 'undefined') {
+                console.log('External scripts loaded successfully');
+                resolve();
+                return;
+            }
+            
+            if (attempts >= maxAttempts) {
+                console.log('External scripts failed to load within timeout');
+                reject();
+                return;
+            }
+            
+            setTimeout(checkScripts, 100);
+        }
+        
+        checkScripts();
+    });
+}
 
 function initializeWebsite() {
     // Show loading spinner initially
@@ -85,17 +120,32 @@ function initializeWebsite() {
     // Initialize navigation
     initializeNavigation();
     
-    // Initialize performance chart
-    initializePerformanceChart();
-    
-    // Initialize research charts
-    initializeResearchCharts();
+    // Initialize research charts (these are less critical)
+    setTimeout(() => {
+        try {
+            initializeResearchCharts();
+        } catch (error) {
+            console.log('Research charts failed to load:', error);
+        }
+    }, 500);
     
     // Initialize plots gallery
-    initializePlotsGallery();
+    setTimeout(() => {
+        try {
+            initializePlotsGallery();
+        } catch (error) {
+            console.log('Plots gallery failed to load:', error);
+        }
+    }, 1000);
     
     // Initialize games
-    initializeGames();
+    setTimeout(() => {
+        try {
+            initializeGames();
+        } catch (error) {
+            console.log('Games failed to load:', error);
+        }
+    }, 1500);
     
     // Initialize scroll animations
     initializeScrollAnimations();
@@ -115,8 +165,47 @@ function initializeWebsite() {
     // Initialize enhanced features
     initializeEnhancedFeatures();
     
-    // Hide loading spinner after everything is loaded
-    setTimeout(hideLoadingSpinner, 1000);
+    // Initialize performance chart with retry logic
+    initializePerformanceChartWithRetry();
+    
+    // Hide loading spinner after a reasonable time
+    setTimeout(hideLoadingSpinner, 2000);
+    
+    // Backup: force hide spinner after 5 seconds
+    setTimeout(() => {
+        const spinner = document.getElementById('loading-spinner');
+        if (spinner) {
+            spinner.style.display = 'none';
+            spinner.remove();
+        }
+    }, 5000);
+}
+
+function initializePerformanceChartWithRetry() {
+    let retryCount = 0;
+    const maxRetries = 5;
+    
+    function tryInitialize() {
+        try {
+            initializePerformanceChart();
+        } catch (error) {
+            console.log(`Performance chart attempt ${retryCount + 1} failed:`, error);
+            retryCount++;
+            if (retryCount < maxRetries) {
+                setTimeout(tryInitialize, 1000);
+            } else {
+                console.log('Performance chart failed to load after all retries');
+                // Show fallback message
+                const chartContainer = document.getElementById('performance-chart');
+                if (chartContainer) {
+                    chartContainer.innerHTML = '<div style="text-align: center; padding: 20px; color: #666;">Performance data temporarily unavailable. Please refresh the page to try again.</div>';
+                }
+            }
+        }
+    }
+    
+    // Start the retry process
+    setTimeout(tryInitialize, 500);
 }
 
 // Enhanced initialization functions
@@ -131,6 +220,12 @@ function hideLoadingSpinner() {
     const spinner = document.getElementById('loading-spinner');
     if (spinner) {
         spinner.classList.add('hidden');
+        // Also remove from DOM after animation
+        setTimeout(() => {
+            if (spinner && spinner.parentElement) {
+                spinner.remove();
+            }
+        }, 500);
     }
 }
 
@@ -366,145 +461,173 @@ function updateActiveNavLink() {
 function initializePerformanceChart() {
     try {
         const chartContainer = document.getElementById('performance-chart');
-        if (!chartContainer) return;
-    
-    // Generate sample performance data
-    const dates = [];
-    const values = [];
-    const benchmark = [];
-    let currentValue = 100;
-    let benchmarkValue = 100;
-    
-    for (let i = 0; i < 252; i++) {
-        const date = new Date();
-        date.setDate(date.getDate() - (252 - i));
-        dates.push(date.toISOString().split('T')[0]);
-        
-        // Generate realistic performance with volatility
-        const dailyReturn = (Math.random() - 0.5) * 0.02 + 0.0005; // Slight positive bias
-        const benchmarkReturn = (Math.random() - 0.5) * 0.015 + 0.0003;
-        
-        currentValue *= (1 + dailyReturn);
-        benchmarkValue *= (1 + benchmarkReturn);
-        
-        values.push(currentValue);
-        benchmark.push(benchmarkValue);
-    }
-    
-    const trace1 = {
-        x: dates,
-        y: values,
-        type: 'scatter',
-        mode: 'lines',
-        name: 'Buypolar Capital',
-        line: {
-            color: '#000000',
-            width: 3
-        },
-        fill: 'tonexty',
-        fillcolor: 'rgba(0, 0, 0, 0.1)'
-    };
-    
-    const trace2 = {
-        x: dates,
-        y: benchmark,
-        type: 'scatter',
-        mode: 'lines',
-        name: 'S&P 500',
-        line: {
-            color: '#666666',
-            width: 2,
-            dash: 'dash'
+        if (!chartContainer) {
+            console.log('Performance chart container not found');
+            return;
         }
-    };
-    
-    const layout = {
-        title: {
-            text: 'Portfolio Performance vs Benchmark',
-            font: { 
-                family: 'Inter, sans-serif',
-                size: 16,
-                color: '#000000'
-            },
-            x: 0.5,
-            xanchor: 'center'
-        },
-        xaxis: { 
-            title: { 
-                text: 'Date',
-                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
-            },
-            gridcolor: '#f0f0f0',
-            zerolinecolor: '#e0e0e0',
-            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
-        },
-        yaxis: { 
-            title: { 
-                text: 'Portfolio Value ($)',
-                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
-            },
-            gridcolor: '#f0f0f0',
-            zerolinecolor: '#e0e0e0',
-            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
-        },
-        plot_bgcolor: '#ffffff',
-        paper_bgcolor: '#ffffff',
-        font: { family: 'Inter, sans-serif' },
-        legend: {
-            orientation: 'h',
-            y: -0.2,
-            bgcolor: 'rgba(255, 255, 255, 0.8)',
-            bordercolor: '#e0e0e0',
-            borderwidth: 1,
-            font: { family: 'Inter, sans-serif', size: 11 }
-        },
-        margin: { l: 60, r: 30, t: 60, b: 80 },
-        hovermode: 'x unified',
-        hoverlabel: {
-            bgcolor: '#000000',
-            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
+        
+        // Check if Plotly is available
+        if (typeof Plotly === 'undefined') {
+            console.log('Plotly not loaded yet, will retry later');
+            setTimeout(initializePerformanceChart, 1000);
+            return;
         }
-    };
+        
+        // Add loading placeholder
+        chartContainer.innerHTML = '<div style="text-align: center; padding: 20px; color: #666;">Loading performance data...</div>';
     
-    const config = {
-        responsive: true,
-        displayModeBar: false
-    };
-    
-    Plotly.newPlot('performance-chart', [trace1, trace2], layout, config);
+        // Generate sample performance data
+        const dates = [];
+        const values = [];
+        const benchmark = [];
+        let currentValue = 100;
+        let benchmarkValue = 100;
+        
+        for (let i = 0; i < 252; i++) {
+            const date = new Date();
+            date.setDate(date.getDate() - (252 - i));
+            dates.push(date.toISOString().split('T')[0]);
+            
+            // Generate realistic performance with volatility
+            const dailyReturn = (Math.random() - 0.5) * 0.02 + 0.0005; // Slight positive bias
+            const benchmarkReturn = (Math.random() - 0.5) * 0.015 + 0.0003;
+            
+            currentValue *= (1 + dailyReturn);
+            benchmarkValue *= (1 + benchmarkReturn);
+            
+            values.push(currentValue);
+            benchmark.push(benchmarkValue);
+        }
+        
+        const trace1 = {
+            x: dates,
+            y: values,
+            type: 'scatter',
+            mode: 'lines',
+            name: 'Buypolar Capital',
+            line: {
+                color: '#000000',
+                width: 3
+            },
+            fill: 'tonexty',
+            fillcolor: 'rgba(0, 0, 0, 0.1)'
+        };
+        
+        const trace2 = {
+            x: dates,
+            y: benchmark,
+            type: 'scatter',
+            mode: 'lines',
+            name: 'S&P 500',
+            line: {
+                color: '#666666',
+                width: 2,
+                dash: 'dash'
+            }
+        };
+        
+        const layout = {
+            title: {
+                text: 'Portfolio Performance vs Benchmark',
+                font: { 
+                    family: 'Inter, sans-serif',
+                    size: 16,
+                    color: '#000000'
+                },
+                x: 0.5,
+                xanchor: 'center'
+            },
+            xaxis: { 
+                title: { 
+                    text: 'Date',
+                    font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+                },
+                gridcolor: '#f0f0f0',
+                zerolinecolor: '#e0e0e0',
+                tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+            },
+            yaxis: { 
+                title: { 
+                    text: 'Portfolio Value ($)',
+                    font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
+                },
+                gridcolor: '#f0f0f0',
+                zerolinecolor: '#e0e0e0',
+                tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
+            },
+            plot_bgcolor: '#ffffff',
+            paper_bgcolor: '#ffffff',
+            font: { family: 'Inter, sans-serif' },
+            legend: {
+                orientation: 'h',
+                y: -0.2,
+                bgcolor: 'rgba(255, 255, 255, 0.8)',
+                bordercolor: '#e0e0e0',
+                borderwidth: 1,
+                font: { family: 'Inter, sans-serif', size: 11 }
+            },
+            margin: { l: 60, r: 30, t: 60, b: 80 },
+            hovermode: 'x unified',
+            hoverlabel: {
+                bgcolor: '#000000',
+                font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
+            }
+        };
+        
+        const config = {
+            responsive: true,
+            displayModeBar: false
+        };
+        
+        Plotly.newPlot('performance-chart', [trace1, trace2], layout, config);
+        console.log('Performance chart initialized successfully');
     } catch (error) {
-        handleError(error, 'initializing performance chart');
+        console.error('Error initializing performance chart:', error);
+        // Don't show user-facing error for chart loading issues
+        // Just log the error and continue
     }
 }
 
 // Initialize research charts
 function initializeResearchCharts() {
-    // Bitcoin Price Chart
-    createBitcoinChart();
+    // Check if Plotly is available
+    if (typeof Plotly === 'undefined') {
+        console.log('Plotly not available for research charts');
+        return;
+    }
     
-    // Crypto Portfolio Chart
-    createCryptoPortfolioChart();
-    
-    // IPO Performance Chart
-    createIPOChart();
-    
-    // CAR Chart
-    createCARChart();
-    
-    // Unilever Arbitrage Chart
-    createUnileverChart();
-    
-    // Arbitrage Signals Chart
-    createArbitrageSignalsChart();
-    
-    // Latency Distribution Chart
-    createLatencyChart();
-    
-    // Order Book Chart
-    createOrderBookChart();
+    try {
+        // Bitcoin Price Chart
+        createBitcoinChart();
+        
+        // Crypto Portfolio Chart
+        createCryptoPortfolioChart();
+        
+        // IPO Performance Chart
+        createIPOChart();
+        
+        // CAR Chart
+        createCARChart();
+        
+        // Unilever Arbitrage Chart
+        createUnileverChart();
+        
+        // Arbitrage Signals Chart
+        createArbitrageSignalsChart();
+        
+        // Latency Distribution Chart
+        createLatencyChart();
+        
+        // Order Book Chart
+        createOrderBookChart();
+    } catch (error) {
+        console.log('Error initializing research charts:', error);
+    }
 }
 
 function createBitcoinChart() {
+    if (typeof Plotly === 'undefined') return;
+    
     const dates = [];
     const prices = [];
     let currentPrice = 45000;
@@ -1075,7 +1198,13 @@ function handleError(error, context) {
         });
     }
     
-    // Show user-friendly error message
+    // Only show user-facing error for critical issues, not chart loading
+    if (context.includes('chart') || context.includes('performance')) {
+        console.log('Chart loading error - not showing user message');
+        return;
+    }
+    
+    // Show user-friendly error message for critical errors
     const errorMessage = document.createElement('div');
     errorMessage.className = 'error-message';
     errorMessage.innerHTML = `
@@ -2693,9 +2822,9 @@ function loadPlotsData() {
         })
         .catch(error => {
             console.error('Failed to load plots gallery:', error);
-            const galleryElement = document.querySelector('.plot-gallery');
-            if (galleryElement) {
-                galleryElement.innerHTML = '<p class="error">Unable to load research plots at this time. Please try again later.</p>';
+            const plotsGrid = document.getElementById('plots-grid');
+            if (plotsGrid) {
+                plotsGrid.innerHTML = '<div class="no-plots-message"><h3>Research plots temporarily unavailable</h3><p>Please try refreshing the page or check back later.</p></div>';
             } else {
                 // Fallback to sample data if gallery element not found
                 plotsData = createSamplePlotsData();
