@@ -1,9 +1,0 @@
-Naïve
-
-ARIMA / SARIMA
-
-ETS (Holt-Winters)
-
-GARCH
-
-XGBoost with lag features

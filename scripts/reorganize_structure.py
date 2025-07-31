@@ -174,7 +174,7 @@ setup(
         """Create a simple migration guide."""
         guide_content = f"""# BuyPolar Capital - Simplified Migration Guide
 
-## 🚀 Simplified Folder Structure
+## Simplified Folder Structure
 
 The repository has been reorganized for better focus and maintainability.
 
@@ -223,11 +223,11 @@ Migration completed on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         with open(guide_path, 'w', encoding='utf-8') as f:
             f.write(guide_content)
         
-        print(f"📋 Created migration guide: MIGRATION_GUIDE.md")
+        print("Created migration guide: MIGRATION_GUIDE.md")
     
     def cleanup_redundant_files(self):
         """Remove redundant files and directories."""
-        print("🧹 Cleaning up redundant files...")
+        print("Cleaning up redundant files...")
         
         # Files to remove
         files_to_remove = [
@@ -242,7 +242,7 @@ Migration completed on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
             file_path = self.base_path / file_name
             if file_path.exists():
                 file_path.unlink()
-                print(f"🗑️ Removed: {file_name}")
+                print(f"Removed: {file_name}")
         
         # Directories to remove (if empty)
         dirs_to_remove = [
@@ -258,11 +258,11 @@ Migration completed on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
             dir_path = self.base_path / dir_name
             if dir_path.exists() and not any(dir_path.iterdir()):
                 dir_path.rmdir()
-                print(f"🗑️ Removed empty directory: {dir_name}")
+                print(f"Removed empty directory: {dir_name}")
     
     def run_migration(self):
         """Run the complete streamlined migration process."""
-        print("🚀 Starting BuyPolar Capital streamlined migration...")
+        print("Starting BuyPolar Capital streamlined migration...")
         print("=" * 60)
         
         # Step 1: Create backup
@@ -284,10 +284,10 @@ Migration completed on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         self.cleanup_redundant_files()
         
         print("=" * 60)
-        print("✅ Streamlined migration completed successfully!")
-        print(f"📁 Backup available at: {self.backup_path}")
-        print("📋 Please review MIGRATION_GUIDE.md for next steps")
-        print("🎯 Repository is now focused and streamlined!")
+        print("Streamlined migration completed successfully!")
+        print(f"Backup available at: {self.backup_path}")
+        print("Please review MIGRATION_GUIDE.md for next steps")
+        print("Repository is now focused and streamlined!")
 
 def main():
     """Main function to run the migration."""

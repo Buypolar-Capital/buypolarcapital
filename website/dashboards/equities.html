@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equities Dashboard - BuyPolar Capital</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-chart-line"></i>
+                BuyPolar Capital
+            </div>
+            <a href="../index.html" class="nav-link">← Back to Home</a>
+        </div>
+    </nav>
+    
+    <main style="margin-top: 100px; padding: 2rem;">
+        <div class="container">
+            <h1>Equities Analysis Dashboard</h1>
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3>Portfolio Performance</h3>
+                    <div id="portfolio-chart"></div>
+                </div>
+                <div class="dashboard-card">
+                    <h3>Risk Metrics</h3>
+                    <div id="risk-metrics"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script>
+        // Sample equities dashboard functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Portfolio performance chart
+            const trace = {
+                x: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                y: [100, 105, 110, 108, 115, 120],
+                type: 'scatter',
+                mode: 'lines+markers',
+                name: 'Portfolio Value'
+            };
+            
+            const layout = {
+                title: 'Portfolio Performance',
+                xaxis: {title: 'Month'},
+                yaxis: {title: 'Value ($K)'}
+            };
+            
+            Plotly.newPlot('portfolio-chart', [trace], layout);
+        });
+    </script>
+</body>
+</html>

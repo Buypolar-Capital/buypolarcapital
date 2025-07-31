@@ -1,0 +1,357 @@
+{
+  "timestamp": "2025-07-31T22:28:06.660946",
+  "repository_path": ".",
+  "statistics": {
+    "total_files": 976,
+    "total_dirs": 242,
+    "file_types": {
+      "": 17,
+      ".md": 7,
+      ".svg": 2,
+      ".json": 2,
+      ".txt": 7,
+      ".py": 197,
+      ".r": 60,
+      ".pdf": 339,
+      ".png": 77,
+      ".csv": 85,
+      ".gif": 3,
+      ".parquet": 65,
+      ".pyc": 27,
+      ".m": 36,
+      ".rs": 9,
+      ".xlsx": 3,
+      ".rmd": 2,
+      ".sh": 1,
+      ".tex": 2,
+      ".log": 2,
+      ".j2": 1,
+      ".html": 6,
+      ".yml": 1,
+      ".duckdb": 1,
+      ".aux": 1,
+      ".out": 1,
+      ".gz": 1,
+      ".cpp": 1,
+      ".jl": 9,
+      ".dat": 1,
+      ".mod": 1,
+      ".run": 1,
+      ".pt": 1,
+      ".ps": 1,
+      ".lock": 1,
+      ".toml": 3,
+      ".js": 1,
+      ".css": 1
+    },
+    "python_files_count": 197,
+    "documentation_files_count": 16,
+    "data_files_count": 155,
+    "empty_files_count": 10,
+    "duplicate_files_count": 20,
+    "old_backups_count": 0
+  },
+  "issues": {
+    "empty_files": [
+      "assets\\__init__.py",
+      "assets\\commodities\\__init__.py",
+      "assets\\crypto\\__init__.py",
+      "assets\\equities\\__init__.py",
+      "assets\\fixed_income\\__init__.py",
+      "core\\__init__.py",
+      "core\\data\\__init__.py",
+      "core\\models\\__init__.py",
+      "core\\strategies\\__init__.py",
+      "core\\utils\\__init__.py"
+    ],
+    "duplicate_files": [
+      {
+        "filename": "chordcaged.py",
+        "size": 4681,
+        "locations": [
+          "core\\models\\algorithms\\chordcaged.py",
+          "core\\strategies\\relative_value\\chordcaged.py"
+        ]
+      },
+      {
+        "filename": "buypolarcapital.R",
+        "size": 603,
+        "locations": [
+          "core\\strategies\\ie\\R\\buypolarcapital.R",
+          "core\\strategies\\ipo\\R\\buypolarcapital.R",
+          "src\\buypolarcapital\\modeling\\algo\\R\\buypolarcapital.R"
+        ]
+      },
+      {
+        "filename": "aapl_intraday_alphavantage.csv",
+        "size": 1313535,
+        "locations": [
+          "core\\strategies\\relative_value\\data\\aapl_intraday_alphavantage.csv",
+          "data\\masterdata\\aapl_intraday_alphavantage.csv"
+        ]
+      },
+      {
+        "filename": "dual_arbitrage_trades_table.Rmd",
+        "size": 708,
+        "locations": [
+          "core\\strategies\\rv\\R\\dual_arbitrage_trades_table.Rmd",
+          "core\\strategies\\rv\\R\\plots\\dual_arbitrage_trades_table.Rmd"
+        ]
+      },
+      {
+        "filename": "commodities_grid_1_1.pdf",
+        "size": 14061,
+        "locations": [
+          "dashboards\\plots\\commodities_grid_1_1.pdf",
+          "dashboards\\report_outputs\\commodities_grid_1_1.pdf"
+        ]
+      },
+      {
+        "filename": "commodities_returns_1_1.png",
+        "size": 15556,
+        "locations": [
+          "dashboards\\plots\\commodities_returns_1_1.png",
+          "dashboards\\report_outputs\\commodities_returns_1_1.png"
+        ]
+      },
+      {
+        "filename": "crypto_grid_1_1.pdf",
+        "size": 13687,
+        "locations": [
+          "dashboards\\plots\\crypto_grid_1_1.pdf",
+          "dashboards\\report_outputs\\crypto_grid_1_1.pdf"
+        ]
+      },
+      {
+        "filename": "crypto_returns_1_1.png",
+        "size": 14094,
+        "locations": [
+          "dashboards\\plots\\crypto_returns_1_1.png",
+          "dashboards\\report_outputs\\crypto_returns_1_1.png"
+        ]
+      },
+      {
+        "filename": "fixed_income_grid_1_1.pdf",
+        "size": 15305,
+        "locations": [
+          "dashboards\\plots\\fixed_income_grid_1_1.pdf",
+          "dashboards\\report_outputs\\fixed_income_grid_1_1.pdf"
+        ]
+      },
+      {
+        "filename": "fixed_income_returns_1_1.png",
+        "size": 18626,
+        "locations": [
+          "dashboards\\plots\\fixed_income_returns_1_1.png",
+          "dashboards\\report_outputs\\fixed_income_returns_1_1.png"
+        ]
+      },
+      {
+        "filename": "grid_returns_1_1.pdf",
+        "size": 18230,
+        "locations": [
+          "dashboards\\plots\\grid_returns_1_1.pdf",
+          "dashboards\\report_outputs\\grid_returns_1_1.pdf"
+        ]
+      },
+      {
+        "filename": "grid_returns_1_1.png",
+        "size": 52116,
+        "locations": [
+          "dashboards\\plots\\grid_returns_1_1.png",
+          "dashboards\\report_outputs\\grid_returns_1_1.png"
+        ]
+      },
+      {
+        "filename": "indices_grid_1_1.pdf",
+        "size": 12318,
+        "locations": [
+          "dashboards\\plots\\indices_grid_1_1.pdf",
+          "dashboards\\report_outputs\\indices_grid_1_1.pdf"
+        ]
+      },
+      {
+        "filename": "indices_returns_1_1.pdf",
+        "size": 13166,
+        "locations": [
+          "dashboards\\plots\\indices_returns_1_1.pdf",
+          "dashboards\\report_outputs\\indices_returns_1_1.pdf"
+        ]
+      },
+      {
+        "filename": "indices_returns_1_1.png",
+        "size": 14467,
+        "locations": [
+          "dashboards\\plots\\indices_returns_1_1.png",
+          "dashboards\\report_outputs\\indices_returns_1_1.png"
+        ]
+      },
+      {
+        "filename": "sparkline_crypto_1_1.pdf",
+        "size": 13331,
+        "locations": [
+          "dashboards\\plots\\sparkline_crypto_1_1.pdf",
+          "dashboards\\report_outputs\\sparkline_crypto_1_1.pdf"
+        ]
+      },
+      {
+        "filename": "sparkline_indices_1_1.pdf",
+        "size": 15264,
+        "locations": [
+          "dashboards\\plots\\sparkline_indices_1_1.pdf",
+          "dashboards\\report_outputs\\sparkline_indices_1_1.pdf"
+        ]
+      },
+      {
+        "filename": "sparkline_indices_1_1.png",
+        "size": 29276,
+        "locations": [
+          "dashboards\\plots\\sparkline_indices_1_1.png",
+          "dashboards\\report_outputs\\sparkline_indices_1_1.png"
+        ]
+      },
+      {
+        "filename": "volatile_stocks_lag1_return_facet.pdf",
+        "size": 372147,
+        "locations": [
+          "src\\buypolarcapital\\assets\\credit\\R\\plots\\volatile_stocks_lag1_return_facet.pdf",
+          "src\\buypolarcapital\\risk\\R\\plots\\volatile_stocks_lag1_return_facet.pdf"
+        ]
+      },
+      {
+        "filename": "shipping_sector_multipage_2x2.pdf",
+        "size": 153279,
+        "locations": [
+          "src\\buypolarcapital\\assets\\industry\\shipping\\R\\plots\\shipping_sector_multipage_2x2.pdf",
+          "src\\buypolarcapital\\risk\\R\\plots\\shipping_sector_multipage_2x2.pdf"
+        ]
+      }
+    ],
+    "old_backups": [],
+    "structure_issues": [
+      "Deep nesting detected: .\\src\\buypolarcapital\\assets\\industry\\healthcare\\R\\plots (depth: 7)",
+      "Deep nesting detected: .\\src\\buypolarcapital\\assets\\industry\\overall\\R\\plots (depth: 7)",
+      "Deep nesting detected: .\\src\\buypolarcapital\\assets\\industry\\shipping\\R\\plots (depth: 7)",
+      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\data\\raw (depth: 7)",
+      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\data\\raw\\minute (depth: 8)",
+      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\data\\simulated (depth: 7)",
+      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\data\\__pycache__ (depth: 7)",
+      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\model\\__pycache__ (depth: 7)",
+      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\plots\\AAPL (depth: 7)",
+      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\plots\\MSFT (depth: 7)",
+      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\plots\\NVDA (depth: 7)",
+      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\plots\\TSLA (depth: 7)",
+      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\results\\AAPL (depth: 7)",
+      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\results\\MSFT (depth: 7)",
+      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\results\\NVDA (depth: 7)",
+      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\results\\TSLA (depth: 7)",
+      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\algo\\python\\utils\\__pycache__ (depth: 7)",
+      "Deep nesting detected: .\\src\\buypolarcapital\\modeling\\stochastic\\rust\\scratchpad\\src (depth: 7)",
+      "Mixed case directory: ./NBIM",
+      "Mixed case directory: .\\assets\\commodities/R",
+      "Mixed case directory: .\\assets\\equities/R",
+      "Mixed case directory: .\\core\\strategies\\ie/R",
+      "Mixed case directory: .\\core\\strategies\\ipo/R",
+      "Mixed case directory: .\\core\\strategies\\rv/R",
+      "Mixed case directory: .\\src\\buypolarcapital\\assets\\credit/R",
+      "Mixed case directory: .\\src\\buypolarcapital\\assets\\futures/R",
+      "Mixed case directory: .\\src\\buypolarcapital\\assets\\industry\\healthcare/R",
+      "Mixed case directory: .\\src\\buypolarcapital\\assets\\industry\\overall/R",
+      "Mixed case directory: .\\src\\buypolarcapital\\assets\\industry\\shipping/R",
+      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo/R",
+      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo\\python\\plots/AAPL",
+      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo\\python\\plots/MSFT",
+      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo\\python\\plots/NVDA",
+      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo\\python\\plots/TSLA",
+      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo\\python\\results/AAPL",
+      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo\\python\\results/MSFT",
+      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo\\python\\results/NVDA",
+      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\algo\\python\\results/TSLA",
+      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\ml/R",
+      "Mixed case directory: .\\src\\buypolarcapital\\modeling\\timeseries/R",
+      "Mixed case directory: .\\src\\buypolarcapital\\risk/R"
+    ]
+  },
+  "largest_files": [
+    {
+      "path": "core\\strategies\\initial_equity\\data\\processed\\features_2010_2022.csv",
+      "size_mb": 7.146017074584961
+    },
+    {
+      "path": "src\\buypolarcapital\\assets\\industry\\overall\\R\\plots\\sector_data_raw.csv",
+      "size_mb": 4.661705017089844
+    },
+    {
+      "path": "core\\strategies\\rv\\R\\plots\\dual_arbitrage_facet_SSL_SOLJO.pdf",
+      "size_mb": 4.648499488830566
+    },
+    {
+      "path": "core\\strategies\\relative_value\\plots\\dually_listed_stocks_merged.pdf",
+      "size_mb": 4.547197341918945
+    },
+    {
+      "path": "core\\strategies\\rv\\R\\plots\\dual_arbitrage_facet_BRK-A_BRK-B.pdf",
+      "size_mb": 4.539726257324219
+    },
+    {
+      "path": "core\\strategies\\rv\\R\\plots\\dual_arbitrage_facet_INFY_INFYNS.pdf",
+      "size_mb": 4.453244209289551
+    },
+    {
+      "path": "core\\strategies\\rv\\R\\plots\\dual_arbitrage_facet_HDB_HDFCBANKNS.pdf",
+      "size_mb": 4.401317596435547
+    },
+    {
+      "path": "core\\strategies\\rv\\R\\plots\\dual_arbitrage_facet_AZN_AZNL.pdf",
+      "size_mb": 4.35804557800293
+    },
+    {
+      "path": "core\\strategies\\rv\\R\\plots\\dual_arbitrage_facet_VALE_VALE3SA.pdf",
+      "size_mb": 4.101807594299316
+    },
+    {
+      "path": "core\\strategies\\rv\\R\\plots\\dual_arbitrage_facet_BNS_BNSTO.pdf",
+      "size_mb": 4.098993301391602
+    },
+    {
+      "path": "core\\strategies\\rv\\R\\plots\\dual_arbitrage_facet_TLK_TLKMJK.pdf",
+      "size_mb": 3.619222640991211
+    },
+    {
+      "path": "core\\strategies\\hedge\\python\\plots\\grid_montecarlo_report.pdf",
+      "size_mb": 2.866896629333496
+    },
+    {
+      "path": "core\\strategies\\rv\\R\\plots\\dual_arbitrage_facet_TCEHY_0700HK.pdf",
+      "size_mb": 2.69921875
+    },
+    {
+      "path": "core\\strategies\\rv\\R\\plots\\dual_arbitrage_facet_GOOG_GOOGL.pdf",
+      "size_mb": 2.6637392044067383
+    },
+    {
+      "path": "assets\\crypto\\python\\tick_data\\BTCUSDT_2024-03-01_0-2h.parquet",
+      "size_mb": 2.5984020233154297
+    },
+    {
+      "path": "core\\strategies\\rv\\R\\plots\\dual_arbitrage_goldman_GOOG_GOOGL.pdf",
+      "size_mb": 2.162348747253418
+    },
+    {
+      "path": "assets\\equities\\R\\plots\\buypolar_10_ticker_report.pdf",
+      "size_mb": 1.7499189376831055
+    },
+    {
+      "path": "src\\buypolarcapital\\modeling\\timeseries\\R\\plots\\all_plots.pdf",
+      "size_mb": 1.547616958618164
+    },
+    {
+      "path": "src\\buypolarcapital\\modeling\\timeseries\\R\\plots\\fpptre_plots.pdf",
+      "size_mb": 1.547616958618164
+    },
+    {
+      "path": "assets\\crypto\\python\\report\\BTCUSDT_2024-03-01_ticks_zoomed.pdf",
+      "size_mb": 1.3769245147705078
+    }
+  ]
+}

@@ -1,6 +1,0 @@
-python build_data_v2.py        # 📥 Fetches market data
-python llm_summary.py          # 🧠 Generates LLM commentary
-python plots/plot_all.py       # 📊 Saves individual plots
-python plots/plot_grid.py      # 🧩 Saves grid + sparkline plots
-python generate_signals.py     # ⚙️ Creates signal summary
-python generate_report_reportlab.py  # 📄 Builds final PDF

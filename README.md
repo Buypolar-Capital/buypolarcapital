@@ -1,134 +1,83 @@
-# BuyPolar Capital - Quantitative Finance Research Hub
+# BuyPolar Capital - Interactive Quantitative Finance Hub
 
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Live-blue?style=flat-square)](https://yourusername.github.io/buypolarcapital/)
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
-[![R](https://img.shields.io/badge/R-4.0+-blue.svg)](https://www.r-project.org/)
-[![Julia](https://img.shields.io/badge/Julia-1.6+-blue.svg)](https://julialang.org/)
+## 🚀 Overview
 
-A comprehensive quantitative finance research repository featuring trading algorithms, market analysis, risk management, and educational resources.
+BuyPolar Capital is a comprehensive quantitative finance research hub that provides interactive dashboards, advanced trading strategies, and cutting-edge analytics for financial markets.
 
-## 🚀 Quick Start
+## 📊 Features
 
-Visit our **[Live Website](https://yourusername.github.io/buypolarcapital/)** for interactive dashboards and analysis.
-
-## 📊 Live Dashboards
-
-- **[Global Market Snapshot](dashboards/)** - Real-time market data and analysis
-- **[Daily Finance Quiz](notebooks/reporting/quiz/)** - Interactive financial education
-- **[NBIM Portfolio Analysis](NBIM/)** - Norwegian Sovereign Wealth Fund insights
+- **Interactive Dashboards**: Real-time market analysis and portfolio optimization
+- **Trading Strategies**: High-frequency trading, relative value, cross-listing arbitrage
+- **Research Tools**: Advanced analytics and risk management systems
+- **Multi-Asset Coverage**: Equities, fixed income, commodities, and cryptocurrencies
 
 ## 🏗️ Repository Structure
 
-### 📈 **Trading & Analysis**
-- **Strategies** - Algorithmic trading strategies (HFT, RV, Options, etc.)
-- **Modeling** - Quantitative models and backtesting frameworks
-- **Risk Management** - VaR, volatility modeling, portfolio optimization
-
-### 🎯 **Asset Classes**
-- **Equities** - Stock analysis and modeling
-- **Fixed Income** - Bond pricing and yield curve analysis
-- **Commodities** - Futures and commodity trading
-- **Crypto** - Cryptocurrency analysis and tick data
-- **Options** - Derivatives pricing and strategies
-- **FX** - Foreign exchange analysis
-
-### 🛠️ **Tools & Infrastructure**
-- **Data Engine** - Market data ingestion and processing
-- **Dashboards** - Real-time market monitoring
-- **Notebooks** - Research and educational content
-- **Scripts** - Automation and deployment tools
-
-## 🎓 Educational Resources
-
-### Interactive Learning
-- **Daily Finance Quiz** - Test your financial knowledge
-- **Trading Games** - Learn through simulation (Poker, Chess, Roulette)
-- **Case Studies** - Real-world trading scenarios
-
-### Research Papers & Analysis
-- **Academic Papers** - Original research and implementations
-- **Market Analysis** - Sector-specific deep dives
-- **Risk Models** - Advanced risk management techniques
-
-## 🚀 Getting Started
-
-### Prerequisites
-```bash
-# Python dependencies
-pip install -r requirements.txt
-
-# R packages (if using R components)
-R -e "install.packages(c('quantmod', 'tidyverse', 'ggplot2'))"
+```
+buypolarcapital/
+├── core/                    # Core functionality
+│   ├── data/               # Data management and connectors
+│   ├── strategies/         # Trading strategies
+│   ├── utils/              # Utility functions
+│   └── models/             # Quantitative models
+├── assets/                 # Asset-specific analysis
+│   ├── equities/           # Equity analysis
+│   ├── fixed_income/       # Fixed income analysis
+│   ├── commodities/        # Commodity analysis
+│   └── crypto/             # Cryptocurrency analysis
+├── dashboards/             # Interactive dashboards
+├── website/                # Interactive website
+├── data/                   # Data storage
+│   ├── raw/               # Raw data
+│   └── processed/         # Processed data
+├── docs/                   # Documentation
+└── tests/                  # Test suite
 ```
 
-### Quick Examples
+## 🌐 Website
 
-#### Run Daily Market Analysis
-```bash
-cd dashboards
-python build_data_v2.py
-```
+Visit our interactive website at: `website/index.html`
 
-#### Generate Daily Quiz
-```bash
-cd notebooks/reporting/quiz/python
-python daily_finance_quiz.py
-```
+## 🚀 Quick Start
 
-#### Explore Trading Strategies
-```bash
-cd src/buypolarcapital/strategies
-# Explore various strategy implementations
-```
+1. Clone the repository
+2. Install dependencies: `pip install -r requirements.txt`
+3. Run the website: Open `website/index.html` in your browser
+4. Explore dashboards and strategies
 
-## 📚 Featured Content
+## 📈 Trading Strategies
 
-### Trading Strategies
-- **High-Frequency Trading (HFT)** - Ultra-low latency strategies
-- **Realized Volatility (RV)** - Volatility-based trading
-- **Options Strategies** - Advanced derivatives trading
-- **Mean Reversion** - Statistical arbitrage approaches
+### High-Frequency Trading (HFT)
+- Ultra-low latency algorithms
+- Market microstructure analysis
+- Order book optimization
 
-### Risk Management
-- **VaR Models** - Value at Risk calculations
-- **Volatility Forecasting** - GARCH and regime-switching models
-- **Portfolio Optimization** - Modern portfolio theory implementations
+### Relative Value
+- Statistical arbitrage
+- Pairs trading
+- Mean reversion strategies
 
-### Market Analysis
-- **Technical Analysis** - Chart patterns and indicators
-- **Fundamental Analysis** - Financial statement analysis
-- **Sentiment Analysis** - News and social media impact
+### Cross-Listing Arbitrage
+- International market inefficiencies
+- ADR/GDR analysis
+- Currency arbitrage
+
+## 🔬 Research Areas
+
+- Machine learning in finance
+- Risk management
+- Portfolio optimization
+- Market microstructure
+- Algorithmic trading
+
+## 📝 License
+
+MIT License - see LICENSE file for details.
 
 ## 🤝 Contributing
 
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
-
-### Development Setup
-```bash
-git clone https://github.com/yourusername/buypolarcapital.git
-cd buypolarcapital
-pip install -e .
-```
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🔗 Links
-
-- **[Live Website](https://yourusername.github.io/buypolarcapital/)**
-- **[Documentation](docs/)**
-- **[Issues](https://github.com/yourusername/buypolarcapital/issues)**
-- **[Discussions](https://github.com/yourusername/buypolarcapital/discussions)**
-
-## 📞 Contact
-
-- **Email**: your.email@example.com
-- **LinkedIn**: [Your Profile](https://linkedin.com/in/yourprofile)
-- **Twitter**: [@yourhandle](https://twitter.com/yourhandle)
+We welcome contributions! Please see CONTRIBUTING.md for guidelines.
 
 ---
 
-<div align="center">
-  <em>Empowering quantitative finance research and education</em>
-</div>
+**BuyPolar Capital** - Advancing quantitative finance through innovation and technology.
