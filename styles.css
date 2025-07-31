@@ -122,22 +122,27 @@ p {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: var(--spacing-md);
+    gap: var(--spacing-lg);
+    align-items: center;
 }
 
 .nav-link {
     text-decoration: none;
     color: var(--primary-black);
     font-weight: var(--font-weight-medium);
-    padding: var(--spacing-xs) var(--spacing-sm);
-    border-radius: 4px;
-    transition: var(--transition-fast);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 6px;
+    transition: var(--transition-medium);
     position: relative;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
 }
 
 .nav-link:hover {
     color: var(--accent-blue);
     background-color: var(--off-white);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .nav-link::after {
@@ -465,12 +470,18 @@ section {
 
 .chart-container {
     height: 300px;
-    background-color: var(--off-white);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--medium-gray);
+    background-color: var(--pure-white);
+    border-radius: 12px;
+    border: 1px solid var(--light-gray);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: var(--transition-medium);
+}
+
+.chart-container:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
 }
 
 .metrics-grid {
@@ -521,17 +532,35 @@ section {
 }
 
 .research-card {
-    background-color: var(--off-white);
+    background-color: var(--pure-white);
     padding: var(--spacing-lg);
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     border: 1px solid var(--light-gray);
-    transition: var(--transition-fast);
+    transition: var(--transition-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+.research-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-red));
+    opacity: 0;
+    transition: var(--transition-medium);
+}
+
+.research-card:hover::before {
+    opacity: 1;
 }
 
 .research-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
     border-color: var(--accent-blue);
 }
 
@@ -544,6 +573,16 @@ section {
 .research-card .chart-container {
     height: 250px;
     margin-bottom: var(--spacing-sm);
+    background-color: var(--pure-white);
+    border: 1px solid var(--light-gray);
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    transition: var(--transition-medium);
+}
+
+.research-card .chart-container:hover {
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    transform: translateY(-2px);
 }
 
 .research-card p {
@@ -566,15 +605,33 @@ section {
 .tool-card {
     background-color: var(--pure-white);
     padding: var(--spacing-lg);
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     border: 1px solid var(--light-gray);
-    transition: var(--transition-fast);
+    transition: var(--transition-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+.tool-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-red));
+    opacity: 0;
+    transition: var(--transition-medium);
+}
+
+.tool-card:hover::before {
+    opacity: 1;
 }
 
 .tool-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
     border-color: var(--accent-blue);
 }
 
@@ -665,17 +722,35 @@ section {
 }
 
 .game-card {
-    background-color: var(--off-white);
+    background-color: var(--pure-white);
     padding: var(--spacing-lg);
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     border: 1px solid var(--light-gray);
-    transition: var(--transition-fast);
+    transition: var(--transition-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+.game-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-red));
+    opacity: 0;
+    transition: var(--transition-medium);
+}
+
+.game-card:hover::before {
+    opacity: 1;
 }
 
 .game-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.15);
     border-color: var(--accent-blue);
 }
 
@@ -1316,6 +1391,16 @@ section {
     
     .game-card .chart-container {
         height: 200px;
+        background-color: var(--pure-white);
+        border: 1px solid var(--light-gray);
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        transition: var(--transition-medium);
+    }
+    
+    .game-card .chart-container:hover {
+        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        transform: translateY(-2px);
     }
     
     /* Mobile-friendly game interfaces */
@@ -1371,8 +1456,13 @@ section {
     
     /* Mobile navigation improvements */
     .nav-link {
-        padding: 1rem 0;
-        font-size: 1.1rem;
+        padding: 0.8rem 0;
+        font-size: 1rem;
+        margin: 0 0.5rem;
+    }
+    
+    .nav-menu {
+        gap: var(--spacing-sm);
     }
     
     /* Mobile spacing adjustments */

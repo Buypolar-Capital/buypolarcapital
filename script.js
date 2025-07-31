@@ -5,6 +5,59 @@
 let performanceChart;
 let isNavScrolled = false;
 
+// Modern chart layout helper function
+function getModernChartLayout(title, xTitle, yTitle, showLegend = false) {
+    return {
+        title: {
+            text: title,
+            font: { 
+                family: 'Inter, sans-serif',
+                size: 18,
+                color: '#000000',
+                weight: 600
+            },
+            x: 0.5,
+            xanchor: 'center',
+            y: 0.95
+        },
+        xaxis: { 
+            title: { 
+                text: xTitle,
+                font: { family: 'Inter, sans-serif', size: 13, color: '#666666', weight: 500 }
+            },
+            gridcolor: '#f8f8f8',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 11, color: '#666666' },
+            showline: true,
+            linecolor: '#e0e0e0',
+            linewidth: 1
+        },
+        yaxis: { 
+            title: { 
+                text: yTitle,
+                font: { family: 'Inter, sans-serif', size: 13, color: '#666666', weight: 500 }
+            },
+            gridcolor: '#f8f8f8',
+            zerolinecolor: '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 11, color: '#666666' },
+            showline: true,
+            linecolor: '#e0e0e0',
+            linewidth: 1
+        },
+        plot_bgcolor: '#ffffff',
+        paper_bgcolor: '#ffffff',
+        font: { family: 'Inter, sans-serif' },
+        margin: { l: 70, r: 40, t: 80, b: 70 },
+        showlegend: showLegend,
+        hovermode: 'x unified',
+        hoverlabel: {
+            bgcolor: '#000000',
+            font: { family: 'Inter, sans-serif', size: 12, color: '#ffffff' },
+            bordercolor: '#000000'
+        }
+    };
+}
+
 // Sample data for charts
 const cryptoData = {
     BTC: [45000, 46000, 44000, 47000, 48000, 46500, 47500, 49000, 48500, 50000],
@@ -249,46 +302,7 @@ function createBitcoinChart() {
         }
     };
     
-    const layout = {
-        title: {
-            text: 'Bitcoin Price Movement',
-            font: { 
-                family: 'Inter, sans-serif',
-                size: 16,
-                color: '#000000'
-            },
-            x: 0.5,
-            xanchor: 'center'
-        },
-        xaxis: { 
-            title: { 
-                text: 'Date',
-                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
-            },
-            gridcolor: '#f0f0f0',
-            zerolinecolor: '#e0e0e0',
-            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
-        },
-        yaxis: { 
-            title: { 
-                text: 'Price (USDT)',
-                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
-            },
-            gridcolor: '#f0f0f0',
-            zerolinecolor: '#e0e0e0',
-            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
-        },
-        plot_bgcolor: '#ffffff',
-        paper_bgcolor: '#ffffff',
-        font: { family: 'Inter, sans-serif' },
-        margin: { l: 60, r: 30, t: 60, b: 60 },
-        showlegend: false,
-        hovermode: 'x unified',
-        hoverlabel: {
-            bgcolor: '#000000',
-            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
-        }
-    };
+    const layout = getModernChartLayout('Bitcoin Price Movement', 'Date', 'Price (USDT)');
     
     Plotly.newPlot('btc-chart', [trace], layout, { responsive: true, displayModeBar: false });
 }
@@ -310,46 +324,7 @@ function createCryptoPortfolioChart() {
         }
     };
     
-    const layout = {
-        title: {
-            text: 'Crypto Portfolio Returns (%)',
-            font: { 
-                family: 'Inter, sans-serif',
-                size: 16,
-                color: '#000000'
-            },
-            x: 0.5,
-            xanchor: 'center'
-        },
-        xaxis: { 
-            title: { 
-                text: 'Asset',
-                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
-            },
-            gridcolor: '#f0f0f0',
-            zerolinecolor: '#e0e0e0',
-            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
-        },
-        yaxis: { 
-            title: { 
-                text: 'Return (%)',
-                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
-            },
-            gridcolor: '#f0f0f0',
-            zerolinecolor: '#e0e0e0',
-            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
-        },
-        plot_bgcolor: '#ffffff',
-        paper_bgcolor: '#ffffff',
-        font: { family: 'Inter, sans-serif' },
-        margin: { l: 60, r: 30, t: 60, b: 60 },
-        showlegend: false,
-        hovermode: 'x unified',
-        hoverlabel: {
-            bgcolor: '#000000',
-            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
-        }
-    };
+    const layout = getModernChartLayout('Crypto Portfolio Returns (%)', 'Asset', 'Return (%)');
     
     Plotly.newPlot('crypto-portfolio', [trace], layout, { responsive: true, displayModeBar: false });
 }
@@ -365,46 +340,7 @@ function createIPOChart() {
         }
     };
     
-    const layout = {
-        title: {
-            text: 'IPO Performance Comparison',
-            font: { 
-                family: 'Inter, sans-serif',
-                size: 16,
-                color: '#000000'
-            },
-            x: 0.5,
-            xanchor: 'center'
-        },
-        xaxis: { 
-            title: { 
-                text: 'Company',
-                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
-            },
-            gridcolor: '#f0f0f0',
-            zerolinecolor: '#e0e0e0',
-            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
-        },
-        yaxis: { 
-            title: { 
-                text: 'Return (%)',
-                font: { family: 'Inter, sans-serif', size: 12, color: '#666666' }
-            },
-            gridcolor: '#f0f0f0',
-            zerolinecolor: '#e0e0e0',
-            tickfont: { family: 'Inter, sans-serif', size: 10, color: '#666666' }
-        },
-        plot_bgcolor: '#ffffff',
-        paper_bgcolor: '#ffffff',
-        font: { family: 'Inter, sans-serif' },
-        margin: { l: 60, r: 30, t: 60, b: 60 },
-        showlegend: false,
-        hovermode: 'x unified',
-        hoverlabel: {
-            bgcolor: '#000000',
-            font: { family: 'Inter, sans-serif', size: 11, color: '#ffffff' }
-        }
-    };
+    const layout = getModernChartLayout('IPO Performance Comparison', 'Company', 'Return (%)');
     
     Plotly.newPlot('ipo-chart', [trace], layout, { responsive: true, displayModeBar: false });
 }
