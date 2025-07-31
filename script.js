@@ -33,6 +33,9 @@ function initializeWebsite() {
     // Initialize research charts
     initializeResearchCharts();
     
+    // Initialize games
+    initializeGames();
+    
     // Initialize scroll animations
     initializeScrollAnimations();
     
@@ -1057,3 +1060,795 @@ window.addEventListener('load', () => {
         }
     }, 5000);
 });
+
+// ===== GAMES FUNCTIONALITY =====
+
+// Initialize all games
+function initializeGames() {
+    initializeRoulette();
+    initializeBlackjack();
+    initializeDice();
+    initializeRandomWalk();
+    initializePoker();
+    initializeMontyHall();
+    initializeKellyCriterion();
+    initializeRiskOfRuin();
+}
+
+// Roulette Game
+let rouletteStats = { red: 0, black: 0, green: 0, total: 0 };
+let rouletteHistory = [];
+
+function initializeRoulette() {
+    updateRouletteStats();
+}
+
+function spinRoulette() {
+    const wheel = document.getElementById('roulette-wheel');
+    const number = Math.floor(Math.random() * 37); // 0-36
+    
+    // Determine color
+    let color;
+    if (number === 0) {
+        color = 'green';
+        rouletteStats.green++;
+    } else if ([1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36].includes(number)) {
+        color = 'red';
+        rouletteStats.red++;
+    } else {
+        color = 'black';
+        rouletteStats.black++;
+    }
+    
+    rouletteStats.total++;
+    rouletteHistory.push({ number, color });
+    
+    // Animate wheel
+    const rotations = 5 + Math.random() * 5;
+    const finalAngle = (360 * rotations) + (number * (360/37));
+    wheel.style.transform = `rotate(${finalAngle}deg)`;
+    
+    // Update display
+    document.querySelector('.wheel-number').textContent = number;
+    updateRouletteStats();
+    updateRouletteChart();
+}
+
+function autoPlayRoulette() {
+    for (let i = 0; i < 100; i++) {
+        setTimeout(() => spinRoulette(), i * 50);
+    }
+}
+
+function updateRouletteStats() {
+    document.getElementById('red-count').textContent = rouletteStats.red;
+    document.getElementById('black-count').textContent = rouletteStats.black;
+    document.getElementById('green-count').textContent = rouletteStats.green;
+    document.getElementById('total-spins').textContent = rouletteStats.total;
+}
+
+function updateRouletteChart() {
+    const trace = {
+        x: ['Red', 'Black', 'Green'],
+        y: [rouletteStats.red, rouletteStats.black, rouletteStats.green],
+        type: 'bar',
+        marker: {
+            color: ['#d32f2f', '#000000', '#4CAF50']
+        }
+    };
+    
+    const layout = {
+        title: 'Roulette Results Distribution',
+        plot_bgcolor: '#ffffff',
+        paper_bgcolor: '#ffffff',
+        font: { family: 'Inter, sans-serif' },
+        margin: { l: 50, r: 20, t: 40, b: 50 }
+    };
+    
+    Plotly.newPlot('roulette-chart', [trace], layout, { responsive: true, displayModeBar: false });
+}
+
+// Blackjack Game
+let blackjackStats = { wins: 0, losses: 0 };
+let playerHand = [];
+let dealerHand = [];
+let deck = [];
+
+function initializeBlackjack() {
+    updateBlackjackStats();
+}
+
+function dealBlackjack() {
+    // Reset deck and hands
+    deck = createDeck();
+    shuffleDeck(deck);
+    playerHand = [deck.pop(), deck.pop()];
+    dealerHand = [deck.pop(), deck.pop()];
+    
+    displayBlackjackHands();
+    updateBlackjackStats();
+}
+
+function hitBlackjack() {
+    if (playerHand.length === 0) return;
+    
+    playerHand.push(deck.pop());
+    displayBlackjackHands();
+    
+    if (calculateHandValue(playerHand) > 21) {
+        endBlackjackGame();
+    }
+}
+
+function standBlackjack() {
+    if (playerHand.length === 0) return;
+    
+    // Dealer plays
+    while (calculateHandValue(dealerHand) < 17) {
+        dealerHand.push(deck.pop());
+    }
+    
+    endBlackjackGame();
+}
+
+function doubleBlackjack() {
+    if (playerHand.length === 2) {
+        playerHand.push(deck.pop());
+        displayBlackjackHands();
+        standBlackjack();
+    }
+}
+
+function endBlackjackGame() {
+    const playerValue = calculateHandValue(playerHand);
+    const dealerValue = calculateHandValue(dealerHand);
+    
+    if (playerValue > 21) {
+        blackjackStats.losses++;
+    } else if (dealerValue > 21 || playerValue > dealerValue) {
+        blackjackStats.wins++;
+    } else {
+        blackjackStats.losses++;
+    }
+    
+    updateBlackjackStats();
+    displayBlackjackHands(true);
+}
+
+function createDeck() {
+    const suits = ['♠', '♥', '♦', '♣'];
+    const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+    const deck = [];
+    
+    for (let suit of suits) {
+        for (let value of values) {
+            deck.push({ suit, value });
+        }
+    }
+    
+    return deck;
+}
+
+function shuffleDeck(deck) {
+    for (let i = deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+    }
+}
+
+function calculateHandValue(hand) {
+    let value = 0;
+    let aces = 0;
+    
+    for (let card of hand) {
+        if (card.value === 'A') {
+            aces++;
+            value += 11;
+        } else if (['K', 'Q', 'J'].includes(card.value)) {
+            value += 10;
+        } else {
+            value += parseInt(card.value);
+        }
+    }
+    
+    while (value > 21 && aces > 0) {
+        value -= 10;
+        aces--;
+    }
+    
+    return value;
+}
+
+function displayBlackjackHands(showAll = false) {
+    const dealerCards = document.getElementById('dealer-cards');
+    const playerCards = document.getElementById('player-cards');
+    const dealerTotal = document.getElementById('dealer-total');
+    const playerTotal = document.getElementById('player-total');
+    
+    // Display dealer cards
+    dealerCards.innerHTML = '';
+    dealerHand.forEach((card, index) => {
+        if (index === 1 && !showAll) {
+            dealerCards.innerHTML += '<div class="card">?</div>';
+        } else {
+            const cardElement = document.createElement('div');
+            cardElement.className = 'card';
+            if (['♥', '♦'].includes(card.suit)) cardElement.classList.add('red');
+            cardElement.textContent = card.value + card.suit;
+            dealerCards.appendChild(cardElement);
+        }
+    });
+    
+    // Display player cards
+    playerCards.innerHTML = '';
+    playerHand.forEach(card => {
+        const cardElement = document.createElement('div');
+        cardElement.className = 'card';
+        if (['♥', '♦'].includes(card.suit)) cardElement.classList.add('red');
+        cardElement.textContent = card.value + card.suit;
+        playerCards.appendChild(cardElement);
+    });
+    
+    // Display totals
+    dealerTotal.textContent = showAll ? calculateHandValue(dealerHand) : '?';
+    playerTotal.textContent = calculateHandValue(playerHand);
+}
+
+function updateBlackjackStats() {
+    document.getElementById('blackjack-wins').textContent = blackjackStats.wins;
+    document.getElementById('blackjack-losses').textContent = blackjackStats.losses;
+    const rate = blackjackStats.wins + blackjackStats.losses > 0 ? 
+        ((blackjackStats.wins / (blackjackStats.wins + blackjackStats.losses)) * 100).toFixed(1) : '0';
+    document.getElementById('blackjack-rate').textContent = rate + '%';
+}
+
+// Dice Game
+let diceStats = { total: 0, rolls: [], average: 0 };
+
+function initializeDice() {
+    updateDiceStats();
+}
+
+function rollDice() {
+    const diceCount = parseInt(document.getElementById('dice-count').value);
+    const dice = [];
+    
+    for (let i = 0; i < diceCount; i++) {
+        dice.push(Math.floor(Math.random() * 6) + 1);
+    }
+    
+    const total = dice.reduce((sum, die) => sum + die, 0);
+    
+    // Animate dice
+    const diceElements = document.querySelectorAll('.dice');
+    diceElements.forEach((die, index) => {
+        if (index < diceCount) {
+            die.textContent = getDiceSymbol(dice[index]);
+            die.classList.add('rolling');
+            setTimeout(() => die.classList.remove('rolling'), 500);
+        }
+    });
+    
+    // Update stats
+    diceStats.total++;
+    diceStats.rolls.push(total);
+    diceStats.average = diceStats.rolls.reduce((sum, roll) => sum + roll, 0) / diceStats.rolls.length;
+    
+    document.getElementById('current-roll').textContent = total;
+    document.getElementById('total-rolls').textContent = diceStats.total;
+    document.getElementById('dice-average').textContent = diceStats.average.toFixed(2);
+    
+    updateDiceChart();
+}
+
+function rollManyDice() {
+    for (let i = 0; i < 1000; i++) {
+        const diceCount = parseInt(document.getElementById('dice-count').value);
+        const dice = [];
+        for (let j = 0; j < diceCount; j++) {
+            dice.push(Math.floor(Math.random() * 6) + 1);
+        }
+        const total = dice.reduce((sum, die) => sum + die, 0);
+        diceStats.rolls.push(total);
+    }
+    
+    diceStats.total += 1000;
+    diceStats.average = diceStats.rolls.reduce((sum, roll) => sum + roll, 0) / diceStats.rolls.length;
+    
+    document.getElementById('total-rolls').textContent = diceStats.total;
+    document.getElementById('dice-average').textContent = diceStats.average.toFixed(2);
+    
+    updateDiceChart();
+}
+
+function getDiceSymbol(number) {
+    const symbols = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+    return symbols[number - 1];
+}
+
+function updateDiceStats() {
+    document.getElementById('current-roll').textContent = '-';
+    document.getElementById('total-rolls').textContent = diceStats.total;
+    document.getElementById('dice-average').textContent = diceStats.average.toFixed(2);
+}
+
+function updateDiceChart() {
+    const counts = {};
+    diceStats.rolls.forEach(roll => {
+        counts[roll] = (counts[roll] || 0) + 1;
+    });
+    
+    const trace = {
+        x: Object.keys(counts),
+        y: Object.values(counts),
+        type: 'bar',
+        marker: { color: '#1976d2' }
+    };
+    
+    const layout = {
+        title: 'Dice Roll Distribution',
+        xaxis: { title: 'Roll Total' },
+        yaxis: { title: 'Frequency' },
+        plot_bgcolor: '#ffffff',
+        paper_bgcolor: '#ffffff',
+        font: { family: 'Inter, sans-serif' },
+        margin: { l: 50, r: 20, t: 40, b: 50 }
+    };
+    
+    Plotly.newPlot('dice-chart', [trace], layout, { responsive: true, displayModeBar: false });
+}
+
+// Random Walk
+function initializeRandomWalk() {
+    // Initialize empty
+}
+
+function simulateRandomWalk() {
+    const steps = parseInt(document.getElementById('walk-steps').value);
+    const prob = parseFloat(document.getElementById('walk-probability').value);
+    
+    const walk = [0];
+    let maxDistance = 0;
+    let returnedToOrigin = false;
+    
+    for (let i = 1; i <= steps; i++) {
+        const step = Math.random() < prob ? 1 : -1;
+        walk.push(walk[i-1] + step);
+        
+        if (Math.abs(walk[i]) > maxDistance) {
+            maxDistance = Math.abs(walk[i]);
+        }
+        
+        if (walk[i] === 0) {
+            returnedToOrigin = true;
+        }
+    }
+    
+    document.getElementById('final-position').textContent = walk[steps];
+    document.getElementById('max-distance').textContent = maxDistance;
+    document.getElementById('return-origin').textContent = returnedToOrigin ? 'Yes' : 'No';
+    
+    updateRandomWalkChart(walk);
+}
+
+function simulateManyWalks() {
+    const steps = parseInt(document.getElementById('walk-steps').value);
+    const prob = parseFloat(document.getElementById('walk-probability').value);
+    const walks = [];
+    
+    for (let i = 0; i < 1000; i++) {
+        const walk = [0];
+        for (let j = 1; j <= steps; j++) {
+            const step = Math.random() < prob ? 1 : -1;
+            walk.push(walk[j-1] + step);
+        }
+        walks.push(walk);
+    }
+    
+    updateRandomWalkChart(walks[0], walks);
+}
+
+function updateRandomWalkChart(walk, allWalks = null) {
+    const trace = {
+        x: Array.from({length: walk.length}, (_, i) => i),
+        y: walk,
+        type: 'scatter',
+        mode: 'lines',
+        name: 'Position',
+        line: { color: '#1976d2', width: 2 }
+    };
+    
+    const layout = {
+        title: 'Random Walk Simulation',
+        xaxis: { title: 'Step' },
+        yaxis: { title: 'Position' },
+        plot_bgcolor: '#ffffff',
+        paper_bgcolor: '#ffffff',
+        font: { family: 'Inter, sans-serif' },
+        margin: { l: 50, r: 20, t: 40, b: 50 }
+    };
+    
+    Plotly.newPlot('random-walk-chart', [trace], layout, { responsive: true, displayModeBar: false });
+}
+
+// Poker Game
+let pokerStats = { total: 0, hands: {} };
+
+function initializePoker() {
+    updatePokerStats();
+}
+
+function dealPokerHand() {
+    const deck = createDeck();
+    shuffleDeck(deck);
+    const hand = deck.slice(0, 5);
+    
+    displayPokerHand(hand);
+    
+    const handType = evaluatePokerHand(hand);
+    const probability = calculatePokerProbability(handType);
+    
+    document.getElementById('hand-type').textContent = handType;
+    document.getElementById('hand-probability').textContent = probability.toFixed(4) + '%';
+    
+    pokerStats.total++;
+    pokerStats.hands[handType] = (pokerStats.hands[handType] || 0) + 1;
+    document.getElementById('total-hands').textContent = pokerStats.total;
+    
+    updatePokerChart();
+}
+
+function simulatePokerHands() {
+    for (let i = 0; i < 1000; i++) {
+        const deck = createDeck();
+        shuffleDeck(deck);
+        const hand = deck.slice(0, 5);
+        const handType = evaluatePokerHand(hand);
+        
+        pokerStats.hands[handType] = (pokerStats.hands[handType] || 0) + 1;
+    }
+    
+    pokerStats.total += 1000;
+    document.getElementById('total-hands').textContent = pokerStats.total;
+    updatePokerChart();
+}
+
+function displayPokerHand(hand) {
+    const container = document.getElementById('poker-hand');
+    container.innerHTML = '';
+    
+    hand.forEach(card => {
+        const cardElement = document.createElement('div');
+        cardElement.className = 'poker-card';
+        if (['♥', '♦'].includes(card.suit)) cardElement.classList.add('red');
+        
+        cardElement.innerHTML = `
+            <div>${card.value}</div>
+            <div class="suit">${card.suit}</div>
+        `;
+        
+        container.appendChild(cardElement);
+    });
+}
+
+function evaluatePokerHand(hand) {
+    const values = hand.map(card => card.value);
+    const suits = hand.map(card => card.suit);
+    const valueCounts = {};
+    
+    values.forEach(value => {
+        valueCounts[value] = (valueCounts[value] || 0) + 1;
+    });
+    
+    const counts = Object.values(valueCounts).sort((a, b) => b - a);
+    const isFlush = suits.every(suit => suit === suits[0]);
+    const isStraight = isSequential(values);
+    
+    if (isFlush && isStraight) return 'Straight Flush';
+    if (counts[0] === 4) return 'Four of a Kind';
+    if (counts[0] === 3 && counts[1] === 2) return 'Full House';
+    if (isFlush) return 'Flush';
+    if (isStraight) return 'Straight';
+    if (counts[0] === 3) return 'Three of a Kind';
+    if (counts[0] === 2 && counts[1] === 2) return 'Two Pair';
+    if (counts[0] === 2) return 'One Pair';
+    return 'High Card';
+}
+
+function isSequential(values) {
+    const valueOrder = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+    const sortedValues = values.sort((a, b) => valueOrder.indexOf(a) - valueOrder.indexOf(b));
+    
+    for (let i = 1; i < sortedValues.length; i++) {
+        if (valueOrder.indexOf(sortedValues[i]) - valueOrder.indexOf(sortedValues[i-1]) !== 1) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function calculatePokerProbability(handType) {
+    const probabilities = {
+        'High Card': 50.1,
+        'One Pair': 42.3,
+        'Two Pair': 4.75,
+        'Three of a Kind': 2.11,
+        'Straight': 0.39,
+        'Flush': 0.20,
+        'Full House': 0.14,
+        'Four of a Kind': 0.024,
+        'Straight Flush': 0.0014
+    };
+    return probabilities[handType] || 0;
+}
+
+function updatePokerStats() {
+    document.getElementById('hand-type').textContent = '-';
+    document.getElementById('hand-probability').textContent = '-';
+    document.getElementById('total-hands').textContent = pokerStats.total;
+}
+
+function updatePokerChart() {
+    const trace = {
+        x: Object.keys(pokerStats.hands),
+        y: Object.values(pokerStats.hands),
+        type: 'bar',
+        marker: { color: '#1976d2' }
+    };
+    
+    const layout = {
+        title: 'Poker Hand Distribution',
+        xaxis: { title: 'Hand Type' },
+        yaxis: { title: 'Frequency' },
+        plot_bgcolor: '#ffffff',
+        paper_bgcolor: '#ffffff',
+        font: { family: 'Inter, sans-serif' },
+        margin: { l: 50, r: 20, t: 40, b: 50 }
+    };
+    
+    Plotly.newPlot('poker-chart', [trace], layout, { responsive: true, displayModeBar: false });
+}
+
+// Monty Hall Problem
+let montyStats = { wins: 0, losses: 0 };
+let selectedDoor = null;
+let winningDoor = null;
+
+function initializeMontyHall() {
+    updateMontyStats();
+}
+
+function selectDoor(doorNumber) {
+    // Reset doors
+    document.querySelectorAll('.door').forEach(door => {
+        door.className = 'door';
+    });
+    
+    selectedDoor = doorNumber;
+    document.getElementById(`door${doorNumber}`).classList.add('selected');
+}
+
+function playMontyHall() {
+    if (selectedDoor === null) {
+        alert('Please select a door first!');
+        return;
+    }
+    
+    // Set winning door
+    winningDoor = Math.floor(Math.random() * 3) + 1;
+    
+    // Reveal a losing door
+    let revealedDoor;
+    do {
+        revealedDoor = Math.floor(Math.random() * 3) + 1;
+    } while (revealedDoor === selectedDoor || revealedDoor === winningDoor);
+    
+    document.getElementById(`door${revealedDoor}`).classList.add('revealed');
+    
+    // Check if player should switch
+    const shouldSwitch = document.getElementById('switch-strategy').checked;
+    const finalChoice = shouldSwitch ? 
+        (selectedDoor === 1 ? (revealedDoor === 2 ? 3 : 2) : 
+         selectedDoor === 2 ? (revealedDoor === 1 ? 3 : 1) : 
+         (revealedDoor === 1 ? 2 : 1)) : selectedDoor;
+    
+    // Show result
+    if (finalChoice === winningDoor) {
+        montyStats.wins++;
+        document.getElementById(`door${winningDoor}`).classList.add('winner');
+    } else {
+        montyStats.losses++;
+        document.getElementById(`door${finalChoice}`).classList.add('revealed');
+        document.getElementById(`door${winningDoor}`).classList.add('winner');
+    }
+    
+    updateMontyStats();
+    
+    // Reset after delay
+    setTimeout(() => {
+        document.querySelectorAll('.door').forEach(door => {
+            door.className = 'door';
+        });
+        selectedDoor = null;
+        winningDoor = null;
+    }, 2000);
+}
+
+function simulateMontyHall() {
+    const shouldSwitch = document.getElementById('switch-strategy').checked;
+    
+    for (let i = 0; i < 1000; i++) {
+        const winningDoor = Math.floor(Math.random() * 3) + 1;
+        const initialChoice = Math.floor(Math.random() * 3) + 1;
+        
+        if (shouldSwitch) {
+            // Switch strategy: always switch
+            if (initialChoice !== winningDoor) {
+                montyStats.wins++;
+            } else {
+                montyStats.losses++;
+            }
+        } else {
+            // Stay strategy: never switch
+            if (initialChoice === winningDoor) {
+                montyStats.wins++;
+            } else {
+                montyStats.losses++;
+            }
+        }
+    }
+    
+    updateMontyStats();
+}
+
+function updateMontyStats() {
+    document.getElementById('monty-wins').textContent = montyStats.wins;
+    document.getElementById('monty-losses').textContent = montyStats.losses;
+    const rate = montyStats.wins + montyStats.losses > 0 ? 
+        ((montyStats.wins / (montyStats.wins + montyStats.losses)) * 100).toFixed(1) : '0';
+    document.getElementById('monty-rate').textContent = rate + '%';
+}
+
+// Kelly Criterion
+function initializeKellyCriterion() {
+    // Initialize empty
+}
+
+function calculateKelly() {
+    const p = parseFloat(document.getElementById('win-probability').value);
+    const b = parseFloat(document.getElementById('win-amount').value);
+    const a = parseFloat(document.getElementById('loss-amount').value);
+    
+    if (p <= 0 || p >= 1 || b <= 0 || a <= 0) {
+        alert('Please enter valid probabilities and amounts');
+        return;
+    }
+    
+    const kellyFraction = (p * b - (1 - p) * a) / (b * a);
+    const expectedValue = p * b - (1 - p) * a;
+    const growthRate = p * Math.log(1 + kellyFraction * b) + (1 - p) * Math.log(1 - kellyFraction * a);
+    
+    document.getElementById('kelly-fraction').textContent = kellyFraction.toFixed(4);
+    document.getElementById('expected-value').textContent = expectedValue.toFixed(4);
+    document.getElementById('growth-rate').textContent = (growthRate * 100).toFixed(2) + '%';
+    
+    updateKellyChart(p, b, a);
+}
+
+function updateKellyChart(p, b, a) {
+    const fractions = Array.from({length: 100}, (_, i) => i / 100);
+    const growthRates = fractions.map(f => {
+        if (f * b >= 1 || f * a >= 1) return -Infinity;
+        return p * Math.log(1 + f * b) + (1 - p) * Math.log(1 - f * a);
+    });
+    
+    const trace = {
+        x: fractions,
+        y: growthRates,
+        type: 'scatter',
+        mode: 'lines',
+        name: 'Growth Rate',
+        line: { color: '#1976d2', width: 2 }
+    };
+    
+    const layout = {
+        title: 'Kelly Criterion Growth Rate',
+        xaxis: { title: 'Fraction of Bankroll' },
+        yaxis: { title: 'Growth Rate' },
+        plot_bgcolor: '#ffffff',
+        paper_bgcolor: '#ffffff',
+        font: { family: 'Inter, sans-serif' },
+        margin: { l: 50, r: 20, t: 40, b: 50 }
+    };
+    
+    Plotly.newPlot('kelly-chart', [trace], layout, { responsive: true, displayModeBar: false });
+}
+
+// Risk of Ruin
+function initializeRiskOfRuin() {
+    // Initialize empty
+}
+
+function simulateRiskOfRuin() {
+    const initialBankroll = parseFloat(document.getElementById('initial-bankroll').value);
+    const betSize = parseFloat(document.getElementById('bet-size').value);
+    const winRate = parseFloat(document.getElementById('win-rate').value);
+    
+    if (initialBankroll <= 0 || betSize <= 0 || winRate <= 0 || winRate >= 1) {
+        alert('Please enter valid parameters');
+        return;
+    }
+    
+    let ruinCount = 0;
+    let totalSessions = 0;
+    let maxDrawdown = 0;
+    
+    for (let session = 0; session < 1000; session++) {
+        let bankroll = initialBankroll;
+        let peak = bankroll;
+        let sessions = 0;
+        
+        while (bankroll > 0 && bankroll < initialBankroll * 2) {
+            sessions++;
+            if (Math.random() < winRate) {
+                bankroll += betSize;
+            } else {
+                bankroll -= betSize;
+            }
+            
+            if (bankroll > peak) peak = bankroll;
+            const drawdown = (peak - bankroll) / peak;
+            if (drawdown > maxDrawdown) maxDrawdown = drawdown;
+        }
+        
+        if (bankroll <= 0) {
+            ruinCount++;
+        }
+        totalSessions += sessions;
+    }
+    
+    const ruinProbability = (ruinCount / 1000) * 100;
+    const expectedSessions = totalSessions / 1000;
+    
+    document.getElementById('ruin-probability').textContent = ruinProbability.toFixed(2) + '%';
+    document.getElementById('expected-sessions').textContent = expectedSessions.toFixed(0);
+    document.getElementById('max-drawdown').textContent = (maxDrawdown * 100).toFixed(1) + '%';
+    
+    updateRuinChart(initialBankroll, betSize, winRate);
+}
+
+function updateRuinChart(initialBankroll, betSize, winRate) {
+    const sessions = Array.from({length: 100}, (_, i) => i + 1);
+    const bankrolls = sessions.map(session => {
+        let bankroll = initialBankroll;
+        for (let i = 0; i < session; i++) {
+            if (Math.random() < winRate) {
+                bankroll += betSize;
+            } else {
+                bankroll -= betSize;
+            }
+        }
+        return bankroll;
+    });
+    
+    const trace = {
+        x: sessions,
+        y: bankrolls,
+        type: 'scatter',
+        mode: 'lines',
+        name: 'Bankroll',
+        line: { color: '#1976d2', width: 2 }
+    };
+    
+    const layout = {
+        title: 'Risk of Ruin Simulation',
+        xaxis: { title: 'Session' },
+        yaxis: { title: 'Bankroll' },
+        plot_bgcolor: '#ffffff',
+        paper_bgcolor: '#ffffff',
+        font: { family: 'Inter, sans-serif' },
+        margin: { l: 50, r: 20, t: 40, b: 50 }
+    };
+    
+    Plotly.newPlot('ruin-chart', [trace], layout, { responsive: true, displayModeBar: false });
+}

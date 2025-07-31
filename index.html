@@ -27,6 +27,7 @@
                 <li><a href="#performance" class="nav-link">Performance</a></li>
                 <li><a href="#research" class="nav-link">Research</a></li>
                 <li><a href="#tools" class="nav-link">Tools</a></li>
+                <li><a href="#games" class="nav-link">Games</a></li>
                 <li><a href="#careers" class="nav-link">Careers</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -55,7 +56,7 @@
             </p>
             <div class="hero-cta">
                 <button class="cta-primary" onclick="scrollToSection('approach')">Discover Our Approach</button>
-                <button class="cta-secondary" onclick="scrollToSection('research')">View Research</button>
+                <button class="cta-secondary" onclick="scrollToSection('games')">Play Quant Games</button>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -355,6 +356,208 @@
         </div>
     </section>
 
+    <!-- Games Section -->
+    <section id="games" class="games">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quantitative Games</h2>
+                <p>Probability theory, risk management, and Monte Carlo simulations through interactive games</p>
+            </div>
+            
+            <!-- Casino Games -->
+            <div class="games-category">
+                <h3>Casino Games & Probability</h3>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <h4>Roulette Simulator</h4>
+                        <div class="game-interface">
+                            <div class="roulette-wheel" id="roulette-wheel">
+                                <div class="wheel-number">0</div>
+                            </div>
+                            <div class="game-controls">
+                                <button onclick="spinRoulette()" class="game-btn">Spin</button>
+                                <button onclick="autoPlayRoulette()" class="game-btn">Auto Play (100 spins)</button>
+                            </div>
+                            <div class="game-stats">
+                                <div class="stat">Red: <span id="red-count">0</span></div>
+                                <div class="stat">Black: <span id="black-count">0</span></div>
+                                <div class="stat">Green: <span id="green-count">0</span></div>
+                                <div class="stat">Total Spins: <span id="total-spins">0</span></div>
+                            </div>
+                        </div>
+                        <div id="roulette-chart" class="chart-container"></div>
+                    </div>
+
+                    <div class="game-card">
+                        <h4>Blackjack Strategy</h4>
+                        <div class="game-interface">
+                            <div class="blackjack-table">
+                                <div class="dealer-hand">
+                                    <h5>Dealer's Hand</h5>
+                                    <div id="dealer-cards" class="cards"></div>
+                                    <div id="dealer-total" class="total"></div>
+                                </div>
+                                <div class="player-hand">
+                                    <h5>Your Hand</h5>
+                                    <div id="player-cards" class="cards"></div>
+                                    <div id="player-total" class="total"></div>
+                                </div>
+                            </div>
+                            <div class="game-controls">
+                                <button onclick="dealBlackjack()" class="game-btn">Deal</button>
+                                <button onclick="hitBlackjack()" class="game-btn">Hit</button>
+                                <button onclick="standBlackjack()" class="game-btn">Stand</button>
+                                <button onclick="doubleBlackjack()" class="game-btn">Double</button>
+                            </div>
+                            <div class="game-stats">
+                                <div class="stat">Wins: <span id="blackjack-wins">0</span></div>
+                                <div class="stat">Losses: <span id="blackjack-losses">0</span></div>
+                                <div class="stat">Win Rate: <span id="blackjack-rate">0%</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dice Games -->
+            <div class="games-category">
+                <h3>Dice & Random Walks</h3>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <h4>Dice Probability Simulator</h4>
+                        <div class="game-interface">
+                            <div class="dice-container">
+                                <div class="dice" id="dice1">⚀</div>
+                                <div class="dice" id="dice2">⚀</div>
+                            </div>
+                            <div class="game-controls">
+                                <button onclick="rollDice()" class="game-btn">Roll Dice</button>
+                                <button onclick="rollManyDice()" class="game-btn">Roll 1000 Times</button>
+                                <select id="dice-count">
+                                    <option value="1">1 Die</option>
+                                    <option value="2" selected>2 Dice</option>
+                                    <option value="3">3 Dice</option>
+                                </select>
+                            </div>
+                            <div class="game-stats">
+                                <div class="stat">Current Roll: <span id="current-roll">-</span></div>
+                                <div class="stat">Average: <span id="dice-average">-</span></div>
+                                <div class="stat">Total Rolls: <span id="total-rolls">0</span></div>
+                            </div>
+                        </div>
+                        <div id="dice-chart" class="chart-container"></div>
+                    </div>
+
+                    <div class="game-card">
+                        <h4>Random Walk Simulator</h4>
+                        <div class="game-interface">
+                            <div class="walk-controls">
+                                <input type="number" id="walk-steps" placeholder="Number of Steps" value="100" min="10" max="1000">
+                                <input type="number" id="walk-probability" placeholder="Right Probability (0-1)" value="0.5" step="0.1" min="0" max="1">
+                                <button onclick="simulateRandomWalk()" class="game-btn">Simulate Walk</button>
+                                <button onclick="simulateManyWalks()" class="game-btn">1000 Walks</button>
+                            </div>
+                            <div class="game-stats">
+                                <div class="stat">Final Position: <span id="final-position">-</span></div>
+                                <div class="stat">Max Distance: <span id="max-distance">-</span></div>
+                                <div class="stat">Return to Origin: <span id="return-origin">-</span></div>
+                            </div>
+                        </div>
+                        <div id="random-walk-chart" class="chart-container"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card Games -->
+            <div class="games-category">
+                <h3>Card Games & Combinatorics</h3>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <h4>Poker Hand Simulator</h4>
+                        <div class="game-interface">
+                            <div class="poker-hand" id="poker-hand"></div>
+                            <div class="game-controls">
+                                <button onclick="dealPokerHand()" class="game-btn">Deal Hand</button>
+                                <button onclick="simulatePokerHands()" class="game-btn">Simulate 1000 Hands</button>
+                            </div>
+                            <div class="game-stats">
+                                <div class="stat">Hand Type: <span id="hand-type">-</span></div>
+                                <div class="stat">Probability: <span id="hand-probability">-</span></div>
+                                <div class="stat">Total Hands: <span id="total-hands">0</span></div>
+                            </div>
+                        </div>
+                        <div id="poker-chart" class="chart-container"></div>
+                    </div>
+
+                    <div class="game-card">
+                        <h4>Monty Hall Problem</h4>
+                        <div class="game-interface">
+                            <div class="monty-hall">
+                                <div class="doors">
+                                    <div class="door" id="door1" onclick="selectDoor(1)">🚪</div>
+                                    <div class="door" id="door2" onclick="selectDoor(2)">🚪</div>
+                                    <div class="door" id="door3" onclick="selectDoor(3)">🚪</div>
+                                </div>
+                                <div class="game-controls">
+                                    <button onclick="playMontyHall()" class="game-btn">Play Game</button>
+                                    <button onclick="simulateMontyHall()" class="game-btn">Simulate 1000 Games</button>
+                                    <label><input type="checkbox" id="switch-strategy" checked> Switch Strategy</label>
+                                </div>
+                            </div>
+                            <div class="game-stats">
+                                <div class="stat">Wins: <span id="monty-wins">0</span></div>
+                                <div class="stat">Losses: <span id="monty-losses">0</span></div>
+                                <div class="stat">Win Rate: <span id="monty-rate">0%</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Risk Management Games -->
+            <div class="games-category">
+                <h3>Risk Management & Kelly Criterion</h3>
+                <div class="games-grid">
+                    <div class="game-card">
+                        <h4>Kelly Criterion Calculator</h4>
+                        <div class="game-interface">
+                            <div class="kelly-inputs">
+                                <input type="number" id="win-probability" placeholder="Win Probability (0-1)" value="0.6" step="0.1" min="0" max="1">
+                                <input type="number" id="win-amount" placeholder="Win Amount" value="1" step="0.1">
+                                <input type="number" id="loss-amount" placeholder="Loss Amount" value="1" step="0.1">
+                                <button onclick="calculateKelly()" class="game-btn">Calculate Kelly</button>
+                            </div>
+                            <div class="game-stats">
+                                <div class="stat">Kelly Fraction: <span id="kelly-fraction">-</span></div>
+                                <div class="stat">Expected Value: <span id="expected-value">-</span></div>
+                                <div class="stat">Growth Rate: <span id="growth-rate">-</span></div>
+                            </div>
+                        </div>
+                        <div id="kelly-chart" class="chart-container"></div>
+                    </div>
+
+                    <div class="game-card">
+                        <h4>Risk of Ruin Simulator</h4>
+                        <div class="game-interface">
+                            <div class="ruin-inputs">
+                                <input type="number" id="initial-bankroll" placeholder="Initial Bankroll" value="1000" step="100">
+                                <input type="number" id="bet-size" placeholder="Bet Size" value="100" step="10">
+                                <input type="number" id="win-rate" placeholder="Win Rate (0-1)" value="0.52" step="0.01" min="0" max="1">
+                                <button onclick="simulateRiskOfRuin()" class="game-btn">Simulate</button>
+                            </div>
+                            <div class="game-stats">
+                                <div class="stat">Risk of Ruin: <span id="ruin-probability">-</span></div>
+                                <div class="stat">Expected Sessions: <span id="expected-sessions">-</span></div>
+                                <div class="stat">Max Drawdown: <span id="max-drawdown">-</span></div>
+                            </div>
+                        </div>
+                        <div id="ruin-chart" class="chart-container"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Careers Section -->
     <section id="careers" class="careers">
         <div class="container">
@@ -452,6 +655,7 @@
                     <a href="#approach">Approach</a>
                     <a href="#research">Research</a>
                     <a href="#tools">Tools</a>
+                    <a href="#games">Games</a>
                     <a href="#careers">Careers</a>
                     <a href="#contact">Contact</a>
                 </div>

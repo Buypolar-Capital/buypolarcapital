@@ -641,6 +641,384 @@ section {
     align-items: center;
 }
 
+/* Games Section */
+.games {
+    background-color: var(--pure-white);
+}
+
+.games-category {
+    margin-bottom: var(--spacing-xl);
+}
+
+.games-category h3 {
+    color: var(--primary-black);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.6rem;
+    border-bottom: 2px solid var(--light-gray);
+    padding-bottom: var(--spacing-sm);
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.game-card {
+    background-color: var(--off-white);
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border: 1px solid var(--light-gray);
+    transition: var(--transition-fast);
+}
+
+.game-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    border-color: var(--accent-blue);
+}
+
+.game-card h4 {
+    color: var(--primary-black);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.2rem;
+}
+
+.game-interface {
+    margin-bottom: var(--spacing-md);
+}
+
+.game-controls {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin: var(--spacing-md) 0;
+    flex-wrap: wrap;
+}
+
+.game-btn {
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--primary-black);
+    color: var(--pure-white);
+    border: none;
+    border-radius: 4px;
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: var(--transition-fast);
+    font-size: 0.9rem;
+}
+
+.game-btn:hover {
+    background-color: var(--secondary-black);
+    transform: translateY(-1px);
+}
+
+.game-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.game-stats .stat {
+    background-color: var(--pure-white);
+    padding: var(--spacing-sm);
+    border-radius: 4px;
+    text-align: center;
+    font-size: 0.9rem;
+    color: var(--medium-gray);
+}
+
+.game-stats .stat span {
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-black);
+}
+
+/* Roulette Game */
+.roulette-wheel {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: conic-gradient(
+        #d32f2f 0deg 10deg,
+        #000000 10deg 20deg,
+        #d32f2f 20deg 30deg,
+        #000000 30deg 40deg,
+        #d32f2f 40deg 50deg,
+        #000000 50deg 60deg,
+        #d32f2f 60deg 70deg,
+        #000000 70deg 80deg,
+        #d32f2f 80deg 90deg,
+        #000000 90deg 100deg,
+        #d32f2f 100deg 110deg,
+        #000000 110deg 120deg,
+        #d32f2f 120deg 130deg,
+        #000000 130deg 140deg,
+        #d32f2f 140deg 150deg,
+        #000000 150deg 160deg,
+        #d32f2f 160deg 170deg,
+        #000000 170deg 180deg,
+        #d32f2f 180deg 190deg,
+        #000000 190deg 200deg,
+        #d32f2f 200deg 210deg,
+        #000000 210deg 220deg,
+        #d32f2f 220deg 230deg,
+        #000000 230deg 240deg,
+        #d32f2f 240deg 250deg,
+        #000000 250deg 260deg,
+        #d32f2f 260deg 270deg,
+        #000000 270deg 280deg,
+        #d32f2f 280deg 290deg,
+        #000000 290deg 300deg,
+        #d32f2f 300deg 310deg,
+        #000000 310deg 320deg,
+        #d32f2f 320deg 330deg,
+        #000000 330deg 340deg,
+        #d32f2f 340deg 350deg,
+        #000000 350deg 360deg
+    );
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto var(--spacing-md);
+    position: relative;
+    transition: transform 2s ease-out;
+}
+
+.roulette-wheel::after {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-top: 15px solid var(--primary-black);
+}
+
+.wheel-number {
+    background-color: var(--pure-white);
+    color: var(--primary-black);
+    font-weight: var(--font-weight-bold);
+    font-size: 1.2rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--primary-black);
+}
+
+/* Blackjack Game */
+.blackjack-table {
+    background-color: var(--pure-white);
+    padding: var(--spacing-md);
+    border-radius: 8px;
+    margin-bottom: var(--spacing-md);
+}
+
+.dealer-hand, .player-hand {
+    margin-bottom: var(--spacing-md);
+}
+
+.dealer-hand h5, .player-hand h5 {
+    color: var(--primary-black);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1rem;
+}
+
+.cards {
+    display: flex;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-sm);
+    min-height: 60px;
+    align-items: center;
+}
+
+.card {
+    width: 40px;
+    height: 60px;
+    background-color: var(--pure-white);
+    border: 2px solid var(--primary-black);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-bold);
+    font-size: 0.9rem;
+    color: var(--primary-black);
+}
+
+.card.red {
+    color: var(--accent-red);
+}
+
+.total {
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-black);
+    font-size: 1.1rem;
+}
+
+/* Dice Game */
+.dice-container {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.dice {
+    width: 60px;
+    height: 60px;
+    background-color: var(--pure-white);
+    border: 2px solid var(--primary-black);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    font-weight: var(--font-weight-bold);
+    color: var(--primary-black);
+    transition: transform 0.3s ease;
+}
+
+.dice.rolling {
+    animation: roll 0.5s ease-in-out;
+}
+
+@keyframes roll {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(90deg); }
+    50% { transform: rotate(180deg); }
+    75% { transform: rotate(270deg); }
+}
+
+/* Random Walk Controls */
+.walk-controls {
+    display: grid;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.walk-controls input {
+    padding: var(--spacing-sm);
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    font-family: var(--font-primary);
+}
+
+/* Poker Hand */
+.poker-hand {
+    display: flex;
+    gap: var(--spacing-xs);
+    justify-content: center;
+    margin-bottom: var(--spacing-md);
+    min-height: 80px;
+    align-items: center;
+}
+
+.poker-card {
+    width: 50px;
+    height: 70px;
+    background-color: var(--pure-white);
+    border: 2px solid var(--primary-black);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-bold);
+    font-size: 0.8rem;
+    color: var(--primary-black);
+}
+
+.poker-card.red {
+    color: var(--accent-red);
+}
+
+.poker-card .suit {
+    font-size: 1.2rem;
+    margin-top: 2px;
+}
+
+/* Monty Hall Problem */
+.monty-hall {
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.doors {
+    display: flex;
+    gap: var(--spacing-md);
+    justify-content: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.door {
+    width: 80px;
+    height: 120px;
+    background-color: var(--light-gray);
+    border: 3px solid var(--primary-black);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.door:hover {
+    background-color: var(--medium-gray);
+    transform: scale(1.05);
+}
+
+.door.selected {
+    background-color: var(--accent-blue);
+    color: var(--pure-white);
+}
+
+.door.revealed {
+    background-color: var(--accent-red);
+    color: var(--pure-white);
+}
+
+.door.winner {
+    background-color: var(--accent-blue);
+    color: var(--pure-white);
+}
+
+/* Kelly Criterion */
+.kelly-inputs {
+    display: grid;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.kelly-inputs input {
+    padding: var(--spacing-sm);
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    font-family: var(--font-primary);
+}
+
+/* Risk of Ruin */
+.ruin-inputs {
+    display: grid;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.ruin-inputs input {
+    padding: var(--spacing-sm);
+    border: 1px solid var(--light-gray);
+    border-radius: 4px;
+    font-family: var(--font-primary);
+}
+
 /* Careers Section */
 .careers {
     background-color: var(--pure-white);
@@ -895,6 +1273,10 @@ section {
         grid-template-columns: 1fr;
     }
     
+    .games-grid {
+        grid-template-columns: 1fr;
+    }
+    
     .footer-content {
         flex-direction: column;
         gap: var(--spacing-md);
@@ -903,6 +1285,15 @@ section {
     .footer-links {
         flex-wrap: wrap;
         justify-content: center;
+    }
+    
+    .game-controls {
+        flex-direction: column;
+    }
+    
+    .doors {
+        flex-direction: column;
+        align-items: center;
     }
 }
 
@@ -932,6 +1323,10 @@ section {
     }
     
     .tools-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .games-grid {
         grid-template-columns: 1fr;
     }
 }
