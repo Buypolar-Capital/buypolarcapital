@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -24,6 +25,8 @@
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#approach" class="nav-link">Approach</a></li>
                 <li><a href="#performance" class="nav-link">Performance</a></li>
+                <li><a href="#research" class="nav-link">Research</a></li>
+                <li><a href="#tools" class="nav-link">Tools</a></li>
                 <li><a href="#careers" class="nav-link">Careers</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
@@ -52,7 +55,7 @@
             </p>
             <div class="hero-cta">
                 <button class="cta-primary" onclick="scrollToSection('approach')">Discover Our Approach</button>
-                <button class="cta-secondary" onclick="scrollToSection('performance')">View Performance</button>
+                <button class="cta-secondary" onclick="scrollToSection('research')">View Research</button>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -170,33 +173,183 @@
                     </div>
                 </div>
             </div>
-            <div class="tools-section">
-                <h3>Quantitative Tools</h3>
-                <div class="tools-grid">
-                    <div class="tool-card">
-                        <h4>Black-Scholes Calculator</h4>
-                        <div class="tool-inputs">
-                            <input type="number" id="bs-stock" placeholder="Stock Price" value="100">
-                            <input type="number" id="bs-strike" placeholder="Strike Price" value="100">
-                            <input type="number" id="bs-time" placeholder="Time to Expiry" value="1">
-                            <input type="number" id="bs-rate" placeholder="Risk-Free Rate" value="0.05">
-                            <input type="number" id="bs-vol" placeholder="Volatility" value="0.2">
-                        </div>
-                        <button onclick="calculateBlackScholes()">Calculate</button>
-                        <div id="bs-result" class="tool-result"></div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="research" class="research">
+        <div class="container">
+            <div class="section-header">
+                <h2>Research & Analytics</h2>
+                <p>Cutting-edge quantitative research and market analysis</p>
+            </div>
+            
+            <!-- Crypto Analysis -->
+            <div class="research-category">
+                <h3>Cryptocurrency Analysis</h3>
+                <div class="research-grid">
+                    <div class="research-card">
+                        <h4>Bitcoin Price Analysis</h4>
+                        <div id="btc-chart" class="chart-container"></div>
+                        <p>Real-time BTC/USDT price movements and volatility analysis</p>
                     </div>
-                    <div class="tool-card">
-                        <h4>Monte Carlo Simulation</h4>
-                        <div class="tool-inputs">
-                            <input type="number" id="mc-price" placeholder="Initial Price" value="100">
-                            <input type="number" id="mc-steps" placeholder="Time Steps" value="252">
-                            <input type="number" id="mc-sims" placeholder="Simulations" value="1000">
-                            <input type="number" id="mc-drift" placeholder="Drift" value="0.08">
-                            <input type="number" id="mc-vol" placeholder="Volatility" value="0.2">
-                        </div>
-                        <button onclick="runMonteCarlo()">Simulate</button>
-                        <div id="mc-result" class="tool-result"></div>
+                    <div class="research-card">
+                        <h4>Crypto Portfolio Performance</h4>
+                        <div id="crypto-portfolio" class="chart-container"></div>
+                        <p>Multi-asset cryptocurrency portfolio optimization</p>
                     </div>
+                </div>
+            </div>
+
+            <!-- IPO Analysis -->
+            <div class="research-category">
+                <h3>IPO Event Studies</h3>
+                <div class="research-grid">
+                    <div class="research-card">
+                        <h4>IPO Performance Comparison</h4>
+                        <div id="ipo-chart" class="chart-container"></div>
+                        <p>Comparative analysis of recent high-profile IPOs</p>
+                    </div>
+                    <div class="research-card">
+                        <h4>Cumulative Abnormal Returns</h4>
+                        <div id="car-chart" class="chart-container"></div>
+                        <p>Event study analysis of IPO market reactions</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cross-Listing Arbitrage -->
+            <div class="research-category">
+                <h3>Cross-Listing Arbitrage</h3>
+                <div class="research-grid">
+                    <div class="research-card">
+                        <h4>Unilever vs UL Price Spread</h4>
+                        <div id="unilever-chart" class="chart-container"></div>
+                        <p>Intraday arbitrage opportunities in dual-listed stocks</p>
+                    </div>
+                    <div class="research-card">
+                        <h4>Arbitrage Signal Strength</h4>
+                        <div id="arbitrage-signals" class="chart-container"></div>
+                        <p>Real-time arbitrage signal generation and backtesting</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- HFT Analysis -->
+            <div class="research-category">
+                <h3>High-Frequency Trading</h3>
+                <div class="research-grid">
+                    <div class="research-card">
+                        <h4>Latency Distribution</h4>
+                        <div id="latency-chart" class="chart-container"></div>
+                        <p>Microsecond-level latency analysis for HFT strategies</p>
+                    </div>
+                    <div class="research-card">
+                        <h4>Order Book Dynamics</h4>
+                        <div id="orderbook-chart" class="chart-container"></div>
+                        <p>Real-time order book visualization and analysis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Section -->
+    <section id="tools" class="tools">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quantitative Tools</h2>
+                <p>Interactive financial modeling and analysis tools</p>
+            </div>
+            
+            <div class="tools-grid">
+                <!-- Black-Scholes Calculator -->
+                <div class="tool-card">
+                    <h4>Black-Scholes Calculator</h4>
+                    <div class="tool-inputs">
+                        <input type="number" id="bs-stock" placeholder="Stock Price" value="100">
+                        <input type="number" id="bs-strike" placeholder="Strike Price" value="100">
+                        <input type="number" id="bs-time" placeholder="Time to Expiry" value="1">
+                        <input type="number" id="bs-rate" placeholder="Risk-Free Rate" value="0.05">
+                        <input type="number" id="bs-vol" placeholder="Volatility" value="0.2">
+                    </div>
+                    <button onclick="calculateBlackScholes()">Calculate</button>
+                    <div id="bs-result" class="tool-result"></div>
+                </div>
+
+                <!-- Monte Carlo Simulation -->
+                <div class="tool-card">
+                    <h4>Monte Carlo Simulation</h4>
+                    <div class="tool-inputs">
+                        <input type="number" id="mc-price" placeholder="Initial Price" value="100">
+                        <input type="number" id="mc-steps" placeholder="Time Steps" value="252">
+                        <input type="number" id="mc-sims" placeholder="Simulations" value="1000">
+                        <input type="number" id="mc-drift" placeholder="Drift" value="0.08">
+                        <input type="number" id="mc-vol" placeholder="Volatility" value="0.2">
+                    </div>
+                    <button onclick="runMonteCarlo()">Simulate</button>
+                    <div id="mc-result" class="tool-result"></div>
+                </div>
+
+                <!-- Portfolio Optimization -->
+                <div class="tool-card">
+                    <h4>Portfolio Optimization</h4>
+                    <div class="tool-inputs">
+                        <select id="portfolio-assets">
+                            <option value="tech">Tech Stocks (AAPL, GOOGL, MSFT, TSLA)</option>
+                            <option value="crypto">Cryptocurrencies (BTC, ETH, SOL, BNB)</option>
+                            <option value="global">Global Indices (SPY, QQQ, IWM, EFA)</option>
+                        </select>
+                        <input type="number" id="risk-tolerance" placeholder="Risk Tolerance (1-10)" value="5" min="1" max="10">
+                        <input type="number" id="target-return" placeholder="Target Return (%)" value="10">
+                    </div>
+                    <button onclick="optimizePortfolio()">Optimize</button>
+                    <div id="portfolio-result" class="tool-result"></div>
+                </div>
+
+                <!-- Risk Metrics Calculator -->
+                <div class="tool-card">
+                    <h4>Risk Metrics Calculator</h4>
+                    <div class="tool-inputs">
+                        <textarea id="returns-data" placeholder="Enter returns data (comma-separated) or use sample data" rows="3">0.02, -0.01, 0.03, -0.02, 0.01, 0.015, -0.005, 0.025</textarea>
+                        <input type="number" id="confidence-level" placeholder="Confidence Level (0.95)" value="0.95" step="0.01" min="0.5" max="0.99">
+                    </div>
+                    <button onclick="calculateRiskMetrics()">Calculate</button>
+                    <div id="risk-result" class="tool-result"></div>
+                </div>
+
+                <!-- Options Strategy Builder -->
+                <div class="tool-card">
+                    <h4>Options Strategy Builder</h4>
+                    <div class="tool-inputs">
+                        <select id="strategy-type">
+                            <option value="bull-call">Bull Call Spread</option>
+                            <option value="bear-put">Bear Put Spread</option>
+                            <option value="iron-condor">Iron Condor</option>
+                            <option value="butterfly">Butterfly Spread</option>
+                        </select>
+                        <input type="number" id="underlying-price" placeholder="Underlying Price" value="100">
+                        <input type="number" id="days-to-expiry" placeholder="Days to Expiry" value="30">
+                    </div>
+                    <button onclick="buildOptionsStrategy()">Build Strategy</button>
+                    <div id="options-result" class="tool-result"></div>
+                </div>
+
+                <!-- Technical Analysis -->
+                <div class="tool-card">
+                    <h4>Technical Analysis</h4>
+                    <div class="tool-inputs">
+                        <select id="technical-indicator">
+                            <option value="rsi">RSI (Relative Strength Index)</option>
+                            <option value="macd">MACD</option>
+                            <option value="bollinger">Bollinger Bands</option>
+                            <option value="moving-average">Moving Averages</option>
+                        </select>
+                        <input type="text" id="symbol" placeholder="Symbol (e.g., AAPL)" value="AAPL">
+                        <input type="number" id="period" placeholder="Period" value="14">
+                    </div>
+                    <button onclick="calculateTechnicalIndicators()">Analyze</button>
+                    <div id="technical-result" class="tool-result"></div>
                 </div>
             </div>
         </div>
@@ -297,6 +450,8 @@
                     <a href="#home">Home</a>
                     <a href="#about">About</a>
                     <a href="#approach">Approach</a>
+                    <a href="#research">Research</a>
+                    <a href="#tools">Tools</a>
                     <a href="#careers">Careers</a>
                     <a href="#contact">Contact</a>
                 </div>
