@@ -186,7 +186,7 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 80px;
+    height: 70px;
     gap: var(--spacing-md);
 }
 
@@ -233,7 +233,7 @@ p {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-xl);
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
@@ -243,12 +243,12 @@ p {
     text-decoration: none;
     color: var(--primary-black);
     font-weight: var(--font-weight-medium);
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: 6px;
     transition: var(--transition-medium);
     position: relative;
-    font-size: 0.95rem;
-    letter-spacing: 0.5px;
+    font-size: 0.9rem;
+    letter-spacing: 0.3px;
 }
 
 .nav-link:hover {
