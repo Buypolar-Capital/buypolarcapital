@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BuyPolar Capital - Interactive Quantitative Finance Hub</title>
     
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="logo.svg">
+    <link rel="icon" type="image/png" href="logo.png">
+    
     <!-- CSS Libraries -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
@@ -12,8 +16,6 @@
     
     <!-- Chart Libraries -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
     
     <style>
         :root {
@@ -218,21 +220,6 @@
         .negative { color: #ff6b6b; }
         .neutral { color: #ffd93d; }
         
-        /* Floating Elements */
-        .floating-element {
-            position: absolute;
-            opacity: 0.1;
-            animation: float 6s ease-in-out infinite;
-        }
-        
-        .floating-element:nth-child(2) {
-            animation-delay: -2s;
-        }
-        
-        .floating-element:nth-child(3) {
-            animation-delay: -4s;
-        }
-        
         /* Responsive Design */
         @media (max-width: 768px) {
             .hero-title {
@@ -271,7 +258,7 @@
     <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <i class="fas fa-chart-line me-2"></i>
+                <img src="logo.svg" alt="BuyPolar Capital" height="30" class="me-2">
                 BuyPolar Capital
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -280,16 +267,13 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#market-overview">Market Overview</a>
+                        <a class="nav-link" href="#market-overview">Markets</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#strategies">Strategies</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#research">Research</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#education">Education</a>
+                        <a class="nav-link" href="#education">Learn</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://github.com/yourusername/buypolarcapital" target="_blank">
@@ -436,37 +420,6 @@
         </div>
     </section>
 
-    <!-- Research Section -->
-    <section id="research" class="py-5">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="display-4 fw-bold mb-3">Research & Analysis</h2>
-                <p class="lead text-muted">Advanced quantitative research and market insights</p>
-            </div>
-            
-            <div class="row">
-                <div class="col-lg-4">
-                    <div class="interactive-card">
-                        <h4><i class="fas fa-chart-line me-2"></i>Technical Analysis</h4>
-                        <div id="technical-analysis-chart" style="height: 250px;"></div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="interactive-card">
-                        <h4><i class="fas fa-brain me-2"></i>ML Predictions</h4>
-                        <div id="ml-predictions-chart" style="height: 250px;"></div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="interactive-card">
-                        <h4><i class="fas fa-chart-pie me-2"></i>Sector Analysis</h4>
-                        <div id="sector-analysis-chart" style="height: 250px;"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Education Section -->
     <section id="education" class="py-5">
         <div class="container">
@@ -534,10 +487,10 @@
                 <div class="col-lg-2 col-md-6 mb-4">
                     <h6 class="mb-3">Resources</h6>
                     <ul class="list-unstyled">
-                        <li><a href="#market-overview" class="text-muted text-decoration-none">Market Overview</a></li>
+                        <li><a href="#market-overview" class="text-muted text-decoration-none">Markets</a></li>
                         <li><a href="#strategies" class="text-muted text-decoration-none">Strategies</a></li>
-                        <li><a href="#research" class="text-muted text-decoration-none">Research</a></li>
-                        <li><a href="#education" class="text-muted text-decoration-none">Education</a></li>
+                        <li><a href="#education" class="text-muted text-decoration-none">Learn</a></li>
+                        <li><a href="https://github.com/yourusername/buypolarcapital" class="text-muted text-decoration-none">GitHub</a></li>
                     </ul>
                 </div>
                 <div class="col-lg-2 col-md-6 mb-4">
@@ -586,9 +539,6 @@
             initializeStrategyPerformanceChart();
             initializeRiskReturnChart();
             initializeBacktestingChart();
-            initializeTechnicalAnalysisChart();
-            initializeMLPredictionsChart();
-            initializeSectorAnalysisChart();
             initializeQuiz();
             updateMarketStats();
             
@@ -834,107 +784,6 @@
             };
 
             Plotly.newPlot('backtesting-chart', [trace1, trace2], layout);
-        }
-
-        // Technical Analysis Chart
-        function initializeTechnicalAnalysisChart() {
-            const dates = Array.from({length: 50}, (_, i) => new Date(Date.now() - (49-i) * 24 * 60 * 60 * 1000));
-            const prices = dates.map(() => Math.random() * 20 + 100);
-            const sma20 = prices.map((_, i) => prices.slice(Math.max(0, i-19), i+1).reduce((a, b) => a + b, 0) / Math.min(20, i+1));
-
-            const trace1 = {
-                x: dates,
-                y: prices,
-                type: 'scatter',
-                mode: 'lines',
-                name: 'Price',
-                line: {color: '#ffffff', width: 2}
-            };
-
-            const trace2 = {
-                x: dates,
-                y: sma20,
-                type: 'scatter',
-                mode: 'lines',
-                name: 'SMA 20',
-                line: {color: '#667eea', width: 2}
-            };
-
-            const layout = {
-                paper_bgcolor: 'rgba(0,0,0,0)',
-                plot_bgcolor: 'rgba(0,0,0,0)',
-                font: {color: '#ffffff'},
-                xaxis: {showgrid: false},
-                yaxis: {showgrid: false, zeroline: false},
-                margin: {l: 40, r: 40, t: 40, b: 40},
-                showlegend: false
-            };
-
-            Plotly.newPlot('technical-analysis-chart', [trace1, trace2], layout);
-        }
-
-        // ML Predictions Chart
-        function initializeMLPredictionsChart() {
-            const dates = Array.from({length: 30}, (_, i) => new Date(Date.now() + i * 24 * 60 * 60 * 1000));
-            const actual = dates.map(() => Math.random() * 10 + 100);
-            const predicted = actual.map(v => v + (Math.random() - 0.5) * 5);
-
-            const trace1 = {
-                x: dates,
-                y: actual,
-                type: 'scatter',
-                mode: 'lines+markers',
-                name: 'Actual',
-                line: {color: '#ffffff', width: 2}
-            };
-
-            const trace2 = {
-                x: dates,
-                y: predicted,
-                type: 'scatter',
-                mode: 'lines+markers',
-                name: 'Predicted',
-                line: {color: '#667eea', width: 2, dash: 'dash'}
-            };
-
-            const layout = {
-                paper_bgcolor: 'rgba(0,0,0,0)',
-                plot_bgcolor: 'rgba(0,0,0,0)',
-                font: {color: '#ffffff'},
-                xaxis: {showgrid: false},
-                yaxis: {showgrid: false, zeroline: false},
-                margin: {l: 40, r: 40, t: 40, b: 40},
-                showlegend: false
-            };
-
-            Plotly.newPlot('ml-predictions-chart', [trace1, trace2], layout);
-        }
-
-        // Sector Analysis Chart
-        function initializeSectorAnalysisChart() {
-            const sectors = ['Technology', 'Healthcare', 'Finance', 'Energy', 'Consumer'];
-            const performance = [15.2, 8.7, 12.3, -2.1, 6.8];
-
-            const trace = {
-                x: sectors,
-                y: performance,
-                type: 'bar',
-                marker: {
-                    color: performance.map(p => p >= 0 ? '#00d4aa' : '#ff6b6b')
-                }
-            };
-
-            const layout = {
-                paper_bgcolor: 'rgba(0,0,0,0)',
-                plot_bgcolor: 'rgba(0,0,0,0)',
-                font: {color: '#ffffff'},
-                xaxis: {showgrid: false},
-                yaxis: {showgrid: false, zeroline: false},
-                margin: {l: 40, r: 40, t: 40, b: 40},
-                showlegend: false
-            };
-
-            Plotly.newPlot('sector-analysis-chart', [trace], layout);
         }
 
         // Quiz System

@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-BuyPolar Capital - Folder Structure Reorganization Script
+BuyPolar Capital - Streamlined Folder Structure Reorganization
 
-This script reorganizes the repository structure to be more logical and scalable.
+This script creates a simplified, focused folder structure for the repository.
 """
 
 import os
@@ -11,115 +11,40 @@ import sys
 from pathlib import Path
 from datetime import datetime
 
-class FolderReorganizer:
+class StreamlinedReorganizer:
     def __init__(self, base_path: str = "."):
         self.base_path = Path(base_path)
         self.backup_path = self.base_path / f"backup_{datetime.now().strftime('%Y%m%d_%H%M%S')}"
         
-    def create_new_structure(self):
-        """Create the new optimized folder structure."""
-        print("🏗️ Creating new folder structure...")
+    def create_simplified_structure(self):
+        """Create a simplified, focused folder structure."""
+        print("🏗️ Creating simplified folder structure...")
         
-        # Core structure
-        core_dirs = [
-            "core/data/connectors",
-            "core/data/processors", 
-            "core/data/storage",
-            "core/data/validation",
-            "core/models/risk",
-            "core/models/pricing",
-            "core/models/forecasting",
-            "core/models/optimization",
-            "core/strategies/hft",
-            "core/strategies/systematic",
-            "core/strategies/discretionary",
-            "core/strategies/backtesting",
-            "core/utils/config",
-            "core/utils/logging",
-            "core/utils/helpers"
-        ]
-        
-        # Assets structure
-        asset_dirs = [
-            "assets/equities/analysis",
-            "assets/equities/screening",
-            "assets/equities/valuation",
-            "assets/equities/research",
-            "assets/fixed_income/yield_curves",
-            "assets/fixed_income/credit",
-            "assets/fixed_income/duration",
-            "assets/fixed_income/research",
-            "assets/commodities/energy",
-            "assets/commodities/metals",
-            "assets/commodities/agriculture",
-            "assets/commodities/research",
-            "assets/crypto/technical",
-            "assets/crypto/on_chain",
-            "assets/crypto/sentiment",
-            "assets/crypto/research",
-            "assets/options/pricing",
-            "assets/options/strategies",
-            "assets/options/greeks",
-            "assets/options/research",
-            "assets/fx/technical",
-            "assets/fx/fundamental",
-            "assets/fx/carry",
-            "assets/fx/research"
-        ]
-        
-        # Other directories
-        other_dirs = [
-            "dashboards/market_overview",
-            "dashboards/portfolio",
-            "dashboards/risk",
-            "dashboards/research",
-            "dashboards/analytics",
-            "research/papers",
-            "research/notebooks",
-            "research/reports",
-            "research/presentations",
-            "education/tutorials",
-            "education/courses",
-            "education/quizzes",
-            "education/examples",
-            "tools/cli",
-            "tools/api",
-            "tools/scripts",
-            "tools/automation",
-            "tests/unit",
-            "tests/integration",
-            "tests/performance",
-            "tests/fixtures",
-            "docs/api",
-            "docs/guides",
-            "docs/examples",
-            "docs/assets",
-            "config/environments",
-            "config/databases",
-            "config/apis",
-            "data/raw",
+        # Essential directories only
+        essential_dirs = [
+            "core/data",
+            "core/strategies", 
+            "core/utils",
+            "assets/equities",
+            "assets/fixed_income",
+            "assets/commodities",
+            "assets/crypto",
+            "dashboards",
             "data/processed",
-            "data/cached",
-            "data/external",
-            "logs",
-            "temp",
-            "deployment/docker",
-            "deployment/kubernetes",
-            "deployment/ci_cd"
+            "docs",
+            "tests"
         ]
         
-        all_dirs = core_dirs + asset_dirs + other_dirs
-        
-        for dir_path in all_dirs:
+        for dir_path in essential_dirs:
             full_path = self.base_path / dir_path
             full_path.mkdir(parents=True, exist_ok=True)
             print(f"✅ Created: {dir_path}")
             
         # Create __init__.py files for Python packages
         python_dirs = [
-            "core", "core/data", "core/models", "core/strategies", "core/utils",
-            "assets", "assets/equities", "assets/fixed_income", "assets/commodities",
-            "assets/crypto", "assets/options", "assets/fx"
+            "core", "core/data", "core/strategies", "core/utils",
+            "assets", "assets/equities", "assets/fixed_income", 
+            "assets/commodities", "assets/crypto"
         ]
         
         for dir_path in python_dirs:
@@ -132,43 +57,25 @@ class FolderReorganizer:
         """Create a backup of the existing structure."""
         print(f"💾 Creating backup at: {self.backup_path}")
         
-        # Copy existing structure to backup
         if self.base_path.exists():
             shutil.copytree(self.base_path, self.backup_path, 
                            ignore=shutil.ignore_patterns('backup_*', '.git', '__pycache__', '*.pyc'))
     
-    def migrate_existing_files(self):
-        """Migrate existing files to the new structure."""
-        print("🔄 Migrating existing files...")
+    def migrate_essential_files(self):
+        """Migrate only essential files to the new structure."""
+        print("🔄 Migrating essential files...")
         
-        # Migration mapping: old_path -> new_path
+        # Simple migration mapping
         migrations = {
-            # Core functionality
             "src/buypolarcapital/data_engine": "core/data",
-            "src/buypolarcapital/modeling": "core/models", 
             "src/buypolarcapital/strategies": "core/strategies",
             "src/buypolarcapital/utils": "core/utils",
-            
-            # Asset-specific content
             "src/buypolarcapital/assets/equities": "assets/equities",
             "src/buypolarcapital/assets/fi": "assets/fixed_income",
             "src/buypolarcapital/assets/commodities": "assets/commodities",
             "src/buypolarcapital/assets/crypto": "assets/crypto",
-            "src/buypolarcapital/assets/options": "assets/options",
-            "src/buypolarcapital/assets/fx": "assets/fx",
-            
-            # Dashboards
-            "dashboards": "dashboards/market_overview",
-            
-            # Research and education
-            "notebooks": "research/notebooks",
-            "notebooks/reporting/quiz": "education/quizzes",
-            
-            # Tools
-            "scripts": "tools/scripts",
-            
-            # Documentation
-            "docs": "docs/guides",
+            "dashboards": "dashboards",
+            "notebooks": "docs/notebooks"
         }
         
         for old_path, new_path in migrations.items():
@@ -179,10 +86,8 @@ class FolderReorganizer:
                 print(f"📦 Moving {old_path} -> {new_path}")
                 try:
                     if new_full.exists():
-                        # Merge directories
                         self.merge_directories(old_full, new_full)
                     else:
-                        # Move directory
                         shutil.move(str(old_full), str(new_full))
                 except Exception as e:
                     print(f"⚠️ Error moving {old_path}: {e}")
@@ -211,41 +116,87 @@ class FolderReorganizer:
         if not any(src.iterdir()):
             src.rmdir()
     
+    def create_simplified_setup(self):
+        """Create a simplified setup.py."""
+        setup_content = '''#!/usr/bin/env python3
+"""
+BuyPolar Capital - Quantitative Finance Research Hub
+"""
+
+from setuptools import setup, find_packages
+
+def read_readme():
+    with open("README.md", "r", encoding="utf-8") as fh:
+        return fh.read()
+
+def read_requirements():
+    with open("requirements.txt", "r", encoding="utf-8") as fh:
+        return [line.strip() for line in fh if line.strip() and not line.startswith("#")]
+
+setup(
+    name="buypolarcapital",
+    version="2.0.0",
+    author="BuyPolar Capital",
+    description="Interactive Quantitative Finance Research Hub",
+    long_description=read_readme(),
+    long_description_content_type="text/markdown",
+    url="https://github.com/yourusername/buypolarcapital",
+    packages=find_packages(include=['core*', 'assets*']),
+    classifiers=[
+        "Development Status :: 4 - Beta",
+        "Intended Audience :: Financial and Insurance Industry",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+    ],
+    python_requires=">=3.8",
+    install_requires=read_requirements(),
+    entry_points={
+        "console_scripts": [
+            "buypolar=core.cli:main",
+        ],
+    },
+    include_package_data=True,
+    zip_safe=False,
+)
+'''
+        
+        setup_path = self.base_path / "setup.py"
+        with open(setup_path, 'w') as f:
+            f.write(setup_content)
+        
+        print("📝 Created simplified setup.py")
+    
     def create_migration_guide(self):
-        """Create a migration guide for developers."""
-        guide_content = f"""# BuyPolar Capital - Migration Guide
+        """Create a simple migration guide."""
+        guide_content = f"""# BuyPolar Capital - Simplified Migration Guide
 
-## 🚀 New Folder Structure
+## 🚀 Simplified Folder Structure
 
-The repository has been reorganized for better scalability and maintainability.
+The repository has been reorganized for better focus and maintainability.
 
 ### Key Changes
 
-#### 1. Core Package Structure
-- **Old**: `src/buypolarcapital/`
-- **New**: `core/`
-  - `core/data/` - Data management
-  - `core/models/` - Quantitative models
-  - `core/strategies/` - Trading strategies
-  - `core/utils/` - Utility functions
-
-#### 2. Asset-Specific Analysis
-- **Old**: `src/buypolarcapital/assets/`
-- **New**: `assets/`
-  - `assets/equities/` - Equity analysis
-  - `assets/fixed_income/` - Fixed income analysis
-  - `assets/commodities/` - Commodity analysis
-  - `assets/crypto/` - Cryptocurrency analysis
-  - `assets/options/` - Options analysis
-  - `assets/fx/` - Foreign exchange analysis
-
-#### 3. Dashboards
-- **Old**: `dashboards/`
-- **New**: `dashboards/market_overview/`
-
-#### 4. Research & Education
-- **Old**: `notebooks/`
-- **New**: `research/notebooks/` and `education/`
+#### New Structure:
+```
+buypolarcapital/
+├── core/                    # Core functionality
+│   ├── data/               # Data management
+│   ├── strategies/         # Trading strategies
+│   └── utils/              # Utility functions
+├── assets/                 # Asset-specific analysis
+│   ├── equities/           # Equity analysis
+│   ├── fixed_income/       # Fixed income analysis
+│   ├── commodities/        # Commodity analysis
+│   └── crypto/             # Cryptocurrency analysis
+├── dashboards/             # Interactive dashboards
+├── data/                   # Data storage
+├── docs/                   # Documentation
+└── tests/                  # Test suite
+```
 
 ### Updating Import Statements
 
@@ -257,38 +208,13 @@ from buypolarcapital.strategies.hft import HFTStrategy
 
 #### After:
 ```python
-from core.data.connectors import DataConnector
+from core.data import DataConnector
 from core.strategies.hft import HFTStrategy
 ```
-
-### Updating Configuration Files
-
-1. Update `setup.py` package discovery
-2. Update import paths in all Python files
-3. Update documentation references
-4. Update CI/CD configurations
 
 ### Rollback
 
 If needed, the original structure is backed up at: `{self.backup_path}`
-
-## 📋 Migration Checklist
-
-- [ ] Update import statements in all Python files
-- [ ] Update configuration files
-- [ ] Update documentation
-- [ ] Update CI/CD pipelines
-- [ ] Test all functionality
-- [ ] Update README.md
-- [ ] Update contributing guidelines
-
-## 🆘 Need Help?
-
-If you encounter issues during migration:
-1. Check the backup at `{self.backup_path}`
-2. Review the migration logs
-3. Create an issue on GitHub
-4. Contact the development team
 
 Migration completed on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
 """
@@ -299,142 +225,69 @@ Migration completed on: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
         
         print(f"📋 Created migration guide: MIGRATION_GUIDE.md")
     
-    def update_setup_py(self):
-        """Update setup.py for the new package structure."""
-        setup_content = '''#!/usr/bin/env python3
-"""
-BuyPolar Capital - Quantitative Finance Research Hub
-A comprehensive repository for trading algorithms, market analysis, and educational resources.
-"""
-
-from setuptools import setup, find_packages
-import os
-
-# Read the README file
-def read_readme():
-    with open("README.md", "r", encoding="utf-8") as fh:
-        return fh.read()
-
-# Read requirements
-def read_requirements():
-    with open("requirements.txt", "r", encoding="utf-8") as fh:
-        return [line.strip() for line in fh if line.strip() and not line.startswith("#")]
-
-setup(
-    name="buypolarcapital",
-    version="1.0.0",
-    author="BuyPolar Capital",
-    author_email="your.email@example.com",
-    description="Quantitative Finance Research Hub with trading algorithms and market analysis",
-    long_description=read_readme(),
-    long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/buypolarcapital",
-    project_urls={
-        "Bug Tracker": "https://github.com/yourusername/buypolarcapital/issues",
-        "Documentation": "https://yourusername.github.io/buypolarcapital/",
-        "Source Code": "https://github.com/yourusername/buypolarcapital",
-    },
-    packages=find_packages(include=['core*', 'assets*']),
-    classifiers=[
-        "Development Status :: 4 - Beta",
-        "Intended Audience :: Financial and Insurance Industry",
-        "Intended Audience :: Education",
-        "License :: OSI Approved :: MIT License",
-        "Operating System :: OS Independent",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.8",
-        "Programming Language :: Python :: 3.9",
-        "Programming Language :: Python :: 3.10",
-        "Programming Language :: Python :: 3.11",
-        "Topic :: Office/Business :: Financial :: Investment",
-        "Topic :: Scientific/Engineering :: Information Analysis",
-        "Topic :: Software Development :: Libraries :: Python Modules",
-    ],
-    python_requires=">=3.8",
-    install_requires=read_requirements(),
-    extras_require={
-        "dev": [
-            "pytest>=7.4.0",
-            "pytest-cov>=4.1.0",
-            "black>=23.7.0",
-            "flake8>=6.0.0",
-            "mypy>=1.5.0",
-            "pre-commit>=3.3.0",
-        ],
-        "docs": [
-            "sphinx>=7.1.0",
-            "mkdocs>=1.5.0",
-            "mkdocs-material>=9.2.0",
-        ],
-        "jupyter": [
-            "jupyter>=1.0.0",
-            "jupyterlab>=4.0.0",
-            "ipywidgets>=8.0.0",
-        ],
-        "gpu": [
-            "cupy-cuda11x>=12.0.0",
-        ],
-    },
-    entry_points={
-        "console_scripts": [
-            "buypolar=core.cli:main",
-            "bpc-dashboard=core.dashboards.cli:main",
-            "bpc-quiz=core.quiz.cli:main",
-        ],
-    },
-    include_package_data=True,
-    package_data={
-        "buypolarcapital": [
-            "assets/**/*",
-            "data/**/*",
-            "templates/**/*",
-        ],
-    },
-    zip_safe=False,
-    keywords=[
-        "quantitative finance",
-        "trading algorithms",
-        "market analysis",
-        "risk management",
-        "machine learning",
-        "financial modeling",
-        "backtesting",
-        "portfolio optimization",
-    ],
-)
-'''
+    def cleanup_redundant_files(self):
+        """Remove redundant files and directories."""
+        print("🧹 Cleaning up redundant files...")
         
-        setup_path = self.base_path / "setup.py"
-        with open(setup_path, 'w') as f:
-            f.write(setup_content)
+        # Files to remove
+        files_to_remove = [
+            "FOLDER_STRUCTURE_OPTIMIZATION.md",
+            "OPTIMIZATION_SUMMARY.md", 
+            "INTERACTIVE_OPTIMIZATION_SUMMARY.md",
+            "repo.txt",
+            "repo – Kopi.txt"
+        ]
         
-        print("📝 Updated setup.py for new package structure")
+        for file_name in files_to_remove:
+            file_path = self.base_path / file_name
+            if file_path.exists():
+                file_path.unlink()
+                print(f"🗑️ Removed: {file_name}")
+        
+        # Directories to remove (if empty)
+        dirs_to_remove = [
+            "ideas",
+            "scripts/articles",
+            "scripts/deployment", 
+            "scripts/ingestion",
+            "scripts/backtesting",
+            "scripts/reporting"
+        ]
+        
+        for dir_name in dirs_to_remove:
+            dir_path = self.base_path / dir_name
+            if dir_path.exists() and not any(dir_path.iterdir()):
+                dir_path.rmdir()
+                print(f"🗑️ Removed empty directory: {dir_name}")
     
     def run_migration(self):
-        """Run the complete migration process."""
-        print("🚀 Starting BuyPolar Capital folder structure migration...")
+        """Run the complete streamlined migration process."""
+        print("🚀 Starting BuyPolar Capital streamlined migration...")
         print("=" * 60)
         
         # Step 1: Create backup
         self.backup_existing_structure()
         
-        # Step 2: Create new structure
-        self.create_new_structure()
+        # Step 2: Create simplified structure
+        self.create_simplified_structure()
         
-        # Step 3: Migrate files
-        self.migrate_existing_files()
+        # Step 3: Migrate essential files
+        self.migrate_essential_files()
         
-        # Step 4: Update configuration
-        self.update_setup_py()
+        # Step 4: Create simplified setup
+        self.create_simplified_setup()
         
         # Step 5: Create migration guide
         self.create_migration_guide()
         
+        # Step 6: Cleanup redundant files
+        self.cleanup_redundant_files()
+        
         print("=" * 60)
-        print("✅ Migration completed successfully!")
+        print("✅ Streamlined migration completed successfully!")
         print(f"📁 Backup available at: {self.backup_path}")
         print("📋 Please review MIGRATION_GUIDE.md for next steps")
-        print("🔄 Remember to update import statements in your code")
+        print("🎯 Repository is now focused and streamlined!")
 
 def main():
     """Main function to run the migration."""
@@ -443,7 +296,7 @@ def main():
     else:
         base_path = "."
     
-    reorganizer = FolderReorganizer(base_path)
+    reorganizer = StreamlinedReorganizer(base_path)
     reorganizer.run_migration()
 
 if __name__ == "__main__":
