@@ -77,6 +77,9 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeWebsite() {
+    // Show loading spinner initially
+    showLoadingSpinner();
+    
     // Initialize navigation
     initializeNavigation();
     
@@ -98,15 +101,175 @@ function initializeWebsite() {
     // Initialize form handlers
     initializeFormHandlers();
     
-    // Add loading animations
-    addLoadingAnimations();
+    // Initialize cookie consent
+    initializeCookieConsent();
+    
+    // Initialize enhanced features
+    initializeEnhancedFeatures();
+    
+    // Hide loading spinner after everything is loaded
+    setTimeout(hideLoadingSpinner, 1000);
 }
 
-// Navigation functionality
+// Enhanced initialization functions
+function showLoadingSpinner() {
+    const spinner = document.getElementById('loading-spinner');
+    if (spinner) {
+        spinner.classList.remove('hidden');
+    }
+}
+
+function hideLoadingSpinner() {
+    const spinner = document.getElementById('loading-spinner');
+    if (spinner) {
+        spinner.classList.add('hidden');
+    }
+}
+
+function initializeCookieConsent() {
+    const cookieBanner = document.getElementById('cookie-banner');
+    const acceptBtn = document.getElementById('accept-cookies');
+    const rejectBtn = document.getElementById('reject-cookies');
+    
+    // Check if user has already made a choice
+    const cookieChoice = localStorage.getItem('cookieConsent');
+    
+    if (!cookieChoice && cookieBanner) {
+        // Show cookie banner after a delay
+        setTimeout(() => {
+            cookieBanner.classList.add('show');
+        }, 2000);
+    }
+    
+    if (acceptBtn) {
+        acceptBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'accepted');
+            cookieBanner.classList.remove('show');
+        });
+    }
+    
+    if (rejectBtn) {
+        rejectBtn.addEventListener('click', () => {
+            localStorage.setItem('cookieConsent', 'rejected');
+            cookieBanner.classList.remove('show');
+        });
+    }
+}
+
+function initializeEnhancedFeatures() {
+    // Update current year in footer
+    const currentYearElement = document.getElementById('current-year');
+    if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+    }
+    
+    // Add smooth scrolling to all internal links
+    const internalLinks = document.querySelectorAll('a[href^="#"]');
+    internalLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetElement = document.getElementById(targetId);
+            
+            if (targetElement) {
+                const headerHeight = document.querySelector('.header').offsetHeight;
+                const targetPosition = targetElement.offsetTop - headerHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+    
+    // Add input validation
+    initializeInputValidation();
+    
+    // Add tooltips
+    initializeTooltips();
+}
+
+function initializeInputValidation() {
+    const inputs = document.querySelectorAll('input[type="number"], input[type="email"]');
+    
+    inputs.forEach(input => {
+        input.addEventListener('blur', function() {
+            validateInput(this);
+        });
+        
+        input.addEventListener('input', function() {
+            clearInputError(this);
+        });
+    });
+}
+
+function validateInput(input) {
+    const value = input.value.trim();
+    const type = input.type;
+    
+    if (type === 'email' && value) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(value)) {
+            showInputError(input, 'Please enter a valid email address');
+        }
+    }
+    
+    if (type === 'number' && value) {
+        const numValue = parseFloat(value);
+        if (isNaN(numValue) || numValue < 0) {
+            showInputError(input, 'Please enter a valid positive number');
+        }
+    }
+}
+
+function showInputError(input, message) {
+    clearInputError(input);
+    input.classList.add('error');
+    
+    const errorDiv = document.createElement('div');
+    errorDiv.className = 'input-error';
+    errorDiv.textContent = message;
+    errorDiv.style.color = 'var(--accent-red)';
+    errorDiv.style.fontSize = '0.8rem';
+    errorDiv.style.marginTop = '0.25rem';
+    
+    input.parentNode.appendChild(errorDiv);
+}
+
+function clearInputError(input) {
+    input.classList.remove('error');
+    const errorDiv = input.parentNode.querySelector('.input-error');
+    if (errorDiv) {
+        errorDiv.remove();
+    }
+}
+
+function initializeTooltips() {
+    // Add tooltips to complex tools
+    const tooltips = {
+        'kelly-fraction': 'The Kelly Fraction determines the optimal percentage of your bankroll to bet based on your edge and odds.',
+        'risk-of-ruin': 'Risk of Ruin calculates the probability of losing your entire bankroll before reaching a target profit.',
+        'black-scholes': 'The Black-Scholes model is used to price European-style options based on current stock price, strike price, time to expiration, risk-free rate, and volatility.'
+    };
+    
+    Object.keys(tooltips).forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+            element.setAttribute('title', tooltips[id]);
+        }
+    });
+}
+
+// Add loading animations
+addLoadingAnimations();
+
+// Enhanced Navigation functionality
 function initializeNavigation() {
     const navbar = document.querySelector('.navbar');
     const hamburger = document.querySelector('.hamburger');
     const navMenu = document.querySelector('.nav-menu');
+    const navLinks = document.querySelectorAll('.nav-link');
     
     // Scroll effect
     window.addEventListener('scroll', () => {
@@ -119,20 +282,69 @@ function initializeNavigation() {
             navbar.style.boxShadow = 'none';
             isNavScrolled = false;
         }
+        
+        // Update active navigation link
+        updateActiveNavLink();
     });
     
     // Mobile menu toggle
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('active');
-        navMenu.classList.toggle('active');
-    });
+    if (hamburger) {
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            
+            // Update ARIA attributes for accessibility
+            const isExpanded = hamburger.classList.contains('active');
+            hamburger.setAttribute('aria-expanded', isExpanded);
+        });
+    }
     
     // Close mobile menu when clicking on links
-    document.querySelectorAll('.nav-link').forEach(link => {
+    navLinks.forEach(link => {
         link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
+            if (hamburger) {
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+            }
+            if (navMenu) {
+                navMenu.classList.remove('active');
+            }
         });
+    });
+    
+    // Keyboard navigation support
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            if (hamburger && hamburger.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
+                navMenu.classList.remove('active');
+            }
+        }
+    });
+}
+
+function updateActiveNavLink() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    let current = '';
+    const scrollPosition = window.scrollY + 100; // Offset for header
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+        }
     });
 }
 
@@ -759,8 +971,42 @@ function handleContactSubmit(e) {
     }, 1500);
 }
 
-// Loading animations
+// Enhanced Loading animations
 function addLoadingAnimations() {
+    // Add fade-in animations to sections
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('loading', 'loaded');
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    sections.forEach(section => {
+        observer.observe(section);
+    });
+    
+    // Add lazy loading for images and charts
+    const lazyElements = document.querySelectorAll('[data-src]');
+    const lazyObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const element = entry.target;
+                if (element.tagName === 'IMG') {
+                    element.src = element.dataset.src;
+                    element.removeAttribute('data-src');
+                }
+                lazyObserver.unobserve(element);
+            }
+        });
+    }, { threshold: 0.1 });
+    
+    lazyElements.forEach(element => {
+        lazyObserver.observe(element);
+    });
+    
+    // Enhanced card animations
     const elements = document.querySelectorAll('.approach-card, .stat-item, .tool-card, .position, .research-card');
     
     elements.forEach((el, index) => {
@@ -774,6 +1020,73 @@ function addLoadingAnimations() {
         }, index * 100);
     });
 }
+
+// Enhanced error handling
+function handleError(error, context) {
+    console.error(`Error in ${context}:`, error);
+    
+    // Show user-friendly error message
+    const errorMessage = document.createElement('div');
+    errorMessage.className = 'error-message';
+    errorMessage.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--accent-red);
+            color: white;
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow-medium);
+            z-index: 10000;
+            max-width: 300px;
+        ">
+            <strong>Error:</strong> ${context} failed to load. Please refresh the page.
+            <button onclick="this.parentElement.remove()" style="
+                background: none;
+                border: none;
+                color: white;
+                float: right;
+                cursor: pointer;
+                font-size: 1.2rem;
+            ">&times;</button>
+        </div>
+    `;
+    
+    document.body.appendChild(errorMessage);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        if (errorMessage.parentElement) {
+            errorMessage.remove();
+        }
+    }, 5000);
+}
+
+// Performance monitoring
+function trackPerformance() {
+    if ('performance' in window) {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const perfData = performance.getEntriesByType('navigation')[0];
+                const loadTime = perfData.loadEventEnd - perfData.loadEventStart;
+                
+                console.log(`Page load time: ${loadTime}ms`);
+                
+                // Send to analytics if available
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'timing_complete', {
+                        name: 'load',
+                        value: loadTime
+                    });
+                }
+            }, 0);
+        });
+    }
+}
+
+// Initialize performance tracking
+trackPerformance();
 
 // Utility functions
 function scrollToSection(sectionId) {
