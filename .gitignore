@@ -7,6 +7,9 @@ masterdata/
 # *.json
 # *.xlsx
 
+# Ignore test files
+test_plots.html
+
 # Ignore environment files with secrets
 .env
 

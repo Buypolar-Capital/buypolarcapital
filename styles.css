@@ -1,6 +1,33 @@
 /* Buypolar Capital - Professional Quant Fund Website */
 /* Enhanced with accessibility, SEO, and modern design principles */
 
+/* NoScript Warning */
+.noscript-warning {
+    background: #ffdddd;
+    color: #900;
+    padding: 1rem;
+    text-align: center;
+    border: 2px solid #900;
+    margin: 1rem;
+    border-radius: var(--radius-md);
+}
+
+.noscript-warning p {
+    margin: 0.5rem 0;
+    color: #900;
+}
+
+/* Error message styles */
+.error {
+    background: #ffebee;
+    color: #c62828;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid #ffcdd2;
+    text-align: center;
+    margin: 1rem 0;
+}
+
 /* CSS Reset and Base Styles */
 * {
     margin: 0;
@@ -141,6 +168,10 @@ p {
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--light-gray);
     transition: var(--transition-medium);
+}
+
+.header.scrolled {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
 
 .navbar {
@@ -2339,6 +2370,117 @@ html {
     }
 }
 
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-black: #ffffff;
+        --secondary-black: #e0e0e0;
+        --dark-gray: #d0d0d0;
+        --medium-gray: #b0b0b0;
+        --light-gray: #2d2d2d;
+        --off-white: #1a1a1a;
+        --pure-white: #000000;
+    }
+    
+    body {
+        background-color: #121212;
+        color: #e0e0e0;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+        color: #ffffff;
+    }
+    
+    p {
+        color: #b0b0b0;
+    }
+    
+    .header {
+        background: #1f1f1f;
+        border-bottom: 1px solid #333;
+    }
+    
+    .nav-link {
+        color: #e0e0e0;
+    }
+    
+    .nav-link:hover {
+        color: #ffffff;
+    }
+    
+    .approach-card,
+    .performance-card,
+    .research-card,
+    .tool-card,
+    .game-card {
+        background: #1f1f1f;
+        border: 1px solid #333;
+    }
+    
+    .approach-card:hover,
+    .performance-card:hover,
+    .research-card:hover,
+    .tool-card:hover,
+    .game-card:hover {
+        background: #2d2d2d;
+        border-color: #666;
+    }
+    
+    .footer {
+        background: #1f1f1f;
+        border-top: 1px solid #333;
+    }
+    
+    .tool-inputs input,
+    .application-form input,
+    .contact-form input,
+    .contact-form textarea {
+        background: #2d2d2d;
+        border: 1px solid #666;
+        color: #e0e0e0;
+    }
+    
+    .tool-inputs input:focus,
+    .application-form input:focus,
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+        border-color: #1976d2;
+        background: #333;
+    }
+}
+
+/* Back to Top Button */
+.back-to-top-btn {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--primary-black);
+    color: var(--pure-white);
+    border: none;
+    cursor: pointer;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-medium);
+    z-index: 1001;
+    box-shadow: var(--shadow-medium);
+}
+
+.back-to-top-btn:hover {
+    background: var(--accent-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-heavy);
+}
+
+.back-to-top-btn.visible {
+    display: flex;
+}
+
 /* Print styles */
 @media print {
     .header,
@@ -2347,7 +2489,8 @@ html {
     .loading-spinner,
     .hero-cta,
     .game-controls,
-    .tool-inputs {
+    .tool-inputs,
+    .back-to-top-btn {
         display: none !important;
     }
     

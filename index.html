@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.plot.ly https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self';">
+    
     <!-- Primary Meta Tags -->
     <title>Buypolar Capital - Quantitative Hedge Fund | Navigating Market Extremes</title>
     <meta name="title" content="Buypolar Capital - Quantitative Hedge Fund | Navigating Market Extremes">
@@ -11,6 +14,9 @@
     <meta name="keywords" content="quantitative hedge fund, algorithmic trading, data science, market analysis, investment strategies, risk management, portfolio optimization, financial technology">
     <meta name="author" content="Buypolar Capital">
     <meta name="robots" content="index, follow">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://buypolarcapital.com/">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -37,6 +43,9 @@
     <meta name="theme-color" content="#000000">
     <meta name="msapplication-TileColor" content="#000000">
     <meta name="application-name" content="Buypolar Capital">
+    
+    <!-- Web App Manifest -->
+    <link rel="manifest" href="/site.webmanifest">
     
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,8 +93,16 @@
     <!-- Skip to main content link for accessibility -->
     <a href="#home" class="skip-link">Skip to main content</a>
     
+    <!-- NoScript fallback -->
+    <noscript>
+        <div class="noscript-warning">
+            <p>Please enable JavaScript to view interactive charts and the gallery.</p>
+            <p>This website requires JavaScript for full functionality including real-time data visualization and interactive tools.</p>
+        </div>
+    </noscript>
+    
     <!-- Header with Navigation -->
-    <header class="header">
+    <header class="header" id="site-header">
         <nav class="navbar" role="navigation" aria-label="Main navigation">
             <div class="nav-container">
                 <div class="nav-logo" aria-label="Buypolar Capital Logo">
@@ -192,22 +209,22 @@
             </div>
             <div class="approach-grid">
                 <div class="approach-card">
-                    <div class="card-icon">📊</div>
+                    <div class="card-icon" role="img" aria-label="Bar chart representing data science">📊</div>
                     <h3>Data Science</h3>
                     <p>Processing terabytes of market data through advanced machine learning algorithms to identify patterns invisible to human traders.</p>
                 </div>
                 <div class="approach-card">
-                    <div class="card-icon">⚡</div>
+                    <div class="card-icon" role="img" aria-label="Lightning bolt representing speed and algorithmic trading">⚡</div>
                     <h3>Algorithmic Trading</h3>
                     <p>High-frequency and systematic trading strategies that execute with millisecond precision across global markets.</p>
                 </div>
                 <div class="approach-card">
-                    <div class="card-icon">🛡️</div>
+                    <div class="card-icon" role="img" aria-label="Shield representing risk management and protection">🛡️</div>
                     <h3>Risk Management</h3>
                     <p>Sophisticated risk models that continuously monitor and adjust positions to maintain optimal risk-adjusted returns.</p>
                 </div>
                 <div class="approach-card">
-                    <div class="card-icon">🧠</div>
+                    <div class="card-icon" role="img" aria-label="Brain representing quantitative research and intelligence">🧠</div>
                     <h3>Quantitative Research</h3>
                     <p>Rigorous academic approach to financial modeling, drawing from the latest research in mathematics and statistics.</p>
                 </div>
@@ -232,19 +249,19 @@
                     <div class="metrics-grid">
                         <div class="metric">
                             <span class="metric-label">Sharpe Ratio</span>
-                            <span class="metric-value">1.84</span>
+                            <span class="metric-value" aria-live="polite">1.84</span>
                         </div>
                         <div class="metric">
                             <span class="metric-label">Max Drawdown</span>
-                            <span class="metric-value">-8.2%</span>
+                            <span class="metric-value" aria-live="polite">-8.2%</span>
                         </div>
                         <div class="metric">
                             <span class="metric-label">Volatility</span>
-                            <span class="metric-value">12.4%</span>
+                            <span class="metric-value" aria-live="polite">12.4%</span>
                         </div>
                         <div class="metric">
                             <span class="metric-label">Beta</span>
-                            <span class="metric-value">0.32</span>
+                            <span class="metric-value" aria-live="polite">0.32</span>
                         </div>
                     </div>
                 </div>
@@ -890,6 +907,9 @@
     </div>
 
     <!-- Scripts -->
-    <script src="script.js"></script>
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top" class="back-to-top-btn">↑</button>
+    
+    <script src="script.js" defer></script>
 </body>
 </html>

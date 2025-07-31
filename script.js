@@ -7,13 +7,15 @@ let isNavScrolled = false;
 
 // Modern chart layout helper function
 function getModernChartLayout(title, xTitle, yTitle, showLegend = false) {
+    const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
     return {
         title: {
             text: title,
             font: { 
                 family: 'Inter, sans-serif',
                 size: 18,
-                color: '#000000',
+                color: isDark ? '#ffffff' : '#000000',
                 weight: 600
             },
             x: 0.5,
@@ -23,37 +25,37 @@ function getModernChartLayout(title, xTitle, yTitle, showLegend = false) {
         xaxis: { 
             title: { 
                 text: xTitle,
-                font: { family: 'Inter, sans-serif', size: 13, color: '#666666', weight: 500 }
+                font: { family: 'Inter, sans-serif', size: 13, color: isDark ? '#b0b0b0' : '#666666', weight: 500 }
             },
-            gridcolor: '#f8f8f8',
-            zerolinecolor: '#e0e0e0',
-            tickfont: { family: 'Inter, sans-serif', size: 11, color: '#666666' },
+            gridcolor: isDark ? '#2d2d2d' : '#f8f8f8',
+            zerolinecolor: isDark ? '#666666' : '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 11, color: isDark ? '#b0b0b0' : '#666666' },
             showline: true,
-            linecolor: '#e0e0e0',
+            linecolor: isDark ? '#666666' : '#e0e0e0',
             linewidth: 1
         },
         yaxis: { 
             title: { 
                 text: yTitle,
-                font: { family: 'Inter, sans-serif', size: 13, color: '#666666', weight: 500 }
+                font: { family: 'Inter, sans-serif', size: 13, color: isDark ? '#b0b0b0' : '#666666', weight: 500 }
             },
-            gridcolor: '#f8f8f8',
-            zerolinecolor: '#e0e0e0',
-            tickfont: { family: 'Inter, sans-serif', size: 11, color: '#666666' },
+            gridcolor: isDark ? '#2d2d2d' : '#f8f8f8',
+            zerolinecolor: isDark ? '#666666' : '#e0e0e0',
+            tickfont: { family: 'Inter, sans-serif', size: 11, color: isDark ? '#b0b0b0' : '#666666' },
             showline: true,
-            linecolor: '#e0e0e0',
+            linecolor: isDark ? '#666666' : '#e0e0e0',
             linewidth: 1
         },
-        plot_bgcolor: '#ffffff',
-        paper_bgcolor: '#ffffff',
+        plot_bgcolor: isDark ? '#121212' : '#ffffff',
+        paper_bgcolor: isDark ? '#121212' : '#ffffff',
         font: { family: 'Inter, sans-serif' },
         margin: { l: 70, r: 40, t: 80, b: 70 },
         showlegend: showLegend,
         hovermode: 'x unified',
         hoverlabel: {
-            bgcolor: '#000000',
-            font: { family: 'Inter, sans-serif', size: 12, color: '#ffffff' },
-            bordercolor: '#000000'
+            bgcolor: isDark ? '#1f1f1f' : '#000000',
+            font: { family: 'Inter, sans-serif', size: 12, color: isDark ? '#e0e0e0' : '#ffffff' },
+            bordercolor: isDark ? '#1f1f1f' : '#000000'
         }
     };
 }
@@ -97,6 +99,12 @@ function initializeWebsite() {
     
     // Initialize scroll animations
     initializeScrollAnimations();
+    
+    // Initialize header scroll effect
+    initializeHeaderScrollEffect();
+    
+    // Initialize smooth scrolling
+    initializeSmoothScrolling();
     
     // Initialize form handlers
     initializeFormHandlers();
@@ -227,8 +235,14 @@ function showInputError(input, message) {
     clearInputError(input);
     input.classList.add('error');
     
+    // Add ARIA attributes for accessibility
+    input.setAttribute('aria-invalid', 'true');
+    const errorId = `${input.id || 'input'}-error`;
+    input.setAttribute('aria-describedby', errorId);
+    
     const errorDiv = document.createElement('div');
     errorDiv.className = 'input-error';
+    errorDiv.id = errorId;
     errorDiv.textContent = message;
     errorDiv.style.color = 'var(--accent-red)';
     errorDiv.style.fontSize = '0.8rem';
@@ -350,8 +364,9 @@ function updateActiveNavLink() {
 
 // Performance chart initialization
 function initializePerformanceChart() {
-    const chartContainer = document.getElementById('performance-chart');
-    if (!chartContainer) return;
+    try {
+        const chartContainer = document.getElementById('performance-chart');
+        if (!chartContainer) return;
     
     // Generate sample performance data
     const dates = [];
@@ -457,6 +472,9 @@ function initializePerformanceChart() {
     };
     
     Plotly.newPlot('performance-chart', [trace1, trace2], layout, config);
+    } catch (error) {
+        handleError(error, 'initializing performance chart');
+    }
 }
 
 // Initialize research charts
@@ -911,6 +929,30 @@ function initializeScrollAnimations() {
     });
 }
 
+// Header scroll effect
+function initializeHeaderScrollEffect() {
+    window.addEventListener('scroll', () => {
+        const header = document.getElementById('site-header');
+        if (header) {
+            header.classList.toggle('scrolled', window.scrollY > 50);
+        }
+        
+        // Back to top button
+        const backToTopBtn = document.getElementById('back-to-top');
+        if (backToTopBtn) {
+            backToTopBtn.classList.toggle('visible', window.scrollY > 300);
+        }
+    });
+    
+    // Back to top button click handler
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+}
+
 // Form handlers
 function initializeFormHandlers() {
     // Application form
@@ -1025,6 +1067,14 @@ function addLoadingAnimations() {
 function handleError(error, context) {
     console.error(`Error in ${context}:`, error);
     
+    // Log to external service if available
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'exception', {
+            description: `${context}: ${error.message}`,
+            fatal: false
+        });
+    }
+    
     // Show user-friendly error message
     const errorMessage = document.createElement('div');
     errorMessage.className = 'error-message';
@@ -1097,6 +1147,23 @@ function scrollToSection(sectionId) {
             block: 'start'
         });
     }
+}
+
+// Smooth scrolling for navigation links
+function initializeSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href');
+            const targetSection = document.querySelector(targetId);
+            if (targetSection) {
+                targetSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
 }
 
 // Black-Scholes Calculator
@@ -2625,9 +2692,15 @@ function loadPlotsData() {
             renderPlotsGrid();
         })
         .catch(error => {
-            console.log('No plots data found, using sample data');
-            plotsData = createSamplePlotsData();
-            renderPlotsGrid();
+            console.error('Failed to load plots gallery:', error);
+            const galleryElement = document.querySelector('.plot-gallery');
+            if (galleryElement) {
+                galleryElement.innerHTML = '<p class="error">Unable to load research plots at this time. Please try again later.</p>';
+            } else {
+                // Fallback to sample data if gallery element not found
+                plotsData = createSamplePlotsData();
+                renderPlotsGrid();
+            }
         });
 }
 
@@ -2780,6 +2853,11 @@ function createPlotCard(plot) {
     
     card.innerHTML = `
         <div class="plot-thumbnail">
+            <img src="${plot.thumbnail || 'placeholder.png'}" 
+                 alt="${plot.title}" 
+                 loading="lazy"
+                 width="200"
+                 height="120">
             <div class="pdf-icon">📊</div>
         </div>
         <div class="plot-info">

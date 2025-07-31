@@ -32,6 +32,48 @@ buypolarcapital/
 └── scripts/                # Analysis and utility scripts
 ```
 
+## Setup Instructions
+
+### Quick Start
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/egil10/buypolarcapital.git
+   cd buypolarcapital
+   ```
+
+2. **Open in browser**:
+   - Simply open `index.html` in your web browser
+   - No build process required - it's a static website
+
+3. **For development**:
+   - Use a local server for best experience:
+   ```bash
+   # Python 3
+   python -m http.server 8000
+   
+   # Node.js
+   npx serve .
+   
+   # PHP
+   php -S localhost:8000
+   ```
+   - Then visit `http://localhost:8000`
+
+### Dependencies
+- **No build dependencies required** - pure HTML/CSS/JavaScript
+- **External CDNs used**:
+  - Plotly.js for charts
+  - Google Fonts (Inter, Poppins)
+- **Optional**: For development, consider installing:
+  ```bash
+  npm install -g serve  # For local development server
+  ```
+
+### Browser Support
+- **Modern browsers**: Chrome, Firefox, Safari, Edge (latest versions)
+- **Mobile**: iOS Safari, Chrome Mobile
+- **Features**: ES6+, CSS Grid, Flexbox, Intersection Observer API
+
 ## Key Statistics
 
 - **Files**: Streamlined from 1000+ to ~50 essential files

@@ -1,0 +1,21 @@
+{
+  "name": "Buypolar Capital",
+  "short_name": "Buypolar",
+  "description": "Leading quantitative hedge fund specializing in market extremes",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["finance", "business"],
+  "lang": "en",
+  "dir": "ltr"
+} 
