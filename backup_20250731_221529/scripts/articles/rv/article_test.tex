@@ -1,0 +1,61 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath, amssymb, graphicx, hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\title{Sample LaTeX Document}
+\author{Your Name}
+\date{April 2025}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This is a sample LaTeX document created in Visual Studio Code to demonstrate basic formatting, mathematics, and references.
+\end{abstract} 
+
+\section{Introduction}
+Welcome to LaTeX in VS Code! This document showcases a simple structure similar to what you might create in Overleaf. LaTeX is excellent for typesetting scientific documents with complex mathematics, such as the equation below:
+\begin{equation} 
+E = mc^2
+\end{equation}
+
+\section{Mathematics Example}
+Here’s an example of a mathematical derivation using the \texttt{amsmath} package:
+\begin{align}
+f(x) &= \sin(x) \cos(x) \\
+     &= \frac{1}{2} \sin(2x) \label{eq:trig}
+\end{align}
+Equation \eqref{eq:trig} uses a trigonometric identity. You can compile this document with the LaTeX Workshop extension and view the PDF output. Yo. 
+
+\section{Figures and References}
+You can include images using the \texttt{graphicx} package. For example:
+\begin{figure}[h]
+    \centering
+    % \includegraphics[width=0.5\textwidth]{example-image}
+    \caption{Placeholder for an image.}
+    \label{fig:example}
+\end{figure}
+
+For citations, use a \texttt{.bib} file and BibTeX. See \cite{knuth1997art} for an example.
+
+\section{Conclusion}
+This document demonstrates a basic LaTeX setup in VS Code. You can extend it with tables, algorithms, or custom packages as needed.
+
+Hello dude Hey man 
+
+Hey dude 
+
+\bibliographystyle{plain}
+\bibliography{references}
+
+
+\section{References}
+
+Hello there boss
+
+Name's the man!
+
+
+\end{document}

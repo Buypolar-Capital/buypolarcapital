@@ -1,0 +1,17 @@
+# Exclude all Makefiles anywhere
+Makefile linguist-vendored
+**/Makefile linguist-vendored
+
+# Exclude Rust build files in all subdirs
+**/Cargo.lock linguist-vendored
+**/Cargo.toml linguist-vendored
+
+# Optional: mark generated files
+*.ipynb linguist-generated
+*.mat linguist-generated
+*.pdf linguist-generated
+*.svg linguist-generated
+
+# Optional: fully vendor folders mostly containing Rust
+hft/** linguist-vendored
+stochastic/** linguist-vendored

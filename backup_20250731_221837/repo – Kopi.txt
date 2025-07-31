@@ -1,0 +1,2123 @@
+Folder PATH listing for volume Windows
+Volume serial number is CAE5-25BE
+C:.
+¦   .gitattributes
+¦   .gitignore
+¦   README.md
+¦   repo.txt
+¦   
++---.github
+¦   +---workflows
+¦           run_daily_quiz.yml
+¦           run_global_report.yml
+¦           run_osebx.yml
+¦           
++---dashboards
+¦   ¦   build_data.py
+¦   ¦   build_data_v2.py
+¦   ¦   compile_report.sh
+¦   ¦   generate_report.py
+¦   ¦   generate_report_reportlab.py
+¦   ¦   generate_signals.py
+¦   ¦   llm_summary.py
+¦   ¦   README.md
+¦   ¦   run.txt
+¦   ¦   testplot.py
+¦   ¦   testplots.py
+¦   ¦   
+¦   +---data
+¦   ¦   ¦   leaderboard.csv
+¦   ¦   ¦   summary.csv
+¦   ¦   ¦   
+¦   ¦   +---commodities
+¦   ¦   ¦       commodities.csv
+¦   ¦   ¦       commodities_history.csv
+¦   ¦   ¦       
+¦   ¦   +---crypto
+¦   ¦   ¦       crypto.csv
+¦   ¦   ¦       crypto_history.csv
+¦   ¦   ¦       
+¦   ¦   +---fixed_income
+¦   ¦   ¦       fixed_income.csv
+¦   ¦   ¦       fixed_income_history.csv
+¦   ¦   ¦       
+¦   ¦   +---indices
+¦   ¦   ¦       indices.csv
+¦   ¦   ¦       indices_history.csv
+¦   ¦   ¦       major_indices.csv
+¦   ¦   ¦       
+¦   ¦   +---price_history
+¦   ¦   ¦       commodities.csv
+¦   ¦   ¦       crypto.csv
+¦   ¦   ¦       fixed_income.csv
+¦   ¦   ¦       indices.csv
+¦   ¦   ¦       
+¦   ¦   +---signals
+¦   ¦   ¦       signals.csv
+¦   ¦   ¦       
+¦   ¦   +---summary
+¦   ¦           summary.csv
+¦   ¦           
+¦   +---plots
+¦   ¦       commodities_grid.pdf
+¦   ¦       commodities_returns.png
+¦   ¦       commodities_trend.png
+¦   ¦       crypto_grid.pdf
+¦   ¦       crypto_returns.png
+¦   ¦       crypto_trend.png
+¦   ¦       daily_returns.pdf
+¦   ¦       fixed_income_grid.pdf
+¦   ¦       fixed_income_returns.png
+¦   ¦       fixed_income_trend.png
+¦   ¦       grid_returns.pdf
+¦   ¦       grid_returns.png
+¦   ¦       indices_grid.pdf
+¦   ¦       indices_returns.pdf
+¦   ¦       indices_returns.png
+¦   ¦       indices_trend.png
+¦   ¦       plot_all.py
+¦   ¦       plot_grid.py
+¦   ¦       plot_indices.py
+¦   ¦       plot_trends.py
+¦   ¦       sparkline_crypto.pdf
+¦   ¦       sparkline_crypto.png
+¦   ¦       sparkline_indices.pdf
+¦   ¦       sparkline_indices.png
+¦   ¦       temp.pdf
+¦   ¦       temp_left.pdf
+¦   ¦       temp_right.pdf
+¦   ¦       
+¦   +---report_outputs
+¦   ¦       commodities_grid.pdf
+¦   ¦       commodities_returns.png
+¦   ¦       crypto_grid.pdf
+¦   ¦       crypto_returns.png
+¦   ¦       fixed_income_grid.pdf
+¦   ¦       fixed_income_returns.png
+¦   ¦       grid_returns.pdf
+¦   ¦       grid_returns.png
+¦   ¦       indices_grid.pdf
+¦   ¦       indices_returns.pdf
+¦   ¦       indices_returns.png
+¦   ¦       morning_report_2025-04-07.pdf
+¦   ¦       morning_report_2025-04-08.pdf
+¦   ¦       report_2025-04-07.md
+¦   ¦       sparkline_crypto.pdf
+¦   ¦       sparkline_crypto.png
+¦   ¦       sparkline_indices.pdf
+¦   ¦       sparkline_indices.png
+¦   ¦       test.tex
+¦   ¦       texput.log
+¦   ¦       
+¦   +---templates
+¦           report.md.j2
+¦           
++---data
+¦   +---data
+¦   ¦   ¦   fetch_data.py
+¦   ¦   ¦   fetch_data.R
+¦   ¦   ¦   
+¦   ¦   +---__pycache__
+¦   ¦           fetch_data.cpython-311.pyc
+¦   ¦           
+¦   +---masterdata
+¦   ¦       aapl_intraday_alphavantage.csv
+¦   ¦       BNB_USDT_2025_prices.csv
+¦   ¦       BNB_USDT_2025_profits.csv
+¦   ¦       BTC_USDT_2025_prices.csv
+¦   ¦       BTC_USDT_2025_profits.csv
+¦   ¦       crypto_relative_profits_2025.png
+¦   ¦       ETH_USDT_2025_prices.csv
+¦   ¦       ETH_USDT_2025_profits.csv
+¦   ¦       SOL_USDT_2025_prices.csv
+¦   ¦       SOL_USDT_2025_profits.csv
+¦   ¦       stock_data.xlsx
+¦   ¦       XRP_USDT_2025_prices.csv
+¦   ¦       XRP_USDT_2025_profits.csv
+¦   ¦       
+¦   +---samples
++---ideas
+¦       ideas.md
+¦       ideas.txt
+¦       
++---notebooks
+¦   +---eda
+¦   +---reporting
+¦   ¦   +---quiz
+¦   ¦       +---python
+¦   ¦           ¦   daily_finance_quiz.py
+¦   ¦           ¦   export_html.py
+¦   ¦           ¦   export_markdown.py
+¦   ¦           ¦   export_pdf.py
+¦   ¦           ¦   generate_quiz.py
+¦   ¦           ¦   init_questions_db.py
+¦   ¦           ¦   quiz_logic.py
+¦   ¦           ¦   send_email.py
+¦   ¦           ¦   
+¦   ¦           +---plots
+¦   ¦           ¦       daily_finance_quiz_2025-04-19.html
+¦   ¦           ¦       daily_finance_quiz_2025-04-19.md
+¦   ¦           ¦       daily_finance_quiz_2025-04-19.pdf
+¦   ¦           ¦       
+¦   ¦           +---quiz_data
+¦   ¦           ¦       questions.duckdb
+¦   ¦           ¦       
+¦   ¦           +---__pycache__
+¦   ¦                   export_html.cpython-311.pyc
+¦   ¦                   export_markdown.cpython-311.pyc
+¦   ¦                   export_pdf.cpython-311.pyc
+¦   ¦                   quiz_logic.cpython-311.pyc
+¦   ¦                   render_html.cpython-311.pyc
+¦   ¦                   send_email.cpython-311.pyc
+¦   ¦                   
+¦   +---strategies
++---scripts
+¦   +---articles
+¦   ¦   +---rv
+¦   ¦           article_test.aux
+¦   ¦           article_test.log
+¦   ¦           article_test.out
+¦   ¦           article_test.pdf
+¦   ¦           article_test.synctex.gz
+¦   ¦           article_test.tex
+¦   ¦           
+¦   +---backtesting
+¦   +---deployment
+¦   +---ingestion
+¦   +---reporting
++---src
+¦   +---buypolarcapital
+¦       ¦   __init__.py
+¦       ¦   
+¦       +---assets
+¦       ¦   +---commodities
+¦       ¦   ¦   ¦   hei.txt
+¦       ¦   ¦   ¦   
+¦       ¦   ¦   +---R
+¦       ¦   ¦       ¦   .Rhistory
+¦       ¦   ¦       ¦   introduction.R
+¦       ¦   ¦       ¦   
+¦       ¦   ¦       +---plots
+¦       ¦   ¦               log_prices.pdf
+¦       ¦   ¦               log_relative_change.pdf
+¦       ¦   ¦               log_volumes.pdf
+¦       ¦   ¦               prices.pdf
+¦       ¦   ¦               relative_change.pdf
+¦       ¦   ¦               volumes.pdf
+¦       ¦   ¦               
+¦       ¦   +---credit
+¦       ¦   ¦   ¦   hei – Kopi.txt
+¦       ¦   ¦   ¦   hei.txt
+¦       ¦   ¦   ¦   
+¦       ¦   ¦   +---matlab
+¦       ¦   ¦   ¦   ¦   clark_ocone_levy.m
+¦       ¦   ¦   ¦   ¦   nelson_siegel_fit.m
+¦       ¦   ¦   ¦   ¦   yield_curve_pca.m
+¦       ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   +---plots
+¦       ¦   ¦   ¦           clark_ocone_levy.pdf
+¦       ¦   ¦   ¦           nelson_siegel_yield_curve.pdf
+¦       ¦   ¦   ¦           yield_curve_pca.pdf
+¦       ¦   ¦   ¦           
+¦       ¦   ¦   +---R
+¦       ¦   ¦       ¦   .Rhistory
+¦       ¦   ¦       ¦   aapl.R
+¦       ¦   ¦       ¦   BuyPolarCapital_Forecasting_Report.pdf
+¦       ¦   ¦       ¦   em-cds-spreads.R
+¦       ¦   ¦       ¦   eple.R
+¦       ¦   ¦       ¦   sovereign-rates.R
+¦       ¦   ¦       ¦   
+¦       ¦   ¦       +---data
+¦       ¦   ¦       ¦       credit_extended.csv
+¦       ¦   ¦       ¦       credit_rates_raw.csv
+¦       ¦   ¦       ¦       
+¦       ¦   ¦       +---plots
+¦       ¦   ¦               aapl_price.pdf
+¦       ¦   ¦               aapl_return.pdf
+¦       ¦   ¦               aapl_return_day.pdf
+¦       ¦   ¦               BuyPolarCapital_Report.pdf
+¦       ¦   ¦               credit_multipage_report.pdf
+¦       ¦   ¦               credit_rates_buypolar.pdf
+¦       ¦   ¦               credit_rates_buypolar.png
+¦       ¦   ¦               tsla_price.pdf
+¦       ¦   ¦               tsla_return.pdf
+¦       ¦   ¦               tsla_return_day.pdf
+¦       ¦   ¦               volatile_stocks_lag1_return_facet.pdf
+¦       ¦   ¦               
+¦       ¦   +---crypto
+¦       ¦   ¦   +---python
+¦       ¦   ¦       ¦   analyze_tick_data.py
+¦       ¦   ¦       ¦   animate_ticks.py
+¦       ¦   ¦       ¦   animate_ticks_long.py
+¦       ¦   ¦       ¦   binance_data.py
+¦       ¦   ¦       ¦   buypolarcapital.pdf
+¦       ¦   ¦       ¦   buypolarcapital.png
+¦       ¦   ¦       ¦   candlestick_report.py
+¦       ¦   ¦       ¦   crypto_prices.py
+¦       ¦   ¦       ¦   download_batch.py
+¦       ¦   ¦       ¦   generate_buypolar_report.py
+¦       ¦   ¦       ¦   plot_ticks_candles.py
+¦       ¦   ¦       ¦   plot_ticks_microcandles.py
+¦       ¦   ¦       ¦   plot_ticks_raw.py
+¦       ¦   ¦       ¦   plot_ticks_zoomed.py
+¦       ¦   ¦       ¦   
+¦       ¦   ¦       +---data
+¦       ¦   ¦       ¦       BNB_USDT_2025_profits.csv
+¦       ¦   ¦       ¦       ETH_USDT_2025_profits.csv
+¦       ¦   ¦       ¦       SOL_USDT_2025_profits.csv
+¦       ¦   ¦       ¦       XRP_USDT_2025_profits.csv
+¦       ¦   ¦       ¦       
+¦       ¦   ¦       +---plots
+¦       ¦   ¦       ¦       bitcoin_relative_profits_2025.png
+¦       ¦   ¦       ¦       crypto_prices.py
+¦       ¦   ¦       ¦       crypto_prices_2025.png
+¦       ¦   ¦       ¦       crypto_relative_profits_2025.png
+¦       ¦   ¦       ¦       
+¦       ¦   ¦       +---report
+¦       ¦   ¦       ¦       BTCUSDT_2024-03-01_candlesticks.pdf
+¦       ¦   ¦       ¦       BTCUSDT_2024-03-01_microcandles.pdf
+¦       ¦   ¦       ¦       BTCUSDT_2024-03-01_report.pdf
+¦       ¦   ¦       ¦       BTCUSDT_2024-03-01_tickcandles.pdf
+¦       ¦   ¦       ¦       BTCUSDT_2024-03-01_ticks.pdf
+¦       ¦   ¦       ¦       BTCUSDT_2024-03-01_ticks_zoomed.pdf
+¦       ¦   ¦       ¦       BTCUSDT_2024-03-01_tick_animation.gif
+¦       ¦   ¦       ¦       BTCUSDT_2024-03-01_tick_animation_cumulative.gif
+¦       ¦   ¦       ¦       BTCUSDT_2024-03-01_tick_animation_cumulative_long.gif
+¦       ¦   ¦       ¦       
+¦       ¦   ¦       +---tick_data
+¦       ¦   ¦       ¦       ADAUSDT_2024-03-01_max10000.parquet
+¦       ¦   ¦       ¦       AVAXUSDT_2024-03-01_max10000.parquet
+¦       ¦   ¦       ¦       BNBUSDT_2024-03-01_max10000.parquet
+¦       ¦   ¦       ¦       BTCUSDT_2024-03-01_0-2h.parquet
+¦       ¦   ¦       ¦       BTCUSDT_2024-03-01_max10000.parquet
+¦       ¦   ¦       ¦       DOGEUSDT_2024-03-01_max10000.parquet
+¦       ¦   ¦       ¦       DOTUSDT_2024-03-01_max10000.parquet
+¦       ¦   ¦       ¦       ETHUSDT_2024-03-01_max10000.parquet
+¦       ¦   ¦       ¦       LINKUSDT_2024-03-01_max10000.parquet
+¦       ¦   ¦       ¦       SOLUSDT_2024-03-01_max10000.parquet
+¦       ¦   ¦       ¦       XRPUSDT_2024-03-01_max10000.parquet
+¦       ¦   ¦       ¦       
+¦       ¦   ¦       +---__pycache__
+¦       ¦   ¦               binance_data.cpython-311.pyc
+¦       ¦   ¦               
+¦       ¦   +---equities
+¦       ¦   ¦   +---python
+¦       ¦   ¦   ¦   ¦   api-variables.py
+¦       ¦   ¦   ¦   ¦   cursor.py
+¦       ¦   ¦   ¦   ¦   norwegian_stocks.py
+¦       ¦   ¦   ¦   ¦   stock_analysis.py
+¦       ¦   ¦   ¦   ¦   test10.py
+¦       ¦   ¦   ¦   ¦   testclass.py
+¦       ¦   ¦   ¦   ¦   testingclass.py
+¦       ¦   ¦   ¦   ¦   threed.py
+¦       ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   +---plots
+¦       ¦   ¦   ¦           aapl_2023_buyPolar_plot.pdf
+¦       ¦   ¦   ¦           aapl_2023_buyPolar_plot.png
+¦       ¦   ¦   ¦           aapl_2023_price.pdf
+¦       ¦   ¦   ¦           AAPL_analysis.pdf
+¦       ¦   ¦   ¦           AAPL_summary.pdf
+¦       ¦   ¦   ¦           AAPL_table.pdf
+¦       ¦   ¦   ¦           all_returns.pdf
+¦       ¦   ¦   ¦           buypolar_10_ticker_report.pdf
+¦       ¦   ¦   ¦           norwegian_stocks_returns_20250419.pdf
+¦       ¦   ¦   ¦           price_volatility_3D_trajectory_multiasset.pdf
+¦       ¦   ¦   ¦           us_stocks_returns_20250419.pdf
+¦       ¦   ¦   ¦           _returns.pdf
+¦       ¦   ¦   ¦           
+¦       ¦   ¦   +---R
+¦       ¦   ¦       ¦   .Rhistory
+¦       ¦   ¦       ¦   monitor.R
+¦       ¦   ¦       ¦   test10.R
+¦       ¦   ¦       ¦   testingclass.R
+¦       ¦   ¦       ¦   timeseries.R
+¦       ¦   ¦       ¦   timeseries2.R
+¦       ¦   ¦       ¦   tq – Kopi.R
+¦       ¦   ¦       ¦   tq.R
+¦       ¦   ¦       ¦   
+¦       ¦   ¦       +---plots
+¦       ¦   ¦               aapl.pdf
+¦       ¦   ¦               aapl_2023_price.pdf
+¦       ¦   ¦               aapl_2023_price.png
+¦       ¦   ¦               all_returns.pdf
+¦       ¦   ¦               buypolar_10_ticker_report.pdf
+¦       ¦   ¦               China_returns.pdf
+¦       ¦   ¦               Commodities_returns.pdf
+¦       ¦   ¦               EM_returns.pdf
+¦       ¦   ¦               fang-return.pdf
+¦       ¦   ¦               fang.pdf
+¦       ¦   ¦               Norway_returns.pdf
+¦       ¦   ¦               relative_change_report.pdf
+¦       ¦   ¦               relative_change_report_full.pdf
+¦       ¦   ¦               UK_returns.pdf
+¦       ¦   ¦               USA_returns.pdf
+¦       ¦   ¦               wti.pdf
+¦       ¦   ¦               
+¦       ¦   +---fi
+¦       ¦   ¦   +---matlab
+¦       ¦   ¦   ¦   ¦   kalman_price_filter.m
+¦       ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   +---plots
+¦       ¦   ¦   ¦           kalman_price_filter.pdf
+¦       ¦   ¦   ¦           
+¦       ¦   ¦   +---python
+¦       ¦   ¦       ¦   page1.py
+¦       ¦   ¦       ¦   yieldcurves.py
+¦       ¦   ¦       ¦   
+¦       ¦   ¦       +---pages
+¦       ¦   ¦       ¦       page2.py
+¦       ¦   ¦       ¦       page3.py
+¦       ¦   ¦       ¦       page4.py
+¦       ¦   ¦       ¦       page5.py
+¦       ¦   ¦       ¦       
+¦       ¦   ¦       +---plots
+¦       ¦   ¦       ¦       dynamic_yield_curves.pdf
+¦       ¦   ¦       ¦       hei.txt
+¦       ¦   ¦       ¦       state_yield_curves.pdf
+¦       ¦   ¦       ¦       yield_curves_and_spreads.pdf
+¦       ¦   ¦       ¦       yield_curves_last_30_days.pdf
+¦       ¦   ¦       ¦       
+¦       ¦   ¦       +---__pycache__
+¦       ¦   ¦               streamlit.cpython-311.pyc
+¦       ¦   ¦               
+¦       ¦   +---futures
+¦       ¦   ¦   +---R
+¦       ¦   ¦       ¦   .Rhistory
+¦       ¦   ¦       ¦   futuristic.R
+¦       ¦   ¦       ¦   
+¦       ¦   ¦       +---plots
+¦       ¦   ¦               futures_analysis.pdf
+¦       ¦   ¦               
+¦       ¦   +---fx
+¦       ¦   +---industry
+¦       ¦   ¦   +---healthcare
+¦       ¦   ¦   ¦   +---R
+¦       ¦   ¦   ¦       ¦   .Rhistory
+¦       ¦   ¦   ¦       ¦   healthcare.R
+¦       ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦       +---plots
+¦       ¦   ¦   ¦               healthcarestocks.pdf
+¦       ¦   ¦   ¦               
+¦       ¦   ¦   +---overall
+¦       ¦   ¦   ¦   +---R
+¦       ¦   ¦   ¦       ¦   .Rhistory
+¦       ¦   ¦   ¦       ¦   index_comparisons.R
+¦       ¦   ¦   ¦       ¦   snp_industry_indices.R
+¦       ¦   ¦   ¦       ¦   snp_sector_indices.R
+¦       ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦       +---plots
+¦       ¦   ¦   ¦               sector_data_raw.csv
+¦       ¦   ¦   ¦               sp500_industries.pdf
+¦       ¦   ¦   ¦               sp500_sectors.pdf
+¦       ¦   ¦   ¦               
+¦       ¦   ¦   +---shipping
+¦       ¦   ¦       +---R
+¦       ¦   ¦           ¦   .Rhistory
+¦       ¦   ¦           ¦   bulking-it-up.R
+¦       ¦   ¦           ¦   
+¦       ¦   ¦           +---plots
+¦       ¦   ¦                   bpc_shipping_mega_report.pdf
+¦       ¦   ¦                   shipping_sector_multipage_2x2.pdf
+¦       ¦   ¦                   
+¦       ¦   +---options
+¦       ¦       +---cpp
+¦       ¦       ¦   ¦   hellothere.cpp
+¦       ¦       ¦   ¦   
+¦       ¦       ¦   +---.vscode
+¦       ¦       ¦           tasks.json
+¦       ¦       ¦           
+¦       ¦       +---julia
+¦       ¦       ¦   ¦   bootstrap_var_estimate.jl
+¦       ¦       ¦   ¦   correlation_heatmap.jl
+¦       ¦       ¦   ¦   gbm_sim.jl
+¦       ¦       ¦   ¦   gbm_sim_advanced.jl
+¦       ¦       ¦   ¦   monte_carlo_option.jl
+¦       ¦       ¦   ¦   
+¦       ¦       ¦   +---plots
+¦       ¦       ¦           bootstrap_var_estimate.pdf
+¦       ¦       ¦           correlation_heatmap.pdf
+¦       ¦       ¦           gbm_sim.pdf
+¦       ¦       ¦           gbm_sim_advanced.pdf
+¦       ¦       ¦           monte_carlo_option.pdf
+¦       ¦       ¦           
+¦       ¦       +---matlab
+¦       ¦       ¦   ¦   bootstrap_asian_option.m
+¦       ¦       ¦   ¦   chaos_expansion_option.m
+¦       ¦       ¦   ¦   fft_option_pricing.m
+¦       ¦       ¦   ¦   heston_euler_discretization.m
+¦       ¦       ¦   ¦   least_squares_monte_carlo.m
+¦       ¦       ¦   ¦   monte_carlo_call_option.m
+¦       ¦       ¦   ¦   pde_option_pricing.m
+¦       ¦       ¦   ¦   
+¦       ¦       ¦   +---plots
+¦       ¦       ¦           american_option_lsm.pdf
+¦       ¦       ¦           bootstrap_asian_option.pdf
+¦       ¦       ¦           chaos_expansion_option.pdf
+¦       ¦       ¦           fft_option_pricing.pdf
+¦       ¦       ¦           heston_model_simulation.pdf
+¦       ¦       ¦           monte_carlo_call_option.pdf
+¦       ¦       ¦           pde_option_pricing.pdf
+¦       ¦       ¦           
+¦       ¦       +---python
+¦       ¦           ¦   bs-opt-l.py
+¦       ¦           ¦   bs-opt-m.py
+¦       ¦           ¦   bs-opt.py
+¦       ¦           ¦   exotic-heston.py
+¦       ¦           ¦   exotic-monte-carlo.py
+¦       ¦           ¦   fBM-fractional-brownian-motion.py
+¦       ¦           ¦   garch-opt.py
+¦       ¦           ¦   hepton-opt.py
+¦       ¦           ¦   opt.py
+¦       ¦           ¦   payoffs_heston.csv
+¦       ¦           ¦   
+¦       ¦           +---plots
+¦       ¦                   asian_option.pdf
+¦       ¦                   asian_option_antithetic.pdf
+¦       ¦                   asian_option_antithetic_stats.pdf
+¦       ¦                   asian_option_heston.pdf
+¦       ¦                   asian_option_heston_stats.pdf
+¦       ¦                   bs-opt-2025-04-04.pdf
+¦       ¦                   global_binomial_market_pnl.pdf
+¦       ¦                   global_blackscholes_market_pnl.pdf
+¦       ¦                   global_bs_market_pnl.pdf
+¦       ¦                   global_garch_market_pnl.pdf
+¦       ¦                   global_heston_market_pnl.pdf
+¦       ¦                   hei.txt
+¦       ¦                   lookback_rough_stats.pdf
+¦       ¦                   
+¦       +---data_engine
+¦       ¦   +---python
+¦       ¦       ¦   quantdata_cli.py
+¦       ¦       ¦   
+¦       ¦       +---loaders
+¦       ¦       ¦       equities_loader.py
+¦       ¦       ¦       macro_loader.py
+¦       ¦       ¦       
+¦       ¦       +---utils
+¦       ¦               config.py
+¦       ¦               
+¦       +---execution
+¦       +---modeling
+¦       ¦   +---algo
+¦       ¦   ¦   ¦   .gitignore
+¦       ¦   ¦   ¦   algorithm.txt
+¦       ¦   ¦   ¦   buypolarcapital.png
+¦       ¦   ¦   ¦   
+¦       ¦   ¦   +---ampl
+¦       ¦   ¦   ¦       vwap.dat
+¦       ¦   ¦   ¦       vwap.mod
+¦       ¦   ¦   ¦       vwap.run
+¦       ¦   ¦   ¦       
+¦       ¦   ¦   +---matlab
+¦       ¦   ¦   ¦   ¦   almgren_chriss.m
+¦       ¦   ¦   ¦   ¦   mean_reversion.m
+¦       ¦   ¦   ¦   ¦   tick_level_trade.m
+¦       ¦   ¦   ¦   ¦   vwap_execution.m
+¦       ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   +---plots
+¦       ¦   ¦   ¦           mean_reversion_classifier.pdf
+¦       ¦   ¦   ¦           stochastic_control_execution.pdf
+¦       ¦   ¦   ¦           tick_execution_simulator.pdf
+¦       ¦   ¦   ¦           vwap_execution_simulation.pdf
+¦       ¦   ¦   ¦           
+¦       ¦   ¦   +---python
+¦       ¦   ¦   ¦   ¦   broomcase.py
+¦       ¦   ¦   ¦   ¦   chordcaged.py
+¦       ¦   ¦   ¦   ¦   download_minute_data.py
+¦       ¦   ¦   ¦   ¦   evaluate_model.py
+¦       ¦   ¦   ¦   ¦   leaderboard.pdf
+¦       ¦   ¦   ¦   ¦   models.py
+¦       ¦   ¦   ¦   ¦   plot_results.py
+¦       ¦   ¦   ¦   ¦   run_vwap_sim.py
+¦       ¦   ¦   ¦   ¦   simulate_exec_dataset.py
+¦       ¦   ¦   ¦   ¦   train_nn.py
+¦       ¦   ¦   ¦   ¦   tstread.py
+¦       ¦   ¦   ¦   ¦   varywap.py
+¦       ¦   ¦   ¦   ¦   veewap.py
+¦       ¦   ¦   ¦   ¦   VWAP.py
+¦       ¦   ¦   ¦   ¦   vwap2.py
+¦       ¦   ¦   ¦   ¦   vwap3.py
+¦       ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   +---data
+¦       ¦   ¦   ¦   ¦   ¦   vwap_dataset.py
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---raw
+¦       ¦   ¦   ¦   ¦   ¦   +---minute
+¦       ¦   ¦   ¦   ¦   ¦           AAPL.parquet
+¦       ¦   ¦   ¦   ¦   ¦           AKERBP.OL.parquet
+¦       ¦   ¦   ¦   ¦   ¦           AMD.parquet
+¦       ¦   ¦   ¦   ¦   ¦           AMZN.parquet
+¦       ¦   ¦   ¦   ¦   ¦           ASML.parquet
+¦       ¦   ¦   ¦   ¦   ¦           AZN.parquet
+¦       ¦   ¦   ¦   ¦   ¦           BA.parquet
+¦       ¦   ¦   ¦   ¦   ¦           BABA.parquet
+¦       ¦   ¦   ¦   ¦   ¦           BAC.parquet
+¦       ¦   ¦   ¦   ¦   ¦           BP.parquet
+¦       ¦   ¦   ¦   ¦   ¦           CVS.parquet
+¦       ¦   ¦   ¦   ¦   ¦           CVX.parquet
+¦       ¦   ¦   ¦   ¦   ¦           DIS.parquet
+¦       ¦   ¦   ¦   ¦   ¦           DNB.OL.parquet
+¦       ¦   ¦   ¦   ¦   ¦           EQNR.OL.parquet
+¦       ¦   ¦   ¦   ¦   ¦           GOOG.parquet
+¦       ¦   ¦   ¦   ¦   ¦           GS.parquet
+¦       ¦   ¦   ¦   ¦   ¦           HD.parquet
+¦       ¦   ¦   ¦   ¦   ¦           INTC.parquet
+¦       ¦   ¦   ¦   ¦   ¦           JD.parquet
+¦       ¦   ¦   ¦   ¦   ¦           JPM.parquet
+¦       ¦   ¦   ¦   ¦   ¦           KO.parquet
+¦       ¦   ¦   ¦   ¦   ¦           MCD.parquet
+¦       ¦   ¦   ¦   ¦   ¦           META.parquet
+¦       ¦   ¦   ¦   ¦   ¦           MOWI.OL.parquet
+¦       ¦   ¦   ¦   ¦   ¦           MRK.parquet
+¦       ¦   ¦   ¦   ¦   ¦           MSFT.parquet
+¦       ¦   ¦   ¦   ¦   ¦           NFLX.parquet
+¦       ¦   ¦   ¦   ¦   ¦           NHY.OL.parquet
+¦       ¦   ¦   ¦   ¦   ¦           NIO.parquet
+¦       ¦   ¦   ¦   ¦   ¦           NKE.parquet
+¦       ¦   ¦   ¦   ¦   ¦           NVDA.parquet
+¦       ¦   ¦   ¦   ¦   ¦           ORK.OL.parquet
+¦       ¦   ¦   ¦   ¦   ¦           PDD.parquet
+¦       ¦   ¦   ¦   ¦   ¦           PEP.parquet
+¦       ¦   ¦   ¦   ¦   ¦           PFE.parquet
+¦       ¦   ¦   ¦   ¦   ¦           RDS.A.parquet
+¦       ¦   ¦   ¦   ¦   ¦           RIO.parquet
+¦       ¦   ¦   ¦   ¦   ¦           SALM.OL.parquet
+¦       ¦   ¦   ¦   ¦   ¦           SAP.parquet
+¦       ¦   ¦   ¦   ¦   ¦           SIEGY.parquet
+¦       ¦   ¦   ¦   ¦   ¦           T.parquet
+¦       ¦   ¦   ¦   ¦   ¦           TCEHY.parquet
+¦       ¦   ¦   ¦   ¦   ¦           TEL.OL.parquet
+¦       ¦   ¦   ¦   ¦   ¦           TGS.OL.parquet
+¦       ¦   ¦   ¦   ¦   ¦           TSLA.parquet
+¦       ¦   ¦   ¦   ¦   ¦           UL.parquet
+¦       ¦   ¦   ¦   ¦   ¦           UNH.parquet
+¦       ¦   ¦   ¦   ¦   ¦           VZ.parquet
+¦       ¦   ¦   ¦   ¦   ¦           WFC.parquet
+¦       ¦   ¦   ¦   ¦   ¦           WMT.parquet
+¦       ¦   ¦   ¦   ¦   ¦           XOM.parquet
+¦       ¦   ¦   ¦   ¦   ¦           YAR.OL.parquet
+¦       ¦   ¦   ¦   ¦   ¦           
+¦       ¦   ¦   ¦   ¦   +---simulated
+¦       ¦   ¦   ¦   ¦   ¦       exec_dataset.parquet
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---__pycache__
+¦       ¦   ¦   ¦   ¦           vwap_dataset.cpython-311.pyc
+¦       ¦   ¦   ¦   ¦           
+¦       ¦   ¦   ¦   +---model
+¦       ¦   ¦   ¦   ¦   ¦   simple_mlp.pt
+¦       ¦   ¦   ¦   ¦   ¦   vwap_trainer.py
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---__pycache__
+¦       ¦   ¦   ¦   ¦           vwap_trainer.cpython-311.pyc
+¦       ¦   ¦   ¦   ¦           
+¦       ¦   ¦   ¦   +---plots
+¦       ¦   ¦   ¦   ¦   ¦   AAPL_vwap_strats.pdf
+¦       ¦   ¦   ¦   ¦   ¦   AMZN_vwap_strats.pdf
+¦       ¦   ¦   ¦   ¦   ¦   cumulative_slippage.pdf
+¦       ¦   ¦   ¦   ¦   ¦   cumulative_slippage.png
+¦       ¦   ¦   ¦   ¦   ¦   daily_exec_overlay.pdf
+¦       ¦   ¦   ¦   ¦   ¦   GOOGL_vwap_strats.pdf
+¦       ¦   ¦   ¦   ¦   ¦   loss_curve.pdf
+¦       ¦   ¦   ¦   ¦   ¦   model_performance.pdf
+¦       ¦   ¦   ¦   ¦   ¦   MSFT_vwap_strats.pdf
+¦       ¦   ¦   ¦   ¦   ¦   portfolio_comparison.pdf
+¦       ¦   ¦   ¦   ¦   ¦   portfolio_comparison_relative.pdf
+¦       ¦   ¦   ¦   ¦   ¦   portfolio_comparison_relative_smoothed.pdf
+¦       ¦   ¦   ¦   ¦   ¦   slippage_vs_vwap.pdf
+¦       ¦   ¦   ¦   ¦   ¦   slippage_vs_vwap.png
+¦       ¦   ¦   ¦   ¦   ¦   TSLA_vwap_strats.pdf
+¦       ¦   ¦   ¦   ¦   ¦   vwap_strats.pdf
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---AAPL
+¦       ¦   ¦   ¦   ¦   ¦       cumulative_slippage.pdf
+¦       ¦   ¦   ¦   ¦   ¦       daily_exec_overlay.pdf
+¦       ¦   ¦   ¦   ¦   ¦       loss_curve.pdf
+¦       ¦   ¦   ¦   ¦   ¦       slippage_vs_vwap.pdf
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---MSFT
+¦       ¦   ¦   ¦   ¦   ¦       cumulative_slippage.pdf
+¦       ¦   ¦   ¦   ¦   ¦       daily_exec_overlay.pdf
+¦       ¦   ¦   ¦   ¦   ¦       loss_curve.pdf
+¦       ¦   ¦   ¦   ¦   ¦       slippage_vs_vwap.pdf
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---NVDA
+¦       ¦   ¦   ¦   ¦   ¦       cumulative_slippage.pdf
+¦       ¦   ¦   ¦   ¦   ¦       daily_exec_overlay.pdf
+¦       ¦   ¦   ¦   ¦   ¦       loss_curve.pdf
+¦       ¦   ¦   ¦   ¦   ¦       slippage_vs_vwap.pdf
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---TSLA
+¦       ¦   ¦   ¦   ¦           cumulative_slippage.pdf
+¦       ¦   ¦   ¦   ¦           loss_curve.pdf
+¦       ¦   ¦   ¦   ¦           slippage_vs_vwap.pdf
+¦       ¦   ¦   ¦   ¦           
+¦       ¦   ¦   ¦   +---reports
+¦       ¦   ¦   ¦   ¦       model_comparison.pdf
+¦       ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   +---results
+¦       ¦   ¦   ¦   ¦   ¦   eval_predictions.csv
+¦       ¦   ¦   ¦   ¦   ¦   slippage_results.csv
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---AAPL
+¦       ¦   ¦   ¦   ¦   ¦       slippage_results.csv
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---MSFT
+¦       ¦   ¦   ¦   ¦   ¦       slippage_results.csv
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---NVDA
+¦       ¦   ¦   ¦   ¦   ¦       slippage_results.csv
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---TSLA
+¦       ¦   ¦   ¦   ¦           slippage_results.csv
+¦       ¦   ¦   ¦   ¦           
+¦       ¦   ¦   ¦   +---utils
+¦       ¦   ¦   ¦   ¦   ¦   execution_helpers.py
+¦       ¦   ¦   ¦   ¦   ¦   report_helpers.py
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---__pycache__
+¦       ¦   ¦   ¦   ¦           execution_helpers.cpython-311.pyc
+¦       ¦   ¦   ¦   ¦           report_helpers.cpython-311.pyc
+¦       ¦   ¦   ¦   ¦           
+¦       ¦   ¦   ¦   +---__pycache__
+¦       ¦   ¦   ¦           models.cpython-311.pyc
+¦       ¦   ¦   ¦           
+¦       ¦   ¦   +---R
+¦       ¦   ¦       ¦   buypolarcapital.R
+¦       ¦   ¦       ¦   
+¦       ¦   ¦       +---plots
+¦       ¦   +---ml
+¦       ¦   ¦   +---matlab
+¦       ¦   ¦   ¦   ¦   decision_tree.m
+¦       ¦   ¦   ¦   ¦   efficient_frontier.m
+¦       ¦   ¦   ¦   ¦   gmm.m
+¦       ¦   ¦   ¦   ¦   knn.m
+¦       ¦   ¦   ¦   ¦   lda.m
+¦       ¦   ¦   ¦   ¦   logistic.m
+¦       ¦   ¦   ¦   ¦   nn.m
+¦       ¦   ¦   ¦   ¦   pca.m
+¦       ¦   ¦   ¦   ¦   svm.m
+¦       ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   +---plots
+¦       ¦   ¦   ¦           decision_tree_classification.pdf
+¦       ¦   ¦   ¦           efficient_frontier.pdf
+¦       ¦   ¦   ¦           gmm_clustering.pdf
+¦       ¦   ¦   ¦           knn_classification.pdf
+¦       ¦   ¦   ¦           lda_classification.pdf
+¦       ¦   ¦   ¦           logistic_regression_classification.pdf
+¦       ¦   ¦   ¦           neural_net_classification.pdf
+¦       ¦   ¦   ¦           pca_demo.pdf
+¦       ¦   ¦   ¦           svm_classification.pdf
+¦       ¦   ¦   ¦           
+¦       ¦   ¦   +---python
+¦       ¦   ¦   ¦   ¦   pyfakkel.py
+¦       ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   +---plots
+¦       ¦   ¦   ¦           pt_trading_strategy.pdf
+¦       ¦   ¦   ¦           
+¦       ¦   ¦   +---R
+¦       ¦   ¦           islander.R
+¦       ¦   ¦           
+¦       ¦   +---stochastic
+¦       ¦   ¦   +---matlab
+¦       ¦   ¦   ¦   ¦   adv_malliavin_greeks.m
+¦       ¦   ¦   ¦   ¦   dupire_framework.m
+¦       ¦   ¦   ¦   ¦   jump_diffusion.m
+¦       ¦   ¦   ¦   ¦   malliavin_barrier.m
+¦       ¦   ¦   ¦   ¦   malliavin_calculus.m
+¦       ¦   ¦   ¦   ¦   malliavin_digital_option.m
+¦       ¦   ¦   ¦   ¦   malliavin_variance_reduction.m
+¦       ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   +---plots
+¦       ¦   ¦   ¦           dupire_local_vol_surface.pdf
+¦       ¦   ¦   ¦           jump_diffusion_simulation.pdf
+¦       ¦   ¦   ¦           malliavin_delta_barrier_option.pdf
+¦       ¦   ¦   ¦           malliavin_delta_comparison.pdf
+¦       ¦   ¦   ¦           malliavin_delta_digital_option.pdf
+¦       ¦   ¦   ¦           malliavin_greeks_all.ps
+¦       ¦   ¦   ¦           malliavin_variance_reduction.pdf
+¦       ¦   ¦   ¦           
+¦       ¦   ¦   +---python
+¦       ¦   ¦   ¦   ¦   bayes.py
+¦       ¦   ¦   ¦   ¦   hit.py
+¦       ¦   ¦   ¦   ¦   kde.py
+¦       ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   +---plots
+¦       ¦   ¦   ¦           bayesian_volatility_bs_price.pdf
+¦       ¦   ¦   ¦           bayesian_volatility_report.pdf
+¦       ¦   ¦   ¦           bpc_hitting_times_report.pdf
+¦       ¦   ¦   ¦           
+¦       ¦   ¦   +---rust
+¦       ¦   ¦       +---plots
+¦       ¦   ¦       ¦       random_walk.svg
+¦       ¦   ¦       ¦       
+¦       ¦   ¦       +---scratchpad
+¦       ¦   ¦           ¦   .gitignore
+¦       ¦   ¦           ¦   Cargo.lock
+¦       ¦   ¦           ¦   Cargo.toml
+¦       ¦   ¦           ¦   random_walk.csv
+¦       ¦   ¦           ¦   
+¦       ¦   ¦           +---src
+¦       ¦   ¦           ¦       .gitignore
+¦       ¦   ¦           ¦       main.rs
+¦       ¦   ¦           ¦       
+¦       ¦   ¦           +---target
+¦       ¦   ¦               ¦   .rustc_info.json
+¦       ¦   ¦               ¦   CACHEDIR.TAG
+¦       ¦   ¦               ¦   
+¦       ¦   ¦               +---debug
+¦       ¦   ¦                   ¦   .cargo-lock
+¦       ¦   ¦                   ¦   scratchpad.d
+¦       ¦   ¦                   ¦   scratchpad.exe
+¦       ¦   ¦                   ¦   scratchpad.pdb
+¦       ¦   ¦                   ¦   
+¦       ¦   ¦                   +---.fingerprint
+¦       ¦   ¦                   ¦   +---adler2-a21527c079e7a3d7
+¦       ¦   ¦                   ¦   ¦       dep-lib-adler2
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-adler2
+¦       ¦   ¦                   ¦   ¦       lib-adler2.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---autocfg-ba5ee7d8b85f634f
+¦       ¦   ¦                   ¦   ¦       dep-lib-autocfg
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-autocfg
+¦       ¦   ¦                   ¦   ¦       lib-autocfg.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---bitflags-5c747bd74041bea0
+¦       ¦   ¦                   ¦   ¦       dep-lib-bitflags
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-bitflags
+¦       ¦   ¦                   ¦   ¦       lib-bitflags.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---bitflags-d15393d08e2f31fc
+¦       ¦   ¦                   ¦   ¦       dep-lib-bitflags
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-bitflags
+¦       ¦   ¦                   ¦   ¦       lib-bitflags.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---bytemuck-01568d33d08a813e
+¦       ¦   ¦                   ¦   ¦       dep-lib-bytemuck
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-bytemuck
+¦       ¦   ¦                   ¦   ¦       lib-bytemuck.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---byteorder-6964839b8b19be1a
+¦       ¦   ¦                   ¦   ¦       dep-lib-byteorder
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-byteorder
+¦       ¦   ¦                   ¦   ¦       lib-byteorder.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---cfg-if-885ced7a34e6dac7
+¦       ¦   ¦                   ¦   ¦       dep-lib-cfg_if
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-cfg_if
+¦       ¦   ¦                   ¦   ¦       lib-cfg_if.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---chrono-b5fe89ad64c6598a
+¦       ¦   ¦                   ¦   ¦       dep-lib-chrono
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-chrono
+¦       ¦   ¦                   ¦   ¦       lib-chrono.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---color_quant-da3fcec0e3f9d457
+¦       ¦   ¦                   ¦   ¦       dep-lib-color_quant
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-color_quant
+¦       ¦   ¦                   ¦   ¦       lib-color_quant.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---crc32fast-cbc9deba3648d960
+¦       ¦   ¦                   ¦   ¦       dep-lib-crc32fast
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-crc32fast
+¦       ¦   ¦                   ¦   ¦       lib-crc32fast.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---dwrote-f67b08c1b65136f2
+¦       ¦   ¦                   ¦   ¦       dep-lib-dwrote
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-dwrote
+¦       ¦   ¦                   ¦   ¦       lib-dwrote.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---fdeflate-7c42a5e0c52eb4a6
+¦       ¦   ¦                   ¦   ¦       dep-lib-fdeflate
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-fdeflate
+¦       ¦   ¦                   ¦   ¦       lib-fdeflate.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---flate2-076adeba530db29d
+¦       ¦   ¦                   ¦   ¦       dep-lib-flate2
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-flate2
+¦       ¦   ¦                   ¦   ¦       lib-flate2.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---float-ord-0786fe01b686eca3
+¦       ¦   ¦                   ¦   ¦       dep-lib-float_ord
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-float_ord
+¦       ¦   ¦                   ¦   ¦       lib-float_ord.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---font-kit-c721e2285c2c9b89
+¦       ¦   ¦                   ¦   ¦       run-build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       run-build-script-build-script-build.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---font-kit-d36e12e42c06f836
+¦       ¦   ¦                   ¦   ¦       dep-lib-font_kit
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-font_kit
+¦       ¦   ¦                   ¦   ¦       lib-font_kit.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---font-kit-d603a0a4f2187238
+¦       ¦   ¦                   ¦   ¦       build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       build-script-build-script-build.json
+¦       ¦   ¦                   ¦   ¦       dep-build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---getrandom-77c0cb631fe4c1a1
+¦       ¦   ¦                   ¦   ¦       dep-lib-getrandom
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-getrandom
+¦       ¦   ¦                   ¦   ¦       lib-getrandom.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---gif-918e7429fa500d4d
+¦       ¦   ¦                   ¦   ¦       dep-lib-gif
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-gif
+¦       ¦   ¦                   ¦   ¦       lib-gif.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---image-92a0311bf640f14c
+¦       ¦   ¦                   ¦   ¦       dep-lib-image
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-image
+¦       ¦   ¦                   ¦   ¦       lib-image.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---jpeg-decoder-4bfd4fb6bdbc3b8f
+¦       ¦   ¦                   ¦   ¦       dep-lib-jpeg_decoder
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-jpeg_decoder
+¦       ¦   ¦                   ¦   ¦       lib-jpeg_decoder.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---lazy_static-c28c0e13093a4168
+¦       ¦   ¦                   ¦   ¦       dep-lib-lazy_static
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-lazy_static
+¦       ¦   ¦                   ¦   ¦       lib-lazy_static.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---libc-0c82a85a0aaaa622
+¦       ¦   ¦                   ¦   ¦       build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       build-script-build-script-build.json
+¦       ¦   ¦                   ¦   ¦       dep-build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---libc-480ccc4107e8a74f
+¦       ¦   ¦                   ¦   ¦       dep-lib-libc
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-libc
+¦       ¦   ¦                   ¦   ¦       lib-libc.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---libc-8e49c3ac649c7b9b
+¦       ¦   ¦                   ¦   ¦       run-build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       run-build-script-build-script-build.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---log-17408f5d9644b296
+¦       ¦   ¦                   ¦   ¦       dep-lib-log
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-log
+¦       ¦   ¦                   ¦   ¦       lib-log.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---miniz_oxide-9970f45b38182cc1
+¦       ¦   ¦                   ¦   ¦       dep-lib-miniz_oxide
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-miniz_oxide
+¦       ¦   ¦                   ¦   ¦       lib-miniz_oxide.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---num-traits-1f716a6d517bd77f
+¦       ¦   ¦                   ¦   ¦       run-build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       run-build-script-build-script-build.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---num-traits-28e1391fcdda6d38
+¦       ¦   ¦                   ¦   ¦       dep-lib-num_traits
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-num_traits
+¦       ¦   ¦                   ¦   ¦       lib-num_traits.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---num-traits-63c8cfda7ba86840
+¦       ¦   ¦                   ¦   ¦       build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       build-script-build-script-build.json
+¦       ¦   ¦                   ¦   ¦       dep-build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---pathfinder_geometry-9e4cd2dbb84c7caf
+¦       ¦   ¦                   ¦   ¦       dep-lib-pathfinder_geometry
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-pathfinder_geometry
+¦       ¦   ¦                   ¦   ¦       lib-pathfinder_geometry.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---pathfinder_simd-30afba0762b6a382
+¦       ¦   ¦                   ¦   ¦       build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       build-script-build-script-build.json
+¦       ¦   ¦                   ¦   ¦       dep-build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---pathfinder_simd-417b731a8dd436d9
+¦       ¦   ¦                   ¦   ¦       run-build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       run-build-script-build-script-build.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---pathfinder_simd-dce81721f4d2354f
+¦       ¦   ¦                   ¦   ¦       dep-lib-pathfinder_simd
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-pathfinder_simd
+¦       ¦   ¦                   ¦   ¦       lib-pathfinder_simd.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---plotters-89cdf583e4aa94f9
+¦       ¦   ¦                   ¦   ¦       dep-lib-plotters
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-plotters
+¦       ¦   ¦                   ¦   ¦       lib-plotters.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---plotters-backend-a9c96ab627dd8e0e
+¦       ¦   ¦                   ¦   ¦       dep-lib-plotters_backend
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-plotters_backend
+¦       ¦   ¦                   ¦   ¦       lib-plotters_backend.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---plotters-bitmap-95ce2f8688f63999
+¦       ¦   ¦                   ¦   ¦       dep-lib-plotters_bitmap
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-plotters_bitmap
+¦       ¦   ¦                   ¦   ¦       lib-plotters_bitmap.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---plotters-svg-801978984ebcfa44
+¦       ¦   ¦                   ¦   ¦       dep-lib-plotters_svg
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-plotters_svg
+¦       ¦   ¦                   ¦   ¦       lib-plotters_svg.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---png-fae6e64b0a39b34b
+¦       ¦   ¦                   ¦   ¦       dep-lib-png
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-png
+¦       ¦   ¦                   ¦   ¦       lib-png.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---ppv-lite86-11bfbc629ed2e2b3
+¦       ¦   ¦                   ¦   ¦       dep-lib-ppv_lite86
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-ppv_lite86
+¦       ¦   ¦                   ¦   ¦       lib-ppv_lite86.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---rand-15870ac230954469
+¦       ¦   ¦                   ¦   ¦       dep-lib-rand
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-rand
+¦       ¦   ¦                   ¦   ¦       lib-rand.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---rand_chacha-834f9a70f912c018
+¦       ¦   ¦                   ¦   ¦       dep-lib-rand_chacha
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-rand_chacha
+¦       ¦   ¦                   ¦   ¦       lib-rand_chacha.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---rand_core-136f2ca49b96c933
+¦       ¦   ¦                   ¦   ¦       dep-lib-rand_core
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-rand_core
+¦       ¦   ¦                   ¦   ¦       lib-rand_core.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---rustc_version-a1eff62739f84c0c
+¦       ¦   ¦                   ¦   ¦       dep-lib-rustc_version
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-rustc_version
+¦       ¦   ¦                   ¦   ¦       lib-rustc_version.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---same-file-f1e6862b3c60e9d7
+¦       ¦   ¦                   ¦   ¦       dep-lib-same_file
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-same_file
+¦       ¦   ¦                   ¦   ¦       lib-same_file.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---scratchpad-74b31563a09ee300
+¦       ¦   ¦                   ¦   ¦       bin-scratchpad
+¦       ¦   ¦                   ¦   ¦       bin-scratchpad.json
+¦       ¦   ¦                   ¦   ¦       dep-bin-scratchpad
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---semver-0077db6ee1c9d2aa
+¦       ¦   ¦                   ¦   ¦       build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       build-script-build-script-build.json
+¦       ¦   ¦                   ¦   ¦       dep-build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---semver-04f34b910eebfc66
+¦       ¦   ¦                   ¦   ¦       dep-lib-semver
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-semver
+¦       ¦   ¦                   ¦   ¦       lib-semver.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---semver-3744816c2b42a8bc
+¦       ¦   ¦                   ¦   ¦       run-build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       run-build-script-build-script-build.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---simd-adler32-f9bb2d0e8aba39ef
+¦       ¦   ¦                   ¦   ¦       dep-lib-simd_adler32
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-simd_adler32
+¦       ¦   ¦                   ¦   ¦       lib-simd_adler32.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---ttf-parser-bc4be273df785ca5
+¦       ¦   ¦                   ¦   ¦       dep-lib-ttf_parser
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-ttf_parser
+¦       ¦   ¦                   ¦   ¦       lib-ttf_parser.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---walkdir-e53b3c75e6b1a545
+¦       ¦   ¦                   ¦   ¦       dep-lib-walkdir
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-walkdir
+¦       ¦   ¦                   ¦   ¦       lib-walkdir.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---weezl-7a8271fc4fa47b94
+¦       ¦   ¦                   ¦   ¦       dep-lib-weezl
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-weezl
+¦       ¦   ¦                   ¦   ¦       lib-weezl.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---winapi-491f3d529c62ed90
+¦       ¦   ¦                   ¦   ¦       run-build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       run-build-script-build-script-build.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---winapi-6d1489feeb88d8b0
+¦       ¦   ¦                   ¦   ¦       build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       build-script-build-script-build.json
+¦       ¦   ¦                   ¦   ¦       dep-build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---winapi-d44dee0184176941
+¦       ¦   ¦                   ¦   ¦       dep-lib-winapi
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-winapi
+¦       ¦   ¦                   ¦   ¦       lib-winapi.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---winapi-util-ad6798e19a0588e8
+¦       ¦   ¦                   ¦   ¦       dep-lib-winapi_util
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-winapi_util
+¦       ¦   ¦                   ¦   ¦       lib-winapi_util.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---windows-link-8bb1a36473e33ba2
+¦       ¦   ¦                   ¦   ¦       dep-lib-windows_link
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-windows_link
+¦       ¦   ¦                   ¦   ¦       lib-windows_link.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---windows-sys-0f655b3ad7827ac2
+¦       ¦   ¦                   ¦   ¦       dep-lib-windows_sys
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-windows_sys
+¦       ¦   ¦                   ¦   ¦       lib-windows_sys.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---windows-targets-433f1ae85898c523
+¦       ¦   ¦                   ¦   ¦       dep-lib-windows_targets
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-windows_targets
+¦       ¦   ¦                   ¦   ¦       lib-windows_targets.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---windows_x86_64_msvc-327afbf1e279218b
+¦       ¦   ¦                   ¦   ¦       dep-lib-windows_x86_64_msvc
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-windows_x86_64_msvc
+¦       ¦   ¦                   ¦   ¦       lib-windows_x86_64_msvc.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---windows_x86_64_msvc-85c5ca9db9287f2d
+¦       ¦   ¦                   ¦   ¦       run-build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       run-build-script-build-script-build.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---windows_x86_64_msvc-e9eedac884c9d4a8
+¦       ¦   ¦                   ¦   ¦       build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       build-script-build-script-build.json
+¦       ¦   ¦                   ¦   ¦       dep-build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---wio-36c53f717ebacbcc
+¦       ¦   ¦                   ¦   ¦       dep-lib-wio
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-wio
+¦       ¦   ¦                   ¦   ¦       lib-wio.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---zerocopy-5a69508a4dec8d35
+¦       ¦   ¦                   ¦   ¦       dep-lib-zerocopy
+¦       ¦   ¦                   ¦   ¦       invoked.timestamp
+¦       ¦   ¦                   ¦   ¦       lib-zerocopy
+¦       ¦   ¦                   ¦   ¦       lib-zerocopy.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---zerocopy-6b3660e4ebcfe4cc
+¦       ¦   ¦                   ¦   ¦       run-build-script-build-script-build
+¦       ¦   ¦                   ¦   ¦       run-build-script-build-script-build.json
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---zerocopy-a9646047fe03131f
+¦       ¦   ¦                   ¦           build-script-build-script-build
+¦       ¦   ¦                   ¦           build-script-build-script-build.json
+¦       ¦   ¦                   ¦           dep-build-script-build-script-build
+¦       ¦   ¦                   ¦           invoked.timestamp
+¦       ¦   ¦                   ¦           
+¦       ¦   ¦                   +---build
+¦       ¦   ¦                   ¦   +---font-kit-c721e2285c2c9b89
+¦       ¦   ¦                   ¦   ¦   ¦   invoked.timestamp
+¦       ¦   ¦                   ¦   ¦   ¦   output
+¦       ¦   ¦                   ¦   ¦   ¦   root-output
+¦       ¦   ¦                   ¦   ¦   ¦   stderr
+¦       ¦   ¦                   ¦   ¦   ¦   
+¦       ¦   ¦                   ¦   ¦   +---out
+¦       ¦   ¦                   ¦   +---font-kit-d603a0a4f2187238
+¦       ¦   ¦                   ¦   ¦       build-script-build.exe
+¦       ¦   ¦                   ¦   ¦       build_script_build-d603a0a4f2187238.d
+¦       ¦   ¦                   ¦   ¦       build_script_build-d603a0a4f2187238.exe
+¦       ¦   ¦                   ¦   ¦       build_script_build-d603a0a4f2187238.pdb
+¦       ¦   ¦                   ¦   ¦       build_script_build.pdb
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---libc-0c82a85a0aaaa622
+¦       ¦   ¦                   ¦   ¦       build-script-build.exe
+¦       ¦   ¦                   ¦   ¦       build_script_build-0c82a85a0aaaa622.d
+¦       ¦   ¦                   ¦   ¦       build_script_build-0c82a85a0aaaa622.exe
+¦       ¦   ¦                   ¦   ¦       build_script_build-0c82a85a0aaaa622.pdb
+¦       ¦   ¦                   ¦   ¦       build_script_build.pdb
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---libc-8e49c3ac649c7b9b
+¦       ¦   ¦                   ¦   ¦   ¦   invoked.timestamp
+¦       ¦   ¦                   ¦   ¦   ¦   output
+¦       ¦   ¦                   ¦   ¦   ¦   root-output
+¦       ¦   ¦                   ¦   ¦   ¦   stderr
+¦       ¦   ¦                   ¦   ¦   ¦   
+¦       ¦   ¦                   ¦   ¦   +---out
+¦       ¦   ¦                   ¦   +---num-traits-1f716a6d517bd77f
+¦       ¦   ¦                   ¦   ¦   ¦   invoked.timestamp
+¦       ¦   ¦                   ¦   ¦   ¦   output
+¦       ¦   ¦                   ¦   ¦   ¦   root-output
+¦       ¦   ¦                   ¦   ¦   ¦   stderr
+¦       ¦   ¦                   ¦   ¦   ¦   
+¦       ¦   ¦                   ¦   ¦   +---out
+¦       ¦   ¦                   ¦   ¦           autocfg_8a5b9399214172df_0.ll
+¦       ¦   ¦                   ¦   ¦           autocfg_8a5b9399214172df_1.ll
+¦       ¦   ¦                   ¦   ¦           
+¦       ¦   ¦                   ¦   +---num-traits-63c8cfda7ba86840
+¦       ¦   ¦                   ¦   ¦       build-script-build.exe
+¦       ¦   ¦                   ¦   ¦       build_script_build-63c8cfda7ba86840.d
+¦       ¦   ¦                   ¦   ¦       build_script_build-63c8cfda7ba86840.exe
+¦       ¦   ¦                   ¦   ¦       build_script_build-63c8cfda7ba86840.pdb
+¦       ¦   ¦                   ¦   ¦       build_script_build.pdb
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---pathfinder_simd-30afba0762b6a382
+¦       ¦   ¦                   ¦   ¦       build-script-build.exe
+¦       ¦   ¦                   ¦   ¦       build_script_build-30afba0762b6a382.d
+¦       ¦   ¦                   ¦   ¦       build_script_build-30afba0762b6a382.exe
+¦       ¦   ¦                   ¦   ¦       build_script_build-30afba0762b6a382.pdb
+¦       ¦   ¦                   ¦   ¦       build_script_build.pdb
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---pathfinder_simd-417b731a8dd436d9
+¦       ¦   ¦                   ¦   ¦   ¦   invoked.timestamp
+¦       ¦   ¦                   ¦   ¦   ¦   output
+¦       ¦   ¦                   ¦   ¦   ¦   root-output
+¦       ¦   ¦                   ¦   ¦   ¦   stderr
+¦       ¦   ¦                   ¦   ¦   ¦   
+¦       ¦   ¦                   ¦   ¦   +---out
+¦       ¦   ¦                   ¦   +---semver-0077db6ee1c9d2aa
+¦       ¦   ¦                   ¦   ¦       build-script-build.exe
+¦       ¦   ¦                   ¦   ¦       build_script_build-0077db6ee1c9d2aa.d
+¦       ¦   ¦                   ¦   ¦       build_script_build-0077db6ee1c9d2aa.exe
+¦       ¦   ¦                   ¦   ¦       build_script_build-0077db6ee1c9d2aa.pdb
+¦       ¦   ¦                   ¦   ¦       build_script_build.pdb
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---semver-3744816c2b42a8bc
+¦       ¦   ¦                   ¦   ¦   ¦   invoked.timestamp
+¦       ¦   ¦                   ¦   ¦   ¦   output
+¦       ¦   ¦                   ¦   ¦   ¦   root-output
+¦       ¦   ¦                   ¦   ¦   ¦   stderr
+¦       ¦   ¦                   ¦   ¦   ¦   
+¦       ¦   ¦                   ¦   ¦   +---out
+¦       ¦   ¦                   ¦   +---winapi-491f3d529c62ed90
+¦       ¦   ¦                   ¦   ¦   ¦   invoked.timestamp
+¦       ¦   ¦                   ¦   ¦   ¦   output
+¦       ¦   ¦                   ¦   ¦   ¦   root-output
+¦       ¦   ¦                   ¦   ¦   ¦   stderr
+¦       ¦   ¦                   ¦   ¦   ¦   
+¦       ¦   ¦                   ¦   ¦   +---out
+¦       ¦   ¦                   ¦   +---winapi-6d1489feeb88d8b0
+¦       ¦   ¦                   ¦   ¦       build-script-build.exe
+¦       ¦   ¦                   ¦   ¦       build_script_build-6d1489feeb88d8b0.d
+¦       ¦   ¦                   ¦   ¦       build_script_build-6d1489feeb88d8b0.exe
+¦       ¦   ¦                   ¦   ¦       build_script_build-6d1489feeb88d8b0.pdb
+¦       ¦   ¦                   ¦   ¦       build_script_build.pdb
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---windows_x86_64_msvc-85c5ca9db9287f2d
+¦       ¦   ¦                   ¦   ¦   ¦   invoked.timestamp
+¦       ¦   ¦                   ¦   ¦   ¦   output
+¦       ¦   ¦                   ¦   ¦   ¦   root-output
+¦       ¦   ¦                   ¦   ¦   ¦   stderr
+¦       ¦   ¦                   ¦   ¦   ¦   
+¦       ¦   ¦                   ¦   ¦   +---out
+¦       ¦   ¦                   ¦   +---windows_x86_64_msvc-e9eedac884c9d4a8
+¦       ¦   ¦                   ¦   ¦       build-script-build.exe
+¦       ¦   ¦                   ¦   ¦       build_script_build-e9eedac884c9d4a8.d
+¦       ¦   ¦                   ¦   ¦       build_script_build-e9eedac884c9d4a8.exe
+¦       ¦   ¦                   ¦   ¦       build_script_build-e9eedac884c9d4a8.pdb
+¦       ¦   ¦                   ¦   ¦       build_script_build.pdb
+¦       ¦   ¦                   ¦   ¦       
+¦       ¦   ¦                   ¦   +---zerocopy-6b3660e4ebcfe4cc
+¦       ¦   ¦                   ¦   ¦   ¦   invoked.timestamp
+¦       ¦   ¦                   ¦   ¦   ¦   output
+¦       ¦   ¦                   ¦   ¦   ¦   root-output
+¦       ¦   ¦                   ¦   ¦   ¦   stderr
+¦       ¦   ¦                   ¦   ¦   ¦   
+¦       ¦   ¦                   ¦   ¦   +---out
+¦       ¦   ¦                   ¦   +---zerocopy-a9646047fe03131f
+¦       ¦   ¦                   ¦           build-script-build.exe
+¦       ¦   ¦                   ¦           build_script_build-a9646047fe03131f.d
+¦       ¦   ¦                   ¦           build_script_build-a9646047fe03131f.exe
+¦       ¦   ¦                   ¦           build_script_build-a9646047fe03131f.pdb
+¦       ¦   ¦                   ¦           build_script_build.pdb
+¦       ¦   ¦                   ¦           
+¦       ¦   ¦                   +---deps
+¦       ¦   ¦                   ¦       adler2-a21527c079e7a3d7.d
+¦       ¦   ¦                   ¦       autocfg-ba5ee7d8b85f634f.d
+¦       ¦   ¦                   ¦       bitflags-5c747bd74041bea0.d
+¦       ¦   ¦                   ¦       bitflags-d15393d08e2f31fc.d
+¦       ¦   ¦                   ¦       bytemuck-01568d33d08a813e.d
+¦       ¦   ¦                   ¦       byteorder-6964839b8b19be1a.d
+¦       ¦   ¦                   ¦       cfg_if-885ced7a34e6dac7.d
+¦       ¦   ¦                   ¦       chrono-b5fe89ad64c6598a.d
+¦       ¦   ¦                   ¦       color_quant-da3fcec0e3f9d457.d
+¦       ¦   ¦                   ¦       crc32fast-cbc9deba3648d960.d
+¦       ¦   ¦                   ¦       dwrote-f67b08c1b65136f2.d
+¦       ¦   ¦                   ¦       fdeflate-7c42a5e0c52eb4a6.d
+¦       ¦   ¦                   ¦       flate2-076adeba530db29d.d
+¦       ¦   ¦                   ¦       float_ord-0786fe01b686eca3.d
+¦       ¦   ¦                   ¦       font_kit-d36e12e42c06f836.d
+¦       ¦   ¦                   ¦       getrandom-77c0cb631fe4c1a1.d
+¦       ¦   ¦                   ¦       gif-918e7429fa500d4d.d
+¦       ¦   ¦                   ¦       image-92a0311bf640f14c.d
+¦       ¦   ¦                   ¦       jpeg_decoder-4bfd4fb6bdbc3b8f.d
+¦       ¦   ¦                   ¦       lazy_static-c28c0e13093a4168.d
+¦       ¦   ¦                   ¦       libadler2-a21527c079e7a3d7.rlib
+¦       ¦   ¦                   ¦       libadler2-a21527c079e7a3d7.rmeta
+¦       ¦   ¦                   ¦       libautocfg-ba5ee7d8b85f634f.rlib
+¦       ¦   ¦                   ¦       libautocfg-ba5ee7d8b85f634f.rmeta
+¦       ¦   ¦                   ¦       libbitflags-5c747bd74041bea0.rlib
+¦       ¦   ¦                   ¦       libbitflags-5c747bd74041bea0.rmeta
+¦       ¦   ¦                   ¦       libbitflags-d15393d08e2f31fc.rlib
+¦       ¦   ¦                   ¦       libbitflags-d15393d08e2f31fc.rmeta
+¦       ¦   ¦                   ¦       libbytemuck-01568d33d08a813e.rlib
+¦       ¦   ¦                   ¦       libbytemuck-01568d33d08a813e.rmeta
+¦       ¦   ¦                   ¦       libbyteorder-6964839b8b19be1a.rlib
+¦       ¦   ¦                   ¦       libbyteorder-6964839b8b19be1a.rmeta
+¦       ¦   ¦                   ¦       libc-480ccc4107e8a74f.d
+¦       ¦   ¦                   ¦       libcfg_if-885ced7a34e6dac7.rlib
+¦       ¦   ¦                   ¦       libcfg_if-885ced7a34e6dac7.rmeta
+¦       ¦   ¦                   ¦       libchrono-b5fe89ad64c6598a.rlib
+¦       ¦   ¦                   ¦       libchrono-b5fe89ad64c6598a.rmeta
+¦       ¦   ¦                   ¦       libcolor_quant-da3fcec0e3f9d457.rlib
+¦       ¦   ¦                   ¦       libcolor_quant-da3fcec0e3f9d457.rmeta
+¦       ¦   ¦                   ¦       libcrc32fast-cbc9deba3648d960.rlib
+¦       ¦   ¦                   ¦       libcrc32fast-cbc9deba3648d960.rmeta
+¦       ¦   ¦                   ¦       libdwrote-f67b08c1b65136f2.rlib
+¦       ¦   ¦                   ¦       libdwrote-f67b08c1b65136f2.rmeta
+¦       ¦   ¦                   ¦       libfdeflate-7c42a5e0c52eb4a6.rlib
+¦       ¦   ¦                   ¦       libfdeflate-7c42a5e0c52eb4a6.rmeta
+¦       ¦   ¦                   ¦       libflate2-076adeba530db29d.rlib
+¦       ¦   ¦                   ¦       libflate2-076adeba530db29d.rmeta
+¦       ¦   ¦                   ¦       libfloat_ord-0786fe01b686eca3.rlib
+¦       ¦   ¦                   ¦       libfloat_ord-0786fe01b686eca3.rmeta
+¦       ¦   ¦                   ¦       libfont_kit-d36e12e42c06f836.rlib
+¦       ¦   ¦                   ¦       libfont_kit-d36e12e42c06f836.rmeta
+¦       ¦   ¦                   ¦       libgetrandom-77c0cb631fe4c1a1.rlib
+¦       ¦   ¦                   ¦       libgetrandom-77c0cb631fe4c1a1.rmeta
+¦       ¦   ¦                   ¦       libgif-918e7429fa500d4d.rlib
+¦       ¦   ¦                   ¦       libgif-918e7429fa500d4d.rmeta
+¦       ¦   ¦                   ¦       libimage-92a0311bf640f14c.rlib
+¦       ¦   ¦                   ¦       libimage-92a0311bf640f14c.rmeta
+¦       ¦   ¦                   ¦       libjpeg_decoder-4bfd4fb6bdbc3b8f.rlib
+¦       ¦   ¦                   ¦       libjpeg_decoder-4bfd4fb6bdbc3b8f.rmeta
+¦       ¦   ¦                   ¦       liblazy_static-c28c0e13093a4168.rlib
+¦       ¦   ¦                   ¦       liblazy_static-c28c0e13093a4168.rmeta
+¦       ¦   ¦                   ¦       liblibc-480ccc4107e8a74f.rlib
+¦       ¦   ¦                   ¦       liblibc-480ccc4107e8a74f.rmeta
+¦       ¦   ¦                   ¦       liblog-17408f5d9644b296.rlib
+¦       ¦   ¦                   ¦       liblog-17408f5d9644b296.rmeta
+¦       ¦   ¦                   ¦       libminiz_oxide-9970f45b38182cc1.rlib
+¦       ¦   ¦                   ¦       libminiz_oxide-9970f45b38182cc1.rmeta
+¦       ¦   ¦                   ¦       libnum_traits-28e1391fcdda6d38.rlib
+¦       ¦   ¦                   ¦       libnum_traits-28e1391fcdda6d38.rmeta
+¦       ¦   ¦                   ¦       libpathfinder_geometry-9e4cd2dbb84c7caf.rlib
+¦       ¦   ¦                   ¦       libpathfinder_geometry-9e4cd2dbb84c7caf.rmeta
+¦       ¦   ¦                   ¦       libpathfinder_simd-dce81721f4d2354f.rlib
+¦       ¦   ¦                   ¦       libpathfinder_simd-dce81721f4d2354f.rmeta
+¦       ¦   ¦                   ¦       libplotters-89cdf583e4aa94f9.rlib
+¦       ¦   ¦                   ¦       libplotters-89cdf583e4aa94f9.rmeta
+¦       ¦   ¦                   ¦       libplotters_backend-a9c96ab627dd8e0e.rlib
+¦       ¦   ¦                   ¦       libplotters_backend-a9c96ab627dd8e0e.rmeta
+¦       ¦   ¦                   ¦       libplotters_bitmap-95ce2f8688f63999.rlib
+¦       ¦   ¦                   ¦       libplotters_bitmap-95ce2f8688f63999.rmeta
+¦       ¦   ¦                   ¦       libplotters_svg-801978984ebcfa44.rlib
+¦       ¦   ¦                   ¦       libplotters_svg-801978984ebcfa44.rmeta
+¦       ¦   ¦                   ¦       libpng-fae6e64b0a39b34b.rlib
+¦       ¦   ¦                   ¦       libpng-fae6e64b0a39b34b.rmeta
+¦       ¦   ¦                   ¦       libppv_lite86-11bfbc629ed2e2b3.rlib
+¦       ¦   ¦                   ¦       libppv_lite86-11bfbc629ed2e2b3.rmeta
+¦       ¦   ¦                   ¦       librand-15870ac230954469.rlib
+¦       ¦   ¦                   ¦       librand-15870ac230954469.rmeta
+¦       ¦   ¦                   ¦       librand_chacha-834f9a70f912c018.rlib
+¦       ¦   ¦                   ¦       librand_chacha-834f9a70f912c018.rmeta
+¦       ¦   ¦                   ¦       librand_core-136f2ca49b96c933.rlib
+¦       ¦   ¦                   ¦       librand_core-136f2ca49b96c933.rmeta
+¦       ¦   ¦                   ¦       librustc_version-a1eff62739f84c0c.rlib
+¦       ¦   ¦                   ¦       librustc_version-a1eff62739f84c0c.rmeta
+¦       ¦   ¦                   ¦       libsame_file-f1e6862b3c60e9d7.rlib
+¦       ¦   ¦                   ¦       libsame_file-f1e6862b3c60e9d7.rmeta
+¦       ¦   ¦                   ¦       libsemver-04f34b910eebfc66.rlib
+¦       ¦   ¦                   ¦       libsemver-04f34b910eebfc66.rmeta
+¦       ¦   ¦                   ¦       libsimd_adler32-f9bb2d0e8aba39ef.rlib
+¦       ¦   ¦                   ¦       libsimd_adler32-f9bb2d0e8aba39ef.rmeta
+¦       ¦   ¦                   ¦       libttf_parser-bc4be273df785ca5.rlib
+¦       ¦   ¦                   ¦       libttf_parser-bc4be273df785ca5.rmeta
+¦       ¦   ¦                   ¦       libwalkdir-e53b3c75e6b1a545.rlib
+¦       ¦   ¦                   ¦       libwalkdir-e53b3c75e6b1a545.rmeta
+¦       ¦   ¦                   ¦       libweezl-7a8271fc4fa47b94.rlib
+¦       ¦   ¦                   ¦       libweezl-7a8271fc4fa47b94.rmeta
+¦       ¦   ¦                   ¦       libwinapi-d44dee0184176941.rlib
+¦       ¦   ¦                   ¦       libwinapi-d44dee0184176941.rmeta
+¦       ¦   ¦                   ¦       libwinapi_util-ad6798e19a0588e8.rlib
+¦       ¦   ¦                   ¦       libwinapi_util-ad6798e19a0588e8.rmeta
+¦       ¦   ¦                   ¦       libwindows_link-8bb1a36473e33ba2.rlib
+¦       ¦   ¦                   ¦       libwindows_link-8bb1a36473e33ba2.rmeta
+¦       ¦   ¦                   ¦       libwindows_sys-0f655b3ad7827ac2.rlib
+¦       ¦   ¦                   ¦       libwindows_sys-0f655b3ad7827ac2.rmeta
+¦       ¦   ¦                   ¦       libwindows_targets-433f1ae85898c523.rlib
+¦       ¦   ¦                   ¦       libwindows_targets-433f1ae85898c523.rmeta
+¦       ¦   ¦                   ¦       libwindows_x86_64_msvc-327afbf1e279218b.rlib
+¦       ¦   ¦                   ¦       libwindows_x86_64_msvc-327afbf1e279218b.rmeta
+¦       ¦   ¦                   ¦       libwio-36c53f717ebacbcc.rlib
+¦       ¦   ¦                   ¦       libwio-36c53f717ebacbcc.rmeta
+¦       ¦   ¦                   ¦       libzerocopy-5a69508a4dec8d35.rlib
+¦       ¦   ¦                   ¦       libzerocopy-5a69508a4dec8d35.rmeta
+¦       ¦   ¦                   ¦       log-17408f5d9644b296.d
+¦       ¦   ¦                   ¦       miniz_oxide-9970f45b38182cc1.d
+¦       ¦   ¦                   ¦       num_traits-28e1391fcdda6d38.d
+¦       ¦   ¦                   ¦       pathfinder_geometry-9e4cd2dbb84c7caf.d
+¦       ¦   ¦                   ¦       pathfinder_simd-dce81721f4d2354f.d
+¦       ¦   ¦                   ¦       plotters-89cdf583e4aa94f9.d
+¦       ¦   ¦                   ¦       plotters_backend-a9c96ab627dd8e0e.d
+¦       ¦   ¦                   ¦       plotters_bitmap-95ce2f8688f63999.d
+¦       ¦   ¦                   ¦       plotters_svg-801978984ebcfa44.d
+¦       ¦   ¦                   ¦       png-fae6e64b0a39b34b.d
+¦       ¦   ¦                   ¦       ppv_lite86-11bfbc629ed2e2b3.d
+¦       ¦   ¦                   ¦       rand-15870ac230954469.d
+¦       ¦   ¦                   ¦       rand_chacha-834f9a70f912c018.d
+¦       ¦   ¦                   ¦       rand_core-136f2ca49b96c933.d
+¦       ¦   ¦                   ¦       rustc_version-a1eff62739f84c0c.d
+¦       ¦   ¦                   ¦       same_file-f1e6862b3c60e9d7.d
+¦       ¦   ¦                   ¦       scratchpad.d
+¦       ¦   ¦                   ¦       scratchpad.exe
+¦       ¦   ¦                   ¦       scratchpad.pdb
+¦       ¦   ¦                   ¦       semver-04f34b910eebfc66.d
+¦       ¦   ¦                   ¦       simd_adler32-f9bb2d0e8aba39ef.d
+¦       ¦   ¦                   ¦       ttf_parser-bc4be273df785ca5.d
+¦       ¦   ¦                   ¦       walkdir-e53b3c75e6b1a545.d
+¦       ¦   ¦                   ¦       weezl-7a8271fc4fa47b94.d
+¦       ¦   ¦                   ¦       winapi-d44dee0184176941.d
+¦       ¦   ¦                   ¦       winapi_util-ad6798e19a0588e8.d
+¦       ¦   ¦                   ¦       windows_link-8bb1a36473e33ba2.d
+¦       ¦   ¦                   ¦       windows_sys-0f655b3ad7827ac2.d
+¦       ¦   ¦                   ¦       windows_targets-433f1ae85898c523.d
+¦       ¦   ¦                   ¦       windows_x86_64_msvc-327afbf1e279218b.d
+¦       ¦   ¦                   ¦       wio-36c53f717ebacbcc.d
+¦       ¦   ¦                   ¦       zerocopy-5a69508a4dec8d35.d
+¦       ¦   ¦                   ¦       
+¦       ¦   ¦                   +---examples
+¦       ¦   ¦                   +---incremental
+¦       ¦   ¦                       +---scratchpad-199wzx0p5uoha
+¦       ¦   ¦                       ¦   ¦   s-h6gs6cbqav-1mesh6o.lock
+¦       ¦   ¦                       ¦   ¦   
+¦       ¦   ¦                       ¦   +---s-h6gs6cbqav-1mesh6o-6nviw8qnppl42g1x0ts41rvuo
+¦       ¦   ¦                       ¦           04h7t1nlv9sv0sncyzsrb3dcg.o
+¦       ¦   ¦                       ¦           07v8d4xko286s21nl6riaz9uh.o
+¦       ¦   ¦                       ¦           0g6nfcdayehx0dp15qcwx5isd.o
+¦       ¦   ¦                       ¦           0l1kijvdgd30kbnuz0za2vsq4.o
+¦       ¦   ¦                       ¦           0og6kdi4q49nny84az2i9t2gt.o
+¦       ¦   ¦                       ¦           1bssvkprzsaewmskil9qmhk4u.o
+¦       ¦   ¦                       ¦           1lvyyjlbgvun85t8wh65vwg6t.o
+¦       ¦   ¦                       ¦           1ra2nxo05tkobg5fw9bf8yhwn.o
+¦       ¦   ¦                       ¦           1rxs9w3vvqmvb8farrm0ucni4.o
+¦       ¦   ¦                       ¦           1ulxxcj0u9d0tmgh1cgm8mes7.o
+¦       ¦   ¦                       ¦           25ax21kzd5lagh3w6jbadig8i.o
+¦       ¦   ¦                       ¦           28ovx54dxr3us3q6n0spv1zgy.o
+¦       ¦   ¦                       ¦           2e44dl2fdapn4yejl9kzukgoj.o
+¦       ¦   ¦                       ¦           2xtxf48aewt4iu780k7ha9k5n.o
+¦       ¦   ¦                       ¦           3114lb2s6nxlooq0551zxngge.o
+¦       ¦   ¦                       ¦           31r54vk7gip4zmyih5npqhpei.o
+¦       ¦   ¦                       ¦           33dg978o24lkl8z740ltaosqx.o
+¦       ¦   ¦                       ¦           3cikj1bll0lzz8sklrupkbjhp.o
+¦       ¦   ¦                       ¦           3dsryzzxkf28zediyuym0dt02.o
+¦       ¦   ¦                       ¦           3dy3323k3werkre3g1j0d5eg9.o
+¦       ¦   ¦                       ¦           3r613y0zfxz4tdgsc29c1vy9i.o
+¦       ¦   ¦                       ¦           3ynwj1o69u16scnwsoal6zg68.o
+¦       ¦   ¦                       ¦           3z36fbmdjvg1q97gl7gqli18h.o
+¦       ¦   ¦                       ¦           41lwe02jlsw7uwlmtk66pjwj5.o
+¦       ¦   ¦                       ¦           42s69emyae4ofk3km7ics2vw8.o
+¦       ¦   ¦                       ¦           46uqpiyzuze2wx7vnop1o3tt3.o
+¦       ¦   ¦                       ¦           48jnjmsdj06swm75t1idv6x8v.o
+¦       ¦   ¦                       ¦           4e6xkfn43gs7bt08od69koc0n.o
+¦       ¦   ¦                       ¦           4h30jd3yavy3vi3r543680g7d.o
+¦       ¦   ¦                       ¦           4jbdffz6bgm87jvx0fi9afmo4.o
+¦       ¦   ¦                       ¦           4kqxqetpi57gmpftnqbvnhim1.o
+¦       ¦   ¦                       ¦           4mehjt15ei4xlg6jw6j8ya7zj.o
+¦       ¦   ¦                       ¦           4nkuq7fmcaewmpukbxrxieuks.o
+¦       ¦   ¦                       ¦           4pn8y48ukgzm3qxioq9w8516s.o
+¦       ¦   ¦                       ¦           4s8x846ykl6o8t3uve9vneynk.o
+¦       ¦   ¦                       ¦           4sok8h64b0wqhwk7pbdytjoth.o
+¦       ¦   ¦                       ¦           4t7dwb2t64pfvv48t1ogulvyb.o
+¦       ¦   ¦                       ¦           4tuxo9x519d10h6p68c9huxaq.o
+¦       ¦   ¦                       ¦           55gvy3udvykebxdob4h92bllj.o
+¦       ¦   ¦                       ¦           56btphmnst91fhtesm0x0yfft.o
+¦       ¦   ¦                       ¦           5adl3dyr4b7dk4jlyf5pygide.o
+¦       ¦   ¦                       ¦           5dp3t2t4o3z8osx2wouz9bang.o
+¦       ¦   ¦                       ¦           5k9krc72x2lnhg1ugm8sm97ij.o
+¦       ¦   ¦                       ¦           5s4xfs5pf7r9pb0ed4xbc11ep.o
+¦       ¦   ¦                       ¦           5sjmmai30mq4u9et6g2fvyhcp.o
+¦       ¦   ¦                       ¦           5x6jewc1750oc4bdoafzvysj2.o
+¦       ¦   ¦                       ¦           63l14zol9w1efaa6j8vue0vs2.o
+¦       ¦   ¦                       ¦           64sy1e5456ym2anhec5d9dtc0.o
+¦       ¦   ¦                       ¦           65bnpda08k34yzzw7n1pmmt2g.o
+¦       ¦   ¦                       ¦           65r0uwpj0qgf1tbtuxrm5paap.o
+¦       ¦   ¦                       ¦           68qlq5dc1q099yeibh2e51qpu.o
+¦       ¦   ¦                       ¦           6g4ukbdms5zda5l0zcxib0c47.o
+¦       ¦   ¦                       ¦           6m2r2sat03vl161nwf05qrug1.o
+¦       ¦   ¦                       ¦           6rzdotnxwovjiuyd7hux4cee6.o
+¦       ¦   ¦                       ¦           6vzkwjyyrknrcz7m0wnx7mp1s.o
+¦       ¦   ¦                       ¦           77c6vt8ye72epc8bing7k5ptu.o
+¦       ¦   ¦                       ¦           7992bzlak0gjgw3yxpgpsa7x7.o
+¦       ¦   ¦                       ¦           79xgm2b85s8do7zscc9a1s6q4.o
+¦       ¦   ¦                       ¦           88xjnef2b2aagoqbj3mk5vkux.o
+¦       ¦   ¦                       ¦           8ni8pso3esv1kflh19fia8ckm.o
+¦       ¦   ¦                       ¦           8ovomng2r7ywo3eflnqrups1g.o
+¦       ¦   ¦                       ¦           907gd1ku35hldosribff1gff2.o
+¦       ¦   ¦                       ¦           9456wt2fnbr9n7xobb6hbbhn1.o
+¦       ¦   ¦                       ¦           94a2zkx2gtsl1yi2bn8tm6wme.o
+¦       ¦   ¦                       ¦           96j6c35idew1j1gv6y8n6c27k.o
+¦       ¦   ¦                       ¦           96tg9bu7z4dqvamwmxwlaruie.o
+¦       ¦   ¦                       ¦           9bsxh38h0ywl6nhb75qojj4uf.o
+¦       ¦   ¦                       ¦           9f59qxulou9q60txz2zavogbb.o
+¦       ¦   ¦                       ¦           9ka7z4rql9yimij3kdz8avhap.o
+¦       ¦   ¦                       ¦           9kl6f0cysjjz9xeadea2ztqcn.o
+¦       ¦   ¦                       ¦           9kstpahksyzkbpqaptlemopo1.o
+¦       ¦   ¦                       ¦           9ljug7pzbqmtll53gy49xbtke.o
+¦       ¦   ¦                       ¦           9zgry5j6a9l4gz9eow326r8q3.o
+¦       ¦   ¦                       ¦           a5o5t70zwnxdhkzyjde889gee.o
+¦       ¦   ¦                       ¦           aa2vbd3qart9xvusort5odgo4.o
+¦       ¦   ¦                       ¦           adnm6ytzadwwk97f3nhxy3b7v.o
+¦       ¦   ¦                       ¦           ae96wu7b45ihh6hvnpmeojw72.o
+¦       ¦   ¦                       ¦           aio50wv4iv8g1b1fxoqwqwki1.o
+¦       ¦   ¦                       ¦           ak7smz3ir8n0yw5o8555zs1s9.o
+¦       ¦   ¦                       ¦           arhfoxbc9u158mmeo03ptqfmw.o
+¦       ¦   ¦                       ¦           au8z1qyaoiec4mk9ncwaoxhch.o
+¦       ¦   ¦                       ¦           ay609pzx6gy4eyyf5s4tm1q0u.o
+¦       ¦   ¦                       ¦           b15ovltbz0jhp5bfoku0vjfog.o
+¦       ¦   ¦                       ¦           b2wdn0ioksc59w4u82tuojl7q.o
+¦       ¦   ¦                       ¦           bf5rwa57yz02sruaewqx9b751.o
+¦       ¦   ¦                       ¦           bhaia0lnwuuzinipa58ch1b5e.o
+¦       ¦   ¦                       ¦           br6io7x7cjss6w5z65vfx4edb.o
+¦       ¦   ¦                       ¦           btc1ctf52tn2d7u7tj151l3g0.o
+¦       ¦   ¦                       ¦           btgrjk61o362megfr94wua1r0.o
+¦       ¦   ¦                       ¦           bwq9fqbtucn3ymi7rz07v76f7.o
+¦       ¦   ¦                       ¦           c2p8uqeo3d2agloyftsd1ww70.o
+¦       ¦   ¦                       ¦           cj3kbgwfftq4dsg4tqbhzeuuz.o
+¦       ¦   ¦                       ¦           cprnt4q9clrpwr1lx9kdapq3v.o
+¦       ¦   ¦                       ¦           cxqok8uu54hjfueueq9ykisyq.o
+¦       ¦   ¦                       ¦           d3vp0qh6knm1uhm560ob8dv0y.o
+¦       ¦   ¦                       ¦           d8b788u15v5n9p5taddkaeij5.o
+¦       ¦   ¦                       ¦           d9fxcjl5gvz89e0om7chcuwie.o
+¦       ¦   ¦                       ¦           dayr6n293hx2f3pusg0td0bmm.o
+¦       ¦   ¦                       ¦           dd4x1qdvlz16k60diglob30vt.o
+¦       ¦   ¦                       ¦           dep-graph.bin
+¦       ¦   ¦                       ¦           dfnqv5k0hig6lrbp54xayg4q8.o
+¦       ¦   ¦                       ¦           dkdj3tf4jqncrtk48bsfczuf1.o
+¦       ¦   ¦                       ¦           dl9wtthuftqg9zieb8kng58dm.o
+¦       ¦   ¦                       ¦           e0avo0rgjclz8ypnr9uq94y1t.o
+¦       ¦   ¦                       ¦           e1txrrpl097d2c0jeuenuya5q.o
+¦       ¦   ¦                       ¦           e3evjx4yeqs9rtbbebmivwyob.o
+¦       ¦   ¦                       ¦           efor13629fjh3wbtdz6fnedqm.o
+¦       ¦   ¦                       ¦           eixx7f2xnhqwcpparr5usy019.o
+¦       ¦   ¦                       ¦           epgjm6wj1hyzfn78rcdc7vegq.o
+¦       ¦   ¦                       ¦           ex1wnveoqrrsfa0rfoviiieu4.o
+¦       ¦   ¦                       ¦           f2knlvwi9u6jhrthfq726eup4.o
+¦       ¦   ¦                       ¦           query-cache.bin
+¦       ¦   ¦                       ¦           work-products.bin
+¦       ¦   ¦                       ¦           
+¦       ¦   ¦                       +---scratchpad-2uaowov2oqmym
+¦       ¦   ¦                           ¦   s-h6gs0eqb8i-1wr3gmk.lock
+¦       ¦   ¦                           ¦   s-h6gs1fw3fv-1iq06rq.lock
+¦       ¦   ¦                           ¦   
+¦       ¦   ¦                           +---s-h6gs0eqb8i-1wr3gmk-7c31i3tui6oac768kyc61nxjc
+¦       ¦   ¦                           ¦       25w9opi6rzga22fbm3osng3ut.o
+¦       ¦   ¦                           ¦       2c7zkn3fqro1lagqhcwyncdg6.o
+¦       ¦   ¦                           ¦       2dlwcetnxn2b9roj1e22buylm.o
+¦       ¦   ¦                           ¦       2gibbpqoas1v7tiu6uf1mxuj4.o
+¦       ¦   ¦                           ¦       2negeorg6hr4fi27u2owkynf9.o
+¦       ¦   ¦                           ¦       2otkbai509uan7jzpe2uotr1c.o
+¦       ¦   ¦                           ¦       2u02gwymcushm91uqzgris577.o
+¦       ¦   ¦                           ¦       385ms02lzfqipq882q1rnk41e.o
+¦       ¦   ¦                           ¦       3qxrms5p9f40k8ugzct0376yt.o
+¦       ¦   ¦                           ¦       3xzq9ld3m6kdn5oesk2jd8dcm.o
+¦       ¦   ¦                           ¦       4dgyrowy9yxt4uagolt2q6g2e.o
+¦       ¦   ¦                           ¦       4enkc7qghroo6f1aozx6n9qf2.o
+¦       ¦   ¦                           ¦       4gzis5o8npnt7i4wv0heuludg.o
+¦       ¦   ¦                           ¦       4m0y94ape14c40wizm9tkc56b.o
+¦       ¦   ¦                           ¦       4p6qpqvq2dvdx6kt2cuqlda6e.o
+¦       ¦   ¦                           ¦       5102htlxfzx6arufkh921xthg.o
+¦       ¦   ¦                           ¦       5c3n647g1t7ltx8df5rfzefwq.o
+¦       ¦   ¦                           ¦       5nwmbwq2zbt2u5k2u713q63g7.o
+¦       ¦   ¦                           ¦       5psduavhu8qo3yqksz0pmyxbd.o
+¦       ¦   ¦                           ¦       6b5zkueqiesy2nrresbenqwrc.o
+¦       ¦   ¦                           ¦       6y6jepmbthf4t6w5usmdgwh4w.o
+¦       ¦   ¦                           ¦       72g2233c5w0slz3ru8s868qp3.o
+¦       ¦   ¦                           ¦       7fh5fh7grt0fldyd137rxmjel.o
+¦       ¦   ¦                           ¦       7w2t3wbwxwij9q6bdkgwv7w4e.o
+¦       ¦   ¦                           ¦       8tasveigolyrrs5d3hk6u3h6c.o
+¦       ¦   ¦                           ¦       8u3889hp9fcwl7mwbec7prel2.o
+¦       ¦   ¦                           ¦       9jia3olk9wf5ex5w0tqbaffqc.o
+¦       ¦   ¦                           ¦       a08aiif2468x5f00boeg8bqm6.o
+¦       ¦   ¦                           ¦       aepejwxof9wmftff5j2kr6upe.o
+¦       ¦   ¦                           ¦       bz00mo7e6aic3772nk4qbthou.o
+¦       ¦   ¦                           ¦       bztn2c1kbnkoi5wqdxc8ajeb2.o
+¦       ¦   ¦                           ¦       ch1utc4imnrji4cno5bqn42st.o
+¦       ¦   ¦                           ¦       cp4q0ddbo1b11himthdjntqq9.o
+¦       ¦   ¦                           ¦       dep-graph.bin
+¦       ¦   ¦                           ¦       df4b7e1i9fpcpvput14whg9kc.o
+¦       ¦   ¦                           ¦       dlqfab4p57vohf5mf55r7cwoa.o
+¦       ¦   ¦                           ¦       e01f9fe5x28zif128sdraqzw6.o
+¦       ¦   ¦                           ¦       ee4rfolxfmnx6yxyu8qjbt49z.o
+¦       ¦   ¦                           ¦       exdfiuj35779dvvnflykfct30.o
+¦       ¦   ¦                           ¦       query-cache.bin
+¦       ¦   ¦                           ¦       work-products.bin
+¦       ¦   ¦                           ¦       
+¦       ¦   ¦                           +---s-h6gs1fw3fv-1iq06rq-working
+¦       ¦   ¦                                   25w9opi6rzga22fbm3osng3ut.o
+¦       ¦   ¦                                   2c7zkn3fqro1lagqhcwyncdg6.o
+¦       ¦   ¦                                   2dlwcetnxn2b9roj1e22buylm.o
+¦       ¦   ¦                                   2gibbpqoas1v7tiu6uf1mxuj4.o
+¦       ¦   ¦                                   2negeorg6hr4fi27u2owkynf9.o
+¦       ¦   ¦                                   2otkbai509uan7jzpe2uotr1c.o
+¦       ¦   ¦                                   2u02gwymcushm91uqzgris577.o
+¦       ¦   ¦                                   385ms02lzfqipq882q1rnk41e.o
+¦       ¦   ¦                                   3qxrms5p9f40k8ugzct0376yt.o
+¦       ¦   ¦                                   3xzq9ld3m6kdn5oesk2jd8dcm.o
+¦       ¦   ¦                                   4dgyrowy9yxt4uagolt2q6g2e.o
+¦       ¦   ¦                                   4enkc7qghroo6f1aozx6n9qf2.o
+¦       ¦   ¦                                   4gzis5o8npnt7i4wv0heuludg.o
+¦       ¦   ¦                                   4m0y94ape14c40wizm9tkc56b.o
+¦       ¦   ¦                                   4p6qpqvq2dvdx6kt2cuqlda6e.o
+¦       ¦   ¦                                   5102htlxfzx6arufkh921xthg.o
+¦       ¦   ¦                                   5c3n647g1t7ltx8df5rfzefwq.o
+¦       ¦   ¦                                   5nwmbwq2zbt2u5k2u713q63g7.o
+¦       ¦   ¦                                   5psduavhu8qo3yqksz0pmyxbd.o
+¦       ¦   ¦                                   6b5zkueqiesy2nrresbenqwrc.o
+¦       ¦   ¦                                   6y6jepmbthf4t6w5usmdgwh4w.o
+¦       ¦   ¦                                   72g2233c5w0slz3ru8s868qp3.o
+¦       ¦   ¦                                   7fh5fh7grt0fldyd137rxmjel.o
+¦       ¦   ¦                                   7w2t3wbwxwij9q6bdkgwv7w4e.o
+¦       ¦   ¦                                   8tasveigolyrrs5d3hk6u3h6c.o
+¦       ¦   ¦                                   8u3889hp9fcwl7mwbec7prel2.o
+¦       ¦   ¦                                   9jia3olk9wf5ex5w0tqbaffqc.o
+¦       ¦   ¦                                   a08aiif2468x5f00boeg8bqm6.o
+¦       ¦   ¦                                   aepejwxof9wmftff5j2kr6upe.o
+¦       ¦   ¦                                   bz00mo7e6aic3772nk4qbthou.o
+¦       ¦   ¦                                   bztn2c1kbnkoi5wqdxc8ajeb2.o
+¦       ¦   ¦                                   ch1utc4imnrji4cno5bqn42st.o
+¦       ¦   ¦                                   cp4q0ddbo1b11himthdjntqq9.o
+¦       ¦   ¦                                   dep-graph.bin
+¦       ¦   ¦                                   dep-graph.part.bin
+¦       ¦   ¦                                   df4b7e1i9fpcpvput14whg9kc.o
+¦       ¦   ¦                                   dlqfab4p57vohf5mf55r7cwoa.o
+¦       ¦   ¦                                   e01f9fe5x28zif128sdraqzw6.o
+¦       ¦   ¦                                   ee4rfolxfmnx6yxyu8qjbt49z.o
+¦       ¦   ¦                                   exdfiuj35779dvvnflykfct30.o
+¦       ¦   ¦                                   query-cache.bin
+¦       ¦   ¦                                   work-products.bin
+¦       ¦   ¦                                   
+¦       ¦   +---timeseries
+¦       ¦       +---julia
+¦       ¦       ¦   ¦   bayesian_turing.jl
+¦       ¦       ¦   ¦   bsts_forecast.jl
+¦       ¦       ¦   ¦   download_brent.jl
+¦       ¦       ¦   ¦   Manifest.toml
+¦       ¦       ¦   ¦   packagetrouble.jl
+¦       ¦       ¦   ¦   Project.toml
+¦       ¦       ¦   ¦   
+¦       ¦       ¦   +---data
+¦       ¦       ¦   +---plots
+¦       ¦       +---R
+¦       ¦           ¦   .Rhistory
+¦       ¦           ¦   30models.R
+¦       ¦           ¦   4castin.R
+¦       ¦           ¦   modelbonanza.R
+¦       ¦           ¦   tickeroonies.R
+¦       ¦           ¦   timerima.R
+¦       ¦           ¦   
+¦       ¦           +---plots
+¦       ¦                   aapl_close_daily.pdf
+¦       ¦                   aapl_forecast_models.pdf
+¦       ¦                   aapl_forecast_models_page_1.pdf
+¦       ¦                   aapl_forecast_models_page_2.pdf
+¦       ¦                   aapl_forecast_models_page_3.pdf
+¦       ¦                   aapl_forecast_models_page_4.pdf
+¦       ¦                   aapl_forecast_models_page_5.pdf
+¦       ¦                   aapl_stl_decomposition.pdf
+¦       ¦                   aapl_volume_daily.pdf
+¦       ¦                   airport_forecasts.pdf
+¦       ¦                   airport_forecasts_full.pdf
+¦       ¦                   
+¦       +---optimisation
+¦       +---plotting
+¦       ¦   ¦   hit.py
+¦       ¦   ¦   plotting.py
+¦       ¦   ¦   plotting.R
+¦       ¦   ¦   __init__.py
+¦       ¦   ¦   
+¦       ¦   +---__pycache__
+¦       ¦           plotting.cpython-311.pyc
+¦       ¦           __init__.cpython-311.pyc
+¦       ¦           
+¦       +---risk
+¦       ¦   +---matlab
+¦       ¦   ¦   ¦   bayes_volatility.m
+¦       ¦   ¦   ¦   bayes_volatility_normal_inverse_gamma.m
+¦       ¦   ¦   ¦   regime_switching_volatility.m
+¦       ¦   ¦   ¦   
+¦       ¦   ¦   +---plots
+¦       ¦   ¦           bayesian_volatility_estimation.pdf
+¦       ¦   ¦           regime_switching_volatility.pdf
+¦       ¦   ¦           
+¦       ¦   +---python
+¦       ¦   ¦   ¦   imp_vol.py
+¦       ¦   ¦   ¦   
+¦       ¦   ¦   +---plots
+¦       ¦   ¦           000001_SS_volatility.png
+¦       ¦   ¦           realized_vs_implied_volatility.pdf
+¦       ¦   ¦           realized_vs_implied_volatility.png
+¦       ¦   ¦           realized_vs_implied_volatility_merged.pdf
+¦       ¦   ¦           ^AXJO_volatility.png
+¦       ¦   ¦           ^DJI_volatility.png
+¦       ¦   ¦           ^GDAXI_volatility.png
+¦       ¦   ¦           ^GSPC_volatility.png
+¦       ¦   ¦           ^GSPTSE_volatility.png
+¦       ¦   ¦           ^IBEX_volatility.png
+¦       ¦   ¦           ^IXIC_volatility.png
+¦       ¦   ¦           ^SSMI_volatility.png
+¦       ¦   ¦           ^STOXX50E_volatility.png
+¦       ¦   ¦           
+¦       ¦   +---R
+¦       ¦       ¦   hei.txt
+¦       ¦       ¦   volatile-stocks.R
+¦       ¦       ¦   
+¦       ¦       +---plots
+¦       ¦               hei.txt
+¦       ¦               shipping_sector_multipage_2x2.pdf
+¦       ¦               volatile_stocks_32_multipage_2x2.pdf
+¦       ¦               volatile_stocks_lag1_return_facet.pdf
+¦       ¦               
+¦       +---strategies
+¦       ¦   +---cl
+¦       ¦   ¦   +---python
+¦       ¦   ¦       ¦   fetch.py
+¦       ¦   ¦       ¦   fetch_crosspair_data.py
+¦       ¦   ¦       ¦   fetch_crosspair_modular.py
+¦       ¦   ¦       ¦   fetch_intraday_data.py
+¦       ¦   ¦       ¦   plotprice.py
+¦       ¦   ¦       ¦   plot_crosspair_absolute.py
+¦       ¦   ¦       ¦   plot_crosspair_modular.py
+¦       ¦   ¦       ¦   plot_crosspair_multipage.py
+¦       ¦   ¦       ¦   plot_crosspair_normalized.py
+¦       ¦   ¦       ¦   plot_leapfrogging.py
+¦       ¦   ¦       ¦   plot_leapfrogging_multipage.py
+¦       ¦   ¦       ¦   runpairs.py
+¦       ¦   ¦       ¦   run_crosspair_absolute.py
+¦       ¦   ¦       ¦   run_crosspair_batch.py
+¦       ¦   ¦       ¦   run_crosspair_modular.py
+¦       ¦   ¦       ¦   simulate_arbitrage.py
+¦       ¦   ¦       ¦   
+¦       ¦   ¦       +---data
+¦       ¦   ¦       ¦       astrazeneca_vs_azn_intraday.csv
+¦       ¦   ¦       ¦       crosspair_intraday.csv
+¦       ¦   ¦       ¦       nestle_vs_nsgry_intraday.csv
+¦       ¦   ¦       ¦       novartis_vs_nvs_intraday.csv
+¦       ¦   ¦       ¦       sap_vs_sap_intraday.csv
+¦       ¦   ¦       ¦       schibsted_vs_aapl_intraday.csv
+¦       ¦   ¦       ¦       shel_intraday_utc.csv
+¦       ¦   ¦       ¦       siemens_vs_siegy_intraday.csv
+¦       ¦   ¦       ¦       unilever_vs_ul_intraday.csv
+¦       ¦   ¦       ¦       
+¦       ¦   ¦       +---plots
+¦       ¦   ¦       ¦       astrazeneca_vs_azn_leapfrog.pdf
+¦       ¦   ¦       ¦       astrazeneca_vs_azn_price_data.pdf
+¦       ¦   ¦       ¦       nestle_vs_nsgry_leapfrog.pdf
+¦       ¦   ¦       ¦       nestle_vs_nsgry_price_data.pdf
+¦       ¦   ¦       ¦       novartis_vs_nvs_price_data.pdf
+¦       ¦   ¦       ¦       sap_vs_sap_leapfrog.pdf
+¦       ¦   ¦       ¦       sap_vs_sap_price_data.pdf
+¦       ¦   ¦       ¦       schibsted_vs_aapl_leapfrog.pdf
+¦       ¦   ¦       ¦       schibsted_vs_aapl_price_data.pdf
+¦       ¦   ¦       ¦       shel_leapfrog.pdf
+¦       ¦   ¦       ¦       shel_leapfrog_fullrange.pdf
+¦       ¦   ¦       ¦       shel_leapfrog_multipage.pdf
+¦       ¦   ¦       ¦       shel_leapfrog_segments.pdf
+¦       ¦   ¦       ¦       siemens_vs_siegy_leapfrog.pdf
+¦       ¦   ¦       ¦       siemens_vs_siegy_price_data.pdf
+¦       ¦   ¦       ¦       test_output.pdf
+¦       ¦   ¦       ¦       unilever_vs_ul_price_data.pdf
+¦       ¦   ¦       ¦       
+¦       ¦   ¦       +---plots_absolute
+¦       ¦   ¦       +---__pycache__
+¦       ¦   ¦               fetch.cpython-311.pyc
+¦       ¦   ¦               fetch_crosspair_data.cpython-311.pyc
+¦       ¦   ¦               fetch_crosspair_modular.cpython-311.pyc
+¦       ¦   ¦               plotprice.cpython-311.pyc
+¦       ¦   ¦               plot_crosspair_absolute.cpython-311.pyc
+¦       ¦   ¦               plot_crosspair_modular.cpython-311.pyc
+¦       ¦   ¦               plot_crosspair_multipage.cpython-311.pyc
+¦       ¦   ¦               
+¦       ¦   +---hedge
+¦       ¦   ¦   +---python
+¦       ¦   ¦       ¦   ibm-opt.py
+¦       ¦   ¦       ¦   leverage.py
+¦       ¦   ¦       ¦   monte-carlo-survival.py
+¦       ¦   ¦       ¦   ms-sim.py
+¦       ¦   ¦       ¦   rl-dynamic-hedging.py
+¦       ¦   ¦       ¦   
+¦       ¦   ¦       +---plots
+¦       ¦   ¦               AAPL_hedging.pdf
+¦       ¦   ¦               AAPL_hedging_progress_10.pdf
+¦       ¦   ¦               AAPL_hedging_progress_20.pdf
+¦       ¦   ¦               AAPL_hedging_progress_30.pdf
+¦       ¦   ¦               AAPL_hedging_progress_40.pdf
+¦       ¦   ¦               AAPL_hedging_progress_50.pdf
+¦       ¦   ¦               AAPL_hedging_progress_60.pdf
+¦       ¦   ¦               AAPL_hedging_progress_70.pdf
+¦       ¦   ¦               grid_montecarlo_report.pdf
+¦       ¦   ¦               hei.txt
+¦       ¦   ¦               ibm_neutral_portfolio.pdf
+¦       ¦   ¦               leverage_sim_grid.pdf
+¦       ¦   ¦               montecarlo_blowups.pdf
+¦       ¦   ¦               montecarlo_report.pdf
+¦       ¦   ¦               
+¦       ¦   +---hft
+¦       ¦   ¦   +---backup-rust-config
+¦       ¦   ¦   +---python
+¦       ¦   ¦   ¦   ¦   60minutes.py
+¦       ¦   ¦   ¦   ¦   60minutes_intra.py
+¦       ¦   ¦   ¦   ¦   hft-latency.py
+¦       ¦   ¦   ¦   ¦   test.txt
+¦       ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   +---plots
+¦       ¦   ¦   ¦           combined_portfolio_simulation_2024.pdf
+¦       ¦   ¦   ¦           equally_weighted_2024.pdf
+¦       ¦   ¦   ¦           hft_plots.pdf
+¦       ¦   ¦   ¦           latency_dist.pdf
+¦       ¦   ¦   ¦           lob_snapshot.pdf
+¦       ¦   ¦   ¦           portfolio_simulation_2024.pdf
+¦       ¦   ¦   ¦           price_orders.pdf
+¦       ¦   ¦   ¦           trading_strategies_2024.pdf
+¦       ¦   ¦   ¦           
+¦       ¦   ¦   +---rust
+¦       ¦   ¦       ¦   .gitignore
+¦       ¦   ¦       ¦   
+¦       ¦   ¦       +---data
+¦       ¦   ¦       ¦       sample_ticks.csv
+¦       ¦   ¦       ¦       trades.csv
+¦       ¦   ¦       ¦       
+¦       ¦   ¦       +---plots
+¦       ¦   ¦       ¦       trades.png
+¦       ¦   ¦       ¦       
+¦       ¦   ¦       +---src
+¦       ¦   ¦               data.rs
+¦       ¦   ¦               engine.rs
+¦       ¦   ¦               main.rs
+¦       ¦   ¦               order_book.rs
+¦       ¦   ¦               plot.rs
+¦       ¦   ¦               strategy.rs
+¦       ¦   ¦               tests.rs
+¦       ¦   ¦               types.rs
+¦       ¦   ¦               
+¦       ¦   +---ie
+¦       ¦   ¦   +---python
+¦       ¦   ¦   ¦   ¦   dowjones.py
+¦       ¦   ¦   ¦   ¦   global_report.py
+¦       ¦   ¦   ¦   ¦   main.py
+¦       ¦   ¦   ¦   ¦   osebx.py
+¦       ¦   ¦   ¦   ¦   sp500.py
+¦       ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   +---data
+¦       ¦   ¦   ¦   ¦   ¦   stock_data.xlsx
+¦       ¦   ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   ¦   +---predictions
+¦       ¦   ¦   ¦   ¦   +---processed
+¦       ¦   ¦   ¦   ¦   ¦       features_2010_2022.csv
+¦       ¦   ¦   ¦   ¦   ¦       predictions.csv
+¦       ¦   ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   ¦   +---raw
+¦       ¦   ¦   ¦   ¦       ¦   osebx_changes.csv
+¦       ¦   ¦   ¦   ¦       ¦   
+¦       ¦   ¦   ¦   ¦       +---prices
+¦       ¦   ¦   ¦   ¦               ACC.OL.csv
+¦       ¦   ¦   ¦   ¦               AFG.OL.csv
+¦       ¦   ¦   ¦   ¦               AKAST.OL.csv
+¦       ¦   ¦   ¦   ¦               AKBM.OL.csv
+¦       ¦   ¦   ¦   ¦               AKER.OL.csv
+¦       ¦   ¦   ¦   ¦               AKH.OL.csv
+¦       ¦   ¦   ¦   ¦               AKRBP.OL.csv
+¦       ¦   ¦   ¦   ¦               AKSO.OL.csv
+¦       ¦   ¦   ¦   ¦               AMSC.OL.csv
+¦       ¦   ¦   ¦   ¦               BRG.OL.csv
+¦       ¦   ¦   ¦   ¦               DNB.OL.csv
+¦       ¦   ¦   ¦   ¦               EQNR.OL.csv
+¦       ¦   ¦   ¦   ¦               MOWI.OL.csv
+¦       ¦   ¦   ¦   ¦               NHY.OL.csv
+¦       ¦   ¦   ¦   ¦               ORK.OL.csv
+¦       ¦   ¦   ¦   ¦               TEL.OL.csv
+¦       ¦   ¦   ¦   ¦               YAR.OL.csv
+¦       ¦   ¦   ¦   ¦               
+¦       ¦   ¦   ¦   +---models
+¦       ¦   ¦   ¦   ¦       xgboost_osebx_model.json
+¦       ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   +---plots
+¦       ¦   ¦   ¦   ¦       .gitkeep
+¦       ¦   ¦   ¦   ¦       backtest_predicted_inclusions.pdf
+¦       ¦   ¦   ¦   ¦       dowjones_monitor.pdf
+¦       ¦   ¦   ¦   ¦       global_index_report.pdf
+¦       ¦   ¦   ¦   ¦       index_addition_predictions.pdf
+¦       ¦   ¦   ¦   ¦       index_effect_vs_osebx.pdf
+¦       ¦   ¦   ¦   ¦       osebx_monitor.pdf
+¦       ¦   ¦   ¦   ¦       sp500_monitor.pdf
+¦       ¦   ¦   ¦   ¦       summary_model_and_backtest.pdf
+¦       ¦   ¦   ¦   ¦       top_predictions.png
+¦       ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   +---scripts
+¦       ¦   ¦   ¦           backtest_predictions.py
+¦       ¦   ¦   ¦           download_prices.py
+¦       ¦   ¦   ¦           gen_features.py
+¦       ¦   ¦   ¦           plot_long_short_vs_osebx.py
+¦       ¦   ¦   ¦           plot_predictions.py
+¦       ¦   ¦   ¦           predict_inclusions.py
+¦       ¦   ¦   ¦           summarize_results.py
+¦       ¦   ¦   ¦           train_model.py
+¦       ¦   ¦   ¦           
+¦       ¦   ¦   +---R
+¦       ¦   ¦           buypolarcapital.R
+¦       ¦   ¦           
+¦       ¦   +---ipo
+¦       ¦   ¦   +---python
+¦       ¦   ¦   ¦   ¦   event_study.py
+¦       ¦   ¦   ¦   ¦   
+¦       ¦   ¦   ¦   +---data
+¦       ¦   ¦   ¦   ¦       ipo_returns_ABNB.csv
+¦       ¦   ¦   ¦   ¦       ipo_returns_BABA.csv
+¦       ¦   ¦   ¦   ¦       ipo_returns_COIN.csv
+¦       ¦   ¦   ¦   ¦       ipo_returns_DBX.csv
+¦       ¦   ¦   ¦   ¦       ipo_returns_LYFT.csv
+¦       ¦   ¦   ¦   ¦       ipo_returns_META.csv
+¦       ¦   ¦   ¦   ¦       ipo_returns_PLTR.csv
+¦       ¦   ¦   ¦   ¦       ipo_returns_RIVN.csv
+¦       ¦   ¦   ¦   ¦       ipo_returns_SNOW.csv
+¦       ¦   ¦   ¦   ¦       ipo_returns_SPOT.csv
+¦       ¦   ¦   ¦   ¦       ipo_returns_TSLA.csv
+¦       ¦   ¦   ¦   ¦       ipo_returns_UBER.csv
+¦       ¦   ¦   ¦   ¦       
+¦       ¦   ¦   ¦   +---plots
+¦       ¦   ¦   ¦           ipo_analysis_ABNB.pdf
+¦       ¦   ¦   ¦           ipo_analysis_BABA.pdf
+¦       ¦   ¦   ¦           ipo_analysis_COIN.pdf
+¦       ¦   ¦   ¦           ipo_analysis_DBX.pdf
+¦       ¦   ¦   ¦           ipo_analysis_LYFT.pdf
+¦       ¦   ¦   ¦           ipo_analysis_META.pdf
+¦       ¦   ¦   ¦           ipo_analysis_PLTR.pdf
+¦       ¦   ¦   ¦           ipo_analysis_RIVN.pdf
+¦       ¦   ¦   ¦           ipo_analysis_SNOW.pdf
+¦       ¦   ¦   ¦           ipo_analysis_SPOT.pdf
+¦       ¦   ¦   ¦           ipo_analysis_TSLA.pdf
+¦       ¦   ¦   ¦           ipo_analysis_UBER.pdf
+¦       ¦   ¦   ¦           ipo_CAR_ABNB.pdf
+¦       ¦   ¦   ¦           ipo_CAR_RIVN.pdf
+¦       ¦   ¦   ¦           ipo_CAR_SNOW.pdf
+¦       ¦   ¦   ¦           ipo_comparative_analysis.pdf
+¦       ¦   ¦   ¦           ipo_event_study_advanced.pdf
+¦       ¦   ¦   ¦           
+¦       ¦   ¦   +---R
+¦       ¦   ¦           buypolarcapital.R
+¦       ¦   ¦           
+¦       ¦   +---opt
+¦       ¦   ¦   +---matlab
+¦       ¦   ¦       ¦   markowitz_qp.m
+¦       ¦   ¦       ¦   
+¦       ¦   ¦       +---plots
+¦       ¦   ¦               markowitz_qp_frontier.pdf
+¦       ¦   ¦               
+¦       ¦   +---rv
+¦       ¦       +---matlab
+¦       ¦       ¦   ¦   pair_trading.m
+¦       ¦       ¦   ¦   
+¦       ¦       ¦   +---plots
+¦       ¦       ¦           pair_trading_demo.pdf
+¦       ¦       ¦           pair_trading_demo.png
+¦       ¦       ¦           
+¦       ¦       +---python
+¦       ¦       ¦   ¦   alpaca.py
+¦       ¦       ¦   ¦   alpha-vantage.py
+¦       ¦       ¦   ¦   alpha.py
+¦       ¦       ¦   ¦   chordcaged.py
+¦       ¦       ¦   ¦   intraday.py
+¦       ¦       ¦   ¦   plot_aapl_intraday.py
+¦       ¦       ¦   ¦   polygon_intraday.py
+¦       ¦       ¦   ¦   prompter.py
+¦       ¦       ¦   ¦   relativissimo.py
+¦       ¦       ¦   ¦   volkswagen.py
+¦       ¦       ¦   ¦   zscore-yoy.py
+¦       ¦       ¦   ¦   
+¦       ¦       ¦   +---data
+¦       ¦       ¦   ¦       aapl_intraday_alphavantage.csv
+¦       ¦       ¦   ¦       
+¦       ¦       ¦   +---plots
+¦       ¦       ¦   ¦       0001_HK_vs_1038_HK_relative.png
+¦       ¦       ¦   ¦       0019_HK_vs_1972_HK_relative.png
+¦       ¦       ¦   ¦       9432_T_vs_9613_T_relative.png
+¦       ¦       ¦   ¦       ANA_MC_vs_ANE_MC_relative.png
+¦       ¦       ¦   ¦       ATCO-A_ST_vs_ATCO-B_ST_relative.png
+¦       ¦       ¦   ¦       BMW_DE_vs_BMW3_DE_relative.png
+¦       ¦       ¦   ¦       BRK-A_vs_BRK-B_relative.png
+¦       ¦       ¦   ¦       dually_listed_stocks_merged.pdf
+¦       ¦       ¦   ¦       dual_arbitrage_facet_BRKA_BRKB.pdf
+¦       ¦       ¦   ¦       EDP_LS_vs_EDPR_LS_relative.png
+¦       ¦       ¦   ¦       ELUX-A_ST_vs_ELUX-B_ST_relative.png
+¦       ¦       ¦   ¦       EPI-A_ST_vs_EPI-B_ST_relative.png
+¦       ¦       ¦   ¦       ESSITY-A_ST_vs_ESSITY-B_ST_relative.png
+¦       ¦       ¦   ¦       FOXA_vs_FOX_relative.png
+¦       ¦       ¦   ¦       GOOGL_vs_GOOG_relative.png
+¦       ¦       ¦   ¦       GRF_MC_vs_GRF-P_MC_relative.png
+¦       ¦       ¦   ¦       HEIO_AS_vs_HEIA_AS_relative.png
+¦       ¦       ¦   ¦       HEI_vs_HEI-A_relative.png
+¦       ¦       ¦   ¦       HEN_DE_vs_HEN3_DE_relative.png
+¦       ¦       ¦   ¦       INDU-A_ST_vs_INDU-C_ST_relative.png
+¦       ¦       ¦   ¦       INVE-A_ST_vs_INVE-B_ST_relative.png
+¦       ¦       ¦   ¦       LBTYA_vs_LBTYK_relative.png
+¦       ¦       ¦   ¦       LISN_SW_vs_LISP_SW_relative.png
+¦       ¦       ¦   ¦       LVS_vs_1928_HK_relative.png
+¦       ¦       ¦   ¦       MAERSK-A_CO_vs_MAERSK-B_CO_relative.png
+¦       ¦       ¦   ¦       PAH3_DE_vs_P911_DE_relative.png
+¦       ¦       ¦   ¦       RIO_AX_vs_RIO_L_relative.png
+¦       ¦       ¦   ¦       ROCK-A_CO_vs_ROCK-B_CO_relative.png
+¦       ¦       ¦   ¦       ROG_SW_vs_RO_SW_relative.png
+¦       ¦       ¦   ¦       SCHA_OL_vs_SCHB_OL_relative.png
+¦       ¦       ¦   ¦       SCHN_SW_vs_SCHP_SW_relative.png
+¦       ¦       ¦   ¦       SRT_DE_vs_SRT3_DE_relative.png
+¦       ¦       ¦   ¦       UHR_SW_vs_UHRN_SW_relative.png
+¦       ¦       ¦   ¦       VOLV-A_ST_vs_VOLV-B_ST_relative.png
+¦       ¦       ¦   ¦       VOW_DE_vs_VOW3_DE_relative.png
+¦       ¦       ¦   ¦       
+¦       ¦       ¦   +---utils
+¦       ¦       ¦   ¦   +---data_fetchers
+¦       ¦       ¦   ¦       ¦   alpha_vantage.py
+¦       ¦       ¦   ¦       ¦   
+¦       ¦       ¦   ¦       +---__pycache__
+¦       ¦       ¦   ¦               alpha_vantage.cpython-311.pyc
+¦       ¦       ¦   ¦               
+¦       ¦       ¦   +---__pycache__
+¦       ¦       ¦           polygon.cpython-311.pyc
+¦       ¦       ¦           
+¦       ¦       +---R
+¦       ¦           ¦   .Rhistory
+¦       ¦           ¦   berkshire-trade.R
+¦       ¦           ¦   dual_arbitrage_trades_table.Rmd
+¦       ¦           ¦   google-trade.R
+¦       ¦           ¦   Halla.R
+¦       ¦           ¦   nestle-trade.R
+¦       ¦           ¦   novo-trade.R
+¦       ¦           ¦   related.R
+¦       ¦           ¦   relative-value.R
+¦       ¦           ¦   schibsted-trade.R
+¦       ¦           ¦   zscore-2024-trade.R
+¦       ¦           ¦   zscore-astra-zeneca-yoy.R
+¦       ¦           ¦   zscore-bank-of-nova-scotia-yoy.R
+¦       ¦           ¦   zscore-best-trade.R
+¦       ¦           ¦   zscore-brk-yoy.R
+¦       ¦           ¦   zscore-days-rolling.R
+¦       ¦           ¦   zscore-goog-rolling.R
+¦       ¦           ¦   zscore-goog-yoy-goldman.R
+¦       ¦           ¦   zscore-kable.R
+¦       ¦           ¦   zscore-pretty-trade.R
+¦       ¦           ¦   zscore-rolling.R
+¦       ¦           ¦   zscore-trade.R
+¦       ¦           ¦   zscore-yoy-general-script.R
+¦       ¦           ¦   
+¦       ¦           +---plots
+¦       ¦                   005930.ks_vs_005935.ks_prices.pdf
+¦       ¦                   005930.ks_vs_005935.ks_relative_value.pdf
+¦       ¦                   aapl_intraday_alphavantage.pdf
+¦       ¦                   aapl_intraday_plot.pdf
+¦       ¦                   atco-a.st_vs_atco-b.st_prices.pdf
+¦       ¦                   atco-a.st_vs_atco-b.st_relative_value.pdf
+¦       ¦                   berkshire_strategy_plots.pdf
+¦       ¦                   brk-a_vs_brk-b_prices.pdf
+¦       ¦                   brk-a_vs_brk-b_relative_value.pdf
+¦       ¦                   dual_arbitrage_2024.pdf
+¦       ¦                   dual_arbitrage_2024_best.pdf
+¦       ¦                   dual_arbitrage_facet_AZN_AZNL.pdf
+¦       ¦                   dual_arbitrage_facet_BABA_9988HK.pdf
+¦       ¦                   dual_arbitrage_facet_BNS_BNSTO.pdf
+¦       ¦                   dual_arbitrage_facet_BRK-A_BRK-B.pdf
+¦       ¦                   dual_arbitrage_facet_GOOG_GOOGL.pdf
+¦       ¦                   dual_arbitrage_facet_HDB_HDFCBANKNS.pdf
+¦       ¦                   dual_arbitrage_facet_INFY_INFYNS.pdf
+¦       ¦                   dual_arbitrage_facet_JD_9618HK.pdf
+¦       ¦                   dual_arbitrage_facet_SSL_SOLJO.pdf
+¦       ¦                   dual_arbitrage_facet_TCEHY_0700HK.pdf
+¦       ¦                   dual_arbitrage_facet_TLK_TLKMJK.pdf
+¦       ¦                   dual_arbitrage_facet_VALE_VALE3SA.pdf
+¦       ¦                   dual_arbitrage_facet_YUMC_9987HK.pdf
+¦       ¦                   dual_arbitrage_goldman_GOOG_GOOGL.pdf
+¦       ¦                   dual_arbitrage_GOOG_GOOGL_rolling_comparison.pdf
+¦       ¦                   dual_arbitrage_prettified.pdf
+¦       ¦                   dual_arbitrage_rolling_windows_multi_pairs.pdf
+¦       ¦                   dual_arbitrage_rolling_window_comparison_top5.pdf
+¦       ¦                   dual_arbitrage_strategies.pdf
+¦       ¦                   dual_arbitrage_trades_best2.pdf
+¦       ¦                   dual_arbitrage_trades_highlights1.pdf
+¦       ¦                   dual_arbitrage_trades_highlights2.pdf
+¦       ¦                   dual_arbitrage_trades_log.csv
+¦       ¦                   dual_arbitrage_trades_table.Rmd
+¦       ¦                   dual_arbitrage_yoy_GOOG_vs_GOOGL.pdf
+¦       ¦                   dual_arbitrage_yoy_vs_benchmarks_GOOG_GOOGL.pdf
+¦       ¦                   eric-b.st_vs_eric-a.st_prices.pdf
+¦       ¦                   eric-b.st_vs_eric-a.st_relative_value.pdf
+¦       ¦                   googl_vs_goog_prices.pdf
+¦       ¦                   googl_vs_goog_relative_value.pdf
+¦       ¦                   goog_zscore_strategy.pdf
+¦       ¦                   nda-dk.co_vs_nda-se.st_prices.pdf
+¦       ¦                   nda-dk.co_vs_nda-se.st_relative_value.pdf
+¦       ¦                   nestle_zscore_strategy.pdf
+¦       ¦                   novo_zscore_strategy.pdf
+¦       ¦                   nws_vs_nwsa_prices.pdf
+¦       ¦                   nws_vs_nwsa_relative_value.pdf
+¦       ¦                   Rplot.pdf
+¦       ¦                   Rplot01.pdf
+¦       ¦                   Rplot02.pdf
+¦       ¦                   Rplot03.pdf
+¦       ¦                   Rplot04.pdf
+¦       ¦                   Rplot05.pdf
+¦       ¦                   schibsted_zscore_strategy.pdf
+¦       ¦                   skf-b.st_vs_skf-a.st_prices.pdf
+¦       ¦                   skf-b.st_vs_skf-a.st_relative_value.pdf
+¦       ¦                   volkswagen_prices.pdf
+¦       ¦                   volkswagen_relative_value.pdf
+¦       ¦                   volv-b.st_vs_volv-a.st_prices.pdf
+¦       ¦                   volv-b.st_vs_volv-a.st_relative_value.pdf
+¦       ¦                   vow.de_vs_vow3.de_prices.pdf
+¦       ¦                   vow.de_vs_vow3.de_relative_value.pdf
+¦       ¦                   
+¦       +---utils
++---tests
+    +---fixtures
+    +---integration
+    +---units

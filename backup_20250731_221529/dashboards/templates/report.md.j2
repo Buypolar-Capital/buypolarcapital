@@ -1,0 +1,71 @@
+---
+title: "BuyPolar Capital Global One-Pager"
+fontsize: 9pt
+geometry: margin=0.6in
+header-includes:
+  - \usepackage{graphicx}
+  - \usepackage{multicol}
+  - \pagenumbering{gobble}
+---
+
+\begin{multicols}{2}
+
+\section*{Global Snapshot {{ date }}}
+
+\subsection*{Major Indices}
+
+| Index        | 1D Return (%) |
+|--------------|---------------|
+{% for row in indices %}
+| {{ row.name | replace("&", "\\&") }} | {{ row['1D_return'] }} |
+{% endfor %}
+
+\includegraphics[width=\linewidth]{{ output_dir }}/sparkline_indices.png}
+\includegraphics[width=\linewidth]{{ output_dir }}/indices_returns.png}
+
+\subsection*{🛢 Commodities}
+
+| Asset        | 1D Return (%) |
+|--------------|---------------|
+{% for row in commodities %}
+| {{ row.name }} | {{ row['1D_return'] }} |
+{% endfor %}
+
+\includegraphics[width=\linewidth]{{ output_dir }}/commodities_returns.png}
+
+\subsection*{Fixed Income}
+
+| Instrument     | 1D Return (%) |
+|----------------|---------------|
+{% for row in fixed_income %}
+| {{ row.name }} | {{ row['1D_return'] }} |
+{% endfor %}
+
+\includegraphics[width=\linewidth]{{ output_dir }}/fixed_income_returns.png}
+
+\subsection*{Crypto}
+
+| Coin       | 1D Return (%) |
+|------------|---------------|
+{% for row in crypto %}
+| {{ row.name }} | {{ row['1D_return'] }} |
+{% endfor %}
+
+\includegraphics[width=\linewidth]{{ output_dir }}/sparkline_crypto.png}
+\includegraphics[width=\linewidth]{{ output_dir }}/crypto_returns.png}
+
+\subsection*{LLM Commentary}
+
+{{ commentary | replace("#", "") }}
+
+\subsection*{Signal Selection}
+
+| Name         | Signal  | Return |
+|--------------|---------|--------|
+{% for row in signals %}
+| {{ row.name }} | {{ row.signal }} | {{ row.return }} |
+{% endfor %}
+
+\includegraphics[width=\linewidth]{{ output_dir }}/grid_returns.png}
+
+\end{multicols}
