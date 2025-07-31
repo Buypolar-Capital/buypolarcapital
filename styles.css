@@ -1168,6 +1168,14 @@ section {
     box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.1);
 }
 
+.contact-email {
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: var(--medium-gray);
+    font-weight: 500;
+}
+
 /* Footer */
 .footer {
     background-color: var(--primary-black);
