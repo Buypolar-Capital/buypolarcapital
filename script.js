@@ -4,6 +4,7 @@
 // Global variables
 let performanceChart;
 let isNavScrolled = false;
+let plotsData = [];
 
 // Modern chart layout helper function
 function getModernChartLayout(title, xTitle, yTitle, showLegend = false) {
@@ -88,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
 function waitForExternalScripts() {
     return new Promise((resolve, reject) => {
         let attempts = 0;
-        const maxAttempts = 50; // 5 seconds
+        const maxAttempts = 20; // 2 seconds - reduced timeout
         
         function checkScripts() {
             attempts++;
@@ -101,8 +102,8 @@ function waitForExternalScripts() {
             }
             
             if (attempts >= maxAttempts) {
-                console.log('External scripts failed to load within timeout');
-                reject();
+                console.log('External scripts failed to load within timeout, proceeding anyway');
+                resolve(); // Don't reject, just proceed
                 return;
             }
             
@@ -127,7 +128,7 @@ function initializeWebsite() {
         } catch (error) {
             console.log('Research charts failed to load:', error);
         }
-    }, 500);
+    }, 200);
     
     // Initialize plots gallery
     setTimeout(() => {
@@ -136,7 +137,7 @@ function initializeWebsite() {
         } catch (error) {
             console.log('Plots gallery failed to load:', error);
         }
-    }, 1000);
+    }, 400);
     
     // Initialize games
     setTimeout(() => {
@@ -145,7 +146,7 @@ function initializeWebsite() {
         } catch (error) {
             console.log('Games failed to load:', error);
         }
-    }, 1500);
+    }, 600);
     
     // Initialize scroll animations
     initializeScrollAnimations();
@@ -169,9 +170,9 @@ function initializeWebsite() {
     initializePerformanceChartWithRetry();
     
     // Hide loading spinner after a reasonable time
-    setTimeout(hideLoadingSpinner, 2000);
+    setTimeout(hideLoadingSpinner, 1000);
     
-    // Backup: force hide spinner after 5 seconds
+    // Backup: force hide spinner after 3 seconds
     setTimeout(() => {
         const spinner = document.getElementById('loading-spinner');
         if (spinner) {
@@ -2785,7 +2786,6 @@ function updateRuinChart(initialBankroll, betSize, winRate) {
 
 // ===== PLOTS GALLERY FUNCTIONALITY =====
 
-let plotsData = [];
 let currentCategory = 'all';
 
 function initializePlotsGallery() {
@@ -2800,37 +2800,17 @@ function initializePlotsGallery() {
 }
 
 function loadPlotsData() {
-    // Try to load from JSON file first
-    fetch('plots_data.json')
-        .then(response => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                // If no JSON file, create sample data
-                return createSamplePlotsData();
-            }
-        })
-        .then(data => {
-            plotsData = data.plots || data;
-            // Fix plot paths to point to the correct location
-            plotsData.forEach(plot => {
-                if (plot.path && !plot.path.startsWith('plots/')) {
-                    plot.path = 'plots/' + plot.filename;
-                }
-            });
-            renderPlotsGrid();
-        })
-        .catch(error => {
-            console.error('Failed to load plots gallery:', error);
-            const plotsGrid = document.getElementById('plots-grid');
-            if (plotsGrid) {
-                plotsGrid.innerHTML = '<div class="no-plots-message"><h3>Research plots temporarily unavailable</h3><p>Please try refreshing the page or check back later.</p></div>';
-            } else {
-                // Fallback to sample data if gallery element not found
-                plotsData = createSamplePlotsData();
-                renderPlotsGrid();
-            }
-        });
+    // Always use sample data for now since plots files may not exist
+    try {
+        plotsData = createSamplePlotsData();
+        renderPlotsGrid();
+    } catch (error) {
+        console.error('Failed to load plots gallery:', error);
+        const plotsGrid = document.getElementById('plots-grid');
+        if (plotsGrid) {
+            plotsGrid.innerHTML = '<div class="no-plots-message"><h3>Research plots temporarily unavailable</h3><p>Please try refreshing the page or check back later.</p></div>';
+        }
+    }
 }
 
 function createSamplePlotsData() {

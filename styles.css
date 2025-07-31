@@ -197,13 +197,17 @@ p {
     text-decoration: none;
     color: inherit;
     flex-shrink: 0;
+    padding: var(--spacing-sm);
+    border-radius: var(--radius-md);
+    transition: var(--transition-fast);
 }
 
-.logo-image {
-    width: 40px;
-    height: 40px;
-    border-radius: var(--radius-sm);
+.nav-logo:hover {
+    background-color: var(--off-white);
+    transform: translateY(-1px);
 }
+
+/* Logo image removed - using text only */
 
 .logo-text-container {
     display: flex;
