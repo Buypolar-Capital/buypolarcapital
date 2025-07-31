@@ -25,6 +25,7 @@
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#performance" class="nav-link">Performance</a></li>
                 <li><a href="#research" class="nav-link">Research</a></li>
+                <li><a href="#research-plots" class="nav-link">Plots</a></li>
                 <li><a href="#tools" class="nav-link">Tools</a></li>
                 <li><a href="#games" class="nav-link">Games</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
@@ -247,6 +248,52 @@
                         <h4>Order Book Dynamics</h4>
                         <div id="orderbook-chart" class="chart-container"></div>
                         <p>Real-time order book visualization and analysis</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Plots Gallery Section -->
+    <section id="research-plots" class="research-plots">
+        <div class="container">
+            <div class="section-header">
+                <h2>Research Plots Gallery</h2>
+                <p>Comprehensive collection of quantitative research and simulation results</p>
+            </div>
+            
+            <!-- Plot Categories -->
+            <div class="plot-categories">
+                <button class="category-btn active" data-category="all">All Plots</button>
+                <button class="category-btn" data-category="vwap">VWAP Strategies</button>
+                <button class="category-btn" data-category="arbitrage">Arbitrage</button>
+                <button class="category-btn" data-category="hft">High-Frequency Trading</button>
+                <button class="category-btn" data-category="hedging">Hedging</button>
+                <button class="category-btn" data-category="ipo">IPO Analysis</button>
+                <button class="category-btn" data-category="equities">Equities</button>
+                <button class="category-btn" data-category="crypto">Cryptocurrency</button>
+                <button class="category-btn" data-category="fixed-income">Fixed Income</button>
+            </div>
+
+            <!-- Plots Grid -->
+            <div class="plots-grid" id="plots-grid">
+                <!-- Plots will be dynamically loaded here -->
+            </div>
+
+            <!-- Plot Viewer Modal -->
+            <div id="plot-modal" class="plot-modal">
+                <div class="modal-content">
+                    <span class="close-modal">&times;</span>
+                    <div class="modal-header">
+                        <h3 id="modal-title">Plot Title</h3>
+                        <p id="modal-description">Plot description</p>
+                    </div>
+                    <div class="modal-body">
+                        <iframe id="plot-iframe" src="" frameborder="0"></iframe>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="download-btn" id="download-plot">Download PDF</button>
+                        <button class="share-btn" id="share-plot">Share</button>
                     </div>
                 </div>
             </div>

@@ -1,0 +1,1075 @@
+{
+  "metadata": {
+    "generated_at": "2025-08-01T00:17:47.186467",
+    "total_plots": 65,
+    "categories": [
+      "other",
+      "vwap",
+      "equities",
+      "hedging",
+      "hft",
+      "arbitrage",
+      "ipo"
+    ]
+  },
+  "plots": [
+    {
+      "id": "schibsted_vs_aapl_price_data",
+      "title": "Schibsted Vs Aapl Price Data",
+      "description": "Volume Weighted Average Price analysis and trading strategy performance",
+      "category": "vwap",
+      "filename": "schibsted_vs_aapl_price_data.pdf",
+      "path": "plots/schibsted_vs_aapl_price_data.pdf",
+      "size": "20.2 KB",
+      "size_bytes": 20662,
+      "modified": "2025-04-09T23:38:42.066618",
+      "modified_date": "April 09, 2025",
+      "thumbnail": "assets/thumbnails/schibsted_vs_aapl_price_data.png",
+      "tags": [
+        "vwap"
+      ]
+    },
+    {
+      "id": "sap_vs_sap_price_data",
+      "title": "Sap Vs Sap Price Data",
+      "description": "Volume Weighted Average Price analysis and trading strategy performance",
+      "category": "vwap",
+      "filename": "sap_vs_sap_price_data.pdf",
+      "path": "plots/sap_vs_sap_price_data.pdf",
+      "size": "19.7 KB",
+      "size_bytes": 20205,
+      "modified": "2025-04-09T23:38:42.868226",
+      "modified_date": "April 09, 2025",
+      "thumbnail": "assets/thumbnails/sap_vs_sap_price_data.png",
+      "tags": [
+        "vwap"
+      ]
+    },
+    {
+      "id": "shel_leapfrog",
+      "title": "Shel Leapfrog",
+      "description": "Cross-listing arbitrage opportunities and relative value analysis",
+      "category": "arbitrage",
+      "filename": "shel_leapfrog.pdf",
+      "path": "plots/shel_leapfrog.pdf",
+      "size": "23.2 KB",
+      "size_bytes": 23800,
+      "modified": "2025-04-09T21:27:04.603104",
+      "modified_date": "April 09, 2025",
+      "thumbnail": "assets/thumbnails/shel_leapfrog.png",
+      "tags": [
+        "arbitrage"
+      ]
+    },
+    {
+      "id": "ipo_analysis_uber",
+      "title": "IPO Analysis Uber",
+      "description": "Initial Public Offering event study and market reaction analysis",
+      "category": "ipo",
+      "filename": "ipo_analysis_UBER.pdf",
+      "path": "plots/ipo_analysis_UBER.pdf",
+      "size": "24.2 KB",
+      "size_bytes": 24832,
+      "modified": "2025-04-17T00:41:33.604156",
+      "modified_date": "April 17, 2025",
+      "thumbnail": "assets/thumbnails/ipo_analysis_UBER.png",
+      "tags": [
+        "analysis",
+        "ipo"
+      ]
+    },
+    {
+      "id": "ipo_car_snow",
+      "title": "IPO Car Snow",
+      "description": "Initial Public Offering event study and market reaction analysis",
+      "category": "ipo",
+      "filename": "ipo_CAR_SNOW.pdf",
+      "path": "plots/ipo_CAR_SNOW.pdf",
+      "size": "15.2 KB",
+      "size_bytes": 15557,
+      "modified": "2025-04-17T00:32:06.302569",
+      "modified_date": "April 17, 2025",
+      "thumbnail": "assets/thumbnails/ipo_CAR_SNOW.png",
+      "tags": [
+        "ipo"
+      ]
+    },
+    {
+      "id": "price_orders",
+      "title": "Price Orders",
+      "description": "Volume Weighted Average Price analysis and trading strategy performance",
+      "category": "vwap",
+      "filename": "price_orders.pdf",
+      "path": "plots/price_orders.pdf",
+      "size": "18.5 KB",
+      "size_bytes": 18939,
+      "modified": "2025-03-30T15:17:58.523329",
+      "modified_date": "March 30, 2025",
+      "thumbnail": "assets/thumbnails/price_orders.png",
+      "tags": [
+        "vwap"
+      ]
+    },
+    {
+      "id": "dowjones_monitor",
+      "title": "Dowjones Monitor",
+      "description": "Equity market analysis and stock performance monitoring",
+      "category": "equities",
+      "filename": "dowjones_monitor.pdf",
+      "path": "plots/dowjones_monitor.pdf",
+      "size": "24.8 KB",
+      "size_bytes": 25415,
+      "modified": "2025-03-23T19:36:59.222091",
+      "modified_date": "March 23, 2025",
+      "thumbnail": "assets/thumbnails/dowjones_monitor.png",
+      "tags": [
+        "equities"
+      ]
+    },
+    {
+      "id": "ipo_analysis_coin",
+      "title": "IPO Analysis Coin",
+      "description": "Initial Public Offering event study and market reaction analysis",
+      "category": "ipo",
+      "filename": "ipo_analysis_COIN.pdf",
+      "path": "plots/ipo_analysis_COIN.pdf",
+      "size": "23.8 KB",
+      "size_bytes": 24370,
+      "modified": "2025-04-17T00:41:32.270069",
+      "modified_date": "April 17, 2025",
+      "thumbnail": "assets/thumbnails/ipo_analysis_COIN.png",
+      "tags": [
+        "analysis",
+        "ipo"
+      ]
+    },
+    {
+      "id": "astrazeneca_vs_azn_leapfrog",
+      "title": "Astrazeneca Vs Azn Leapfrog",
+      "description": "Cross-listing arbitrage opportunities and relative value analysis",
+      "category": "arbitrage",
+      "filename": "astrazeneca_vs_azn_leapfrog.pdf",
+      "path": "plots/astrazeneca_vs_azn_leapfrog.pdf",
+      "size": "102.3 KB",
+      "size_bytes": 104734,
+      "modified": "2025-04-09T22:43:56.882554",
+      "modified_date": "April 09, 2025",
+      "thumbnail": "assets/thumbnails/astrazeneca_vs_azn_leapfrog.png",
+      "tags": [
+        "arbitrage"
+      ]
+    },
+    {
+      "id": "aapl_hedging_progress_50",
+      "title": "Aapl Hedging Progress 50",
+      "description": "Options hedging strategies and portfolio risk management",
+      "category": "hedging",
+      "filename": "AAPL_hedging_progress_50.pdf",
+      "path": "plots/AAPL_hedging_progress_50.pdf",
+      "size": "13.8 KB",
+      "size_bytes": 14085,
+      "modified": "2025-03-30T16:35:55.638124",
+      "modified_date": "March 30, 2025",
+      "thumbnail": "assets/thumbnails/AAPL_hedging_progress_50.png",
+      "tags": [
+        "hedging"
+      ]
+    },
+    {
+      "id": "latency_dist",
+      "title": "Latency Dist",
+      "description": "High-frequency trading latency analysis and order book dynamics",
+      "category": "hft",
+      "filename": "latency_dist.pdf",
+      "path": "plots/latency_dist.pdf",
+      "size": "15.1 KB",
+      "size_bytes": 15503,
+      "modified": "2025-03-30T15:17:57.958389",
+      "modified_date": "March 30, 2025",
+      "thumbnail": "assets/thumbnails/latency_dist.png",
+      "tags": [
+        "hft"
+      ]
+    },
+    {
+      "id": "ipo_analysis_abnb",
+      "title": "IPO Analysis Abnb",
+      "description": "Initial Public Offering event study and market reaction analysis",
+      "category": "ipo",
+      "filename": "ipo_analysis_ABNB.pdf",
+      "path": "plots/ipo_analysis_ABNB.pdf",
+      "size": "23.2 KB",
+      "size_bytes": 23804,
+      "modified": "2025-04-17T00:41:27.833419",
+      "modified_date": "April 17, 2025",
+      "thumbnail": "assets/thumbnails/ipo_analysis_ABNB.png",
+      "tags": [
+        "analysis",
+        "ipo"
+      ]
+    },
+    {
+      "id": "osebx_monitor",
+      "title": "Osebx Monitor",
+      "description": "Equity market analysis and stock performance monitoring",
+      "category": "equities",
+      "filename": "osebx_monitor.pdf",
+      "path": "plots/osebx_monitor.pdf",
+      "size": "25.9 KB",
+      "size_bytes": 26484,
+      "modified": "2025-03-23T19:37:08.497185",
+      "modified_date": "March 23, 2025",
+      "thumbnail": "assets/thumbnails/osebx_monitor.png",
+      "tags": [
+        "equities"
+      ]
+    },
+    {
+      "id": "trading_strategies_2024",
+      "title": "Trading Strategies 2024",
+      "description": "Quantitative analysis and research visualization",
+      "category": "other",
+      "filename": "trading_strategies_2024.pdf",
+      "path": "plots/trading_strategies_2024.pdf",
+      "size": "27.8 KB",
+      "size_bytes": 28453,
+      "modified": "2025-03-23T18:09:14.480786",
+      "modified_date": "March 23, 2025",
+      "thumbnail": "assets/thumbnails/trading_strategies_2024.png",
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "id": "ipo_comparative_analysis",
+      "title": "IPO Comparative Analysis",
+      "description": "Initial Public Offering event study and market reaction analysis",
+      "category": "ipo",
+      "filename": "ipo_comparative_analysis.pdf",
+      "path": "plots/ipo_comparative_analysis.pdf",
+      "size": "42.6 KB",
+      "size_bytes": 43625,
+      "modified": "2025-04-17T00:41:44.791172",
+      "modified_date": "April 17, 2025",
+      "thumbnail": "assets/thumbnails/ipo_comparative_analysis.png",
+      "tags": [
+        "analysis",
+        "ipo"
+      ]
+    },
+    {
+      "id": "unilever_vs_ul_price_data",
+      "title": "Unilever Vs Ul Price Data",
+      "description": "Volume Weighted Average Price analysis and trading strategy performance",
+      "category": "vwap",
+      "filename": "unilever_vs_ul_price_data.pdf",
+      "path": "plots/unilever_vs_ul_price_data.pdf",
+      "size": "18.8 KB",
+      "size_bytes": 19224,
+      "modified": "2025-04-09T23:38:47.491771",
+      "modified_date": "April 09, 2025",
+      "thumbnail": "assets/thumbnails/unilever_vs_ul_price_data.png",
+      "tags": [
+        "vwap"
+      ]
+    },
+    {
+      "id": "schibsted_vs_aapl_leapfrog",
+      "title": "Schibsted Vs Aapl Leapfrog",
+      "description": "Cross-listing arbitrage opportunities and relative value analysis",
+      "category": "arbitrage",
+      "filename": "schibsted_vs_aapl_leapfrog.pdf",
+      "path": "plots/schibsted_vs_aapl_leapfrog.pdf",
+      "size": "102.3 KB",
+      "size_bytes": 104734,
+      "modified": "2025-04-09T22:43:33.938082",
+      "modified_date": "April 09, 2025",
+      "thumbnail": "assets/thumbnails/schibsted_vs_aapl_leapfrog.png",
+      "tags": [
+        "arbitrage"
+      ]
+    },
+    {
+      "id": "ipo_analysis_snow",
+      "title": "IPO Analysis Snow",
+      "description": "Initial Public Offering event study and market reaction analysis",
+      "category": "ipo",
+      "filename": "ipo_analysis_SNOW.pdf",
+      "path": "plots/ipo_analysis_SNOW.pdf",
+      "size": "24.0 KB",
+      "size_bytes": 24576,
+      "modified": "2025-04-17T00:41:29.518422",
+      "modified_date": "April 17, 2025",
+      "thumbnail": "assets/thumbnails/ipo_analysis_SNOW.png",
+      "tags": [
+        "analysis",
+        "ipo"
+      ]
+    },
+    {
+      "id": "shel_leapfrog_multipage",
+      "title": "Shel Leapfrog Multipage",
+      "description": "Cross-listing arbitrage opportunities and relative value analysis",
+      "category": "arbitrage",
+      "filename": "shel_leapfrog_multipage.pdf",
+      "path": "plots/shel_leapfrog_multipage.pdf",
+      "size": "96.8 KB",
+      "size_bytes": 99107,
+      "modified": "2025-04-09T21:38:14.692045",
+      "modified_date": "April 09, 2025",
+      "thumbnail": "assets/thumbnails/shel_leapfrog_multipage.png",
+      "tags": [
+        "arbitrage"
+      ]
+    },
+    {
+      "id": "hft_plots",
+      "title": "HFT Plots",
+      "description": "High-frequency trading latency analysis and order book dynamics",
+      "category": "hft",
+      "filename": "hft_plots.pdf",
+      "path": "plots/hft_plots.pdf",
+      "size": "55.0 KB",
+      "size_bytes": 56290,
+      "modified": "2025-03-30T15:25:49.383312",
+      "modified_date": "March 30, 2025",
+      "thumbnail": "assets/thumbnails/hft_plots.png",
+      "tags": [
+        "hft"
+      ]
+    },
+    {
+      "id": "aapl_hedging_progress_20",
+      "title": "Aapl Hedging Progress 20",
+      "description": "Options hedging strategies and portfolio risk management",
+      "category": "hedging",
+      "filename": "AAPL_hedging_progress_20.pdf",
+      "path": "plots/AAPL_hedging_progress_20.pdf",
+      "size": "13.5 KB",
+      "size_bytes": 13841,
+      "modified": "2025-03-30T16:34:06.478680",
+      "modified_date": "March 30, 2025",
+      "thumbnail": "assets/thumbnails/AAPL_hedging_progress_20.png",
+      "tags": [
+        "hedging"
+      ]
+    },
+    {
+      "id": "ipo_analysis_rivn",
+      "title": "IPO Analysis Rivn",
+      "description": "Initial Public Offering event study and market reaction analysis",
+      "category": "ipo",
+      "filename": "ipo_analysis_RIVN.pdf",
+      "path": "plots/ipo_analysis_RIVN.pdf",
+      "size": "23.7 KB",
+      "size_bytes": 24283,
+      "modified": "2025-04-17T00:41:30.981411",
+      "modified_date": "April 17, 2025",
+      "thumbnail": "assets/thumbnails/ipo_analysis_RIVN.png",
+      "tags": [
+        "analysis",
+        "ipo"
+      ]
+    },
+    {
+      "id": "sp500_monitor",
+      "title": "Sp500 Monitor",
+      "description": "Equity market analysis and stock performance monitoring",
+      "category": "equities",
+      "filename": "sp500_monitor.pdf",
+      "path": "plots/sp500_monitor.pdf",
+      "size": "25.3 KB",
+      "size_bytes": 25910,
+      "modified": "2025-03-23T19:37:03.754430",
+      "modified_date": "March 23, 2025",
+      "thumbnail": "assets/thumbnails/sp500_monitor.png",
+      "tags": [
+        "equities"
+      ]
+    },
+    {
+      "id": "equally_weighted_2024",
+      "title": "Equally Weighted 2024",
+      "description": "Volume Weighted Average Price analysis and trading strategy performance",
+      "category": "vwap",
+      "filename": "equally_weighted_2024.pdf",
+      "path": "plots/equally_weighted_2024.pdf",
+      "size": "19.9 KB",
+      "size_bytes": 20420,
+      "modified": "2025-03-23T18:10:00.656102",
+      "modified_date": "March 23, 2025",
+      "thumbnail": "assets/thumbnails/equally_weighted_2024.png",
+      "tags": [
+        "vwap"
+      ]
+    },
+    {
+      "id": "montecarlo_report",
+      "title": "Montecarlo Report",
+      "description": "Quantitative analysis and research visualization",
+      "category": "other",
+      "filename": "montecarlo_report.pdf",
+      "path": "plots/montecarlo_report.pdf",
+      "size": "160.2 KB",
+      "size_bytes": 164055,
+      "modified": "2025-04-01T20:11:54.587915",
+      "modified_date": "April 01, 2025",
+      "thumbnail": "assets/thumbnails/montecarlo_report.png",
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "id": "sap_vs_sap_leapfrog",
+      "title": "Sap Vs Sap Leapfrog",
+      "description": "Cross-listing arbitrage opportunities and relative value analysis",
+      "category": "arbitrage",
+      "filename": "sap_vs_sap_leapfrog.pdf",
+      "path": "plots/sap_vs_sap_leapfrog.pdf",
+      "size": "102.3 KB",
+      "size_bytes": 104734,
+      "modified": "2025-04-09T22:43:45.569277",
+      "modified_date": "April 09, 2025",
+      "thumbnail": "assets/thumbnails/sap_vs_sap_leapfrog.png",
+      "tags": [
+        "arbitrage"
+      ]
+    },
+    {
+      "id": "siemens_vs_siegy_leapfrog",
+      "title": "Siemens Vs Siegy Leapfrog",
+      "description": "Cross-listing arbitrage opportunities and relative value analysis",
+      "category": "arbitrage",
+      "filename": "siemens_vs_siegy_leapfrog.pdf",
+      "path": "plots/siemens_vs_siegy_leapfrog.pdf",
+      "size": "102.3 KB",
+      "size_bytes": 104734,
+      "modified": "2025-04-09T22:44:08.564480",
+      "modified_date": "April 09, 2025",
+      "thumbnail": "assets/thumbnails/siemens_vs_siegy_leapfrog.png",
+      "tags": [
+        "arbitrage"
+      ]
+    },
+    {
+      "id": "lob_snapshot",
+      "title": "Lob Snapshot",
+      "description": "Quantitative analysis and research visualization",
+      "category": "other",
+      "filename": "lob_snapshot.pdf",
+      "path": "plots/lob_snapshot.pdf",
+      "size": "11.5 KB",
+      "size_bytes": 11743,
+      "modified": "2025-03-30T15:17:57.603332",
+      "modified_date": "March 30, 2025",
+      "thumbnail": "assets/thumbnails/lob_snapshot.png",
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "id": "aapl_hedging",
+      "title": "Aapl Hedging",
+      "description": "Options hedging strategies and portfolio risk management",
+      "category": "hedging",
+      "filename": "AAPL_hedging.pdf",
+      "path": "plots/AAPL_hedging.pdf",
+      "size": "18.3 KB",
+      "size_bytes": 18788,
+      "modified": "2025-03-30T16:28:06.295165",
+      "modified_date": "March 30, 2025",
+      "thumbnail": "assets/thumbnails/AAPL_hedging.png",
+      "tags": [
+        "hedging"
+      ]
+    },
+    {
+      "id": "algorithms_leaderboard",
+      "title": "Algorithms Leaderboard",
+      "description": "Volume Weighted Average Price analysis and trading strategy performance",
+      "category": "vwap",
+      "filename": "algorithms_leaderboard.pdf",
+      "path": "plots/algorithms_leaderboard.pdf",
+      "size": "16.6 KB",
+      "size_bytes": 16980,
+      "modified": "2025-04-05T19:20:28.686266",
+      "modified_date": "April 05, 2025",
+      "thumbnail": "assets/thumbnails/algorithms_leaderboard.png",
+      "tags": [
+        "vwap"
+      ]
+    },
+    {
+      "id": "leverage_sim_grid",
+      "title": "Leverage Sim Grid",
+      "description": "Quantitative analysis and research visualization",
+      "category": "other",
+      "filename": "leverage_sim_grid.pdf",
+      "path": "plots/leverage_sim_grid.pdf",
+      "size": "131.7 KB",
+      "size_bytes": 134881,
+      "modified": "2025-04-01T20:04:45.077808",
+      "modified_date": "April 01, 2025",
+      "thumbnail": "assets/thumbnails/leverage_sim_grid.png",
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "id": "ipo_analysis_lyft",
+      "title": "IPO Analysis Lyft",
+      "description": "Initial Public Offering event study and market reaction analysis",
+      "category": "ipo",
+      "filename": "ipo_analysis_LYFT.pdf",
+      "path": "plots/ipo_analysis_LYFT.pdf",
+      "size": "24.2 KB",
+      "size_bytes": 24749,
+      "modified": "2025-04-17T00:41:35.201731",
+      "modified_date": "April 17, 2025",
+      "thumbnail": "assets/thumbnails/ipo_analysis_LYFT.png",
+      "tags": [
+        "analysis",
+        "ipo"
+      ]
+    },
+    {
+      "id": "ipo_analysis_pltr",
+      "title": "IPO Analysis Pltr",
+      "description": "Initial Public Offering event study and market reaction analysis",
+      "category": "ipo",
+      "filename": "ipo_analysis_PLTR.pdf",
+      "path": "plots/ipo_analysis_PLTR.pdf",
+      "size": "23.3 KB",
+      "size_bytes": 23895,
+      "modified": "2025-04-17T00:41:36.652118",
+      "modified_date": "April 17, 2025",
+      "thumbnail": "assets/thumbnails/ipo_analysis_PLTR.png",
+      "tags": [
+        "analysis",
+        "ipo"
+      ]
+    },
+    {
+      "id": "markowitz_qp_frontier",
+      "title": "Markowitz Qp Frontier",
+      "description": "Quantitative analysis and research visualization",
+      "category": "other",
+      "filename": "markowitz_qp_frontier.pdf",
+      "path": "plots/markowitz_qp_frontier.pdf",
+      "size": "84.8 KB",
+      "size_bytes": 86843,
+      "modified": "2025-04-10T12:22:02.225894",
+      "modified_date": "April 10, 2025",
+      "thumbnail": "assets/thumbnails/markowitz_qp_frontier.png",
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "id": "kalman_price_filter",
+      "title": "Kalman Price Filter",
+      "description": "Volume Weighted Average Price analysis and trading strategy performance",
+      "category": "vwap",
+      "filename": "kalman_price_filter.pdf",
+      "path": "plots/kalman_price_filter.pdf",
+      "size": "8.7 KB",
+      "size_bytes": 8933,
+      "modified": "2025-04-08T23:27:55.372913",
+      "modified_date": "April 08, 2025",
+      "thumbnail": "assets/thumbnails/kalman_price_filter.png",
+      "tags": [
+        "vwap"
+      ]
+    },
+    {
+      "id": "aapl_hedging_progress_70",
+      "title": "Aapl Hedging Progress 70",
+      "description": "Options hedging strategies and portfolio risk management",
+      "category": "hedging",
+      "filename": "AAPL_hedging_progress_70.pdf",
+      "path": "plots/AAPL_hedging_progress_70.pdf",
+      "size": "14.1 KB",
+      "size_bytes": 14450,
+      "modified": "2025-03-30T16:37:47.870603",
+      "modified_date": "March 30, 2025",
+      "thumbnail": "assets/thumbnails/AAPL_hedging_progress_70.png",
+      "tags": [
+        "hedging"
+      ]
+    },
+    {
+      "id": "ipo_event_study_advanced",
+      "title": "IPO Event Study Advanced",
+      "description": "Initial Public Offering event study and market reaction analysis",
+      "category": "ipo",
+      "filename": "ipo_event_study_advanced.pdf",
+      "path": "plots/ipo_event_study_advanced.pdf",
+      "size": "344.6 KB",
+      "size_bytes": 352831,
+      "modified": "2025-04-17T00:41:46.050111",
+      "modified_date": "April 17, 2025",
+      "thumbnail": "assets/thumbnails/ipo_event_study_advanced.png",
+      "tags": [
+        "ipo"
+      ]
+    },
+    {
+      "id": "ipo_analysis_meta",
+      "title": "IPO Analysis Meta",
+      "description": "Initial Public Offering event study and market reaction analysis",
+      "category": "ipo",
+      "filename": "ipo_analysis_META.pdf",
+      "path": "plots/ipo_analysis_META.pdf",
+      "size": "23.9 KB",
+      "size_bytes": 24497,
+      "modified": "2025-04-17T00:41:40.788177",
+      "modified_date": "April 17, 2025",
+      "thumbnail": "assets/thumbnails/ipo_analysis_META.png",
+      "tags": [
+        "analysis",
+        "ipo"
+      ]
+    },
+    {
+      "id": "aapl_hedging_progress_60",
+      "title": "Aapl Hedging Progress 60",
+      "description": "Options hedging strategies and portfolio risk management",
+      "category": "hedging",
+      "filename": "AAPL_hedging_progress_60.pdf",
+      "path": "plots/AAPL_hedging_progress_60.pdf",
+      "size": "13.9 KB",
+      "size_bytes": 14277,
+      "modified": "2025-03-30T16:36:47.249329",
+      "modified_date": "March 30, 2025",
+      "thumbnail": "assets/thumbnails/AAPL_hedging_progress_60.png",
+      "tags": [
+        "hedging"
+      ]
+    },
+    {
+      "id": "aapl_hedging_progress_10",
+      "title": "Aapl Hedging Progress 10",
+      "description": "Options hedging strategies and portfolio risk management",
+      "category": "hedging",
+      "filename": "AAPL_hedging_progress_10.pdf",
+      "path": "plots/AAPL_hedging_progress_10.pdf",
+      "size": "13.1 KB",
+      "size_bytes": 13365,
+      "modified": "2025-03-30T16:33:48.412615",
+      "modified_date": "March 30, 2025",
+      "thumbnail": "assets/thumbnails/AAPL_hedging_progress_10.png",
+      "tags": [
+        "hedging"
+      ]
+    },
+    {
+      "id": "astrazeneca_vs_azn_price_data",
+      "title": "Astrazeneca Vs Azn Price Data",
+      "description": "Volume Weighted Average Price analysis and trading strategy performance",
+      "category": "vwap",
+      "filename": "astrazeneca_vs_azn_price_data.pdf",
+      "path": "plots/astrazeneca_vs_azn_price_data.pdf",
+      "size": "19.0 KB",
+      "size_bytes": 19468,
+      "modified": "2025-04-09T23:38:43.762233",
+      "modified_date": "April 09, 2025",
+      "thumbnail": "assets/thumbnails/astrazeneca_vs_azn_price_data.png",
+      "tags": [
+        "vwap"
+      ]
+    },
+    {
+      "id": "nestle_vs_nsgry_price_data",
+      "title": "Nestle Vs Nsgry Price Data",
+      "description": "Volume Weighted Average Price analysis and trading strategy performance",
+      "category": "vwap",
+      "filename": "nestle_vs_nsgry_price_data.pdf",
+      "path": "plots/nestle_vs_nsgry_price_data.pdf",
+      "size": "20.6 KB",
+      "size_bytes": 21102,
+      "modified": "2025-04-09T23:38:45.684358",
+      "modified_date": "April 09, 2025",
+      "thumbnail": "assets/thumbnails/nestle_vs_nsgry_price_data.png",
+      "tags": [
+        "vwap"
+      ]
+    },
+    {
+      "id": "pair_trading_demo",
+      "title": "Pair Trading Demo",
+      "description": "Quantitative analysis and research visualization",
+      "category": "other",
+      "filename": "pair_trading_demo.pdf",
+      "path": "plots/pair_trading_demo.pdf",
+      "size": "23.7 KB",
+      "size_bytes": 24243,
+      "modified": "2025-04-10T12:17:46.654289",
+      "modified_date": "April 10, 2025",
+      "thumbnail": "assets/thumbnails/pair_trading_demo.png",
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "id": "global_index_report",
+      "title": "Global Index Report",
+      "description": "Quantitative analysis and research visualization",
+      "category": "other",
+      "filename": "global_index_report.pdf",
+      "path": "plots/global_index_report.pdf",
+      "size": "140.2 KB",
+      "size_bytes": 143603,
+      "modified": "2025-04-16T12:48:16.326570",
+      "modified_date": "April 16, 2025",
+      "thumbnail": "assets/thumbnails/global_index_report.png",
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "id": "novartis_vs_nvs_price_data",
+      "title": "Novartis Vs Nvs Price Data",
+      "description": "Volume Weighted Average Price analysis and trading strategy performance",
+      "category": "vwap",
+      "filename": "novartis_vs_nvs_price_data.pdf",
+      "path": "plots/novartis_vs_nvs_price_data.pdf",
+      "size": "19.7 KB",
+      "size_bytes": 20198,
+      "modified": "2025-04-09T23:38:46.635418",
+      "modified_date": "April 09, 2025",
+      "thumbnail": "assets/thumbnails/novartis_vs_nvs_price_data.png",
+      "tags": [
+        "vwap"
+      ]
+    },
+    {
+      "id": "ipo_car_rivn",
+      "title": "IPO Car Rivn",
+      "description": "Initial Public Offering event study and market reaction analysis",
+      "category": "ipo",
+      "filename": "ipo_CAR_RIVN.pdf",
+      "path": "plots/ipo_CAR_RIVN.pdf",
+      "size": "15.2 KB",
+      "size_bytes": 15592,
+      "modified": "2025-04-17T00:32:06.821354",
+      "modified_date": "April 17, 2025",
+      "thumbnail": "assets/thumbnails/ipo_CAR_RIVN.png",
+      "tags": [
+        "ipo"
+      ]
+    },
+    {
+      "id": "combined_portfolio_simulation_2024",
+      "title": "Combined Portfolio Simulation 2024",
+      "description": "Options hedging strategies and portfolio risk management - Portfolio performance and risk metrics",
+      "category": "hedging",
+      "filename": "combined_portfolio_simulation_2024.pdf",
+      "path": "plots/combined_portfolio_simulation_2024.pdf",
+      "size": "27.4 KB",
+      "size_bytes": 28087,
+      "modified": "2025-03-23T18:10:02.306369",
+      "modified_date": "March 23, 2025",
+      "thumbnail": "assets/thumbnails/combined_portfolio_simulation_2024.png",
+      "tags": [
+        "simulation",
+        "hedging",
+        "portfolio"
+      ]
+    },
+    {
+      "id": "nestle_vs_nsgry_leapfrog",
+      "title": "Nestle Vs Nsgry Leapfrog",
+      "description": "Cross-listing arbitrage opportunities and relative value analysis",
+      "category": "arbitrage",
+      "filename": "nestle_vs_nsgry_leapfrog.pdf",
+      "path": "plots/nestle_vs_nsgry_leapfrog.pdf",
+      "size": "102.3 KB",
+      "size_bytes": 104734,
+      "modified": "2025-04-09T22:44:19.865205",
+      "modified_date": "April 09, 2025",
+      "thumbnail": "assets/thumbnails/nestle_vs_nsgry_leapfrog.png",
+      "tags": [
+        "arbitrage"
+      ]
+    },
+    {
+      "id": "shel_leapfrog_segments",
+      "title": "Shel Leapfrog Segments",
+      "description": "Cross-listing arbitrage opportunities and relative value analysis",
+      "category": "arbitrage",
+      "filename": "shel_leapfrog_segments.pdf",
+      "path": "plots/shel_leapfrog_segments.pdf",
+      "size": "19.8 KB",
+      "size_bytes": 20313,
+      "modified": "2025-04-09T21:30:29.735782",
+      "modified_date": "April 09, 2025",
+      "thumbnail": "assets/thumbnails/shel_leapfrog_segments.png",
+      "tags": [
+        "arbitrage"
+      ]
+    },
+    {
+      "id": "aapl_hedging_progress_40",
+      "title": "Aapl Hedging Progress 40",
+      "description": "Options hedging strategies and portfolio risk management",
+      "category": "hedging",
+      "filename": "AAPL_hedging_progress_40.pdf",
+      "path": "plots/AAPL_hedging_progress_40.pdf",
+      "size": "13.4 KB",
+      "size_bytes": 13764,
+      "modified": "2025-03-30T16:35:11.166222",
+      "modified_date": "March 30, 2025",
+      "thumbnail": "assets/thumbnails/AAPL_hedging_progress_40.png",
+      "tags": [
+        "hedging"
+      ]
+    },
+    {
+      "id": "index_effect_vs_osebx",
+      "title": "Index Effect Vs Osebx",
+      "description": "Equity market analysis and stock performance monitoring",
+      "category": "equities",
+      "filename": "index_effect_vs_osebx.pdf",
+      "path": "plots/index_effect_vs_osebx.pdf",
+      "size": "14.1 KB",
+      "size_bytes": 14445,
+      "modified": "2025-04-06T17:33:14.627388",
+      "modified_date": "April 06, 2025",
+      "thumbnail": "assets/thumbnails/index_effect_vs_osebx.png",
+      "tags": [
+        "equities"
+      ]
+    },
+    {
+      "id": "ibm_neutral_portfolio",
+      "title": "Ibm Neutral Portfolio",
+      "description": "Options hedging strategies and portfolio risk management - Portfolio performance and risk metrics",
+      "category": "hedging",
+      "filename": "ibm_neutral_portfolio.pdf",
+      "path": "plots/ibm_neutral_portfolio.pdf",
+      "size": "23.9 KB",
+      "size_bytes": 24503,
+      "modified": "2025-04-01T22:13:00.543442",
+      "modified_date": "April 01, 2025",
+      "thumbnail": "assets/thumbnails/ibm_neutral_portfolio.png",
+      "tags": [
+        "hedging",
+        "portfolio"
+      ]
+    },
+    {
+      "id": "ipo_analysis_dbx",
+      "title": "IPO Analysis Dbx",
+      "description": "Initial Public Offering event study and market reaction analysis",
+      "category": "ipo",
+      "filename": "ipo_analysis_DBX.pdf",
+      "path": "plots/ipo_analysis_DBX.pdf",
+      "size": "23.4 KB",
+      "size_bytes": 23993,
+      "modified": "2025-04-17T00:41:43.480213",
+      "modified_date": "April 17, 2025",
+      "thumbnail": "assets/thumbnails/ipo_analysis_DBX.png",
+      "tags": [
+        "analysis",
+        "ipo"
+      ]
+    },
+    {
+      "id": "montecarlo_blowups",
+      "title": "Montecarlo Blowups",
+      "description": "Quantitative analysis and research visualization",
+      "category": "other",
+      "filename": "montecarlo_blowups.pdf",
+      "path": "plots/montecarlo_blowups.pdf",
+      "size": "161.5 KB",
+      "size_bytes": 165426,
+      "modified": "2025-04-01T20:08:58.904071",
+      "modified_date": "April 01, 2025",
+      "thumbnail": "assets/thumbnails/montecarlo_blowups.png",
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "id": "grid_montecarlo_report",
+      "title": "Grid Montecarlo Report",
+      "description": "Quantitative analysis and research visualization",
+      "category": "other",
+      "filename": "grid_montecarlo_report.pdf",
+      "path": "plots/grid_montecarlo_report.pdf",
+      "size": "2.9 MB",
+      "size_bytes": 3006159,
+      "modified": "2025-04-01T20:15:11.028306",
+      "modified_date": "April 01, 2025",
+      "thumbnail": "assets/thumbnails/grid_montecarlo_report.png",
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "id": "shel_leapfrog_fullrange",
+      "title": "Shel Leapfrog Fullrange",
+      "description": "Cross-listing arbitrage opportunities and relative value analysis",
+      "category": "arbitrage",
+      "filename": "shel_leapfrog_fullrange.pdf",
+      "path": "plots/shel_leapfrog_fullrange.pdf",
+      "size": "109.5 KB",
+      "size_bytes": 112106,
+      "modified": "2025-04-09T21:40:58.253837",
+      "modified_date": "April 09, 2025",
+      "thumbnail": "assets/thumbnails/shel_leapfrog_fullrange.png",
+      "tags": [
+        "arbitrage"
+      ]
+    },
+    {
+      "id": "ipo_analysis_tsla",
+      "title": "IPO Analysis Tsla",
+      "description": "Initial Public Offering event study and market reaction analysis",
+      "category": "ipo",
+      "filename": "ipo_analysis_TSLA.pdf",
+      "path": "plots/ipo_analysis_TSLA.pdf",
+      "size": "24.2 KB",
+      "size_bytes": 24826,
+      "modified": "2025-04-17T00:41:37.935063",
+      "modified_date": "April 17, 2025",
+      "thumbnail": "assets/thumbnails/ipo_analysis_TSLA.png",
+      "tags": [
+        "analysis",
+        "ipo"
+      ]
+    },
+    {
+      "id": "index_addition_predictions",
+      "title": "Index Addition Predictions",
+      "description": "Quantitative analysis and research visualization",
+      "category": "other",
+      "filename": "index_addition_predictions.pdf",
+      "path": "plots/index_addition_predictions.pdf",
+      "size": "13.2 KB",
+      "size_bytes": 13524,
+      "modified": "2025-04-06T17:33:05.862383",
+      "modified_date": "April 06, 2025",
+      "thumbnail": "assets/thumbnails/index_addition_predictions.png",
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "id": "ipo_analysis_baba",
+      "title": "IPO Analysis Baba",
+      "description": "Initial Public Offering event study and market reaction analysis",
+      "category": "ipo",
+      "filename": "ipo_analysis_BABA.pdf",
+      "path": "plots/ipo_analysis_BABA.pdf",
+      "size": "23.6 KB",
+      "size_bytes": 24165,
+      "modified": "2025-04-17T00:41:39.218248",
+      "modified_date": "April 17, 2025",
+      "thumbnail": "assets/thumbnails/ipo_analysis_BABA.png",
+      "tags": [
+        "analysis",
+        "ipo"
+      ]
+    },
+    {
+      "id": "portfolio_simulation_2024",
+      "title": "Portfolio Simulation 2024",
+      "description": "Options hedging strategies and portfolio risk management - Portfolio performance and risk metrics",
+      "category": "hedging",
+      "filename": "portfolio_simulation_2024.pdf",
+      "path": "plots/portfolio_simulation_2024.pdf",
+      "size": "26.5 KB",
+      "size_bytes": 27171,
+      "modified": "2025-03-23T17:47:13.571550",
+      "modified_date": "March 23, 2025",
+      "thumbnail": "assets/thumbnails/portfolio_simulation_2024.png",
+      "tags": [
+        "simulation",
+        "hedging",
+        "portfolio"
+      ]
+    },
+    {
+      "id": "ipo_analysis_spot",
+      "title": "IPO Analysis Spot",
+      "description": "Initial Public Offering event study and market reaction analysis",
+      "category": "ipo",
+      "filename": "ipo_analysis_SPOT.pdf",
+      "path": "plots/ipo_analysis_SPOT.pdf",
+      "size": "24.2 KB",
+      "size_bytes": 24785,
+      "modified": "2025-04-17T00:41:42.167787",
+      "modified_date": "April 17, 2025",
+      "thumbnail": "assets/thumbnails/ipo_analysis_SPOT.png",
+      "tags": [
+        "analysis",
+        "ipo"
+      ]
+    },
+    {
+      "id": "aapl_hedging_progress_30",
+      "title": "Aapl Hedging Progress 30",
+      "description": "Options hedging strategies and portfolio risk management",
+      "category": "hedging",
+      "filename": "AAPL_hedging_progress_30.pdf",
+      "path": "plots/AAPL_hedging_progress_30.pdf",
+      "size": "13.5 KB",
+      "size_bytes": 13789,
+      "modified": "2025-03-30T16:34:34.287590",
+      "modified_date": "March 30, 2025",
+      "thumbnail": "assets/thumbnails/AAPL_hedging_progress_30.png",
+      "tags": [
+        "hedging"
+      ]
+    },
+    {
+      "id": "python_buypolarcapital",
+      "title": "Python Buypolarcapital",
+      "description": "Quantitative analysis and research visualization",
+      "category": "other",
+      "filename": "python_buypolarcapital.pdf",
+      "path": "plots/python_buypolarcapital.pdf",
+      "size": "18.3 KB",
+      "size_bytes": 18767,
+      "modified": "2025-04-10T11:21:55.909066",
+      "modified_date": "April 10, 2025",
+      "thumbnail": "assets/thumbnails/python_buypolarcapital.png",
+      "tags": [
+        "other"
+      ]
+    },
+    {
+      "id": "siemens_vs_siegy_price_data",
+      "title": "Siemens Vs Siegy Price Data",
+      "description": "Volume Weighted Average Price analysis and trading strategy performance",
+      "category": "vwap",
+      "filename": "siemens_vs_siegy_price_data.pdf",
+      "path": "plots/siemens_vs_siegy_price_data.pdf",
+      "size": "20.0 KB",
+      "size_bytes": 20531,
+      "modified": "2025-04-09T23:38:44.666773",
+      "modified_date": "April 09, 2025",
+      "thumbnail": "assets/thumbnails/siemens_vs_siegy_price_data.png",
+      "tags": [
+        "vwap"
+      ]
+    },
+    {
+      "id": "ipo_car_abnb",
+      "title": "IPO Car Abnb",
+      "description": "Initial Public Offering event study and market reaction analysis",
+      "category": "ipo",
+      "filename": "ipo_CAR_ABNB.pdf",
+      "path": "plots/ipo_CAR_ABNB.pdf",
+      "size": "15.2 KB",
+      "size_bytes": 15596,
+      "modified": "2025-04-17T00:32:05.766676",
+      "modified_date": "April 17, 2025",
+      "thumbnail": "assets/thumbnails/ipo_CAR_ABNB.png",
+      "tags": [
+        "ipo"
+      ]
+    }
+  ]
+}

@@ -591,6 +591,246 @@ section {
     margin-bottom: 0;
 }
 
+/* Research Plots Gallery Section */
+.research-plots {
+    padding: var(--spacing-xl) 0;
+    background: var(--off-white);
+}
+
+.plot-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-lg);
+    justify-content: center;
+}
+
+.category-btn {
+    background: var(--pure-white);
+    border: 2px solid var(--light-gray);
+    color: var(--medium-gray);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 25px;
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: var(--transition-medium);
+    font-size: 0.9rem;
+}
+
+.category-btn:hover {
+    background: var(--light-gray);
+    color: var(--primary-black);
+    border-color: var(--medium-gray);
+}
+
+.category-btn.active {
+    background: var(--accent-red);
+    color: var(--pure-white);
+    border-color: var(--accent-red);
+}
+
+.plots-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.plot-card {
+    background: var(--pure-white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: var(--transition-medium);
+    cursor: pointer;
+    position: relative;
+}
+
+.plot-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+}
+
+.plot-thumbnail {
+    width: 100%;
+    height: 200px;
+    background: var(--off-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.plot-thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-medium);
+}
+
+.plot-thumbnail .pdf-icon {
+    font-size: 3rem;
+    color: var(--accent-red);
+    opacity: 0.7;
+}
+
+.plot-card:hover .plot-thumbnail img {
+    transform: scale(1.05);
+}
+
+.plot-info {
+    padding: var(--spacing-md);
+}
+
+.plot-title {
+    font-weight: var(--font-weight-semibold);
+    color: var(--primary-black);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.1rem;
+}
+
+.plot-category {
+    display: inline-block;
+    background: var(--accent-blue);
+    color: var(--pure-white);
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: var(--font-weight-medium);
+    margin-bottom: var(--spacing-xs);
+}
+
+.plot-description {
+    color: var(--medium-gray);
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: var(--spacing-sm);
+}
+
+.plot-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    color: var(--medium-gray);
+}
+
+.plot-date {
+    font-weight: var(--font-weight-medium);
+}
+
+.plot-size {
+    background: var(--off-white);
+    padding: 0.25rem 0.5rem;
+    border-radius: 4px;
+}
+
+/* Plot Modal */
+.plot-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: relative;
+    background-color: var(--pure-white);
+    margin: 2% auto;
+    padding: 0;
+    width: 90%;
+    max-width: 1200px;
+    height: 90%;
+    border-radius: 12px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+}
+
+.close-modal {
+    position: absolute;
+    right: var(--spacing-md);
+    top: var(--spacing-md);
+    color: var(--medium-gray);
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 2001;
+    transition: var(--transition-medium);
+}
+
+.close-modal:hover {
+    color: var(--accent-red);
+}
+
+.modal-header {
+    padding: var(--spacing-md);
+    border-bottom: 1px solid var(--light-gray);
+    flex-shrink: 0;
+}
+
+.modal-header h3 {
+    color: var(--primary-black);
+    margin-bottom: var(--spacing-xs);
+}
+
+.modal-header p {
+    color: var(--medium-gray);
+    font-size: 0.9rem;
+}
+
+.modal-body {
+    flex: 1;
+    padding: var(--spacing-md);
+    overflow: hidden;
+}
+
+#plot-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+}
+
+.modal-footer {
+    padding: var(--spacing-md);
+    border-top: 1px solid var(--light-gray);
+    display: flex;
+    gap: var(--spacing-sm);
+    justify-content: flex-end;
+    flex-shrink: 0;
+}
+
+.download-btn, .share-btn {
+    background: var(--accent-blue);
+    color: var(--pure-white);
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 6px;
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: var(--transition-medium);
+    font-size: 0.9rem;
+}
+
+.download-btn:hover, .share-btn:hover {
+    background: var(--primary-black);
+}
+
+.share-btn {
+    background: var(--accent-red);
+}
+
+.share-btn:hover {
+    background: var(--dark-gray);
+}
+
 /* Tools Section */
 .tools {
     background-color: var(--off-white);
@@ -1502,6 +1742,67 @@ section {
     .game-stats .stat {
         padding: var(--spacing-sm);
         font-size: 0.9rem;
+    }
+
+    /* Plots Gallery Mobile Styles */
+    .plot-categories {
+        flex-wrap: wrap;
+        gap: var(--spacing-xs);
+    }
+
+    .category-btn {
+        font-size: 0.8rem;
+        padding: var(--spacing-xs) var(--spacing-sm);
+    }
+
+    .plots-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
+    }
+
+    .plot-card {
+        margin-bottom: var(--spacing-sm);
+    }
+
+    .plot-thumbnail {
+        height: 150px;
+    }
+
+    .plot-info {
+        padding: var(--spacing-sm);
+    }
+
+    .plot-title {
+        font-size: 1rem;
+    }
+
+    .plot-description {
+        font-size: 0.8rem;
+    }
+
+    .modal-content {
+        width: 95%;
+        height: 95%;
+        margin: 2.5% auto;
+    }
+
+    .modal-header {
+        padding: var(--spacing-sm);
+    }
+
+    .modal-body {
+        padding: var(--spacing-sm);
+    }
+
+    .modal-footer {
+        padding: var(--spacing-sm);
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+
+    .download-btn, .share-btn {
+        width: 100%;
+        text-align: center;
     }
 }
 

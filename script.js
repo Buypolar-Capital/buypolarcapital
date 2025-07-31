@@ -86,6 +86,9 @@ function initializeWebsite() {
     // Initialize research charts
     initializeResearchCharts();
     
+    // Initialize plots gallery
+    initializePlotsGallery();
+    
     // Initialize games
     initializeGames();
     
@@ -2250,4 +2253,303 @@ function updateRuinChart(initialBankroll, betSize, winRate) {
     };
     
     Plotly.newPlot('ruin-chart', [trace], layout, { responsive: true, displayModeBar: false });
+}
+
+// ===== PLOTS GALLERY FUNCTIONALITY =====
+
+let plotsData = [];
+let currentCategory = 'all';
+
+function initializePlotsGallery() {
+    // Load plots data
+    loadPlotsData();
+    
+    // Initialize category filters
+    initializeCategoryFilters();
+    
+    // Initialize modal
+    initializePlotModal();
+}
+
+function loadPlotsData() {
+    // Try to load from JSON file first
+    fetch('plots_data.json')
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                // If no JSON file, create sample data
+                return createSamplePlotsData();
+            }
+        })
+        .then(data => {
+            plotsData = data.plots || data;
+            renderPlotsGrid();
+        })
+        .catch(error => {
+            console.log('No plots data found, using sample data');
+            plotsData = createSamplePlotsData();
+            renderPlotsGrid();
+        });
+}
+
+function createSamplePlotsData() {
+    // Create sample data for demonstration
+    return [
+        {
+            id: 'vwap_portfolio_comparison',
+            title: 'VWAP Portfolio Comparison',
+            description: 'Volume Weighted Average Price analysis and trading strategy performance',
+            category: 'vwap',
+            filename: 'portfolio_comparison.pdf',
+            path: 'core/plots/portfolio_comparison.pdf',
+            size: '2.3 MB',
+            modified_date: 'December 15, 2024',
+            tags: ['vwap', 'portfolio', 'performance']
+        },
+        {
+            id: 'arbitrage_cross_listing',
+            title: 'Cross Listing Arbitrage Analysis',
+            description: 'Cross-listing arbitrage opportunities and relative value analysis',
+            category: 'arbitrage',
+            filename: 'cross_listing_arbitrage.pdf',
+            path: 'core/strategies/cross_listing/plots/cross_listing_arbitrage.pdf',
+            size: '1.8 MB',
+            modified_date: 'December 12, 2024',
+            tags: ['arbitrage', 'cross-listing', 'analysis']
+        },
+        {
+            id: 'hft_latency_analysis',
+            title: 'HFT Latency Analysis',
+            description: 'High-frequency trading latency analysis and order book dynamics',
+            category: 'hft',
+            filename: 'hft_latency.pdf',
+            path: 'core/strategies/hft/plots/hft_latency.pdf',
+            size: '3.1 MB',
+            modified_date: 'December 10, 2024',
+            tags: ['hft', 'latency', 'analysis']
+        },
+        {
+            id: 'hedging_options_strategy',
+            title: 'Options Hedging Strategy',
+            description: 'Options hedging strategies and portfolio risk management',
+            category: 'hedging',
+            filename: 'options_hedging.pdf',
+            path: 'core/strategies/hedge/plots/options_hedging.pdf',
+            size: '2.7 MB',
+            modified_date: 'December 8, 2024',
+            tags: ['hedging', 'options', 'risk']
+        },
+        {
+            id: 'ipo_event_study',
+            title: 'IPO Event Study Analysis',
+            description: 'Initial Public Offering event study and market reaction analysis',
+            category: 'ipo',
+            filename: 'ipo_event_study.pdf',
+            path: 'core/strategies/plots/ipo_event_study.pdf',
+            size: '4.2 MB',
+            modified_date: 'December 5, 2024',
+            tags: ['ipo', 'event-study', 'analysis']
+        },
+        {
+            id: 'equities_sp500_analysis',
+            title: 'S&P 500 Equity Analysis',
+            description: 'Equity market analysis and stock performance monitoring',
+            category: 'equities',
+            filename: 'sp500_analysis.pdf',
+            path: 'assets/equities/plots/sp500_analysis.pdf',
+            size: '1.9 MB',
+            modified_date: 'December 3, 2024',
+            tags: ['equities', 'sp500', 'analysis']
+        },
+        {
+            id: 'crypto_bitcoin_analysis',
+            title: 'Bitcoin Market Analysis',
+            description: 'Cryptocurrency price analysis and market microstructure',
+            category: 'crypto',
+            filename: 'bitcoin_analysis.pdf',
+            path: 'assets/crypto/plots/bitcoin_analysis.pdf',
+            size: '2.5 MB',
+            modified_date: 'December 1, 2024',
+            tags: ['crypto', 'bitcoin', 'analysis']
+        },
+        {
+            id: 'fixed_income_yield_curves',
+            title: 'Yield Curve Analysis',
+            description: 'Yield curve analysis and fixed income market dynamics',
+            category: 'fixed-income',
+            filename: 'yield_curves.pdf',
+            path: 'assets/fixed_income/plots/yield_curves.pdf',
+            size: '1.6 MB',
+            modified_date: 'November 28, 2024',
+            tags: ['fixed-income', 'yield-curves', 'analysis']
+        }
+    ];
+}
+
+function initializeCategoryFilters() {
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    
+    categoryButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            // Remove active class from all buttons
+            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            
+            // Add active class to clicked button
+            this.classList.add('active');
+            
+            // Update current category
+            currentCategory = this.getAttribute('data-category');
+            
+            // Re-render plots grid
+            renderPlotsGrid();
+        });
+    });
+}
+
+function renderPlotsGrid() {
+    const plotsGrid = document.getElementById('plots-grid');
+    
+    // Filter plots by category
+    const filteredPlots = currentCategory === 'all' ? 
+        plotsData : 
+        plotsData.filter(plot => plot.category === currentCategory);
+    
+    // Clear existing content
+    plotsGrid.innerHTML = '';
+    
+    if (filteredPlots.length === 0) {
+        plotsGrid.innerHTML = `
+            <div class="no-plots-message">
+                <h3>No plots found in this category</h3>
+                <p>Try selecting a different category or run the plot discovery script to find your plots.</p>
+            </div>
+        `;
+        return;
+    }
+    
+    // Create plot cards
+    filteredPlots.forEach(plot => {
+        const plotCard = createPlotCard(plot);
+        plotsGrid.appendChild(plotCard);
+    });
+}
+
+function createPlotCard(plot) {
+    const card = document.createElement('div');
+    card.className = 'plot-card';
+    card.setAttribute('data-plot-id', plot.id);
+    
+    card.innerHTML = `
+        <div class="plot-thumbnail">
+            <div class="pdf-icon">📊</div>
+        </div>
+        <div class="plot-info">
+            <div class="plot-category">${plot.category.replace('-', ' ').toUpperCase()}</div>
+            <h4 class="plot-title">${plot.title}</h4>
+            <p class="plot-description">${plot.description}</p>
+            <div class="plot-meta">
+                <span class="plot-date">${plot.modified_date}</span>
+                <span class="plot-size">${plot.size}</span>
+            </div>
+        </div>
+    `;
+    
+    // Add click event to open modal
+    card.addEventListener('click', () => openPlotModal(plot));
+    
+    return card;
+}
+
+function initializePlotModal() {
+    const modal = document.getElementById('plot-modal');
+    const closeBtn = document.querySelector('.close-modal');
+    const downloadBtn = document.getElementById('download-plot');
+    const shareBtn = document.getElementById('share-plot');
+    
+    // Close modal when clicking X
+    closeBtn.addEventListener('click', closePlotModal);
+    
+    // Close modal when clicking outside
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closePlotModal();
+        }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.style.display === 'block') {
+            closePlotModal();
+        }
+    });
+    
+    // Download button
+    downloadBtn.addEventListener('click', function() {
+        const currentPlot = this.getAttribute('data-plot-path');
+        if (currentPlot) {
+            const link = document.createElement('a');
+            link.href = currentPlot;
+            link.download = '';
+            link.click();
+        }
+    });
+    
+    // Share button
+    shareBtn.addEventListener('click', function() {
+        const currentPlot = this.getAttribute('data-plot-path');
+        if (currentPlot && navigator.share) {
+            navigator.share({
+                title: 'Buypolar Capital Research Plot',
+                text: 'Check out this quantitative research plot from Buypolar Capital',
+                url: window.location.href + '#' + currentPlot
+            });
+        } else {
+            // Fallback: copy URL to clipboard
+            const url = window.location.href + '#' + currentPlot;
+            navigator.clipboard.writeText(url).then(() => {
+                alert('Plot URL copied to clipboard!');
+            });
+        }
+    });
+}
+
+function openPlotModal(plot) {
+    const modal = document.getElementById('plot-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalDescription = document.getElementById('modal-description');
+    const plotIframe = document.getElementById('plot-iframe');
+    const downloadBtn = document.getElementById('download-plot');
+    const shareBtn = document.getElementById('share-plot');
+    
+    // Update modal content
+    modalTitle.textContent = plot.title;
+    modalDescription.textContent = plot.description;
+    
+    // Set PDF source
+    plotIframe.src = plot.path;
+    
+    // Set button data
+    downloadBtn.setAttribute('data-plot-path', plot.path);
+    shareBtn.setAttribute('data-plot-path', plot.path);
+    
+    // Show modal
+    modal.style.display = 'block';
+    
+    // Prevent body scroll
+    document.body.style.overflow = 'hidden';
+}
+
+function closePlotModal() {
+    const modal = document.getElementById('plot-modal');
+    const plotIframe = document.getElementById('plot-iframe');
+    
+    // Hide modal
+    modal.style.display = 'none';
+    
+    // Clear iframe source
+    plotIframe.src = '';
+    
+    // Restore body scroll
+    document.body.style.overflow = 'auto';
 }
