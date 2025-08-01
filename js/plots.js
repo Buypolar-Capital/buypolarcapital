@@ -263,11 +263,11 @@ function createPlotCard(plot) {
 // Handle plot view (PDF or modal)
 function handlePlotView(plotId, plotPath) {
     if (plotPath && plotPath.trim() !== '') {
-        // Convert to GitHub raw URL for better compatibility
-        const rawUrl = plotPath.replace('plots/', 'https://raw.githubusercontent.com/Buypolar-Capital/buypolarcapital/main/plots/');
+        // Use GitHub Pages URL instead of raw URL to open PDFs in browser
+        const pagesUrl = plotPath.replace('plots/', 'https://buypolar-capital.github.io/buypolarcapital/plots/');
         
-        // Open PDF directly in new tab without popup warnings
-        window.open(rawUrl, '_blank', 'noopener,noreferrer');
+        // Open PDF in new tab - GitHub Pages should serve PDFs with proper headers
+        window.open(pagesUrl, '_blank', 'noopener,noreferrer');
     } else {
         // Open modal for plots without PDF
         openPlotModal(plotId);
