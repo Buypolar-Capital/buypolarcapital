@@ -77,6 +77,8 @@
 
 .footer-links {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-links li {
@@ -88,6 +90,7 @@
     text-decoration: none;
     transition: var(--transition-medium);
     font-size: 0.9rem;
+    display: block;
 }
 
 .footer-links a:hover {
@@ -97,6 +100,8 @@
 
 .footer-contact {
     list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .footer-contact li {

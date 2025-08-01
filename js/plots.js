@@ -266,29 +266,8 @@ function handlePlotView(plotId, plotPath) {
         // Convert to GitHub raw URL for better compatibility
         const rawUrl = plotPath.replace('plots/', 'https://raw.githubusercontent.com/Buypolar-Capital/buypolarcapital/main/plots/');
         
-        // Try to open PDF, but handle 404 gracefully
-        const link = document.createElement('a');
-        link.href = rawUrl;
-        link.target = '_blank';
-        link.rel = 'noopener noreferrer';
-        
-        // Add error handling
-        link.onclick = function(e) {
-            // Check if file exists by making a HEAD request
-            fetch(rawUrl, { method: 'HEAD' })
-                .then(response => {
-                    if (!response.ok) {
-                        e.preventDefault();
-                        alert('PDF file not available. Please contact us for access to this analysis.');
-                    }
-                })
-                .catch(() => {
-                    e.preventDefault();
-                    alert('PDF file not available. Please contact us for access to this analysis.');
-                });
-        };
-        
-        link.click();
+        // Open PDF directly in new tab without popup warnings
+        window.open(rawUrl, '_blank', 'noopener,noreferrer');
     } else {
         // Open modal for plots without PDF
         openPlotModal(plotId);
