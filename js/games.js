@@ -222,7 +222,7 @@ function endBlackjackGame() {
 }
 
 function createDeck() {
-    const suits = ['♠', '♥', '♦', '♣'];
+    const suits = ['S', 'H', 'D', 'C'];
     const values = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
     const deck = [];
     
@@ -271,7 +271,7 @@ function displayBlackjackHands(showAll = false) {
     
     if (playerDisplay) {
         playerDisplay.innerHTML = playerHand.map(card => 
-            `<span class="card ${card.suit === '♥' || card.suit === '♦' ? 'red' : ''}">${card.value}${card.suit}</span>`
+            `<span class="card ${card.suit === 'H' || card.suit === 'D' ? 'red' : ''}">${card.value}${card.suit}</span>`
         ).join('');
         playerDisplay.innerHTML += ` <strong>(${calculateHandValue(playerHand)})</strong>`;
     }
@@ -279,7 +279,7 @@ function displayBlackjackHands(showAll = false) {
     if (dealerDisplay) {
         if (showAll) {
             dealerDisplay.innerHTML = dealerHand.map(card => 
-                `<span class="card ${card.suit === '♥' || card.suit === '♦' ? 'red' : ''}">${card.value}${card.suit}</span>`
+                `<span class="card ${card.suit === 'H' || card.suit === 'D' ? 'red' : ''}">${card.value}${card.suit}</span>`
             ).join('');
             dealerDisplay.innerHTML += ` <strong>(${calculateHandValue(dealerHand)})</strong>`;
         } else {
@@ -366,7 +366,7 @@ function rollManyDice() {
 }
 
 function getDiceSymbol(number) {
-    const symbols = ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'];
+    const symbols = ['1', '2', '3', '4', '5', '6'];
     return symbols[number - 1];
 }
 
@@ -609,7 +609,7 @@ function simulatePokerHands() {
 }
 
 function createPokerDeck() {
-    const suits = ['♠', '♥', '♦', '♣'];
+    const suits = ['S', 'H', 'D', 'C'];
     const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
     const deck = [];
     
@@ -633,7 +633,7 @@ function displayPokerHand(hand) {
     const handDisplay = document.getElementById('poker-hand');
     if (handDisplay) {
         handDisplay.innerHTML = hand.map(card => 
-            `<span class="card ${card.suit === '♥' || card.suit === '♦' ? 'red' : ''}">${card.value}${card.suit}</span>`
+            `<span class="card ${card.suit === 'H' || card.suit === 'D' ? 'red' : ''}">${card.value}${card.suit}</span>`
         ).join('');
     }
 }
@@ -772,7 +772,7 @@ function selectDoor(doorNumber) {
     // Show the revealed door
     const revealBtn = document.querySelector(`[data-door="${revealDoor}"]`);
     if (revealBtn) {
-        revealBtn.textContent = '🐐';
+        revealBtn.textContent = 'GOAT';
         revealBtn.disabled = true;
     }
     
@@ -801,9 +801,9 @@ function playMontyHall(switchChoice) {
     doors.forEach((door, index) => {
         const doorNumber = index + 1;
         if (doorNumber === carDoor) {
-            door.textContent = '🚗';
+            door.textContent = 'CAR';
         } else {
-            door.textContent = '🐐';
+            door.textContent = 'GOAT';
         }
         door.disabled = true;
     });
@@ -875,7 +875,7 @@ function resetMonty() {
     
     const doors = document.querySelectorAll('.door-btn');
     doors.forEach(door => {
-        door.textContent = '🚪';
+        door.textContent = 'DOOR';
         door.disabled = false;
     });
     

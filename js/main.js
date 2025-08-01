@@ -396,7 +396,7 @@ function handleApplicationSubmit(e) {
     const originalText = submitBtn.textContent;
     
     // Change button to green with success state
-    submitBtn.textContent = '✓ Application Sent!';
+    submitBtn.textContent = 'Application Sent!';
     submitBtn.classList.add('success');
     submitBtn.disabled = true;
     
@@ -404,18 +404,12 @@ function handleApplicationSubmit(e) {
     try {
         window.location.href = mailtoLink;
         
-        // Show success message
+        // Show simple success message
         const successMessage = document.createElement('div');
         successMessage.className = 'success-message';
         successMessage.innerHTML = `
             <div style="background: #e8f5e8; border: 1px solid #4CAF50; border-radius: 8px; padding: 1rem; margin-top: 1rem;">
-                <h4 style="color: #2E7D32; margin: 0 0 0.5rem 0;">✓ Application Submitted Successfully!</h4>
-                <p style="color: #2E7D32; margin: 0 0 0.5rem 0;">Your email client should have opened with a pre-filled application email.</p>
-                <p style="color: #2E7D32; margin: 0; font-size: 0.9rem;">
-                    <strong>If your email client didn't open:</strong><br>
-                    Please send an email to <a href="mailto:buypolarcapital@gmail.com" style="color: #1976D2;">buypolarcapital@gmail.com</a> 
-                    with the subject: "${subject}"
-                </p>
+                <h4 style="color: #2E7D32; margin: 0;">Application sent successfully</h4>
             </div>
         `;
         

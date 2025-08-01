@@ -856,7 +856,7 @@
 
 .careers {
     background-color: var(--off-white);
-    padding: var(--spacing-lg) 0;
+    padding: var(--spacing-md) 0;
 }
 
 .careers-content {
@@ -898,7 +898,7 @@
 
 .careers-form {
     background: var(--pure-white);
-    padding: var(--spacing-xl);
+    padding: var(--spacing-lg);
     border-radius: 16px;
     box-shadow: 0 8px 32px rgba(0,0,0,0.1);
     border: 1px solid var(--border-light);

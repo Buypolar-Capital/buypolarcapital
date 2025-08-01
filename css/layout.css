@@ -43,9 +43,7 @@
     transition: color var(--transition-fast);
 }
 
-.nav-logo:hover {
-    color: var(--accent-blue);
-}
+/* Removed hover effect to keep logo black at all times */
 
 .logo-text {
     font-size: 1.3rem;
