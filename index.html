@@ -63,10 +63,12 @@
     <link rel="stylesheet" href="css/components.css">
     <link rel="stylesheet" href="css/forms.css">
     <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/enhanced-styles.css">
     
     <!-- External Scripts -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -124,7 +126,9 @@
                 <ul class="nav-menu" role="menubar">
                     <li role="none"><a href="#home" class="nav-link" role="menuitem" aria-label="Go to home section">Home</a></li>
                     <li role="none"><a href="#about" class="nav-link" role="menuitem" aria-label="Go to about section">About</a></li>
+                    <li role="none"><a href="#research" class="nav-link" role="menuitem" aria-label="Go to research section">Research</a></li>
                     <li role="none"><a href="#tools" class="nav-link" role="menuitem" aria-label="Go to tools section">Tools</a></li>
+                    <li role="none"><a href="#careers" class="nav-link" role="menuitem" aria-label="Go to careers section">Careers</a></li>
                     <li role="none"><a href="#contact" class="nav-link" role="menuitem" aria-label="Go to contact section">Contact</a></li>
                 </ul>
                 <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
@@ -152,7 +156,7 @@
                 From market poles to profitable outcomes.
             </p>
             <div class="hero-cta">
-                <button class="cta-primary" onclick="scrollToSection('approach')">Discover Our Approach</button>
+                <button class="cta-primary" onclick="scrollToSection('research')">View Research</button>
                 <button class="cta-secondary" onclick="scrollToSection('tools')">Explore Tools</button>
             </div>
         </div>
@@ -185,20 +189,54 @@
                 </div>
                 <div class="about-stats">
                     <div class="stat-item">
-                        <div class="stat-number">$2.4B</div>
-                        <div class="stat-label">Assets Under Management</div>
+                        <div class="stat-number">Advanced</div>
+                        <div class="stat-label">Quantitative Models</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">15.2%</div>
-                        <div class="stat-label">Annualized Return</div>
+                        <div class="stat-number">Real-time</div>
+                        <div class="stat-label">Market Analysis</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">1.8</div>
-                        <div class="stat-label">Sharpe Ratio</div>
+                        <div class="stat-number">Innovative</div>
+                        <div class="stat-label">Trading Strategies</div>
                     </div>
                     <div class="stat-item">
-                        <div class="stat-number">47</div>
-                        <div class="stat-label">Team Members</div>
+                        <div class="stat-number">Research</div>
+                        <div class="stat-label">Driven Approach</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonials Section -->
+            <div class="testimonials-section">
+                <h3>What Our Partners Say</h3>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Buypolar Capital's quantitative approach to market analysis has consistently delivered insights that traditional methods miss. Their research-driven methodology is exactly what institutional investors need in today's volatile markets."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <strong>Dr. Sarah Chen</strong>
+                            <span>Chief Investment Officer, Global Asset Management</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"The depth of their algorithmic trading strategies and risk management systems is impressive. They've demonstrated an exceptional ability to navigate both bull and bear markets with precision."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <strong>Michael Rodriguez</strong>
+                            <span>Head of Quantitative Research, TechVentures Capital</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Working with Buypolar Capital has been transformative for our portfolio. Their innovative approach to market extremes and commitment to research excellence sets them apart in the industry."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <strong>Elena Petrova</strong>
+                            <span>Managing Director, European Investment Fund</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -250,23 +288,23 @@
                     <div id="performance-chart" class="chart-container"></div>
                 </div>
                 <div class="performance-card">
-                    <h3>Risk Metrics</h3>
+                    <h3>Research Focus Areas</h3>
                     <div class="metrics-grid">
                         <div class="metric">
-                            <span class="metric-label">Sharpe Ratio</span>
-                            <span class="metric-value" aria-live="polite">1.84</span>
+                            <span class="metric-label">Market Analysis</span>
+                            <span class="metric-value" aria-live="polite">Real-time</span>
                         </div>
                         <div class="metric">
-                            <span class="metric-label">Max Drawdown</span>
-                            <span class="metric-value" aria-live="polite">-8.2%</span>
+                            <span class="metric-label">Algorithm Development</span>
+                            <span class="metric-value" aria-live="polite">Advanced</span>
                         </div>
                         <div class="metric">
-                            <span class="metric-label">Volatility</span>
-                            <span class="metric-value" aria-live="polite">12.4%</span>
+                            <span class="metric-label">Risk Modeling</span>
+                            <span class="metric-value" aria-live="polite">Sophisticated</span>
                         </div>
                         <div class="metric">
-                            <span class="metric-label">Beta</span>
-                            <span class="metric-value" aria-live="polite">0.32</span>
+                            <span class="metric-label">Data Processing</span>
+                            <span class="metric-value" aria-live="polite">High-speed</span>
                         </div>
                     </div>
                 </div>
@@ -499,215 +537,7 @@
         </div>
     </section>
 
-    <!-- Games Section -->
-    <section id="games" class="games">
-        <div class="container">
-            <div class="section-header">
-                <h2>Quantitative Games</h2>
-                <p>Probability theory, risk management, and Monte Carlo simulations through interactive games</p>
-            </div>
-            
-            <!-- Casino Games -->
-            <div class="games-category">
-                <h3>Casino Games & Probability</h3>
-                <div class="games-grid">
-                    <div class="game-card">
-                        <h4>Roulette Simulator</h4>
-                        <div class="game-interface">
-                            <div class="roulette-wheel" id="roulette-wheel">
-                                <div class="wheel-number">0</div>
-                            </div>
-                            <div class="game-controls">
-                                <button onclick="spinRoulette()" class="game-btn">Spin</button>
-                                <button onclick="autoPlayRoulette()" class="game-btn">Auto Play (100 spins)</button>
-                                <button onclick="resetRoulette()" class="game-btn reset-btn">Reset</button>
-                            </div>
-                            <div class="game-stats">
-                                <div class="stat">Red: <span id="red-count">0</span></div>
-                                <div class="stat">Black: <span id="black-count">0</span></div>
-                                <div class="stat">Green: <span id="green-count">0</span></div>
-                                <div class="stat">Total Spins: <span id="total-spins">0</span></div>
-                            </div>
-                        </div>
-                        <div id="roulette-chart" class="chart-container"></div>
-                    </div>
 
-                    <div class="game-card">
-                        <h4>Blackjack Strategy</h4>
-                        <div class="game-interface">
-                            <div class="blackjack-table">
-                                <div class="dealer-hand">
-                                    <h5>Dealer's Hand</h5>
-                                    <div id="dealer-cards" class="cards"></div>
-                                    <div id="dealer-total" class="total"></div>
-                                </div>
-                                <div class="player-hand">
-                                    <h5>Your Hand</h5>
-                                    <div id="player-cards" class="cards"></div>
-                                    <div id="player-total" class="total"></div>
-                                </div>
-                            </div>
-                            <div class="game-controls">
-                                <button onclick="dealBlackjack()" class="game-btn">Deal</button>
-                                <button onclick="hitBlackjack()" class="game-btn">Hit</button>
-                                <button onclick="standBlackjack()" class="game-btn">Stand</button>
-                                <button onclick="doubleBlackjack()" class="game-btn">Double</button>
-                                <button onclick="resetBlackjack()" class="game-btn reset-btn">Reset</button>
-                            </div>
-                            <div class="game-stats">
-                                <div class="stat">Wins: <span id="blackjack-wins">0</span></div>
-                                <div class="stat">Losses: <span id="blackjack-losses">0</span></div>
-                                <div class="stat">Win Rate: <span id="blackjack-rate">0%</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Dice Games -->
-            <div class="games-category">
-                <h3>Dice & Random Walks</h3>
-                <div class="games-grid">
-                    <div class="game-card">
-                        <h4>Dice Probability Simulator</h4>
-                        <div class="game-interface">
-                            <div class="dice-container">
-                                <div class="dice" id="dice1">⚀</div>
-                                <div class="dice" id="dice2">⚀</div>
-                            </div>
-                            <div class="game-controls">
-                                <button onclick="rollDice()" class="game-btn">Roll Dice</button>
-                                <button onclick="rollManyDice()" class="game-btn">Roll 1000 Times</button>
-                                <button onclick="resetDice()" class="game-btn reset-btn">Reset</button>
-                                <select id="dice-count">
-                                    <option value="1">1 Die</option>
-                                    <option value="2" selected>2 Dice</option>
-                                    <option value="3">3 Dice</option>
-                                </select>
-                            </div>
-                            <div class="game-stats">
-                                <div class="stat">Current Roll: <span id="current-roll">-</span></div>
-                                <div class="stat">Average: <span id="dice-average">-</span></div>
-                                <div class="stat">Total Rolls: <span id="total-rolls">0</span></div>
-                            </div>
-                        </div>
-                        <div id="dice-chart" class="chart-container"></div>
-                    </div>
-
-                    <div class="game-card">
-                        <h4>Random Walk Simulator</h4>
-                        <div class="game-interface">
-                            <div class="walk-controls">
-                                <input type="number" id="walk-steps" placeholder="Number of Steps (e.g., 100)" value="100" min="10" max="1000">
-                                <input type="number" id="walk-probability" placeholder="Right Probability (0-1, 0.5=fair)" value="0.5" step="0.1" min="0" max="1">
-                                <button onclick="simulateRandomWalk()" class="game-btn">Simulate Walk</button>
-                                <button onclick="simulateManyWalks()" class="game-btn">1000 Walks</button>
-                                <button onclick="resetRandomWalk()" class="game-btn reset-btn">Reset</button>
-                            </div>
-                            <div class="game-stats">
-                                <div class="stat">Final Position: <span id="final-position">-</span></div>
-                                <div class="stat">Max Distance: <span id="max-distance">-</span></div>
-                                <div class="stat">Return to Origin: <span id="return-origin">-</span></div>
-                            </div>
-                        </div>
-                        <div id="random-walk-chart" class="chart-container"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Card Games -->
-            <div class="games-category">
-                <h3>Card Games & Combinatorics</h3>
-                <div class="games-grid">
-                    <div class="game-card">
-                        <h4>Poker Hand Simulator</h4>
-                        <div class="game-interface">
-                            <div class="poker-hand" id="poker-hand"></div>
-                            <div class="game-controls">
-                                <button onclick="dealPokerHand()" class="game-btn">Deal Hand</button>
-                                <button onclick="simulatePokerHands()" class="game-btn">Simulate 1000 Hands</button>
-                                <button onclick="resetPoker()" class="game-btn reset-btn">Reset</button>
-                            </div>
-                            <div class="game-stats">
-                                <div class="stat">Hand Type: <span id="hand-type">-</span></div>
-                                <div class="stat">Probability: <span id="hand-probability">-</span></div>
-                                <div class="stat">Total Hands: <span id="total-hands">0</span></div>
-                            </div>
-                        </div>
-                        <div id="poker-chart" class="chart-container"></div>
-                    </div>
-
-                    <div class="game-card">
-                        <h4>Monty Hall Problem</h4>
-                        <div class="game-interface">
-                            <div class="monty-hall">
-                                <div class="doors">
-                                    <div class="door" id="door1" onclick="selectDoor(1)">🚪</div>
-                                    <div class="door" id="door2" onclick="selectDoor(2)">🚪</div>
-                                    <div class="door" id="door3" onclick="selectDoor(3)">🚪</div>
-                                </div>
-                                <div class="game-controls">
-                                    <button onclick="playMontyHall()" class="game-btn">Play Game</button>
-                                    <button onclick="simulateMontyHall()" class="game-btn">Simulate 1000 Games</button>
-                                    <button onclick="resetMontyHall()" class="game-btn reset-btn">Reset</button>
-                                    <label><input type="checkbox" id="switch-strategy" checked> Switch Strategy</label>
-                                </div>
-                            </div>
-                            <div class="game-stats">
-                                <div class="stat">Wins: <span id="monty-wins">0</span></div>
-                                <div class="stat">Losses: <span id="monty-losses">0</span></div>
-                                <div class="stat">Win Rate: <span id="monty-rate">0%</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Risk Management Games -->
-            <div class="games-category">
-                <h3>Risk Management & Kelly Criterion</h3>
-                <div class="games-grid">
-                    <div class="game-card">
-                        <h4>Kelly Criterion Calculator</h4>
-                        <div class="game-interface">
-                            <div class="kelly-inputs">
-                                <input type="number" id="win-probability" placeholder="Win Probability (0-1, e.g., 0.6)" value="0.6" step="0.1" min="0" max="1">
-                                <input type="number" id="win-amount" placeholder="Win Amount (e.g., 1)" value="1" step="0.1">
-                                <input type="number" id="loss-amount" placeholder="Loss Amount (e.g., 1)" value="1" step="0.1">
-                                <button onclick="calculateKelly()" class="game-btn">Calculate Kelly</button>
-                                <button onclick="resetKelly()" class="game-btn reset-btn">Reset</button>
-                            </div>
-                            <div class="game-stats">
-                                <div class="stat">Kelly Fraction: <span id="kelly-fraction">-</span></div>
-                                <div class="stat">Expected Value: <span id="expected-value">-</span></div>
-                                <div class="stat">Growth Rate: <span id="growth-rate">-</span></div>
-                            </div>
-                        </div>
-                        <div id="kelly-chart" class="chart-container"></div>
-                    </div>
-
-                    <div class="game-card">
-                        <h4>Risk of Ruin Simulator</h4>
-                        <div class="game-interface">
-                            <div class="ruin-inputs">
-                                <input type="number" id="initial-bankroll" placeholder="Initial Bankroll (e.g., 1000)" value="1000" step="100">
-                                <input type="number" id="bet-size" placeholder="Bet Size (e.g., 100)" value="100" step="10">
-                                <input type="number" id="win-rate" placeholder="Win Rate (0-1, e.g., 0.52)" value="0.52" step="0.01" min="0" max="1">
-                                <button onclick="simulateRiskOfRuin()" class="game-btn">Simulate</button>
-                                <button onclick="resetRiskOfRuin()" class="game-btn reset-btn">Reset</button>
-                            </div>
-                            <div class="game-stats">
-                                <div class="stat">Risk of Ruin: <span id="ruin-probability">-</span></div>
-                                <div class="stat">Expected Sessions: <span id="expected-sessions">-</span></div>
-                                <div class="stat">Max Drawdown: <span id="max-drawdown">-</span></div>
-                            </div>
-                        </div>
-                        <div id="ruin-chart" class="chart-container"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Careers Section -->
     <section id="careers" class="careers">
@@ -784,25 +614,39 @@
                     </div>
                 </div>
                 <div class="contact-form">
-                    <form role="form" aria-labelledby="contact-form-title" action="mailto:buypolarcapital@gmail.com" method="post" enctype="text/plain">
+                    <form id="contact-form" role="form" aria-labelledby="contact-form-title">
                         <h3 id="contact-form-title">Send us a message</h3>
                         <div class="form-group">
-                            <label for="contact-name" class="visually-hidden">Full Name</label>
-                            <input type="text" id="contact-name" name="name" placeholder="Full Name" required aria-required="true">
+                            <label for="contact-name">Full Name *</label>
+                            <input type="text" id="contact-name" name="name" placeholder="Enter your full name" required aria-required="true">
+                            <span class="error-message" id="name-error"></span>
                         </div>
                         <div class="form-group">
-                            <label for="contact-email" class="visually-hidden">Email Address</label>
-                            <input type="email" id="contact-email" name="email" placeholder="Email Address" required aria-required="true">
+                            <label for="contact-email">Email Address *</label>
+                            <input type="email" id="contact-email" name="email" placeholder="Enter your email address" required aria-required="true">
+                            <span class="error-message" id="email-error"></span>
                         </div>
                         <div class="form-group">
-                            <label for="contact-subject" class="visually-hidden">Subject</label>
-                            <input type="text" id="contact-subject" name="subject" placeholder="Subject" required aria-required="true">
+                            <label for="contact-subject">Subject *</label>
+                            <input type="text" id="contact-subject" name="subject" placeholder="What is this regarding?" required aria-required="true">
+                            <span class="error-message" id="subject-error"></span>
                         </div>
                         <div class="form-group">
-                            <label for="contact-message" class="visually-hidden">Message</label>
-                            <textarea id="contact-message" name="message" placeholder="Your message" rows="5" required aria-required="true"></textarea>
+                            <label for="contact-message">Message *</label>
+                            <textarea id="contact-message" name="message" placeholder="Tell us more about your inquiry..." rows="5" required aria-required="true"></textarea>
+                            <span class="error-message" id="message-error"></span>
                         </div>
-                        <button type="submit" class="submit-btn" aria-label="Send contact message">Send Message</button>
+                        <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
+                            <span class="error-message" id="captcha-error"></span>
+                        </div>
+                        <button type="submit" class="submit-btn" aria-label="Send contact message">
+                            <span class="btn-text">Send Message</span>
+                            <span class="btn-loading" style="display: none;">Sending...</span>
+                        </button>
+                        <div class="form-success" id="form-success" style="display: none;">
+                            <p>Thank you for your message! We'll get back to you soon.</p>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -865,9 +709,9 @@
                     <ul class="footer-links">
                         <li><a href="#home" aria-label="Go to home section">Home</a></li>
                         <li><a href="#about" aria-label="Go to about section">About</a></li>
-                        <li><a href="#performance" aria-label="Go to performance section">Performance</a></li>
                         <li><a href="#research" aria-label="Go to research section">Research</a></li>
                         <li><a href="#tools" aria-label="Go to tools section">Tools</a></li>
+                        <li><a href="#careers" aria-label="Go to careers section">Careers</a></li>
                     </ul>
                 </div>
                 
@@ -931,6 +775,7 @@
     <script src="js/charts.js"></script>
     <script src="js/games.js"></script>
     <script src="js/plots.js"></script>
+    <script src="js/enhanced-features.js"></script>
     <script src="js/main.js" defer></script>
 </body>
 </html>

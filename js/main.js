@@ -81,14 +81,7 @@ function initializeWebsite() {
             }
         }, 800);
         
-        // Initialize games
-        setTimeout(() => {
-            try {
-                initializeGames();
-            } catch (error) {
-                console.log('Games failed to load:', error);
-            }
-        }, 1000);
+
         
         // Add loading animations
         addLoadingAnimations();

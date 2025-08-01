@@ -88,6 +88,49 @@
     --shadow-medium: 0 4px 8px rgba(0, 0, 0, 0.15);
     --shadow-heavy: 0 8px 16px rgba(0, 0, 0, 0.2);
     --shadow-extra: 0 12px 24px rgba(0, 0, 0, 0.25);
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+    
+    /* Enhanced Color Variables */
+    --color-primary: #2196F3;
+    --color-primary-dark: #1976D2;
+    --color-primary-rgb: 33, 150, 243;
+    --color-secondary: #4CAF50;
+    --color-accent: #FF9800;
+    --color-error: #f44336;
+    --color-success: #4CAF50;
+    --color-warning: #FF9800;
+    --color-info: #2196F3;
+    
+    /* Background Colors */
+    --color-bg-primary: #ffffff;
+    --color-bg-secondary: #f8f9fa;
+    --color-bg-tertiary: #e9ecef;
+    --color-bg-dark: #121212;
+    
+    /* Text Colors */
+    --color-text-primary: #333333;
+    --color-text-secondary: #666666;
+    --color-text-tertiary: #999999;
+    --color-text-light: #ffffff;
+    
+    /* Border Colors */
+    --color-border: #e0e0e0;
+    --color-border-light: #f0f0f0;
+    --color-border-dark: #cccccc;
+    
+    /* Success/Error Colors */
+    --color-success-bg: #e8f5e8;
+    --color-success-border: #4CAF50;
+    --color-error-bg: #ffebee;
+    --color-error-border: #f44336;
+    
+    /* Border Radius */
+    --border-radius-sm: 4px;
+    --border-radius-md: 8px;
+    --border-radius-lg: 12px;
+    --border-radius-xl: 16px;
     
     /* Spacing Variables */
     --spacing-xs: 0.25rem;
