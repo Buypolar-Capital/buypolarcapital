@@ -408,18 +408,33 @@ function copyPlotLink(plotId) {
     
     const plotUrl = `${window.location.href}#research-plots-${plotId}`;
     
+    // Add visual feedback to the button
+    const copyBtn = document.querySelector(`[onclick*="copyPlotLink('${plotId}')"]`);
+    if (copyBtn) {
+        const originalText = copyBtn.innerHTML;
+        copyBtn.innerHTML = '<i class="fas fa-check"></i>';
+        copyBtn.style.background = 'var(--accent-green)';
+        copyBtn.style.color = 'white';
+        
+        setTimeout(() => {
+            copyBtn.innerHTML = originalText;
+            copyBtn.style.background = '';
+            copyBtn.style.color = '';
+        }, 1500);
+    }
+    
     navigator.clipboard.writeText(plotUrl).then(() => {
         // Show success message
         const message = document.createElement('div');
         message.className = 'copy-success-message';
-        message.textContent = 'Link copied to clipboard!';
+        message.innerHTML = '<i class="fas fa-check-circle"></i> Link copied to clipboard!';
         document.body.appendChild(message);
         
         setTimeout(() => {
             if (message.parentElement) {
                 message.remove();
             }
-        }, 2000);
+        }, 3000);
     }).catch(() => {
         // Fallback for older browsers
         const textArea = document.createElement('textarea');
@@ -432,13 +447,13 @@ function copyPlotLink(plotId) {
         // Show success message
         const message = document.createElement('div');
         message.className = 'copy-success-message';
-        message.textContent = 'Link copied to clipboard!';
+        message.innerHTML = '<i class="fas fa-check-circle"></i> Link copied to clipboard!';
         document.body.appendChild(message);
         
         setTimeout(() => {
             if (message.parentElement) {
                 message.remove();
             }
-        }, 2000);
+        }, 3000);
     });
 } 

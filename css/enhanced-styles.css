@@ -259,8 +259,8 @@
     right: var(--spacing-sm);
     display: flex;
     gap: var(--spacing-xs);
-    opacity: 0.8;
-    transition: opacity 0.3s ease;
+    opacity: 1;
+    transition: all 0.3s ease;
 }
 
 .plot-card:hover .plot-actions {
@@ -269,11 +269,11 @@
 
 .preview-btn,
 .copy-link-btn {
-    background: rgba(255, 255, 255, 0.25);
-    border: none;
-    color: white;
-    width: 32px;
-    height: 32px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    color: var(--text-primary);
+    width: 36px;
+    height: 36px;
     border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -281,12 +281,35 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .preview-btn:hover,
 .copy-link-btn:hover {
-    background: rgba(255, 255, 255, 0.4);
+    background: rgba(255, 255, 255, 1);
+    border-color: var(--accent-blue);
     transform: scale(1.1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.preview-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(33, 150, 243, 0.8);
+}
+
+.preview-btn:hover {
+    background: rgba(33, 150, 243, 0.1);
+    border-color: var(--accent-blue);
+}
+
+.copy-link-btn {
+    background: rgba(255, 255, 255, 0.9);
+    border-color: rgba(76, 175, 80, 0.8);
+}
+
+.copy-link-btn:hover {
+    background: rgba(76, 175, 80, 0.1);
+    border-color: var(--accent-green);
 }
 
 .plot-preview-tooltip {
@@ -349,11 +372,15 @@
     right: 20px;
     background: var(--accent-green);
     color: white;
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius-sm);
-    box-shadow: var(--shadow-medium);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-heavy);
     z-index: 1000;
     animation: fadeInUp 0.3s ease;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
 }
 
 .share-success-message {
