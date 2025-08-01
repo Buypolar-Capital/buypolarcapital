@@ -293,10 +293,14 @@ function updateActiveNavLink() {
     const navLinks = document.querySelectorAll('.nav-link[href^="#"]');
     
     let current = '';
+    const scrollPosition = window.pageYOffset + 200;
+    
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.clientHeight;
-        if (window.pageYOffset >= sectionTop - 200) {
+        const sectionBottom = sectionTop + sectionHeight;
+        
+        if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
             current = section.getAttribute('id');
         }
     });
@@ -473,27 +477,22 @@ function updateCircleProgressBar() {
     if (!backToTopBtn) return;
     
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = (scrollTop / docHeight) * 100;
-    
-    // Remove existing progress classes
-    backToTopBtn.classList.remove('progress-0', 'progress-25', 'progress-50', 'progress-75', 'progress-100');
-    
-    // Add appropriate progress class
-    if (scrollPercent <= 25) {
-        backToTopBtn.classList.add('progress-25');
-    } else if (scrollPercent <= 50) {
-        backToTopBtn.classList.add('progress-50');
-    } else if (scrollPercent <= 75) {
-        backToTopBtn.classList.add('progress-75');
-    } else {
-        backToTopBtn.classList.add('progress-100');
-    }
     
     // Show/hide button based on scroll position
     if (scrollTop > 300) {
         backToTopBtn.classList.add('visible');
     } else {
         backToTopBtn.classList.remove('visible');
+    }
+    
+    // Add click functionality if not already added
+    if (!backToTopBtn.hasAttribute('data-click-bound')) {
+        backToTopBtn.setAttribute('data-click-bound', 'true');
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     }
 } 

@@ -797,52 +797,57 @@
 
 .careers {
     background-color: var(--off-white);
+    padding: var(--spacing-lg) 0;
 }
 
 .careers-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-lg);
+    gap: var(--spacing-md);
     align-items: start;
 }
 
 .careers-text h3 {
     color: var(--primary-black);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+    font-size: 1.1rem;
 }
 
 .positions-list {
-    margin-bottom: var(--spacing-lg);
+    margin-bottom: var(--spacing-md);
 }
 
 .position {
     background: var(--pure-white);
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
     border-radius: 8px;
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
 }
 
 .position h4 {
     color: var(--primary-black);
     margin-bottom: var(--spacing-xs);
+    font-size: 1rem;
 }
 
 .position p {
     color: var(--medium-gray);
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    margin: 0;
 }
 
 .careers-form {
     background: var(--pure-white);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
     border-radius: 12px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
 }
 
 .careers-form h3 {
     color: var(--primary-black);
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.1rem;
 }
 
 .application-form {

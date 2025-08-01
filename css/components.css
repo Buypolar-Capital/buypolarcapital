@@ -411,59 +411,57 @@ section {
 /* Back to Top Button - Simple Style */
 .back-to-top-btn {
     position: fixed;
-    bottom: 2rem;
-    right: 2rem;
+    bottom: 30px;
+    right: 30px;
     width: 45px;
     height: 45px;
-    border-radius: 50%;
     background: var(--primary-black);
-    color: var(--pure-white);
-    border: 2px solid var(--accent-blue);
+    border: none;
+    border-radius: 50%;
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: bold;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
+    opacity: 0;
+    visibility: hidden;
     transition: all var(--transition-medium);
-    z-index: 1001;
-    box-shadow: var(--shadow-medium);
-    overflow: hidden;
+    z-index: var(--z-fixed);
+    box-shadow: none;
 }
 
 .back-to-top-btn::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, var(--accent-blue), var(--accent-green));
     border-radius: 50%;
-    background: transparent;
-    border: 2px solid var(--accent-blue);
-    transition: all 0.3s ease;
-    z-index: 1;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity var(--transition-medium);
 }
 
 .back-to-top-btn span {
-    position: relative;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+    color: var(--pure-white);
+    font-size: 1.2rem;
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    z-index: 1;
 }
 
 .back-to-top-btn:hover {
-    background: var(--accent-blue);
     transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-    border-color: var(--accent-blue);
+}
+
+.back-to-top-btn:hover::before {
+    opacity: 1;
 }
 
 .back-to-top-btn.visible {
-    display: flex;
+    opacity: 1;
+    visibility: visible;
 }
 
 /* Progress circle animation - outline only */
@@ -471,21 +469,7 @@ section {
     background: conic-gradient(var(--accent-blue) 0deg, var(--accent-blue) 0deg, transparent 0deg);
 }
 
-.back-to-top-btn.progress-25::before {
-    background: conic-gradient(var(--accent-blue) 0deg, var(--accent-blue) 90deg, transparent 90deg);
-}
 
-.back-to-top-btn.progress-50::before {
-    background: conic-gradient(var(--accent-blue) 0deg, var(--accent-blue) 180deg, transparent 180deg);
-}
-
-.back-to-top-btn.progress-75::before {
-    background: conic-gradient(var(--accent-blue) 0deg, var(--accent-blue) 270deg, transparent 270deg);
-}
-
-.back-to-top-btn.progress-100::before {
-    background: conic-gradient(var(--accent-blue) 0deg, var(--accent-blue) 360deg, transparent 360deg);
-}
 
 /* Simple Modern Loading Spinner */
 .loading-spinner {

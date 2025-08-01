@@ -35,19 +35,13 @@
 
 .footer-logo-text {
     display: flex;
-    flex-direction: column;
+    align-items: center;
 }
 
 .footer-logo-text .logo-text {
     font-size: 1.3rem;
     font-weight: var(--font-weight-bold);
     color: var(--pure-white);
-}
-
-.footer-logo-text .logo-subtitle {
-    font-size: 0.7rem;
-    color: var(--light-gray);
-    margin-top: -2px;
 }
 
 .footer-description {

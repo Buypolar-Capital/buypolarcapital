@@ -49,18 +49,12 @@
 .logo-text {
     font-size: 1.3rem;
     font-weight: var(--font-weight-bold);
-    margin-right: var(--spacing-xs);
     line-height: 1;
 }
 
-.logo-subtitle {
-    font-size: 0.7rem;
-    font-weight: var(--font-weight-normal);
-    color: var(--text-secondary);
-    opacity: 0.8;
-    line-height: 1;
-    align-self: flex-end;
-    margin-bottom: 0.1rem;
+.logo-text-container {
+    display: flex;
+    align-items: center;
 }
 
 .nav-menu {
