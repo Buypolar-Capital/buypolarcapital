@@ -164,7 +164,7 @@ Karl Johans gate 1, Oslo, Norway 0154
 - **Analysis**: Python (pandas, numpy, scipy)
 - **Backtesting**: Custom framework with realistic slippage and fees
 
-## 📚 Research Areas
+## Research Areas
 
 - **Crypto Analysis**: Bitcoin price movements and portfolio optimization
 - **IPO Event Studies**: Cumulative Abnormal Returns analysis
@@ -173,7 +173,7 @@ Karl Johans gate 1, Oslo, Norway 0154
 - **Options Strategies**: Complex multi-leg option positions
 - **Risk Management**: Kelly Criterion and Risk of Ruin calculations
 
-## 🎮 Educational Simulations
+## Educational Simulations
 
 Our interactive games demonstrate key quantitative finance concepts:
 
@@ -183,7 +183,7 @@ Our interactive games demonstrate key quantitative finance concepts:
 - **Risk Management**: Kelly Criterion for optimal bet sizing
 - **Bankroll Management**: Risk of ruin calculations
 
-## 🔄 Recent Updates
+## Recent Updates
 
 - **Complete Website Redesign**: Professional quant fund aesthetic
 - **Enhanced Mobile Experience**: Responsive design with touch optimization

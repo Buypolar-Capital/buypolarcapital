@@ -35,6 +35,42 @@
     box-sizing: border-box;
 }
 
+/* Progress Bar Styles */
+.progress-bar-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent-blue), var(--accent-green));
+    z-index: 9999;
+    transition: width 0.1s ease;
+}
+
+.progress-bar-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: conic-gradient(var(--accent-blue) 0deg, var(--accent-blue) 0deg, transparent 0deg);
+    transition: all 0.3s ease;
+}
+
+.progress-bar-circle::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--pure-white);
+}
+
 :root {
     /* Enhanced Color Palette - Professional Finance Theme */
     --primary-black: #000000;
@@ -2474,6 +2510,13 @@ html {
     transition: all var(--transition-medium);
     z-index: 1001;
     box-shadow: var(--shadow-medium);
+    position: relative;
+    overflow: hidden;
+}
+
+.back-to-top-btn span {
+    position: relative;
+    z-index: 2;
 }
 
 .back-to-top-btn:hover {

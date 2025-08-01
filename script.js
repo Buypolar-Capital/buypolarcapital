@@ -5,6 +5,7 @@
 let performanceChart;
 let isNavScrolled = false;
 let plotsData = [];
+let currentCategory = 'all';
 
 // Modern chart layout helper function
 function getModernChartLayout(title, xTitle, yTitle, showLegend = false) {
@@ -121,14 +122,18 @@ function initializeWebsite() {
     // Initialize navigation
     initializeNavigation();
     
-    // Initialize research charts (these are less critical)
+    // Initialize research charts with better error handling
     setTimeout(() => {
         try {
-            initializeResearchCharts();
+            if (typeof Plotly !== 'undefined') {
+                initializeResearchCharts();
+            } else {
+                console.log('Plotly not available for research charts');
+            }
         } catch (error) {
             console.log('Research charts failed to load:', error);
         }
-    }, 200);
+    }, 500);
     
     // Initialize plots gallery
     setTimeout(() => {
@@ -137,7 +142,7 @@ function initializeWebsite() {
         } catch (error) {
             console.log('Plots gallery failed to load:', error);
         }
-    }, 400);
+    }, 800);
     
     // Initialize games
     setTimeout(() => {
@@ -292,6 +297,9 @@ function initializeEnhancedFeatures() {
     
     // Add tooltips
     initializeTooltips();
+    
+    // Initialize progress bars
+    initializeProgressBars();
 }
 
 function initializeInputValidation() {
@@ -629,6 +637,12 @@ function initializeResearchCharts() {
 function createBitcoinChart() {
     if (typeof Plotly === 'undefined') return;
     
+    const chartContainer = document.getElementById('btc-chart');
+    if (!chartContainer) {
+        console.log('Bitcoin chart container not found');
+        return;
+    }
+    
     const dates = [];
     const prices = [];
     let currentPrice = 45000;
@@ -661,10 +675,22 @@ function createBitcoinChart() {
     
     const layout = getModernChartLayout('Bitcoin Price Movement', 'Date', 'Price (USDT)');
     
-    Plotly.newPlot('btc-chart', [trace], layout, { responsive: true, displayModeBar: false });
+    try {
+        Plotly.newPlot('btc-chart', [trace], layout, { responsive: true, displayModeBar: false });
+    } catch (error) {
+        console.log('Error creating Bitcoin chart:', error);
+    }
 }
 
 function createCryptoPortfolioChart() {
+    if (typeof Plotly === 'undefined') return;
+    
+    const chartContainer = document.getElementById('crypto-portfolio');
+    if (!chartContainer) {
+        console.log('Crypto portfolio chart container not found');
+        return;
+    }
+    
     const assets = Object.keys(cryptoData);
     const returns = assets.map(asset => {
         const prices = cryptoData[asset];
@@ -683,10 +709,22 @@ function createCryptoPortfolioChart() {
     
     const layout = getModernChartLayout('Crypto Portfolio Returns (%)', 'Asset', 'Return (%)');
     
-    Plotly.newPlot('crypto-portfolio', [trace], layout, { responsive: true, displayModeBar: false });
+    try {
+        Plotly.newPlot('crypto-portfolio', [trace], layout, { responsive: true, displayModeBar: false });
+    } catch (error) {
+        console.log('Error creating crypto portfolio chart:', error);
+    }
 }
 
 function createIPOChart() {
+    if (typeof Plotly === 'undefined') return;
+    
+    const chartContainer = document.getElementById('ipo-chart');
+    if (!chartContainer) {
+        console.log('IPO chart container not found');
+        return;
+    }
+    
     const trace = {
         x: ipoData.companies,
         y: ipoData.returns,
@@ -699,7 +737,11 @@ function createIPOChart() {
     
     const layout = getModernChartLayout('IPO Performance Comparison', 'Company', 'Return (%)');
     
-    Plotly.newPlot('ipo-chart', [trace], layout, { responsive: true, displayModeBar: false });
+    try {
+        Plotly.newPlot('ipo-chart', [trace], layout, { responsive: true, displayModeBar: false });
+    } catch (error) {
+        console.log('Error creating IPO chart:', error);
+    }
 }
 
 function createCARChart() {
@@ -761,7 +803,11 @@ function createCARChart() {
         }
     };
     
-    Plotly.newPlot('car-chart', [trace], layout, { responsive: true, displayModeBar: false });
+    try {
+        Plotly.newPlot('car-chart', [trace], layout, { responsive: true, displayModeBar: false });
+    } catch (error) {
+        console.log('Error creating CAR chart:', error);
+    }
 }
 
 function createUnileverChart() {
@@ -2786,8 +2832,6 @@ function updateRuinChart(initialBankroll, betSize, winRate) {
 
 // ===== PLOTS GALLERY FUNCTIONALITY =====
 
-let currentCategory = 'all';
-
 function initializePlotsGallery() {
     // Load plots data
     loadPlotsData();
@@ -3142,4 +3186,45 @@ function resetRiskOfRuin() {
     // Clear the chart
     const chartContainer = document.getElementById('ruin-chart');
     chartContainer.innerHTML = '';
+}
+
+// ===== PROGRESS BAR FUNCTIONALITY =====
+
+function initializeProgressBars() {
+    // Initialize progress bars on page load
+    updateProgressBars();
+    
+    // Add scroll event listener for progress updates
+    window.addEventListener('scroll', throttle(updateProgressBars, 16));
+}
+
+function updateProgressBars() {
+    updateTopProgressBar();
+    updateCircleProgressBar();
+}
+
+function updateTopProgressBar() {
+    const progressBar = document.getElementById('progress-bar-top');
+    if (!progressBar) return;
+    
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    
+    progressBar.style.width = Math.min(scrollPercent, 100) + '%';
+}
+
+function updateCircleProgressBar() {
+    const progressCircle = document.getElementById('progress-bar-circle');
+    if (!progressCircle) return;
+    
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / docHeight) * 100;
+    
+    // Calculate the angle for the conic gradient (0-360 degrees)
+    const angle = Math.min(scrollPercent * 3.6, 360); // 3.6 = 360/100
+    
+    // Update the conic gradient
+    progressCircle.style.background = `conic-gradient(var(--accent-blue) 0deg, var(--accent-blue) ${angle}deg, transparent ${angle}deg)`;
 }
