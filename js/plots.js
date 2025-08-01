@@ -233,11 +233,8 @@ function createPlotCard(plot) {
                     <i class="fas fa-eye"></i> View Analysis
                 </button>
                 <div class="plot-actions">
-                    <button class="preview-btn" onclick="previewPlot('${plot.id}')" title="Quick Preview">
-                        <i class="fas fa-search"></i>
-                    </button>
-                    <button class="copy-link-btn" onclick="copyPlotLink('${plot.id}')" title="Copy Link">
-                        <i class="fas fa-link"></i>
+                    <button class="share-btn" onclick="copyPlotLink('${plot.id}')" title="Share">
+                        <i class="fas fa-share-alt"></i>
                     </button>
                 </div>
             </div>
@@ -355,86 +352,27 @@ function closePlotModal() {
     }
 }
 
-// Preview plot function
-function previewPlot(plotId) {
-    const plot = plotsData.find(p => p.id === plotId);
-    if (!plot) return;
-    
-    // Create a quick preview tooltip
-    const tooltip = document.createElement('div');
-    tooltip.className = 'plot-preview-tooltip';
-    tooltip.innerHTML = `
-        <div class="preview-content">
-            <h4>${plot.title}</h4>
-            <p>${plot.description}</p>
-            <div class="preview-meta">
-                <span><i class="fas fa-calendar"></i> ${plot.date || 'N/A'}</span>
-                <span><i class="fas fa-tag"></i> ${plot.category}</span>
-            </div>
-            <button onclick="handlePlotView('${plot.id}', '${plot.path || ''}')" class="preview-action-btn">
-                View Full Analysis
-            </button>
-        </div>
-    `;
-    
-    document.body.appendChild(tooltip);
-    
-    // Position tooltip near the plot card
-    const plotCard = document.querySelector(`[onclick*="${plotId}"]`).closest('.plot-card');
-    const rect = plotCard.getBoundingClientRect();
-    tooltip.style.left = rect.left + 'px';
-    tooltip.style.top = (rect.bottom + 10) + 'px';
-    
-    // Auto-remove after 5 seconds
-    setTimeout(() => {
-        if (tooltip.parentElement) {
-            tooltip.remove();
-        }
-    }, 5000);
-    
-    // Remove on click outside
-    document.addEventListener('click', function removeTooltip(e) {
-        if (!tooltip.contains(e.target)) {
-            tooltip.remove();
-            document.removeEventListener('click', removeTooltip);
-        }
-    });
-}
 
-// Copy plot link function
+
+// Share plot link function
 function copyPlotLink(plotId) {
     const plot = plotsData.find(p => p.id === plotId);
     if (!plot) return;
     
     const plotUrl = `${window.location.href}#research-plots-${plotId}`;
     
-    // Add visual feedback to the button
-    const copyBtn = document.querySelector(`[onclick*="copyPlotLink('${plotId}')"]`);
-    if (copyBtn) {
-        const originalText = copyBtn.innerHTML;
-        copyBtn.innerHTML = '<i class="fas fa-check"></i>';
-        copyBtn.style.background = 'var(--accent-green)';
-        copyBtn.style.color = 'white';
-        
-        setTimeout(() => {
-            copyBtn.innerHTML = originalText;
-            copyBtn.style.background = '';
-            copyBtn.style.color = '';
-        }, 1500);
-    }
-    
     navigator.clipboard.writeText(plotUrl).then(() => {
-        // Show success message
+        // Show simple success message
         const message = document.createElement('div');
         message.className = 'copy-success-message';
-        message.innerHTML = '<i class="fas fa-check-circle"></i> Link copied to clipboard!';
+        message.textContent = 'Link copied to clipboard!';
         document.body.appendChild(message);
         
         setTimeout(() => {
             if (message.parentElement) {
                 message.remove();
             }
-        }, 3000);
+        }, 2000);
     }).catch(() => {
         // Fallback for older browsers
         const textArea = document.createElement('textarea');
@@ -444,16 +382,16 @@ function copyPlotLink(plotId) {
         document.execCommand('copy');
         document.body.removeChild(textArea);
         
-        // Show success message
+        // Show simple success message
         const message = document.createElement('div');
         message.className = 'copy-success-message';
-        message.innerHTML = '<i class="fas fa-check-circle"></i> Link copied to clipboard!';
+        message.textContent = 'Link copied to clipboard!';
         document.body.appendChild(message);
         
         setTimeout(() => {
             if (message.parentElement) {
                 message.remove();
             }
-        }, 3000);
+        }, 2000);
     });
 } 
