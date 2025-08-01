@@ -186,7 +186,7 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 70px;
+    height: 65px;
     gap: var(--spacing-md);
 }
 
@@ -197,9 +197,10 @@ p {
     text-decoration: none;
     color: inherit;
     flex-shrink: 0;
-    padding: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-md);
     border-radius: var(--radius-md);
     transition: var(--transition-fast);
+    margin-right: var(--spacing-lg);
 }
 
 .nav-logo:hover {
@@ -216,14 +217,14 @@ p {
 }
 
 .logo-text {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     font-weight: var(--font-weight-bold);
     color: var(--primary-black);
     letter-spacing: -0.5px;
 }
 
 .logo-subtitle {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: var(--font-weight-regular);
     color: var(--medium-gray);
     letter-spacing: 1px;
@@ -233,7 +234,7 @@ p {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: var(--spacing-xl);
+    gap: var(--spacing-xxl);
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
@@ -243,7 +244,7 @@ p {
     text-decoration: none;
     color: var(--primary-black);
     font-weight: var(--font-weight-medium);
-    padding: var(--spacing-xs) var(--spacing-sm);
+    padding: var(--spacing-xs) var(--spacing-md);
     border-radius: 6px;
     transition: var(--transition-medium);
     position: relative;
@@ -1797,7 +1798,7 @@ section {
     .nav-menu {
         position: fixed;
         left: -100%;
-        top: 80px;
+        top: 65px;
         flex-direction: column;
         background-color: var(--pure-white);
         width: 100%;
