@@ -391,22 +391,86 @@ function handleApplicationSubmit(e) {
     
     const mailtoLink = `mailto:buypolarcapital@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     
-    // Open email client
-    window.location.href = mailtoLink;
+    // Get the submit button and change its appearance
+    const submitBtn = e.target.querySelector('.submit-btn');
+    const originalText = submitBtn.textContent;
     
-    // Show success message
-    const successMessage = document.createElement('div');
-    successMessage.className = 'success-message';
-    successMessage.textContent = 'Email client opened! Please send the email to complete your application.';
-    successMessage.style.color = '#4CAF50';
-    successMessage.style.marginTop = '1rem';
+    // Change button to green with success state
+    submitBtn.textContent = '✓ Application Sent!';
+    submitBtn.classList.add('success');
+    submitBtn.disabled = true;
     
-    e.target.appendChild(successMessage);
-    e.target.reset();
-    
-    setTimeout(() => {
-        successMessage.remove();
-    }, 5000);
+    // Try to open email client
+    try {
+        window.location.href = mailtoLink;
+        
+        // Show success message
+        const successMessage = document.createElement('div');
+        successMessage.className = 'success-message';
+        successMessage.innerHTML = `
+            <div style="background: #e8f5e8; border: 1px solid #4CAF50; border-radius: 8px; padding: 1rem; margin-top: 1rem;">
+                <h4 style="color: #2E7D32; margin: 0 0 0.5rem 0;">✓ Application Submitted Successfully!</h4>
+                <p style="color: #2E7D32; margin: 0 0 0.5rem 0;">Your email client should have opened with a pre-filled application email.</p>
+                <p style="color: #2E7D32; margin: 0; font-size: 0.9rem;">
+                    <strong>If your email client didn't open:</strong><br>
+                    Please send an email to <a href="mailto:buypolarcapital@gmail.com" style="color: #1976D2;">buypolarcapital@gmail.com</a> 
+                    with the subject: "${subject}"
+                </p>
+            </div>
+        `;
+        
+        e.target.appendChild(successMessage);
+        e.target.reset();
+        
+        // Reset button after 3 seconds
+        setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.classList.remove('success');
+            submitBtn.disabled = false;
+        }, 3000);
+        
+        // Remove success message after 8 seconds
+        setTimeout(() => {
+            if (successMessage.parentNode) {
+                successMessage.remove();
+            }
+        }, 8000);
+        
+    } catch (error) {
+        // Fallback if email client doesn't open
+        submitBtn.textContent = 'Error - Try Again';
+        submitBtn.classList.remove('success');
+        submitBtn.classList.add('error');
+        
+        setTimeout(() => {
+            submitBtn.textContent = originalText;
+            submitBtn.classList.remove('error');
+            submitBtn.disabled = false;
+        }, 3000);
+        
+        // Show fallback message
+        const fallbackMessage = document.createElement('div');
+        fallbackMessage.className = 'fallback-message';
+        fallbackMessage.innerHTML = `
+            <div style="background: #ffebee; border: 1px solid #f44336; border-radius: 8px; padding: 1rem; margin-top: 1rem;">
+                <h4 style="color: #c62828; margin: 0 0 0.5rem 0;">Email client not detected</h4>
+                <p style="color: #c62828; margin: 0 0 0.5rem 0;">Please send your application manually to:</p>
+                <p style="color: #1976D2; margin: 0; font-weight: bold;">buypolarcapital@gmail.com</p>
+                <p style="color: #c62828; margin: 0.5rem 0 0 0; font-size: 0.9rem;">
+                    <strong>Subject:</strong> ${subject}<br>
+                    <strong>Include:</strong> Your name, email, desired position, and message
+                </p>
+            </div>
+        `;
+        
+        e.target.appendChild(fallbackMessage);
+        
+        setTimeout(() => {
+            if (fallbackMessage.parentNode) {
+                fallbackMessage.remove();
+            }
+        }, 10000);
+    }
 }
 
 

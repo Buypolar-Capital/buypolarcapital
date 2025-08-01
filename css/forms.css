@@ -59,6 +59,36 @@
     box-shadow: 0 4px 16px rgba(0,0,0,0.2);
 }
 
+.submit-btn:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.submit-btn.success {
+    background: #4CAF50 !important;
+    color: white !important;
+    animation: pulse-success 0.6s ease-in-out;
+}
+
+.submit-btn.error {
+    background: #f44336 !important;
+    color: white !important;
+    animation: pulse-error 0.6s ease-in-out;
+}
+
+@keyframes pulse-success {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes pulse-error {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
 /* Section Styles */
 .about {
     background-color: var(--off-white);
