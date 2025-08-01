@@ -153,7 +153,7 @@ function createSamplePlotsData() {
 
 // Initialize category filters
 function initializeCategoryFilters() {
-    const filterButtons = document.querySelectorAll('.category-filter');
+    const filterButtons = document.querySelectorAll('.category-btn');
     filterButtons.forEach(button => {
         button.addEventListener('click', function() {
             // Remove active class from all buttons
@@ -203,20 +203,53 @@ function createPlotCard(plot) {
     const card = document.createElement('div');
     card.className = 'plot-card';
     
+    // Generate a nice gradient background based on category
+    const categoryColors = {
+        'vwap': 'linear-gradient(135deg, #2196F3, #4CAF50)',
+        'arbitrage': 'linear-gradient(135deg, #FF9800, #FF5722)',
+        'hft': 'linear-gradient(135deg, #9C27B0, #3F51B5)',
+        'hedging': 'linear-gradient(135deg, #4CAF50, #8BC34A)',
+        'ipo': 'linear-gradient(135deg, #00BCD4, #009688)',
+        'equities': 'linear-gradient(135deg, #607D8B, #795548)',
+        'crypto': 'linear-gradient(135deg, #FFC107, #FF9800)',
+        'fixed-income': 'linear-gradient(135deg, #E91E63, #9C27B0)',
+        'commodities': 'linear-gradient(135deg, #CDDC39, #8BC34A)'
+    };
+    
+    const gradient = categoryColors[plot.category] || 'linear-gradient(135deg, #2196F3, #4CAF50)';
+    
     card.innerHTML = `
         <div class="plot-image">
-            <img src="${plot.image}" alt="${plot.title}" loading="lazy">
+            <div class="plot-preview" style="background: ${gradient};">
+                <div class="plot-preview-content">
+                    <div class="plot-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="plot-category">${plot.category.replace('-', ' ').toUpperCase()}</div>
+                </div>
+            </div>
             <div class="plot-overlay">
                 <button class="view-plot-btn" onclick="handlePlotView('${plot.id}', '${plot.path || ''}')">
                     <i class="fas fa-eye"></i> View Analysis
                 </button>
+                <div class="plot-actions">
+                    <button class="preview-btn" onclick="previewPlot('${plot.id}')" title="Quick Preview">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="share-btn" onclick="sharePlot('${plot.id}')" title="Share">
+                        <i class="fas fa-share"></i>
+                    </button>
+                </div>
             </div>
         </div>
         <div class="plot-content">
             <h3 class="plot-title">${plot.title}</h3>
             <p class="plot-description">${plot.description}</p>
             <div class="plot-meta">
-                <span class="plot-date">${plot.date || 'N/A'}</span>
+                <span class="plot-date">
+                    <i class="fas fa-calendar"></i>
+                    ${plot.date || 'N/A'}
+                </span>
                 <div class="plot-tags">
                     ${(plot.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('')}
                 </div>
@@ -340,5 +373,83 @@ function closePlotModal() {
     if (modalBackdrop) {
         modalBackdrop.style.display = 'none';
         document.body.style.overflow = 'auto';
+    }
+}
+
+// Preview plot function
+function previewPlot(plotId) {
+    const plot = plotsData.find(p => p.id === plotId);
+    if (!plot) return;
+    
+    // Create a quick preview tooltip
+    const tooltip = document.createElement('div');
+    tooltip.className = 'plot-preview-tooltip';
+    tooltip.innerHTML = `
+        <div class="preview-content">
+            <h4>${plot.title}</h4>
+            <p>${plot.description}</p>
+            <div class="preview-meta">
+                <span><i class="fas fa-calendar"></i> ${plot.date || 'N/A'}</span>
+                <span><i class="fas fa-tag"></i> ${plot.category}</span>
+            </div>
+            <button onclick="handlePlotView('${plot.id}', '${plot.path || ''}')" class="preview-action-btn">
+                View Full Analysis
+            </button>
+        </div>
+    `;
+    
+    document.body.appendChild(tooltip);
+    
+    // Position tooltip near the plot card
+    const plotCard = document.querySelector(`[onclick*="${plotId}"]`).closest('.plot-card');
+    const rect = plotCard.getBoundingClientRect();
+    tooltip.style.left = rect.left + 'px';
+    tooltip.style.top = (rect.bottom + 10) + 'px';
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        if (tooltip.parentElement) {
+            tooltip.remove();
+        }
+    }, 5000);
+    
+    // Remove on click outside
+    document.addEventListener('click', function removeTooltip(e) {
+        if (!tooltip.contains(e.target)) {
+            tooltip.remove();
+            document.removeEventListener('click', removeTooltip);
+        }
+    });
+}
+
+// Share plot function
+function sharePlot(plotId) {
+    const plot = plotsData.find(p => p.id === plotId);
+    if (!plot) return;
+    
+    const shareData = {
+        title: plot.title,
+        text: plot.description,
+        url: window.location.href + '#research-plots'
+    };
+    
+    if (navigator.share) {
+        navigator.share(shareData);
+    } else {
+        // Fallback: copy to clipboard
+        const textToCopy = `${plot.title}\n\n${plot.description}\n\nView at: ${window.location.href}#research-plots`;
+        navigator.clipboard.writeText(textToCopy).then(() => {
+            // Show success message
+            const message = document.createElement('div');
+            message.className = 'share-success-message';
+            message.textContent = 'Link copied to clipboard!';
+            document.body.appendChild(message);
+            
+            setTimeout(() => {
+                if (message.parentElement) {
+                    message.remove();
+                }
+            }, 2000);
+        });
     }
 } 

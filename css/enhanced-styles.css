@@ -220,4 +220,156 @@
     .loading::after {
         animation: none;
     }
+}
+
+/* Plot Preview Styles */
+.plot-preview {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--border-radius-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.plot-preview-content {
+    text-align: center;
+    color: white;
+    z-index: 2;
+}
+
+.plot-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+    opacity: 0.9;
+}
+
+.plot-category {
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.plot-actions {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    display: flex;
+    gap: var(--spacing-xs);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.plot-card:hover .plot-actions {
+    opacity: 1;
+}
+
+.preview-btn,
+.share-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.preview-btn:hover,
+.share-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.1);
+}
+
+.plot-preview-tooltip {
+    position: fixed;
+    z-index: 1000;
+    background: white;
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-heavy);
+    padding: var(--spacing-md);
+    max-width: 300px;
+    border: 1px solid var(--border-light);
+    animation: fadeInUp 0.3s ease;
+}
+
+.preview-content h4 {
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.preview-content p {
+    margin: 0 0 var(--spacing-sm) 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.4;
+}
+
+.preview-meta {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.preview-meta span {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+.preview-action-btn {
+    background: var(--accent-blue);
+    color: white;
+    border: none;
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--border-radius-sm);
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background 0.3s ease;
+}
+
+.preview-action-btn:hover {
+    background: var(--color-primary-dark);
+}
+
+.share-success-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: var(--accent-green);
+    color: white;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    z-index: 1001;
+    animation: slideInRight 0.3s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 } 

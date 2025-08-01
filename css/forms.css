@@ -423,26 +423,55 @@
 }
 
 .tool-inputs {
-    margin-bottom: var(--spacing-md);
+    display: grid;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
 }
 
 .tool-inputs input,
-.tool-inputs select {
+.tool-inputs select,
+.tool-inputs textarea {
     width: 100%;
-    padding: var(--spacing-sm);
-    border: 1px solid var(--light-gray);
-    border-radius: 6px;
-    font-size: 0.9rem;
-    margin-bottom: var(--spacing-sm);
+    padding: var(--spacing-md);
+    border: 2px solid var(--border-light);
+    border-radius: 12px;
+    font-size: 1rem;
     background: var(--pure-white);
     color: var(--primary-black);
+    transition: all 0.3s ease;
+    font-family: inherit;
 }
 
 .tool-inputs input:focus,
-.tool-inputs select:focus {
+.tool-inputs select:focus,
+.tool-inputs textarea:focus {
     outline: none;
-    border-color: var(--accent-green);
-    box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.1);
+    transform: translateY(-1px);
+}
+
+.tool-inputs input:hover,
+.tool-inputs select:hover,
+.tool-inputs textarea:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-1px);
+}
+
+.tool-inputs textarea {
+    min-height: 100px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.tool-inputs select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    padding-right: 40px;
 }
 
 .tool-result {
@@ -839,37 +868,70 @@
 
 .careers-form {
     background: var(--pure-white);
-    padding: var(--spacing-md);
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    padding: var(--spacing-xl);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    border: 1px solid var(--border-light);
+    backdrop-filter: blur(10px);
 }
 
 .careers-form h3 {
     color: var(--primary-black);
-    margin-bottom: var(--spacing-sm);
-    font-size: 1.1rem;
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.3rem;
+    font-weight: var(--font-weight-bold);
+    text-align: center;
 }
 
 .application-form {
     display: grid;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-md);
 }
 
 .application-form input,
-.application-form textarea {
-    padding: var(--spacing-sm);
-    border: 1px solid var(--light-gray);
-    border-radius: 6px;
-    font-size: 0.9rem;
+.application-form textarea,
+.application-form select {
+    padding: var(--spacing-md);
+    border: 2px solid var(--border-light);
+    border-radius: 12px;
+    font-size: 1rem;
     background: var(--pure-white);
     color: var(--primary-black);
+    transition: all 0.3s ease;
+    font-family: inherit;
+    position: relative;
 }
 
 .application-form input:focus,
-.application-form textarea:focus {
+.application-form textarea:focus,
+.application-form select:focus {
     outline: none;
     border-color: var(--accent-blue);
-    box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+    box-shadow: 0 0 0 4px rgba(33, 150, 243, 0.1);
+    transform: translateY(-1px);
+}
+
+.application-form input:hover,
+.application-form textarea:hover,
+.application-form select:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-1px);
+}
+
+.application-form textarea {
+    min-height: 120px;
+    resize: vertical;
+    line-height: 1.6;
+}
+
+.application-form select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    padding-right: 40px;
 }
 
 .contact {
