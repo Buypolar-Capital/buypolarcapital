@@ -61,9 +61,7 @@
     transition: color var(--transition-fast);
 }
 
-.logo-text-container:hover {
-    color: var(--accent-blue);
-}
+/* Removed hover effect to keep logo black at all times */
 
 .nav-menu {
     display: flex;
