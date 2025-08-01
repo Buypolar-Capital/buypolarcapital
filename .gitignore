@@ -248,12 +248,15 @@ Thumbs.db
 # Jupyter notebook outputs
 *.ipynb
 
-# Plot outputs
+# Plot outputs (but keep plots directory)
 *.png
 *.jpg
 *.jpeg
-*.pdf
 *.svg
+
+# Keep PDFs in plots directory
+!plots/*.pdf
+!assets/thumbnails/*.png
 
 # Model files
 *.pkl

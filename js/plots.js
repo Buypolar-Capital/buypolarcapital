@@ -230,16 +230,19 @@ function createPlotCard(plot) {
 // Handle plot view (PDF or modal)
 function handlePlotView(plotId, plotPath) {
     if (plotPath && plotPath.trim() !== '') {
+        // Convert to GitHub raw URL for better compatibility
+        const rawUrl = plotPath.replace('plots/', 'https://raw.githubusercontent.com/Buypolar-Capital/buypolarcapital/main/plots/');
+        
         // Try to open PDF, but handle 404 gracefully
         const link = document.createElement('a');
-        link.href = plotPath;
+        link.href = rawUrl;
         link.target = '_blank';
         link.rel = 'noopener noreferrer';
         
         // Add error handling
         link.onclick = function(e) {
             // Check if file exists by making a HEAD request
-            fetch(plotPath, { method: 'HEAD' })
+            fetch(rawUrl, { method: 'HEAD' })
                 .then(response => {
                     if (!response.ok) {
                         e.preventDefault();
