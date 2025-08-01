@@ -289,15 +289,25 @@
 
 .copy-success-message {
     position: fixed;
-    top: 20px;
-    right: 20px;
-    background: var(--accent-green);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.8);
     color: white;
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius-sm);
-    box-shadow: var(--shadow-medium);
+    padding: 12px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
     z-index: 1000;
     font-size: 0.9rem;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.copy-success-message.show {
+    opacity: 1;
 }
 
 .share-success-message {

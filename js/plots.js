@@ -372,17 +372,26 @@ function copyPlotLink(plotId, plotPath) {
     }
     
     navigator.clipboard.writeText(plotUrl).then(() => {
-        // Show simple success message
+        // Show modern success notification
         const message = document.createElement('div');
         message.className = 'copy-success-message';
-        message.textContent = 'PDF link copied to clipboard!';
+        message.textContent = 'Link copied';
         document.body.appendChild(message);
         
+        // Fade in
         setTimeout(() => {
-            if (message.parentElement) {
-                message.remove();
-            }
-        }, 2000);
+            message.classList.add('show');
+        }, 10);
+        
+        // Fade out and remove
+        setTimeout(() => {
+            message.classList.remove('show');
+            setTimeout(() => {
+                if (message.parentElement) {
+                    message.remove();
+                }
+            }, 200);
+        }, 1500);
     }).catch(() => {
         // Fallback for older browsers
         const textArea = document.createElement('textarea');
@@ -392,16 +401,25 @@ function copyPlotLink(plotId, plotPath) {
         document.execCommand('copy');
         document.body.removeChild(textArea);
         
-        // Show simple success message
+        // Show modern success notification
         const message = document.createElement('div');
         message.className = 'copy-success-message';
-        message.textContent = 'PDF link copied to clipboard!';
+        message.textContent = 'Link copied';
         document.body.appendChild(message);
         
+        // Fade in
         setTimeout(() => {
-            if (message.parentElement) {
-                message.remove();
-            }
-        }, 2000);
+            message.classList.add('show');
+        }, 10);
+        
+        // Fade out and remove
+        setTimeout(() => {
+            message.classList.remove('show');
+            setTimeout(() => {
+                if (message.parentElement) {
+                    message.remove();
+                }
+            }, 200);
+        }, 1500);
     });
 } 
