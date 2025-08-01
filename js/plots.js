@@ -236,8 +236,8 @@ function createPlotCard(plot) {
                     <button class="preview-btn" onclick="previewPlot('${plot.id}')" title="Quick Preview">
                         <i class="fas fa-search"></i>
                     </button>
-                    <button class="share-btn" onclick="sharePlot('${plot.id}')" title="Share">
-                        <i class="fas fa-share"></i>
+                    <button class="copy-link-btn" onclick="copyPlotLink('${plot.id}')" title="Copy Link">
+                        <i class="fas fa-link"></i>
                     </button>
                 </div>
             </div>
@@ -401,34 +401,44 @@ function previewPlot(plotId) {
     });
 }
 
-// Share plot function
-function sharePlot(plotId) {
+// Copy plot link function
+function copyPlotLink(plotId) {
     const plot = plotsData.find(p => p.id === plotId);
     if (!plot) return;
     
-    const shareData = {
-        title: plot.title,
-        text: plot.description,
-        url: window.location.href + '#research-plots'
-    };
+    const plotUrl = `${window.location.href}#research-plots-${plotId}`;
     
-    if (navigator.share) {
-        navigator.share(shareData);
-    } else {
-        // Fallback: copy to clipboard
-        const textToCopy = `${plot.title}\n\n${plot.description}\n\nView at: ${window.location.href}#research-plots`;
-        navigator.clipboard.writeText(textToCopy).then(() => {
-            // Show success message
-            const message = document.createElement('div');
-            message.className = 'share-success-message';
-            message.textContent = 'Link copied to clipboard!';
-            document.body.appendChild(message);
-            
-            setTimeout(() => {
-                if (message.parentElement) {
-                    message.remove();
-                }
-            }, 2000);
-        });
-    }
+    navigator.clipboard.writeText(plotUrl).then(() => {
+        // Show success message
+        const message = document.createElement('div');
+        message.className = 'copy-success-message';
+        message.textContent = 'Link copied to clipboard!';
+        document.body.appendChild(message);
+        
+        setTimeout(() => {
+            if (message.parentElement) {
+                message.remove();
+            }
+        }, 2000);
+    }).catch(() => {
+        // Fallback for older browsers
+        const textArea = document.createElement('textarea');
+        textArea.value = plotUrl;
+        document.body.appendChild(textArea);
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        
+        // Show success message
+        const message = document.createElement('div');
+        message.className = 'copy-success-message';
+        message.textContent = 'Link copied to clipboard!';
+        document.body.appendChild(message);
+        
+        setTimeout(() => {
+            if (message.parentElement) {
+                message.remove();
+            }
+        }, 2000);
+    });
 } 
