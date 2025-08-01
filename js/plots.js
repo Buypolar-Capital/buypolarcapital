@@ -13,9 +13,28 @@ function initializePlotsGallery() {
 
 // Load plots data
 function loadPlotsData() {
-    // Always use sample data for now to ensure plots load
-    createSamplePlotsData();
-    renderPlotsGrid();
+    // Try to load real data first, fallback to sample data
+    fetch('plots_data.json')
+        .then(response => response.json())
+        .then(data => {
+            plotsData = data.plots.map(plot => ({
+                id: plot.id,
+                title: plot.title,
+                category: plot.category,
+                description: plot.description,
+                image: plot.thumbnail || `https://via.placeholder.com/400x250/2196F3/ffffff?text=${encodeURIComponent(plot.title)}`,
+                date: plot.modified_date,
+                tags: plot.tags,
+                filename: plot.filename,
+                path: plot.path
+            }));
+            renderPlotsGrid();
+        })
+        .catch(error => {
+            console.log('Failed to load plots data, using sample data:', error);
+            createSamplePlotsData();
+            renderPlotsGrid();
+        });
 }
 
 // Create sample plots data
@@ -183,22 +202,32 @@ function renderPlotsGrid() {
 function createPlotCard(plot) {
     const card = document.createElement('div');
     card.className = 'plot-card';
+    
+    // Create clickable link for the plot
+    const plotLink = plot.path ? plot.path : '#';
+    const isExternal = plot.path && plot.path.startsWith('http');
+    
     card.innerHTML = `
         <div class="plot-image">
             <img src="${plot.image}" alt="${plot.title}" loading="lazy">
             <div class="plot-overlay">
-                <button class="view-plot-btn" onclick="openPlotModal(${plot.id})">
-                    <i class="fas fa-eye"></i> View Analysis
-                </button>
+                ${plot.path ? 
+                    `<a href="${plot.path}" class="view-plot-btn" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-external-link-alt"></i> View PDF
+                    </a>` :
+                    `<button class="view-plot-btn" onclick="openPlotModal('${plot.id}')">
+                        <i class="fas fa-eye"></i> View Analysis
+                    </button>`
+                }
             </div>
         </div>
         <div class="plot-content">
             <h3 class="plot-title">${plot.title}</h3>
             <p class="plot-description">${plot.description}</p>
             <div class="plot-meta">
-                <span class="plot-date">${new Date(plot.date).toLocaleDateString()}</span>
+                <span class="plot-date">${plot.date || 'N/A'}</span>
                 <div class="plot-tags">
-                    ${plot.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    ${(plot.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('')}
                 </div>
             </div>
         </div>

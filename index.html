@@ -23,6 +23,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="logo.svg">
     <link rel="icon" type="image/png" sizes="16x16" href="logo.svg">
     <link rel="apple-touch-icon" href="logo.svg">
+    <link rel="shortcut icon" href="logo.svg">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -68,7 +69,7 @@
     <!-- External Scripts -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
     
     <!-- Structured Data -->
     <script type="application/ld+json">
@@ -156,10 +157,10 @@
                     <li role="none"><a href="#home" class="nav-link" role="menuitem" aria-label="Go to home section">Home</a></li>
                     <li role="none"><a href="#about" class="nav-link" role="menuitem" aria-label="Go to about section">About</a></li>
                     <li role="none"><a href="#research" class="nav-link" role="menuitem" aria-label="Go to research section">Research</a></li>
-                    <li role="none"><a href="#blog" class="nav-link" role="menuitem" aria-label="Go to blog section">Blog</a></li>
+                    
                     <li role="none"><a href="#tools" class="nav-link" role="menuitem" aria-label="Go to tools section">Tools</a></li>
                     <li role="none"><a href="#careers" class="nav-link" role="menuitem" aria-label="Go to careers section">Careers</a></li>
-                    <li role="none"><a href="#contact" class="nav-link" role="menuitem" aria-label="Go to contact section">Contact</a></li>
+                    
                 </ul>
                 <button class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="nav-menu">
                     <span></span>
@@ -237,39 +238,7 @@
                 </div>
             </div>
             
-            <!-- Testimonials Section -->
-            <div class="testimonials-section">
-                <h3>What Our Partners Say</h3>
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>"Buypolar Capital's quantitative approach to market analysis has consistently delivered insights that traditional methods miss. Their research-driven methodology is exactly what institutional investors need in today's volatile markets."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Dr. Sarah Chen</strong>
-                            <span>Chief Investment Officer, Global Asset Management</span>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>"The depth of their algorithmic trading strategies and risk management systems is impressive. They've demonstrated an exceptional ability to navigate both bull and bear markets with precision."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Michael Rodriguez</strong>
-                            <span>Head of Quantitative Research, TechVentures Capital</span>
-                        </div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-content">
-                            <p>"Working with Buypolar Capital has been transformative for our portfolio. Their innovative approach to market extremes and commitment to research excellence sets them apart in the industry."</p>
-                        </div>
-                        <div class="testimonial-author">
-                            <strong>Elena Petrova</strong>
-                            <span>Managing Director, European Investment Fund</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </section>
 
@@ -628,69 +597,7 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact" aria-labelledby="contact-title">
-        <div class="container">
-            <div class="section-header">
-                <h2 id="contact-title">Contact Us</h2>
-                <p>Get in touch with our team</p>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="office">
-                        <h3>Bergen Office</h3>
-                        <p>Bryggen 1<br>Bergen, Norway 5003</p>
-                        <p>Phone: +47 55 30 00 00</p>
-                    </div>
-                    <div class="office">
-                        <h3>Oslo Office</h3>
-                        <p>Karl Johans gate 1<br>Oslo, Norway 0154</p>
-                        <p>Phone: +47 22 00 00 00</p>
-                    </div>
-                    <div class="contact-email">
-                        <h3>Email</h3>
-                        <p><a href="mailto:buypolarcapital@gmail.com" aria-label="Send email to buypolarcapital@gmail.com">buypolarcapital@gmail.com</a></p>
-                    </div>
-                </div>
-                <div class="contact-form">
-                    <form id="contact-form" role="form" aria-labelledby="contact-form-title">
-                        <h3 id="contact-form-title">Send us a message</h3>
-                        <div class="form-group">
-                            <label for="contact-name">Full Name *</label>
-                            <input type="text" id="contact-name" name="name" placeholder="Enter your full name" required aria-required="true">
-                            <span class="error-message" id="name-error"></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-email">Email Address *</label>
-                            <input type="email" id="contact-email" name="email" placeholder="Enter your email address" required aria-required="true">
-                            <span class="error-message" id="email-error"></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-subject">Subject *</label>
-                            <input type="text" id="contact-subject" name="subject" placeholder="What is this regarding?" required aria-required="true">
-                            <span class="error-message" id="subject-error"></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="contact-message">Message *</label>
-                            <textarea id="contact-message" name="message" placeholder="Tell us more about your inquiry..." rows="5" required aria-required="true"></textarea>
-                            <span class="error-message" id="message-error"></span>
-                        </div>
-                        <div class="form-group">
-                            <div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div>
-                            <span class="error-message" id="captcha-error"></span>
-                        </div>
-                        <button type="submit" class="submit-btn" aria-label="Send contact message">
-                            <span class="btn-text">Send Message</span>
-                            <span class="btn-loading" style="display: none;">Sending...</span>
-                        </button>
-                        <div class="form-success" id="form-success" style="display: none;">
-                            <p>Thank you for your message! We'll get back to you soon.</p>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Cookie Consent Banner -->
     <div id="cookie-banner" class="cookie-banner" role="alert" aria-live="polite">
@@ -704,47 +611,7 @@
         </div>
     </div>
 
-    <!-- Blog Section -->
-    <section id="blog" class="blog">
-        <div class="container">
-            <div class="section-header">
-                <h2>Latest Research & Insights</h2>
-                <p>Recent publications and quantitative analysis</p>
-            </div>
-            
-            <div class="blog-grid">
-                <article class="blog-card">
-                    <div class="blog-meta">
-                        <span class="blog-date">December 2024</span>
-                        <span class="blog-category">VWAP Analysis</span>
-                    </div>
-                    <h3>Advanced VWAP Strategy Implementation</h3>
-                    <p>Exploring sophisticated volume-weighted average price strategies for institutional trading and their impact on market microstructure.</p>
-                    <a href="#" class="blog-link">Read More →</a>
-                </article>
-                
-                <article class="blog-card">
-                    <div class="blog-meta">
-                        <span class="blog-date">November 2024</span>
-                        <span class="blog-category">Arbitrage</span>
-                    </div>
-                    <h3>Cross-Listing Arbitrage Opportunities</h3>
-                    <p>Analysis of price discrepancies between dual-listed securities and automated arbitrage signal generation.</p>
-                    <a href="#" class="blog-link">Read More →</a>
-                </article>
-                
-                <article class="blog-card">
-                    <div class="blog-meta">
-                        <span class="blog-date">October 2024</span>
-                        <span class="blog-category">HFT Research</span>
-                    </div>
-                    <h3>High-Frequency Trading Latency Analysis</h3>
-                    <p>Microsecond-level analysis of market microstructure and its implications for algorithmic trading strategies.</p>
-                    <a href="#" class="blog-link">Read More →</a>
-                </article>
-            </div>
-        </div>
-    </section>
+
 
     <!-- Footer -->
     <footer class="footer" role="contentinfo">
@@ -791,7 +658,7 @@
                         <li><a href="#home" aria-label="Go to home section">Home</a></li>
                         <li><a href="#about" aria-label="Go to about section">About</a></li>
                         <li><a href="#research" aria-label="Go to research section">Research</a></li>
-                        <li><a href="#blog" aria-label="Go to blog section">Blog</a></li>
+
                         <li><a href="#tools" aria-label="Go to tools section">Tools</a></li>
                         <li><a href="#careers" aria-label="Go to careers section">Careers</a></li>
                     </ul>

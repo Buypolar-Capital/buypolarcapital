@@ -346,11 +346,7 @@ function initializeFormHandlers() {
         applicationForm.addEventListener('submit', handleApplicationSubmit);
     }
     
-    // Contact form
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', handleContactSubmit);
-    }
+
 }
 
 function handleApplicationSubmit(e) {
@@ -384,36 +380,7 @@ function handleApplicationSubmit(e) {
     }, 5000);
 }
 
-function handleContactSubmit(e) {
-    e.preventDefault();
-    
-    // Validate form
-    const inputs = e.target.querySelectorAll('input[required], textarea[required]');
-    let isValid = true;
-    
-    inputs.forEach(input => {
-        if (!input.value.trim()) {
-            showInputError(input, 'This field is required');
-            isValid = false;
-        }
-    });
-    
-    if (!isValid) return;
-    
-    // Show success message
-    const successMessage = document.createElement('div');
-    successMessage.className = 'success-message';
-    successMessage.textContent = 'Message sent successfully! We will get back to you soon.';
-    successMessage.style.color = '#4CAF50';
-    successMessage.style.marginTop = '1rem';
-    
-    e.target.appendChild(successMessage);
-    e.target.reset();
-    
-    setTimeout(() => {
-        successMessage.remove();
-    }, 5000);
-}
+
 
 function addLoadingAnimations() {
     const elements = document.querySelectorAll('.fade-in, .slide-in, .scale-in');
