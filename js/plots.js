@@ -203,22 +203,13 @@ function createPlotCard(plot) {
     const card = document.createElement('div');
     card.className = 'plot-card';
     
-    // Create clickable link for the plot
-    const plotLink = plot.path ? plot.path : '#';
-    const isExternal = plot.path && plot.path.startsWith('http');
-    
     card.innerHTML = `
         <div class="plot-image">
             <img src="${plot.image}" alt="${plot.title}" loading="lazy">
             <div class="plot-overlay">
-                ${plot.path ? 
-                    `<a href="${plot.path}" class="view-plot-btn" target="_blank" rel="noopener noreferrer">
-                        <i class="fas fa-external-link-alt"></i> View PDF
-                    </a>` :
-                    `<button class="view-plot-btn" onclick="openPlotModal('${plot.id}')">
-                        <i class="fas fa-eye"></i> View Analysis
-                    </button>`
-                }
+                <button class="view-plot-btn" onclick="handlePlotView('${plot.id}', '${plot.path || ''}')">
+                    <i class="fas fa-eye"></i> View Analysis
+                </button>
             </div>
         </div>
         <div class="plot-content">
@@ -234,6 +225,38 @@ function createPlotCard(plot) {
     `;
     
     return card;
+}
+
+// Handle plot view (PDF or modal)
+function handlePlotView(plotId, plotPath) {
+    if (plotPath && plotPath.trim() !== '') {
+        // Try to open PDF, but handle 404 gracefully
+        const link = document.createElement('a');
+        link.href = plotPath;
+        link.target = '_blank';
+        link.rel = 'noopener noreferrer';
+        
+        // Add error handling
+        link.onclick = function(e) {
+            // Check if file exists by making a HEAD request
+            fetch(plotPath, { method: 'HEAD' })
+                .then(response => {
+                    if (!response.ok) {
+                        e.preventDefault();
+                        alert('PDF file not available. Please contact us for access to this analysis.');
+                    }
+                })
+                .catch(() => {
+                    e.preventDefault();
+                    alert('PDF file not available. Please contact us for access to this analysis.');
+                });
+        };
+        
+        link.click();
+    } else {
+        // Open modal for plots without PDF
+        openPlotModal(plotId);
+    }
 }
 
 // Initialize plot modal

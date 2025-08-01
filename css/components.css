@@ -408,19 +408,19 @@ section {
     transform: translateY(-1px);
 }
 
-/* Back to Top Button - Financial Times Style */
+/* Back to Top Button - Simple Style */
 .back-to-top-btn {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    width: 60px;
-    height: 60px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     background: var(--primary-black);
     color: var(--pure-white);
     border: 2px solid var(--accent-blue);
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
     display: none;
     align-items: center;
@@ -439,7 +439,8 @@ section {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: conic-gradient(var(--accent-blue) 0deg, var(--accent-blue) 0deg, transparent 0deg);
+    background: transparent;
+    border: 2px solid var(--accent-blue);
     transition: all 0.3s ease;
     z-index: 1;
 }
@@ -465,7 +466,7 @@ section {
     display: flex;
 }
 
-/* Progress circle animation */
+/* Progress circle animation - outline only */
 .back-to-top-btn.progress-0::before {
     background: conic-gradient(var(--accent-blue) 0deg, var(--accent-blue) 0deg, transparent 0deg);
 }

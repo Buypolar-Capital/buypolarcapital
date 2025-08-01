@@ -81,6 +81,15 @@ function initializeWebsite() {
             }
         }, 800);
         
+        // Initialize games
+        setTimeout(() => {
+            try {
+                initializeGames();
+            } catch (error) {
+                console.log('Games failed to load:', error);
+            }
+        }, 1000);
+        
 
         
         // Add loading animations
@@ -365,10 +374,26 @@ function handleApplicationSubmit(e) {
     
     if (!isValid) return;
     
+    // Get form data
+    const formData = new FormData(e.target);
+    const name = formData.get('name');
+    const email = formData.get('email');
+    const position = formData.get('position');
+    const message = formData.get('message');
+    
+    // Create mailto link with form data
+    const subject = `Job Application: ${position} - ${name}`;
+    const body = `Name: ${name}\nEmail: ${email}\nPosition: ${position}\nMessage: ${message}`;
+    
+    const mailtoLink = `mailto:buypolarcapital@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    
+    // Open email client
+    window.location.href = mailtoLink;
+    
     // Show success message
     const successMessage = document.createElement('div');
     successMessage.className = 'success-message';
-    successMessage.textContent = 'Application submitted successfully! We will contact you soon.';
+    successMessage.textContent = 'Email client opened! Please send the email to complete your application.';
     successMessage.style.color = '#4CAF50';
     successMessage.style.marginTop = '1rem';
     

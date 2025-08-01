@@ -24,6 +24,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="logo.svg">
     <link rel="apple-touch-icon" href="logo.svg">
     <link rel="shortcut icon" href="logo.svg">
+    <link rel="icon" href="logo.svg">
+    <link rel="icon" href="logo.svg" type="image/svg+xml">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -251,22 +253,18 @@
             </div>
             <div class="approach-grid">
                 <div class="approach-card">
-                    <div class="card-icon" role="img" aria-label="Bar chart representing data science">📊</div>
                     <h3>Data Science</h3>
                     <p>Processing terabytes of market data through advanced machine learning algorithms to identify patterns invisible to human traders.</p>
                 </div>
                 <div class="approach-card">
-                    <div class="card-icon" role="img" aria-label="Lightning bolt representing speed and algorithmic trading">⚡</div>
                     <h3>Algorithmic Trading</h3>
                     <p>High-frequency and systematic trading strategies that execute with millisecond precision across global markets.</p>
                 </div>
                 <div class="approach-card">
-                    <div class="card-icon" role="img" aria-label="Shield representing risk management and protection">🛡️</div>
                     <h3>Risk Management</h3>
                     <p>Sophisticated risk models that continuously monitor and adjust positions to maintain optimal risk-adjusted returns.</p>
                 </div>
                 <div class="approach-card">
-                    <div class="card-icon" role="img" aria-label="Brain representing quantitative research and intelligence">🧠</div>
                     <h3>Quantitative Research</h3>
                     <p>Rigorous academic approach to financial modeling, drawing from the latest research in mathematics and statistics.</p>
                 </div>
@@ -580,7 +578,7 @@
                 </div>
                 <div class="careers-form">
                     <h3>Apply Now</h3>
-                    <form class="application-form" action="mailto:buypolarcapital@gmail.com" method="post" enctype="text/plain">
+                    <form class="application-form" id="application-form">
                         <input type="text" name="name" placeholder="Full Name" required>
                         <input type="email" name="email" placeholder="Email" required>
                         <select name="position" required>
