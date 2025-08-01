@@ -477,13 +477,31 @@ function updateTopProgressBar() {
 }
 
 function updateCircleProgressBar() {
-    const progressCircle = document.getElementById('progress-bar-circle');
-    if (!progressCircle) return;
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (!backToTopBtn) return;
     
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     const scrollPercent = (scrollTop / docHeight) * 100;
     
-    const degrees = (scrollPercent / 100) * 360;
-    progressCircle.style.background = `conic-gradient(var(--accent-blue) 0deg, var(--accent-blue) ${degrees}deg, transparent ${degrees}deg)`;
+    // Remove existing progress classes
+    backToTopBtn.classList.remove('progress-0', 'progress-25', 'progress-50', 'progress-75', 'progress-100');
+    
+    // Add appropriate progress class
+    if (scrollPercent <= 25) {
+        backToTopBtn.classList.add('progress-25');
+    } else if (scrollPercent <= 50) {
+        backToTopBtn.classList.add('progress-50');
+    } else if (scrollPercent <= 75) {
+        backToTopBtn.classList.add('progress-75');
+    } else {
+        backToTopBtn.classList.add('progress-100');
+    }
+    
+    // Show/hide button based on scroll position
+    if (scrollTop > 300) {
+        backToTopBtn.classList.add('visible');
+    } else {
+        backToTopBtn.classList.remove('visible');
+    }
 } 

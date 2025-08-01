@@ -408,19 +408,19 @@ section {
     transform: translateY(-1px);
 }
 
-/* Back to Top Button */
+/* Back to Top Button - Financial Times Style */
 .back-to-top-btn {
     position: fixed;
     bottom: 2rem;
     right: 2rem;
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background: var(--primary-black);
     color: var(--pure-white);
-    border: none;
+    border: 2px solid var(--accent-blue);
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: bold;
     display: none;
     align-items: center;
@@ -432,29 +432,69 @@ section {
     overflow: hidden;
 }
 
+.back-to-top-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: conic-gradient(var(--accent-blue) 0deg, var(--accent-blue) 0deg, transparent 0deg);
+    transition: all 0.3s ease;
+    z-index: 1;
+}
+
 .back-to-top-btn span {
     position: relative;
     z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
 
 .back-to-top-btn:hover {
     background: var(--accent-blue);
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+    border-color: var(--accent-blue);
 }
 
 .back-to-top-btn.visible {
     display: flex;
 }
 
-/* Loading Spinner */
+/* Progress circle animation */
+.back-to-top-btn.progress-0::before {
+    background: conic-gradient(var(--accent-blue) 0deg, var(--accent-blue) 0deg, transparent 0deg);
+}
+
+.back-to-top-btn.progress-25::before {
+    background: conic-gradient(var(--accent-blue) 0deg, var(--accent-blue) 90deg, transparent 90deg);
+}
+
+.back-to-top-btn.progress-50::before {
+    background: conic-gradient(var(--accent-blue) 0deg, var(--accent-blue) 180deg, transparent 180deg);
+}
+
+.back-to-top-btn.progress-75::before {
+    background: conic-gradient(var(--accent-blue) 0deg, var(--accent-blue) 270deg, transparent 270deg);
+}
+
+.back-to-top-btn.progress-100::before {
+    background: conic-gradient(var(--accent-blue) 0deg, var(--accent-blue) 360deg, transparent 360deg);
+}
+
+/* Quant Loading Spinner - Stock Chart Style */
 .loading-spinner {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--primary-black);
+    background: linear-gradient(135deg, var(--primary-black) 0%, var(--bg-darker) 100%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -468,17 +508,114 @@ section {
 }
 
 .spinner {
-    width: 50px;
-    height: 50px;
-    border: 4px solid var(--light-gray);
-    border-top: 4px solid var(--accent-blue);
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
+    position: relative;
+    width: 120px;
+    height: 80px;
+    background: var(--bg-secondary);
+    border-radius: 8px;
+    padding: 10px;
+    box-shadow: var(--shadow-heavy);
+    border: 1px solid var(--border-light);
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+/* Stock chart line */
+.spinner::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    right: 10px;
+    height: 2px;
+    background: var(--accent-green);
+    transform: translateY(-50%);
+    animation: stock-rise 2s ease-in-out infinite;
+}
+
+/* Stock chart dots */
+.spinner::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    right: 10px;
+    height: 2px;
+    background: repeating-linear-gradient(
+        to right,
+        var(--accent-green) 0px,
+        var(--accent-green) 4px,
+        transparent 4px,
+        transparent 20px
+    );
+    transform: translateY(-50%);
+    animation: stock-rise 2s ease-in-out infinite;
+}
+
+/* Loading text */
+.loading-spinner::after {
+    content: 'Loading Buypolar Capital...';
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--accent-blue);
+    font-size: 0.9rem;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+@keyframes stock-rise {
+    0% {
+        clip-path: polygon(0 100%, 0 100%, 100% 100%, 100% 100%);
+    }
+    25% {
+        clip-path: polygon(0 100%, 25% 80%, 50% 60%, 75% 40%, 100% 20%);
+    }
+    50% {
+        clip-path: polygon(0 100%, 20% 60%, 40% 40%, 60% 20%, 80% 10%, 100% 5%);
+    }
+    75% {
+        clip-path: polygon(0 100%, 15% 40%, 30% 20%, 45% 10%, 60% 5%, 75% 2%, 90% 0%, 100% 0%);
+    }
+    100% {
+        clip-path: polygon(0 100%, 10% 20%, 20% 10%, 30% 5%, 40% 2%, 50% 0%, 60% 0%, 70% 0%, 80% 0%, 90% 0%, 100% 0%);
+    }
+}
+
+/* Alternative: Simple rising line animation */
+.spinner-alt {
+    position: relative;
+    width: 100px;
+    height: 60px;
+    background: var(--bg-secondary);
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: var(--shadow-medium);
+}
+
+.spinner-alt::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--accent-green);
+    animation: price-rise 1.5s ease-in-out infinite;
+}
+
+@keyframes price-rise {
+    0% {
+        transform: scaleX(0);
+        transform-origin: left;
+    }
+    50% {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+    100% {
+        transform: scaleX(1);
+        transform-origin: right;
+    }
 }
 
 /* Cookie Banner */

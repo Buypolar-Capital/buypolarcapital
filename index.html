@@ -78,11 +78,11 @@
         "name": "Buypolar Capital",
         "description": "Quantitative hedge fund leveraging advanced algorithms and data science to navigate market volatility",
         "url": "https://buypolarcapital.com",
-        "logo": "https://buypolarcapital.com/",
+        "logo": "https://buypolarcapital.com/logo.svg",
         "foundingDate": "2020",
         "address": {
             "@type": "PostalAddress",
-            "addressCountry": "US"
+            "addressCountry": "NO"
         },
         "contactPoint": {
             "@type": "ContactPoint",
@@ -93,8 +93,37 @@
             "https://linkedin.com/company/buypolar-capital",
             "https://twitter.com/buypolarcapital",
             "https://www.instagram.com/buypolarcapital",
-            "https://github.com/egil10/buypolarcapital"
-        ]
+            "https://github.com/Buypolar-Capital/buypolarcapital"
+        ],
+        "serviceType": "Quantitative Trading",
+        "areaServed": "Global",
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Quantitative Research Services",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "VWAP Strategy Analysis"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Cross-Listing Arbitrage"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "High-Frequency Trading Research"
+                    }
+                }
+            ]
+        }
     }
     </script>
 </head>
@@ -127,6 +156,7 @@
                     <li role="none"><a href="#home" class="nav-link" role="menuitem" aria-label="Go to home section">Home</a></li>
                     <li role="none"><a href="#about" class="nav-link" role="menuitem" aria-label="Go to about section">About</a></li>
                     <li role="none"><a href="#research" class="nav-link" role="menuitem" aria-label="Go to research section">Research</a></li>
+                    <li role="none"><a href="#blog" class="nav-link" role="menuitem" aria-label="Go to blog section">Blog</a></li>
                     <li role="none"><a href="#tools" class="nav-link" role="menuitem" aria-label="Go to tools section">Tools</a></li>
                     <li role="none"><a href="#careers" class="nav-link" role="menuitem" aria-label="Go to careers section">Careers</a></li>
                     <li role="none"><a href="#contact" class="nav-link" role="menuitem" aria-label="Go to contact section">Contact</a></li>
@@ -318,6 +348,15 @@
             <div class="section-header">
                 <h2>Research & Analytics</h2>
                 <p>Cutting-edge quantitative research and market analysis</p>
+            </div>
+            
+            <!-- Research Introduction -->
+            <div class="research-intro">
+                <p class="research-description">
+                    Our research focuses on advanced quantitative methods including VWAP strategies, 
+                    cross-listing arbitrage, high-frequency trading analysis, and IPO event studies. 
+                    We publish our findings and simulations to contribute to the broader quantitative finance community.
+                </p>
             </div>
             
             <!-- Crypto Analysis -->
@@ -665,6 +704,48 @@
         </div>
     </div>
 
+    <!-- Blog Section -->
+    <section id="blog" class="blog">
+        <div class="container">
+            <div class="section-header">
+                <h2>Latest Research & Insights</h2>
+                <p>Recent publications and quantitative analysis</p>
+            </div>
+            
+            <div class="blog-grid">
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <span class="blog-date">December 2024</span>
+                        <span class="blog-category">VWAP Analysis</span>
+                    </div>
+                    <h3>Advanced VWAP Strategy Implementation</h3>
+                    <p>Exploring sophisticated volume-weighted average price strategies for institutional trading and their impact on market microstructure.</p>
+                    <a href="#" class="blog-link">Read More →</a>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <span class="blog-date">November 2024</span>
+                        <span class="blog-category">Arbitrage</span>
+                    </div>
+                    <h3>Cross-Listing Arbitrage Opportunities</h3>
+                    <p>Analysis of price discrepancies between dual-listed securities and automated arbitrage signal generation.</p>
+                    <a href="#" class="blog-link">Read More →</a>
+                </article>
+                
+                <article class="blog-card">
+                    <div class="blog-meta">
+                        <span class="blog-date">October 2024</span>
+                        <span class="blog-category">HFT Research</span>
+                    </div>
+                    <h3>High-Frequency Trading Latency Analysis</h3>
+                    <p>Microsecond-level analysis of market microstructure and its implications for algorithmic trading strategies.</p>
+                    <a href="#" class="blog-link">Read More →</a>
+                </article>
+            </div>
+        </div>
+    </section>
+
     <!-- Footer -->
     <footer class="footer" role="contentinfo">
         <div class="container">
@@ -710,6 +791,7 @@
                         <li><a href="#home" aria-label="Go to home section">Home</a></li>
                         <li><a href="#about" aria-label="Go to about section">About</a></li>
                         <li><a href="#research" aria-label="Go to research section">Research</a></li>
+                        <li><a href="#blog" aria-label="Go to blog section">Blog</a></li>
                         <li><a href="#tools" aria-label="Go to tools section">Tools</a></li>
                         <li><a href="#careers" aria-label="Go to careers section">Careers</a></li>
                     </ul>
