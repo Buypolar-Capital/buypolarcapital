@@ -203,6 +203,15 @@ function createPlotCard(plot) {
     const card = document.createElement('div');
     card.className = 'plot-card';
     
+    // Make entire card clickable
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', (e) => {
+        // Don't trigger if clicking on share button
+        if (!e.target.closest('.share-btn')) {
+            handlePlotView(plot.id, plot.path || '');
+        }
+    });
+    
     // Generate a nice gradient background based on category
     const categoryColors = {
         'vwap': 'linear-gradient(135deg, #2196F3, #4CAF50)',
@@ -218,27 +227,42 @@ function createPlotCard(plot) {
     
     const gradient = categoryColors[plot.category] || 'linear-gradient(135deg, #2196F3, #4CAF50)';
     
+    // Lucide bar-chart icon SVG
+    const chartIcon = `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="20" x2="12" y2="10"></line>
+        <line x1="18" y1="20" x2="18" y2="4"></line>
+        <line x1="6" y1="20" x2="6" y2="16"></line>
+    </svg>`;
+    
+    // Lucide calendar icon SVG
+    const calendarIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+        <line x1="16" y1="2" x2="16" y2="6"></line>
+        <line x1="8" y1="2" x2="8" y2="6"></line>
+        <line x1="3" y1="10" x2="21" y2="10"></line>
+    </svg>`;
+    
     card.innerHTML = `
         <div class="plot-image">
             <div class="plot-preview" style="background: ${gradient};">
                 <div class="plot-preview-content">
                     <div class="plot-icon">
-                        <i class="fas fa-chart-line"></i>
+                        ${chartIcon}
                     </div>
-                    <div class="plot-category">${plot.category.replace('-', ' ').toUpperCase()}</div>
+                    <div class="plot-category">${plot.category.replace('-', ' ')}</div>
                 </div>
             </div>
-            <div class="plot-overlay">
-                <button class="view-plot-btn" onclick="handlePlotView('${plot.id}', '${plot.path || ''}')">
-                    <i class="fas fa-eye"></i> View Analysis
+            <div class="plot-overlay"></div>
+            <div class="plot-actions">
+                <button class="share-btn" onclick="event.stopPropagation(); copyPlotLink('${plot.id}', '${plot.path || ''}')" title="Share">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="18" cy="5" r="3"></circle>
+                        <circle cx="6" cy="12" r="3"></circle>
+                        <circle cx="18" cy="19" r="3"></circle>
+                        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                    </svg>
                 </button>
-                <div class="plot-actions">
-                    <button class="share-btn" onclick="copyPlotLink('${plot.id}', '${plot.path || ''}')" title="Share">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M16 5l-1.42 1.42-1.59-1.59V16h-1.98V4.83L9.42 6.42 8 5l4-4 4 4zm4 5v11c0 1.1-.9 2-2 2H6c-1.11 0-2-.9-2-2V10c0-1.11.89-2 2-2h3v2H6v11h12V10h-3V8h3c1.1 0 2 .89 2 2z"/>
-                        </svg>
-                    </button>
-                </div>
             </div>
         </div>
         <div class="plot-content">
@@ -246,11 +270,11 @@ function createPlotCard(plot) {
             <p class="plot-description">${plot.description}</p>
             <div class="plot-meta">
                 <span class="plot-date">
-                    <i class="fas fa-calendar"></i>
+                    ${calendarIcon}
                     ${plot.date || 'N/A'}
                 </span>
                 <div class="plot-tags">
-                    ${(plot.tags || []).map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    ${(plot.tags || []).slice(0, 2).map(tag => `<span class="tag">${tag}</span>`).join('')}
                 </div>
             </div>
         </div>
