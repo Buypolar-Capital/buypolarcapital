@@ -64,7 +64,7 @@
     justify-content: center;
     border-radius: var(--radius-md);
     color: var(--text-secondary);
-    transition: all var(--transition-fast);
+    transition: color var(--transition-fast);
     text-decoration: none;
 }
 
@@ -75,7 +75,6 @@
 
 .social-icon:hover {
     color: var(--accent-blue);
-    transform: scale(1.1);
 }
 
 .footer-bottom {
