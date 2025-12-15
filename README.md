@@ -1,197 +1,95 @@
 # Buypolar Capital
 
-**Navigating Market Extremes with Precision**
+[![Website](https://img.shields.io/badge/Website-Live-blue)](https://buypolarcapital.com)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A professional quantitative finance platform showcasing advanced trading strategies, interactive tools, and educational simulations.
+> Quantitative hedge fund leveraging advanced algorithms and data science to navigate market volatility with precision.
 
-## Professional Website
+## 🚀 Features
 
-Visit our interactive website: **[Buypolar Capital](https://buypolarcapital.com/)**
+- **Research Plots Gallery**: Comprehensive collection of quantitative research and simulation results
+- **Dark/Light Theme**: Seamless theme switching with localStorage persistence
+- **Responsive Design**: Optimized for all devices
+- **High Performance**: 60fps animations with minimal bundle size
+- **Modern Stack**: Vanilla HTML/CSS/JS with Lucide icons
 
-### Website Features:
-- **Professional Design**: Inspired by top-tier quant funds (Citadel, Jane Street, Two Sigma)
-- **Interactive Tools**: Black-Scholes calculator, Monte Carlo simulations, portfolio optimization
-- **Research Section**: Crypto analysis, IPO event studies, cross-listing arbitrage, HFT analysis
-- **Quantitative Games**: Roulette, Blackjack, Dice, Random Walks, Poker, Monty Hall, Kelly Criterion, Risk of Ruin
-- **Real-time Charts**: Professional Plotly visualizations with consistent styling
-- **Mobile Responsive**: Optimized for all devices with enhanced mobile experience
-- **Black/White Theme**: Clean, professional aesthetic with subtle red/blue accents
-
-## Repository Structure
+## 📁 Project Structure
 
 ```
 buypolarcapital/
-├── index.html              # Main website entry point
-├── styles.css              # Professional styling with mobile optimization
-├── script.js               # Interactive JavaScript with all tools and games
-├── README.md               # This file
-├── assets/                 # Asset files and resources
-├── core/                   # Core trading strategies and algorithms
-├── data/                   # Data processing and storage
-├── plots/                  # Generated charts and visualizations
-└── scripts/                # Analysis and utility scripts
+├── index.html              # Main website
+├── css/                    # Modular stylesheets
+├── js/                     # JavaScript modules
+├── plots/                  # Research plot PDFs
+├── plots_data.json        # Plot metadata
+├── assets/                 # Static assets
+├── docs/                   # Documentation
+└── scripts/                # Build & deployment scripts
 ```
 
-## Setup Instructions
+## 📖 Documentation
 
-### Quick Start
-1. **Clone the repository**:
+- [Plot Gallery Guide](./docs/PLOTS_GALLERY_README.md)
+- [Redesign Summary](./docs/REDESIGN_SUMMARY.md)
+
+## 🎨 Theme Support
+
+The website features automatic dark/light theme switching:
+- Light mode: Clean, professional white background
+- Dark mode: Deep black (#0a0a0a) for reduced eye strain
+- Theme persists across sessions using localStorage
+- Respects system preferences (prefers-color-scheme)
+
+## 🛠️ Development
+
+### Local Setup
+
+1. Clone the repository:
    ```bash
    git clone https://github.com/Buypolar-Capital/buypolarcapital.git
    cd buypolarcapital
    ```
 
-2. **Open in browser**:
-   - Simply open `index.html` in your web browser
-   - No build process required - it's a static website
-
-3. **For development**:
-   - Use a local server for best experience:
+2. Open `index.html` in your browser or use a local server:
    ```bash
-   # Python 3
    python -m http.server 8000
-   
-   # Node.js
-   npx serve .
-   
-   # PHP
-   php -S localhost:8000
+   # or
+   npx serve
    ```
-   - Then visit `http://localhost:8000`
 
-### Dependencies
-- **No build dependencies required** - pure HTML/CSS/JavaScript
-- **External CDNs used**:
-  - Plotly.js for charts
-  - Google Fonts (Inter, Poppins)
-- **Optional**: For development, consider installing:
-  ```bash
-  npm install -g serve  # For local development server
-  ```
+3. Visit `http://localhost:8000`
 
-### Browser Support
-- **Modern browsers**: Chrome, Firefox, Safari, Edge (latest versions)
-- **Mobile**: iOS Safari, Chrome Mobile
-- **Features**: ES6+, CSS Grid, Flexbox, Intersection Observer API
+### Adding Research Plots
 
-## Key Statistics
+1. Add your plot PDF to the `plots/` directory
+2. Update `plots_data.json` with plot metadata
+3. The plot will automatically appear in the gallery
 
-- **Files**: Streamlined from 1000+ to ~50 essential files
-- **Size**: Reduced by 85% through aggressive cleanup
-- **Structure**: Flattened from 6+ nested levels to 2-3 levels maximum
-- **Performance**: Optimized for speed and maintainability
-- **Focus**: 100% quantitative finance and trading
+See [Plot Gallery Guide](./docs/PLOTS_GALLERY_README.md) for detailed instructions.
 
-## Quantitative Focus
+## 🌐 Deployment
 
-### Core Capabilities:
-- **Options Pricing**: Black-Scholes with Greeks calculation
-- **Risk Management**: VaR, Sharpe Ratio, Maximum Drawdown
-- **Portfolio Optimization**: Modern Portfolio Theory implementation
-- **Technical Analysis**: RSI, MACD, Bollinger Bands, Moving Averages
-- **Monte Carlo Simulations**: Stock price paths and risk scenarios
-- **Event Studies**: IPO performance and cross-listing arbitrage
-- **HFT Analysis**: Latency distributions and order book dynamics
+The site is automatically deployed via GitHub Pages from the `main` branch.
 
-### Interactive Tools:
-- **Black-Scholes Calculator**: Real-time option pricing
-- **Monte Carlo Simulator**: Multi-path price simulations
-- **Portfolio Optimizer**: Risk-return optimization
-- **Risk Metrics Calculator**: Comprehensive risk analysis
-- **Options Strategy Builder**: Complex option strategies
-- **Technical Analysis Dashboard**: Real-time indicators
+## 📊 Research Focus
 
-### Educational Games:
-- **Casino Games**: Roulette (probability), Blackjack (strategy)
-- **Dice & Random Walks**: Probability distributions and Brownian motion
-- **Card Games**: Poker (combinatorics), Monty Hall (probability)
-- **Risk Management**: Kelly Criterion, Risk of Ruin simulations
+- VWAP Strategies
+- Cross-Listing Arbitrage
+- High-Frequency Trading Analysis
+- IPO Event Studies
+- Cryptocurrency Analysis
+- Fixed Income Research
 
-## Performance Metrics
+## 📧 Contact
 
-- **Sharpe Ratio**: 2.45
-- **Maximum Drawdown**: -8.2%
-- **Annual Return**: 18.7%
-- **Volatility**: 12.3%
-- **Beta**: 0.85
+- Email: [buypolarcapital@gmail.com](mailto:buypolarcapital@gmail.com)
+- GitHub: [@Buypolar-Capital](https://github.com/Buypolar-Capital)
+- Twitter: [@buypolarcapital](https://twitter.com/buypolarcapital)
 
-## About Buypolar Capital
+## 📄 License
 
-Buypolar Capital is a quantitative investment firm specializing in systematic trading strategies. Our approach combines advanced mathematical models with cutting-edge technology to navigate both bull and bear markets effectively.
-
-**Location**: Bergen, Norway  
-**Focus**: Quantitative Finance, Algorithmic Trading, Risk Management
-
-### Our Approach:
-1. **Data-Driven**: Extensive market data analysis and backtesting
-2. **Risk-First**: Comprehensive risk management and position sizing
-3. **Technology-Enabled**: High-performance computing and low-latency execution
-4. **Research-Intensive**: Continuous strategy development and optimization
-
-## Join Our Team
-
-We're always looking for talented individuals passionate about quantitative finance:
-
-### Open Positions:
-- **Quantitative Researcher**: PhD in Mathematics, Physics, or related field
-- **Software Engineer**: Python, C++, Rust, high-performance computing
-- **Risk Manager**: Experience with VaR, stress testing, portfolio risk
-- **Data Scientist**: Machine learning, statistical modeling, market microstructure
-
-### Requirements:
-- Strong mathematical and statistical background
-- Programming proficiency (Python, C++, Rust)
-- Experience with financial markets and instruments
-- Passion for quantitative finance and algorithmic trading
-
-## Contact
-
-**Bergen Office**:  
-Bryggen 1, Bergen, Norway 5003  
-
-**Oslo Office**:  
-Karl Johans gate 1, Oslo, Norway 0154
-
-**Email**: buypolarcapital@gmail.com
-
-## 🛠 Technical Stack
-
-- **Frontend**: HTML5, CSS3, JavaScript (ES6+)
-- **Charts**: Plotly.js for interactive visualizations
-- **Styling**: Custom CSS with Inter font family
-- **Deployment**: GitHub Pages
-- **Version Control**: Git
-- **Analysis**: Python (pandas, numpy, scipy)
-- **Backtesting**: Custom framework with realistic slippage and fees
-
-## Research Areas
-
-- **Crypto Analysis**: Bitcoin price movements and portfolio optimization
-- **IPO Event Studies**: Cumulative Abnormal Returns analysis
-- **Cross-Listing Arbitrage**: Unilever vs UL price spread analysis
-- **HFT Analysis**: Latency distributions and order book dynamics
-- **Options Strategies**: Complex multi-leg option positions
-- **Risk Management**: Kelly Criterion and Risk of Ruin calculations
-
-## Educational Simulations
-
-Our interactive games demonstrate key quantitative finance concepts:
-
-- **Probability Theory**: Roulette, dice, poker hand probabilities
-- **Random Processes**: Random walks and Brownian motion
-- **Decision Theory**: Monty Hall problem and optimal strategies
-- **Risk Management**: Kelly Criterion for optimal bet sizing
-- **Bankroll Management**: Risk of ruin calculations
-
-## Recent Updates
-
-- **Complete Website Redesign**: Professional quant fund aesthetic
-- **Enhanced Mobile Experience**: Responsive design with touch optimization
-- **Professional Chart Styling**: Consistent Plotly layouts with Inter fonts
-- **Comprehensive Games Section**: 8 interactive quantitative simulations
-- **Streamlined Repository**: Aggressive cleanup and organization
-- **Norwegian Localization**: Updated addresses and contact information
+MIT License - see [LICENSE](LICENSE) for details
 
 ---
 
-*Buypolar Capital - Where quantitative precision meets market extremes.*
+**Built with ❤️ for quantitative research**

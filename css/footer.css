@@ -62,8 +62,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border-radius: var(--radius-full);
-    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
     color: var(--text-secondary);
     transition: all var(--transition-fast);
     text-decoration: none;
@@ -75,21 +74,77 @@
 }
 
 .social-icon:hover {
-    background: var(--accent-blue);
-    color: white;
-    transform: translateY(-2px);
+    color: var(--accent-blue);
+    transform: scale(1.1);
 }
 
 .footer-bottom {
     padding-top: var(--spacing-lg);
     border-top: 1px solid var(--border-color);
-    text-align: center;
+}
+
+.footer-bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-md);
 }
 
 .footer-bottom p {
     font-size: var(--font-size-sm);
     color: var(--text-muted);
     margin: 0;
+}
+
+/* Theme Toggle in Footer */
+.theme-toggle {
+    width: 32px;
+    height: 32px;
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition-fast);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+}
+
+.theme-toggle:hover svg {
+    color: white;
+}
+
+.theme-toggle svg {
+    color: var(--text-secondary);
+    transition: all var(--transition-fast);
+    position: absolute;
+}
+
+.sun-icon {
+    opacity: 1;
+    transform: rotate(0deg);
+}
+
+.moon-icon {
+    opacity: 0;
+    transform: rotate(90deg);
+}
+
+[data-theme="dark"] .sun-icon {
+    opacity: 0;
+    transform: rotate(-90deg);
+}
+
+[data-theme="dark"] .moon-icon {
+    opacity: 1;
+    transform: rotate(0deg);
 }
 
 /* Responsive */
@@ -111,5 +166,10 @@
 
     .footer-social {
         justify-content: center;
+    }
+
+    .footer-bottom-content {
+        flex-direction: column;
+        text-align: center;
     }
 }

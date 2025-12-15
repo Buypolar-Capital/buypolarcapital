@@ -59,8 +59,7 @@
 }
 
 .plot-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
+    box-shadow: var(--shadow-md);
     border-color: var(--accent-blue);
 }
 
@@ -132,17 +131,13 @@
     right: var(--spacing-sm);
     display: flex;
     gap: var(--spacing-xs);
-    opacity: 0;
+    opacity: 1;
     transition: opacity var(--transition-fast);
     z-index: 3;
 }
 
-.plot-card:hover .plot-actions {
-    opacity: 1;
-}
-
 .share-btn {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(4px);
     border: none;
     width: 32px;
@@ -155,6 +150,7 @@
     transition: all var(--transition-fast);
     pointer-events: all;
     color: var(--text-primary);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .share-btn:hover {

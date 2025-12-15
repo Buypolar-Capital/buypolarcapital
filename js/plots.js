@@ -155,16 +155,16 @@ function createSamplePlotsData() {
 function initializeCategoryFilters() {
     const filterButtons = document.querySelectorAll('.category-btn');
     filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             // Remove active class from all buttons
             filterButtons.forEach(btn => btn.classList.remove('active'));
-            
+
             // Add active class to clicked button
             this.classList.add('active');
-            
+
             // Update current category
             currentCategory = this.dataset.category;
-            
+
             // Re-render plots grid
             renderPlotsGrid();
         });
@@ -175,22 +175,22 @@ function initializeCategoryFilters() {
 function renderPlotsGrid() {
     const plotsContainer = document.getElementById('plots-grid');
     if (!plotsContainer) return;
-    
+
     // Filter plots based on current category
     let filteredPlots = plotsData;
     if (currentCategory !== 'all') {
         filteredPlots = plotsData.filter(plot => plot.category === currentCategory);
     }
-    
+
     // Clear container
     plotsContainer.innerHTML = '';
-    
+
     // Create plot cards
     filteredPlots.forEach(plot => {
         const plotCard = createPlotCard(plot);
         plotsContainer.appendChild(plotCard);
     });
-    
+
     // Update results count
     const resultsCount = document.getElementById('plots-results-count');
     if (resultsCount) {
@@ -202,7 +202,7 @@ function renderPlotsGrid() {
 function createPlotCard(plot) {
     const card = document.createElement('div');
     card.className = 'plot-card';
-    
+
     // Make entire card clickable
     card.style.cursor = 'pointer';
     card.addEventListener('click', (e) => {
@@ -211,7 +211,7 @@ function createPlotCard(plot) {
             handlePlotView(plot.id, plot.path || '');
         }
     });
-    
+
     // Generate a nice gradient background based on category
     const categoryColors = {
         'vwap': 'linear-gradient(135deg, #2196F3, #4CAF50)',
@@ -224,24 +224,24 @@ function createPlotCard(plot) {
         'fixed-income': 'linear-gradient(135deg, #E91E63, #9C27B0)',
         'commodities': 'linear-gradient(135deg, #CDDC39, #8BC34A)'
     };
-    
+
     const gradient = categoryColors[plot.category] || 'linear-gradient(135deg, #2196F3, #4CAF50)';
-    
-    // Lucide bar-chart icon SVG
-    const chartIcon = `<svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+    // Lucide bar-chart icon SVG - smaller size
+    const chartIcon = `<svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="12" y1="20" x2="12" y2="10"></line>
         <line x1="18" y1="20" x2="18" y2="4"></line>
         <line x1="6" y1="20" x2="6" y2="16"></line>
     </svg>`;
-    
-    // Lucide calendar icon SVG
-    const calendarIcon = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+
+    // Lucide calendar icon SVG - smaller size
+    const calendarIcon = `<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
         <line x1="16" y1="2" x2="16" y2="6"></line>
         <line x1="8" y1="2" x2="8" y2="6"></line>
         <line x1="3" y1="10" x2="21" y2="10"></line>
     </svg>`;
-    
+
     card.innerHTML = `
         <div class="plot-image">
             <div class="plot-preview" style="background: ${gradient};">
@@ -279,7 +279,7 @@ function createPlotCard(plot) {
             </div>
         </div>
     `;
-    
+
     return card;
 }
 
@@ -288,7 +288,7 @@ function handlePlotView(plotId, plotPath) {
     if (plotPath && plotPath.trim() !== '') {
         // Use GitHub Pages URL instead of raw URL to open PDFs in browser
         const pagesUrl = plotPath.replace('plots/', 'https://buypolar-capital.github.io/buypolarcapital/plots/');
-        
+
         // Open PDF in new tab - GitHub Pages should serve PDFs with proper headers
         window.open(pagesUrl, '_blank', 'noopener,noreferrer');
     } else {
@@ -326,18 +326,18 @@ function initializePlotModal() {
             </div>
         </div>
     `;
-    
+
     document.body.appendChild(modalBackdrop);
-    
+
     // Close modal when clicking backdrop
-    modalBackdrop.addEventListener('click', function(e) {
+    modalBackdrop.addEventListener('click', function (e) {
         if (e.target === this) {
             closePlotModal();
         }
     });
-    
+
     // Close modal with Escape key
-    document.addEventListener('keydown', function(e) {
+    document.addEventListener('keydown', function (e) {
         if (e.key === 'Escape') {
             closePlotModal();
         }
@@ -348,14 +348,14 @@ function initializePlotModal() {
 function openPlotModal(plotId) {
     const plot = plotsData.find(p => p.id === plotId);
     if (!plot) return;
-    
+
     const modalBackdrop = document.getElementById('plot-modal-backdrop');
     const modalTitle = document.getElementById('modal-title');
     const modalImage = document.getElementById('modal-image');
     const modalDescription = document.getElementById('modal-description');
     const modalDate = document.getElementById('modal-date');
     const modalTags = document.getElementById('modal-tags');
-    
+
     // Populate modal content
     modalTitle.textContent = plot.title;
     modalImage.src = plot.image;
@@ -363,7 +363,7 @@ function openPlotModal(plotId) {
     modalDescription.textContent = plot.description;
     modalDate.textContent = new Date(plot.date).toLocaleDateString();
     modalTags.innerHTML = plot.tags.map(tag => `<span class="tag">${tag}</span>`).join('');
-    
+
     // Show modal
     modalBackdrop.style.display = 'flex';
     document.body.style.overflow = 'hidden';
@@ -384,7 +384,7 @@ function closePlotModal() {
 function copyPlotLink(plotId, plotPath) {
     const plot = plotsData.find(p => p.id === plotId);
     if (!plot) return;
-    
+
     // Use the actual PDF URL if available, otherwise fallback to page anchor
     let plotUrl;
     if (plotPath && plotPath.trim() !== '') {
@@ -394,19 +394,19 @@ function copyPlotLink(plotId, plotPath) {
         // Fallback to page anchor
         plotUrl = `${window.location.href}#research-plots-${plotId}`;
     }
-    
+
     navigator.clipboard.writeText(plotUrl).then(() => {
         // Show modern success notification
         const message = document.createElement('div');
         message.className = 'copy-success-message';
         message.textContent = 'Link copied';
         document.body.appendChild(message);
-        
+
         // Fade in
         setTimeout(() => {
             message.classList.add('show');
         }, 10);
-        
+
         // Fade out and remove
         setTimeout(() => {
             message.classList.remove('show');
@@ -424,18 +424,18 @@ function copyPlotLink(plotId, plotPath) {
         textArea.select();
         document.execCommand('copy');
         document.body.removeChild(textArea);
-        
+
         // Show modern success notification
         const message = document.createElement('div');
         message.className = 'copy-success-message';
         message.textContent = 'Link copied';
         document.body.appendChild(message);
-        
+
         // Fade in
         setTimeout(() => {
             message.classList.add('show');
         }, 10);
-        
+
         // Fade out and remove
         setTimeout(() => {
             message.classList.remove('show');
