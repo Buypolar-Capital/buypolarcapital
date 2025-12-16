@@ -17,10 +17,12 @@
     let currentStep = 0;
     let animationStartTime = null;
     const animationDuration = 4000; // 4 seconds
-    let fadeStartTime = null;
-    let hasStartedFade = false;
+    let hasStartedHide = false;
     let windowLoaded = false;
     let pathGenerated = false;
+    let startY = 0; // Starting Y position for comparison
+    let pathStopped = false;
+    let pathColor = '#ffffff'; // White by default, changes to green/red when stopped
     let canvasWidth = 0;
     let canvasHeight = 0;
     let loaderAreaStart = 0;
@@ -105,7 +107,7 @@
         path = [];
         // Start at middle of plot area (50% of plot height from bottom)
         // In canvas coords: plotBottom - (plotAreaHeight / 2)
-        const startY = plotBottom - (plotAreaHeight / 2);
+        startY = plotBottom - (plotAreaHeight / 2);
         let y = startY; // Canvas Y coordinate (decreases as we go up)
         
         const dt = 0.01;
@@ -144,14 +146,16 @@
     }
 
     // Draw path up to a specific step
-    function drawPathUpTo(step) {
+    function drawPathUpTo(step, color = null) {
         if (step < 1 || path.length === 0) return;
         
+        const drawColor = color || pathColor;
+        
         ctx.save();
-        ctx.strokeStyle = '#ffffff';
+        ctx.strokeStyle = drawColor;
         ctx.lineWidth = 2;
         ctx.shadowBlur = 12;
-        ctx.shadowColor = '#ffffff';
+        ctx.shadowColor = drawColor;
         
         ctx.beginPath();
         ctx.moveTo(path[0].x, path[0].y);
@@ -188,34 +192,62 @@
             drawPathUpTo(currentStep);
         }
         
-        // Ensure full path is drawn if animation is complete
-        if (progress >= 1 && !animationComplete) {
+        // Check if path has been fully drawn (all points rendered)
+        if (!pathStopped && path.length > 0 && currentStep >= path.length) {
+            pathStopped = true;
+            // Determine color based on final position relative to start
+            // In canvas coords: lower Y = higher on screen (above start = green)
+            // Higher Y = lower on screen (below start = red)
+            const finalPoint = path[path.length - 1];
+            if (finalPoint.y < startY) {
+                pathColor = '#4CAF50'; // Green - ended above start
+            } else {
+                pathColor = '#f44336'; // Red - ended below start (or at bust)
+            }
+            
+            // Redraw with the new color
             ctx.fillStyle = '#000000';
             ctx.fillRect(0, 0, canvasWidth, canvasHeight);
             drawAxes();
-            currentStep = path.length;
-            drawPathUpTo(currentStep);
-            animationComplete = true;
+            drawPathUpTo(path.length, pathColor);
             completionWaitStart = timestamp;
         }
         
-        // Wait a moment after completion before fading out
-        if (animationComplete && completionWaitStart && !hasStartedFade) {
-            const waitElapsed = timestamp - completionWaitStart;
-            // Wait 400ms after completion before starting fade
-            if (waitElapsed >= 400) {
-                hasStartedFade = true;
-                fadeStartTime = timestamp;
-                loader.style.transition = 'opacity 0.5s ease-out';
-                loader.style.opacity = '0';
+        // Ensure full path is drawn if animation time is complete
+        if (progress >= 1 && !animationComplete) {
+            animationComplete = true;
+            if (!pathStopped && path.length > 0) {
+                // Make sure we've drawn all points
+                currentStep = path.length;
+                
+                // Determine color based on final position
+                pathStopped = true;
+                const finalPoint = path[path.length - 1];
+                if (finalPoint.y < startY) {
+                    pathColor = '#4CAF50'; // Green
+                } else {
+                    pathColor = '#f44336'; // Red
+                }
+                
+                ctx.fillStyle = '#000000';
+                ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+                drawAxes();
+                drawPathUpTo(path.length, pathColor);
+                completionWaitStart = timestamp;
             }
         }
         
-        if (hasStartedFade && fadeStartTime) {
-            const fadeElapsed = timestamp - fadeStartTime;
-            if (fadeElapsed >= 500) {
-                // Fade complete, hide loader
+        // Wait a moment after path stops (with color) before hiding
+        if (pathStopped && completionWaitStart && !hasStartedHide) {
+            const waitElapsed = timestamp - completionWaitStart;
+            // Wait 600ms after path stops with color before hiding
+            if (waitElapsed >= 600) {
+                hasStartedHide = true;
+                // Hide directly without fade
                 loader.style.display = 'none';
+                // Restore scrolling after loader is hidden
+                document.documentElement.style.overflow = '';
+                document.body.style.overflow = '';
                 return;
             }
         }
@@ -230,6 +262,10 @@
 
     // Initialize
     function init() {
+        // Prevent scrolling while loader is active
+        document.documentElement.style.overflow = 'hidden';
+        document.body.style.overflow = 'hidden';
+        
         resizeCanvas();
         generatePath();
         drawAxes();
@@ -265,18 +301,36 @@
             window.addEventListener('load', handleWindowLoad);
         }
         
-        // Safety timeout: fade out after max time even if animation hasn't completed
+        // Safety timeout: hide after max time even if animation hasn't completed
         // Allow extra time for the wait period after completion
         setTimeout(() => {
-            if (!hasStartedFade) {
+            if (!hasStartedHide) {
                 windowLoaded = true;
                 animationComplete = true;
-                hasStartedFade = true;
-                loader.style.transition = 'opacity 0.5s ease-out';
-                loader.style.opacity = '0';
+                if (!pathStopped && path.length > 0) {
+                    // Determine final color
+                    const finalPoint = path[path.length - 1];
+                    if (finalPoint.y < startY) {
+                        pathColor = '#4CAF50'; // Green
+                    } else {
+                        pathColor = '#f44336'; // Red
+                    }
+                    pathStopped = true;
+                    
+                    // Redraw with color
+                    ctx.fillStyle = '#000000';
+                    ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+                    drawAxes();
+                    drawPathUpTo(path.length, pathColor);
+                }
+                // Wait a moment then hide
                 setTimeout(() => {
+                    hasStartedHide = true;
                     loader.style.display = 'none';
-                }, 500);
+                    // Restore scrolling after loader is hidden
+                    document.documentElement.style.overflow = '';
+                    document.body.style.overflow = '';
+                }, 600);
             }
         }, animationDuration + 1500);
     }
