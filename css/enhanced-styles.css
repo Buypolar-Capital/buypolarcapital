@@ -55,7 +55,6 @@
     cursor: pointer;
     position: relative;
     border: 1px solid var(--border-color);
-    will-change: transform;
 }
 
 .plot-card:hover {
