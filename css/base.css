@@ -184,7 +184,7 @@ a:hover {
     top: 6px;
 }
 
-/* Loading Spinner */
+/* Loading Spinner - Hidden by default (using stochastic loader instead) */
 .loading-spinner {
     position: fixed;
     top: 0;
@@ -192,7 +192,7 @@ a:hover {
     width: 100%;
     height: 100%;
     background: var(--bg-primary);
-    display: flex;
+    display: none; /* Hidden by default - using stochastic loader instead */
     flex-direction: column;
     align-items: center;
     justify-content: center;

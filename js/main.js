@@ -43,8 +43,8 @@ function waitForExternalScripts() {
 
 function initializeWebsite() {
     try {
-        // Show loading spinner
-        showLoadingSpinner();
+        // Loading spinner is now handled by stochastic-loader.js
+        // showLoadingSpinner(); // Disabled - using stochastic loader instead
         
         // Initialize core features
         initializeEnhancedFeatures();
@@ -98,19 +98,12 @@ function initializeWebsite() {
         // Track performance
         trackPerformance();
         
-        // Hide loading spinner after a delay
-        setTimeout(() => {
-            hideLoadingSpinner();
-        }, 1000);
-        
-        // Force hide spinner after 3 seconds
-        setTimeout(() => {
-            hideLoadingSpinner();
-        }, 3000);
+        // Loading spinner is now handled by stochastic-loader.js
+        // No need to hide old spinner manually
         
     } catch (error) {
         handleError(error, 'initializing website');
-        hideLoadingSpinner();
+        // Loading handled by stochastic-loader.js
     }
 }
 

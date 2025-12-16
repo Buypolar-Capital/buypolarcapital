@@ -225,10 +225,12 @@
         }, animationDuration + 1000);
     }
 
-    // Start when DOM is ready
+    // Start immediately - loader div is already in HTML
+    // Use a small timeout to ensure DOM is fully parsed
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', init);
     } else {
-        init();
+        // DOM already loaded, but use setTimeout to ensure elements are accessible
+        setTimeout(init, 0);
     }
 })();
