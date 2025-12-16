@@ -25,6 +25,10 @@
     let canvasHeight = 0;
     let loaderAreaStart = 0;
     let loaderAreaWidth = 0;
+    let plotTopMargin = 0;
+    let plotBottomMargin = 0;
+    let plotAreaHeight = 0;
+    let plotBottom = 0; // Canvas Y coordinate of plot bottom (X-axis)
     let animationComplete = false;
     let completionWaitStart = null;
 
@@ -37,9 +41,20 @@
         canvasWidth = rect.width;
         canvasHeight = rect.height;
         
-        // Calculate loader area: 20% empty, 60% loader, 20% empty
-        loaderAreaStart = canvasWidth * 0.2;
-        loaderAreaWidth = canvasWidth * 0.6;
+        // Calculate loader area: responsive margins
+        // Desktop: 20% empty, 60% loader, 20% empty
+        // Mobile: 10% empty, 80% loader, 10% empty (for better use of space)
+        const isMobile = canvasWidth <= 768;
+        const marginPercent = isMobile ? 0.1 : 0.2;
+        loaderAreaStart = canvasWidth * marginPercent;
+        loaderAreaWidth = canvasWidth * (1 - 2 * marginPercent);
+        
+        // Calculate plot area with top and bottom margins (like a real plot)
+        // Margins: 15% top, 15% bottom for breathing room
+        plotTopMargin = canvasHeight * 0.15;
+        plotBottomMargin = canvasHeight * 0.15;
+        plotAreaHeight = canvasHeight - plotTopMargin - plotBottomMargin;
+        plotBottom = canvasHeight - plotBottomMargin; // X-axis position (bottom of plot)
         
         // Set actual canvas size accounting for device pixel ratio
         canvas.width = canvasWidth * dpr;
@@ -62,7 +77,7 @@
         }
     }
 
-    // Draw the axes (X-axis horizontal middle, Y-axis at loader area start)
+    // Draw the axes (First quadrant: X-axis at bottom, Y-axis at left)
     function drawAxes() {
         ctx.save();
         ctx.strokeStyle = '#ffffff';
@@ -70,43 +85,56 @@
         ctx.shadowBlur = 0;
         ctx.shadowColor = 'transparent';
         
-        // X-axis (horizontal middle, only in loader area)
+        // X-axis (horizontal at bottom of plot area, only in loader area)
         ctx.beginPath();
-        ctx.moveTo(loaderAreaStart, canvasHeight / 2);
-        ctx.lineTo(loaderAreaStart + loaderAreaWidth, canvasHeight / 2);
+        ctx.moveTo(loaderAreaStart, plotBottom);
+        ctx.lineTo(loaderAreaStart + loaderAreaWidth, plotBottom);
         ctx.stroke();
         
-        // Y-axis (vertical at loader area start, full height)
+        // Y-axis (vertical at loader area start, from bottom to top of plot area)
         ctx.beginPath();
-        ctx.moveTo(loaderAreaStart, 0);
-        ctx.lineTo(loaderAreaStart, canvasHeight);
+        ctx.moveTo(loaderAreaStart, plotTopMargin);
+        ctx.lineTo(loaderAreaStart, plotBottom);
         ctx.stroke();
         
         ctx.restore();
     }
 
-    // Generate Brownian motion path
+    // Generate Brownian motion path (First quadrant only - positive X, positive Y)
     function generatePath() {
         path = [];
-        const startY = canvasHeight / 2; // Start at center of Y-axis
-        let y = startY;
+        // Start at middle of plot area (50% of plot height from bottom)
+        // In canvas coords: plotBottom - (plotAreaHeight / 2)
+        const startY = plotBottom - (plotAreaHeight / 2);
+        let y = startY; // Canvas Y coordinate (decreases as we go up)
         
         const dt = 0.01;
-        // Higher variance for more dramatic movement
-        const sigma = canvasHeight / 30; // Increased from /100 to /30 for higher volatility
+        // Much higher variance for dramatic movement
+        // Responsive variance: slightly less on mobile
+        const isMobile = canvasWidth <= 768;
+        const sigma = isMobile ? plotAreaHeight / 12 : plotAreaHeight / 10; // Increased volatility significantly
+        // Use pixel-based steps for consistent path density
         const pathSteps = Math.floor(loaderAreaWidth);
         
-        // Path starts at loader area start, not 0
+        // Path starts at origin (bottom-left of plot area)
         path.push({ x: loaderAreaStart, y: startY });
         
         for (let i = 1; i <= pathSteps; i++) {
-            // Random increment (centered around 0)
-            const dW = (Math.random() - 0.5) * 2;
-            // Brownian step: dY = sigma * dW * sqrt(dt)
-            y += sigma * dW * Math.sqrt(dt);
+            // Random increment (centered around 0) - can go up or down
+            const dW = (Math.random() - 0.5) * 2; // -1 to 1
+            // Brownian step: dY = -sigma * dW * sqrt(dt)
+            // Negative because canvas Y decreases as we go up (positive Y in plot = upward)
+            y -= sigma * dW * Math.sqrt(dt);
             
-            // Clamp Y to stay within canvas bounds
-            y = Math.max(0, Math.min(canvasHeight, y));
+            // Stop if we reach the bottom (X-axis) - this is "bust" condition
+            if (y >= plotBottom) {
+                // Path has reached bottom (0 in plot coordinates), stop generating
+                break;
+            }
+            
+            // Clamp Y to stay within plot area bounds
+            // Top of plot area is plotTopMargin, bottom is plotBottom
+            y = Math.max(plotTopMargin, Math.min(plotBottom, y));
             
             // X position is relative to loader area start
             path.push({ x: loaderAreaStart + i, y: y });
@@ -209,12 +237,24 @@
         // Start animation
         requestAnimationFrame(animate);
         
-        // Handle window resize
+        // Handle window resize (with debouncing for performance)
         let resizeTimeout;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimeout);
             resizeTimeout = setTimeout(() => {
-                resizeCanvas();
+                // Reset animation state if needed (but keep progress if animation is running)
+                if (!animationComplete) {
+                    resizeCanvas();
+                }
+            }, 150);
+        });
+        
+        // Handle orientation change on mobile devices
+        window.addEventListener('orientationchange', () => {
+            setTimeout(() => {
+                if (!animationComplete) {
+                    resizeCanvas();
+                }
             }, 100);
         });
         

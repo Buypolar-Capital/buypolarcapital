@@ -235,6 +235,19 @@ a:hover {
     animation: fadeIn 0.3s ease-out forwards;
 }
 
+/* Stochastic Loader - Mobile Optimization */
+#loader {
+    touch-action: none; /* Prevent touch gestures during loading */
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on mobile */
+    user-select: none; /* Prevent text selection */
+}
+
+#stochastic-canvas {
+    touch-action: none; /* Prevent touch gestures on canvas */
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .container {
