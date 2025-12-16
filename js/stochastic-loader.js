@@ -17,13 +17,16 @@
     let currentStep = 0;
     let animationStartTime = null;
     const animationDuration = 4000; // 4 seconds
-    const minDisplayTime = 3000; // Minimum 3 seconds display
     let fadeStartTime = null;
     let hasStartedFade = false;
     let windowLoaded = false;
     let pathGenerated = false;
     let canvasWidth = 0;
     let canvasHeight = 0;
+    let loaderAreaStart = 0;
+    let loaderAreaWidth = 0;
+    let animationComplete = false;
+    let completionWaitStart = null;
 
     // Initialize canvas size
     function resizeCanvas() {
@@ -33,6 +36,10 @@
         // Store logical dimensions
         canvasWidth = rect.width;
         canvasHeight = rect.height;
+        
+        // Calculate loader area: 20% empty, 60% loader, 20% empty
+        loaderAreaStart = canvasWidth * 0.2;
+        loaderAreaWidth = canvasWidth * 0.6;
         
         // Set actual canvas size accounting for device pixel ratio
         canvas.width = canvasWidth * dpr;
@@ -55,7 +62,7 @@
         }
     }
 
-    // Draw the axes (X-axis horizontal middle, Y-axis vertical left)
+    // Draw the axes (X-axis horizontal middle, Y-axis at loader area start)
     function drawAxes() {
         ctx.save();
         ctx.strokeStyle = '#ffffff';
@@ -63,16 +70,16 @@
         ctx.shadowBlur = 0;
         ctx.shadowColor = 'transparent';
         
-        // X-axis (horizontal middle, full width)
+        // X-axis (horizontal middle, only in loader area)
         ctx.beginPath();
-        ctx.moveTo(0, canvasHeight / 2);
-        ctx.lineTo(canvasWidth, canvasHeight / 2);
+        ctx.moveTo(loaderAreaStart, canvasHeight / 2);
+        ctx.lineTo(loaderAreaStart + loaderAreaWidth, canvasHeight / 2);
         ctx.stroke();
         
-        // Y-axis (vertical left, full height)
+        // Y-axis (vertical at loader area start, full height)
         ctx.beginPath();
-        ctx.moveTo(0, 0);
-        ctx.lineTo(0, canvasHeight);
+        ctx.moveTo(loaderAreaStart, 0);
+        ctx.lineTo(loaderAreaStart, canvasHeight);
         ctx.stroke();
         
         ctx.restore();
@@ -85,10 +92,12 @@
         let y = startY;
         
         const dt = 0.01;
-        const sigma = canvasHeight / 100; // Scale volatility with screen size
-        const pathSteps = Math.floor(canvasWidth);
+        // Higher variance for more dramatic movement
+        const sigma = canvasHeight / 30; // Increased from /100 to /30 for higher volatility
+        const pathSteps = Math.floor(loaderAreaWidth);
         
-        path.push({ x: 0, y: startY });
+        // Path starts at loader area start, not 0
+        path.push({ x: loaderAreaStart, y: startY });
         
         for (let i = 1; i <= pathSteps; i++) {
             // Random increment (centered around 0)
@@ -99,7 +108,8 @@
             // Clamp Y to stay within canvas bounds
             y = Math.max(0, Math.min(canvasHeight, y));
             
-            path.push({ x: i, y: y });
+            // X position is relative to loader area start
+            path.push({ x: loaderAreaStart + i, y: y });
         }
         
         pathGenerated = true;
@@ -151,22 +161,26 @@
         }
         
         // Ensure full path is drawn if animation is complete
-        if (progress >= 1 && currentStep < path.length) {
+        if (progress >= 1 && !animationComplete) {
             ctx.fillStyle = '#000000';
             ctx.fillRect(0, 0, canvasWidth, canvasHeight);
             drawAxes();
             currentStep = path.length;
             drawPathUpTo(currentStep);
+            animationComplete = true;
+            completionWaitStart = timestamp;
         }
         
-        // Check if we should fade out
-        const shouldFade = windowLoaded && elapsed >= minDisplayTime;
-        
-        if (shouldFade && !hasStartedFade) {
-            hasStartedFade = true;
-            fadeStartTime = timestamp;
-            loader.style.transition = 'opacity 0.5s ease-out';
-            loader.style.opacity = '0';
+        // Wait a moment after completion before fading out
+        if (animationComplete && completionWaitStart && !hasStartedFade) {
+            const waitElapsed = timestamp - completionWaitStart;
+            // Wait 400ms after completion before starting fade
+            if (waitElapsed >= 400) {
+                hasStartedFade = true;
+                fadeStartTime = timestamp;
+                loader.style.transition = 'opacity 0.5s ease-out';
+                loader.style.opacity = '0';
+            }
         }
         
         if (hasStartedFade && fadeStartTime) {
@@ -211,10 +225,12 @@
             window.addEventListener('load', handleWindowLoad);
         }
         
-        // Safety timeout: fade out after max time even if window hasn't loaded
+        // Safety timeout: fade out after max time even if animation hasn't completed
+        // Allow extra time for the wait period after completion
         setTimeout(() => {
             if (!hasStartedFade) {
                 windowLoaded = true;
+                animationComplete = true;
                 hasStartedFade = true;
                 loader.style.transition = 'opacity 0.5s ease-out';
                 loader.style.opacity = '0';
@@ -222,7 +238,7 @@
                     loader.style.display = 'none';
                 }, 500);
             }
-        }, animationDuration + 1000);
+        }, animationDuration + 1500);
     }
 
     // Start immediately - loader div is already in HTML
