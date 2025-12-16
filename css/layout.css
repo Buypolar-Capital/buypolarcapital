@@ -12,8 +12,7 @@
     z-index: var(--z-fixed);
     transition: all var(--transition-normal);
     height: 70px;
-    padding-top: 3px;
-    /* Account for progress bar */
+    padding-top: 19px; /* Progress bar height (3px) + breathing room (16px) */
 }
 
 .header.scrolled {

@@ -142,6 +142,11 @@
 </head>
 
 <body>
+    <!-- Stochastic Loader -->
+    <div id="loader" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 9999; display: flex; align-items: center; justify-content: center;">
+        <canvas id="stochastic-canvas" style="width: 100%; height: 100%;"></canvas>
+    </div>
+
     <!-- Progress Bar -->
     <div class="progress-bar-top" id="progress-bar-top"></div>
 
@@ -341,6 +346,7 @@
     </button>
 
     <!-- Modular JavaScript -->
+    <script src="js/stochastic-loader.js"></script>
     <script src="js/theme.js"></script>
     <script src="js/config.js"></script>
     <script src="js/charts.js"></script>
