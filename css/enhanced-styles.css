@@ -6,16 +6,50 @@
 }
 
 /* Category Filters */
+.plot-categories-container {
+    margin-bottom: var(--spacing-xl);
+    padding: 2px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: var(--radius-full);
+    border: 1px solid var(--border-color);
+}
+
 .plot-categories {
     display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
+    align-items: center;
     gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-xl);
+    padding: var(--spacing-xs);
+    position: relative;
+    overflow: hidden;
+}
+
+.plot-categories:has(.search-wrapper.expanded) .categories-scroll-track {
+    opacity: 0.1;
+    pointer-events: none;
+    filter: blur(2px);
+}
+
+.categories-scroll-track {
+    display: flex;
+    gap: var(--spacing-xs);
+    overflow-x: auto;
+    scrollbar-width: none;
+    /* Firefox */
+    -ms-overflow-style: none;
+    /* IE/Edge */
+    flex: 1;
+    padding: 0 var(--spacing-sm);
+    -webkit-overflow-scrolling: touch;
+    mask-image: linear-gradient(to right, transparent, black 20px, black calc(100% - 20px), transparent);
+}
+
+.categories-scroll-track::-webkit-scrollbar {
+    display: none;
+    /* Chrome/Safari */
 }
 
 .category-btn {
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: 8px 16px;
     border: 1px solid var(--border-color);
     background: var(--bg-primary);
     color: var(--text-secondary);
@@ -24,18 +58,21 @@
     font-weight: var(--font-weight-medium);
     cursor: pointer;
     transition: all var(--transition-fast);
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .category-btn:hover {
     border-color: var(--accent-blue);
     color: var(--accent-blue);
-    transform: translateY(-1px);
+    background: rgba(33, 150, 243, 0.05);
 }
 
 .category-btn.active {
     background: var(--accent-blue);
     color: white;
     border-color: var(--accent-blue);
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
 }
 
 /* Search Wrapper - contains icon and expanded search bar */
@@ -43,12 +80,13 @@
     position: relative;
     display: flex;
     align-items: center;
-    height: 36px;
+    height: 38px;
+    flex-shrink: 0;
 }
 
 /* Search Icon Button */
 .search-icon-btn {
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: 0;
     border: 1px solid var(--border-color);
     background: var(--bg-primary);
     color: var(--text-secondary);
@@ -58,59 +96,55 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     flex-shrink: 0;
 }
 
 .search-icon-btn:hover {
     border-color: var(--accent-blue);
     color: var(--accent-blue);
-    transform: translateY(-1px);
+    background: rgba(33, 150, 243, 0.05);
 }
 
-/* Expanded Search Bar - hidden by default */
+/* Expanded Search Bar */
 .search-bar-expanded {
     display: flex;
     align-items: center;
-    gap: var(--spacing-sm);
+    gap: var(--spacing-xs);
     width: 0;
     opacity: 0;
     overflow: hidden;
-    transition: width var(--transition-normal), opacity var(--transition-normal);
-    max-width: 250px;
+    transition: all var(--transition-normal);
+    position: absolute;
+    right: 0;
+    background: var(--bg-primary);
+    border-radius: var(--radius-full);
+    z-index: 10;
 }
 
 .search-wrapper.expanded .search-bar-expanded {
-    width: 250px;
+    width: 280px;
     opacity: 1;
+    padding-left: var(--spacing-xs);
+    border: 1px solid var(--accent-blue);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .search-wrapper.expanded .search-icon-btn {
-    width: 0;
-    padding: 0;
-    border: none;
-    overflow: hidden;
     opacity: 0;
+    pointer-events: none;
 }
 
 .search-input {
     flex: 1;
-    padding: var(--spacing-sm) var(--spacing-md);
-    border: 1px solid var(--border-color);
-    background: var(--bg-primary);
+    padding: 8px 12px;
+    border: none;
+    background: transparent;
     color: var(--text-primary);
-    border-radius: var(--radius-full);
     font-size: var(--font-size-sm);
     font-family: var(--font-family-primary);
     outline: none;
-    transition: all var(--transition-fast);
-    min-width: 0;
-}
-
-.search-input:focus {
-    border-color: var(--accent-blue);
-    box-shadow: 0 0 0 3px rgba(33, 150, 243, 0.1);
 }
 
 .search-input::placeholder {
@@ -118,9 +152,9 @@
 }
 
 .search-lock-btn {
-    padding: var(--spacing-sm);
-    border: 1px solid var(--border-color);
-    background: var(--bg-primary);
+    padding: 6px;
+    border: none;
+    background: transparent;
     color: var(--text-secondary);
     border-radius: var(--radius-full);
     cursor: pointer;
@@ -131,18 +165,17 @@
     width: 32px;
     height: 32px;
     flex-shrink: 0;
+    margin-right: 4px;
 }
 
 .search-lock-btn:hover {
-    border-color: var(--accent-blue);
     color: var(--accent-blue);
-    background: rgba(33, 150, 243, 0.05);
+    background: rgba(33, 150, 243, 0.1);
 }
 
 .search-lock-btn.active {
     background: var(--accent-blue);
     color: white;
-    border-color: var(--accent-blue);
 }
 
 /* Plots Grid */
@@ -409,48 +442,36 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+
     /* Category buttons - smaller and more compact */
-    .plot-categories {
-        gap: var(--spacing-xs);
-        margin-bottom: var(--spacing-md);
+    .plot-categories-container {
+        border-radius: var(--radius-lg);
+        margin-bottom: var(--spacing-lg);
     }
-    
+
+    .plot-categories {
+        padding: var(--spacing-xs);
+        gap: var(--spacing-xs);
+    }
+
     .category-btn {
         padding: 6px 12px;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
     }
-    
-    /* Search icon button - slightly smaller on mobile */
-    .search-icon-btn {
-        width: 32px;
-        height: 32px;
-    }
-    
-    .search-icon-btn svg {
-        width: 16px;
-        height: 16px;
-    }
-    
-    /* Search bar expanded width on mobile */
+
     .search-wrapper.expanded .search-bar-expanded {
-        width: 200px;
+        width: calc(100% - 10px);
     }
-    
+
     .search-input {
-        font-size: 0.875rem;
-        padding: 8px 14px;
+        padding: 6px 10px;
     }
-    
+
     .search-lock-btn {
-        width: 28px;
-        height: 28px;
+        width: 30px;
+        height: 30px;
     }
-    
-    .search-lock-btn svg {
-        width: 14px;
-        height: 14px;
-    }
-    
+
     /* Plots grid - single column on very small screens */
     .plots-grid {
         grid-template-columns: 1fr;
