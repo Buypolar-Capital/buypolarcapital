@@ -124,9 +124,9 @@
         for (let i = 1; i <= pathSteps; i++) {
             // Random increment (centered around 0) - can go up or down
             const dW = (Math.random() - 0.5) * 2; // -1 to 1
-            // Brownian step: dY = -sigma * dW * sqrt(dt)
-            // Negative because canvas Y decreases as we go up (positive Y in plot = upward)
-            y -= sigma * dW * Math.sqrt(dt);
+            // Brownian step with a very subtle upward drift (bullish bias)
+            const drift = 0.015;
+            y -= (sigma * dW * Math.sqrt(dt) + drift);
 
             // Stop if we reach the bottom (X-axis) - this is "bust" condition
             if (y >= plotBottom) {
