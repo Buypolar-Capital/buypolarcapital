@@ -401,15 +401,61 @@
 
 /* Responsive */
 @media (max-width: 768px) {
+    /* Category buttons - smaller and more compact */
+    .plot-categories {
+        gap: var(--spacing-xs);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .category-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+    
+    /* Search icon button - slightly smaller on mobile */
+    .search-icon-btn {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .search-icon-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    /* Search container - full width on mobile */
+    .search-container {
+        margin-top: var(--spacing-sm);
+        margin-bottom: var(--spacing-md);
+        padding: 0 var(--spacing-sm);
+    }
+    
+    .search-input-wrapper {
+        max-width: 100%;
+    }
+    
+    .search-input {
+        font-size: 0.875rem;
+        padding: 8px 14px;
+    }
+    
+    .search-lock-btn {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .search-lock-btn svg {
+        width: 14px;
+        height: 14px;
+    }
+    
+    /* Plots grid - single column on very small screens */
     .plots-grid {
         grid-template-columns: 1fr;
+        gap: var(--spacing-md);
     }
 
     .plot-image {
         height: 180px;
-    }
-
-    .category-btn {
-        font-size: var(--font-size-xs);
     }
 }
