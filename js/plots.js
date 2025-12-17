@@ -5,6 +5,7 @@ function initializePlotsGallery() {
     try {
         loadPlotsData();
         initializeCategoryFilters();
+        initializeSearchFunctionality();
         initializePlotModal();
     } catch (error) {
         handleError(error, 'initializing plots gallery');
@@ -171,6 +172,59 @@ function initializeCategoryFilters() {
     });
 }
 
+// Initialize search functionality
+function initializeSearchFunctionality() {
+    const searchIconBtn = document.getElementById('search-icon-btn');
+    const searchContainer = document.getElementById('search-container');
+    const searchInput = document.getElementById('search-input');
+    const searchLockBtn = document.getElementById('search-lock-btn');
+
+    if (!searchIconBtn || !searchContainer || !searchInput || !searchLockBtn) return;
+
+    // Toggle search container visibility
+    searchIconBtn.addEventListener('click', function() {
+        const isHidden = searchContainer.style.display === 'none' || !searchContainer.style.display;
+        searchContainer.style.display = isHidden ? 'flex' : 'none';
+        
+        if (isHidden) {
+            // Focus on input when opened
+            setTimeout(() => searchInput.focus(), 100);
+        } else {
+            // Clear search when closing
+            if (!isSearchActive) {
+                searchInput.value = '';
+            }
+        }
+    });
+
+    // Lock/apply search filter
+    searchLockBtn.addEventListener('click', function() {
+        const searchTerm = searchInput.value.trim();
+        
+        if (searchTerm) {
+            // Activate search
+            isSearchActive = true;
+            currentSearchTerm = searchTerm.toLowerCase();
+            searchLockBtn.classList.add('active');
+            renderPlotsGrid();
+        } else {
+            // Deactivate search
+            isSearchActive = false;
+            currentSearchTerm = '';
+            searchLockBtn.classList.remove('active');
+            renderPlotsGrid();
+        }
+    });
+
+    // Allow Enter key to lock search
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            searchLockBtn.click();
+        }
+    });
+}
+
 // Render plots grid
 function renderPlotsGrid() {
     const plotsContainer = document.getElementById('plots-grid');
@@ -180,6 +234,18 @@ function renderPlotsGrid() {
     let filteredPlots = plotsData;
     if (currentCategory !== 'all') {
         filteredPlots = plotsData.filter(plot => plot.category === currentCategory);
+    }
+
+    // Filter by search term if active
+    if (isSearchActive && currentSearchTerm) {
+        filteredPlots = filteredPlots.filter(plot => {
+            const searchLower = currentSearchTerm.toLowerCase();
+            const titleMatch = plot.title.toLowerCase().includes(searchLower);
+            const descMatch = plot.description.toLowerCase().includes(searchLower);
+            const tagsMatch = (plot.tags || []).some(tag => tag.toLowerCase().includes(searchLower));
+            const categoryMatch = plot.category.toLowerCase().includes(searchLower);
+            return titleMatch || descMatch || tagsMatch || categoryMatch;
+        });
     }
 
     // Clear container

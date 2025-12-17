@@ -5,6 +5,8 @@ let performanceChart;
 let isNavScrolled = false;
 let plotsData = [];
 let currentCategory = 'all';
+let currentSearchTerm = '';
+let isSearchActive = false;
 
 // Sample data for charts
 const cryptoData = {
