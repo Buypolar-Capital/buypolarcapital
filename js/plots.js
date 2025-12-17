@@ -180,9 +180,8 @@ function initializeSearchFunctionality() {
     const searchInput = document.getElementById('search-input');
     const searchApplyBtn = document.getElementById('search-apply-btn');
     const searchClearBtn = document.getElementById('search-clear-btn');
-    const resetFiltersBtn = document.getElementById('reset-filters-btn');
 
-    if (!searchIconBtn || !searchWrapper || !searchBarExpanded || !searchInput || !searchApplyBtn || !searchClearBtn || !resetFiltersBtn) return;
+    if (!searchIconBtn || !searchWrapper || !searchBarExpanded || !searchInput || !searchApplyBtn || !searchClearBtn) return;
 
     // Toggle search bar expansion
     searchIconBtn.addEventListener('click', function (e) {
@@ -239,38 +238,14 @@ function initializeSearchFunctionality() {
         if (searchTerm) {
             isSearchActive = true;
             currentSearchTerm = searchTerm.toLowerCase();
-            searchApplyBtn.classList.add('active');
             renderPlotsGrid();
         } else {
             isSearchActive = false;
             currentSearchTerm = '';
-            searchApplyBtn.classList.remove('active');
             renderPlotsGrid();
             // Close search bar if empty
             searchWrapper.classList.remove('expanded');
         }
-    });
-
-    // Reset All Filters (Nullstill)
-    resetFiltersBtn.addEventListener('click', function () {
-        // Reset category
-        currentCategory = 'all';
-        const categoryButtons = document.querySelectorAll('.category-btn');
-        categoryButtons.forEach(btn => {
-            btn.classList.remove('active');
-            if (btn.dataset.category === 'all') btn.classList.add('active');
-        });
-
-        // Reset search
-        isSearchActive = false;
-        currentSearchTerm = '';
-        searchInput.value = '';
-        searchClearBtn.classList.remove('visible');
-        searchApplyBtn.classList.remove('active');
-        searchWrapper.classList.remove('expanded');
-
-        // Re-render
-        renderPlotsGrid();
     });
 
     // Allow Enter key to lock search
@@ -290,27 +265,10 @@ function initializeSearchFunctionality() {
     });
 }
 
-// Update reset button visibility based on active filters
-function updateResetButtonVisibility() {
-    const resetFiltersBtn = document.getElementById('reset-filters-btn');
-    if (!resetFiltersBtn) return;
-
-    const hasActiveFilters = currentCategory !== 'all' || isSearchActive || (document.getElementById('search-input') && document.getElementById('search-input').value !== '');
-
-    if (hasActiveFilters) {
-        resetFiltersBtn.classList.add('visible');
-    } else {
-        resetFiltersBtn.classList.remove('visible');
-    }
-}
-
 // Render plots grid
 function renderPlotsGrid() {
     const plotsContainer = document.getElementById('plots-grid');
     if (!plotsContainer) return;
-
-    // Update reset button visibility
-    updateResetButtonVisibility();
 
     // Filter plots based on current category
     let filteredPlots = plotsData;
