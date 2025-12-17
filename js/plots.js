@@ -175,30 +175,37 @@ function initializeCategoryFilters() {
 // Initialize search functionality
 function initializeSearchFunctionality() {
     const searchIconBtn = document.getElementById('search-icon-btn');
-    const searchContainer = document.getElementById('search-container');
+    const searchWrapper = document.getElementById('search-wrapper');
+    const searchBarExpanded = document.getElementById('search-bar-expanded');
     const searchInput = document.getElementById('search-input');
     const searchLockBtn = document.getElementById('search-lock-btn');
 
-    if (!searchIconBtn || !searchContainer || !searchInput || !searchLockBtn) return;
+    if (!searchIconBtn || !searchWrapper || !searchBarExpanded || !searchInput || !searchLockBtn) return;
 
-    // Toggle search container visibility
-    searchIconBtn.addEventListener('click', function() {
-        const isHidden = searchContainer.style.display === 'none' || !searchContainer.style.display;
-        searchContainer.style.display = isHidden ? 'flex' : 'none';
-        
-        if (isHidden) {
-            // Focus on input when opened
-            setTimeout(() => searchInput.focus(), 100);
-        } else {
-            // Clear search when closing
-            if (!isSearchActive) {
-                searchInput.value = '';
-            }
+    // Toggle search bar expansion
+    searchIconBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        searchWrapper.classList.add('expanded');
+        // Focus on input when expanded
+        setTimeout(() => searchInput.focus(), 100);
+    });
+
+    // Close search when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!searchWrapper.contains(e.target) && !isSearchActive) {
+            searchWrapper.classList.remove('expanded');
+            searchInput.value = '';
         }
     });
 
+    // Prevent closing when clicking inside search bar
+    searchBarExpanded.addEventListener('click', function(e) {
+        e.stopPropagation();
+    });
+
     // Lock/apply search filter
-    searchLockBtn.addEventListener('click', function() {
+    searchLockBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
         const searchTerm = searchInput.value.trim();
         
         if (searchTerm) {
@@ -213,6 +220,8 @@ function initializeSearchFunctionality() {
             currentSearchTerm = '';
             searchLockBtn.classList.remove('active');
             renderPlotsGrid();
+            // Close search bar if empty
+            searchWrapper.classList.remove('expanded');
         }
     });
 
@@ -221,6 +230,11 @@ function initializeSearchFunctionality() {
         if (e.key === 'Enter') {
             e.preventDefault();
             searchLockBtn.click();
+        }
+        // Close on Escape if search is not active
+        if (e.key === 'Escape' && !isSearchActive) {
+            searchWrapper.classList.remove('expanded');
+            searchInput.value = '';
         }
     });
 }
