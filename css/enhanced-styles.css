@@ -8,10 +8,6 @@
 /* Category Filters */
 .plot-categories-container {
     margin-bottom: var(--spacing-xl);
-    padding: 2px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: var(--radius-full);
-    border: 1px solid var(--border-color);
 }
 
 .plot-categories {
