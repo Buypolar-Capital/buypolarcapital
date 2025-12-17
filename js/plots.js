@@ -178,12 +178,14 @@ function initializeSearchFunctionality() {
     const searchWrapper = document.getElementById('search-wrapper');
     const searchBarExpanded = document.getElementById('search-bar-expanded');
     const searchInput = document.getElementById('search-input');
-    const searchLockBtn = document.getElementById('search-lock-btn');
+    const searchApplyBtn = document.getElementById('search-apply-btn');
+    const searchClearBtn = document.getElementById('search-clear-btn');
+    const resetFiltersBtn = document.getElementById('reset-filters-btn');
 
-    if (!searchIconBtn || !searchWrapper || !searchBarExpanded || !searchInput || !searchLockBtn) return;
+    if (!searchIconBtn || !searchWrapper || !searchBarExpanded || !searchInput || !searchApplyBtn || !searchClearBtn || !resetFiltersBtn) return;
 
     // Toggle search bar expansion
-    searchIconBtn.addEventListener('click', function(e) {
+    searchIconBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         searchWrapper.classList.add('expanded');
         // Focus on input when expanded
@@ -191,58 +193,124 @@ function initializeSearchFunctionality() {
     });
 
     // Close search when clicking outside
-    document.addEventListener('click', function(e) {
+    document.addEventListener('click', function (e) {
         if (!searchWrapper.contains(e.target) && !isSearchActive) {
             searchWrapper.classList.remove('expanded');
-            searchInput.value = '';
+            if (searchInput.value === '') {
+                searchInput.value = '';
+            }
         }
     });
 
     // Prevent closing when clicking inside search bar
-    searchBarExpanded.addEventListener('click', function(e) {
+    searchBarExpanded.addEventListener('click', function (e) {
         e.stopPropagation();
     });
 
-    // Lock/apply search filter
-    searchLockBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
-        const searchTerm = searchInput.value.trim();
-        
-        if (searchTerm) {
-            // Activate search
-            isSearchActive = true;
-            currentSearchTerm = searchTerm.toLowerCase();
-            searchLockBtn.classList.add('active');
-            renderPlotsGrid();
+    // Input event - toggle clear button visibility
+    searchInput.addEventListener('input', function () {
+        if (this.value.length > 0) {
+            searchClearBtn.classList.add('visible');
         } else {
-            // Deactivate search
+            searchClearBtn.classList.remove('visible');
+        }
+    });
+
+    // Clear Button logic
+    searchClearBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        searchInput.value = '';
+        searchInput.focus();
+        searchClearBtn.classList.remove('visible');
+
+        if (isSearchActive) {
             isSearchActive = false;
             currentSearchTerm = '';
-            searchLockBtn.classList.remove('active');
+            searchApplyBtn.classList.remove('active');
+            renderPlotsGrid();
+        }
+    });
+
+    // Apply Search Filter
+    searchApplyBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        const searchTerm = searchInput.value.trim();
+
+        if (searchTerm) {
+            isSearchActive = true;
+            currentSearchTerm = searchTerm.toLowerCase();
+            searchApplyBtn.classList.add('active');
+            renderPlotsGrid();
+        } else {
+            isSearchActive = false;
+            currentSearchTerm = '';
+            searchApplyBtn.classList.remove('active');
             renderPlotsGrid();
             // Close search bar if empty
             searchWrapper.classList.remove('expanded');
         }
     });
 
+    // Reset All Filters (Nullstill)
+    resetFiltersBtn.addEventListener('click', function () {
+        // Reset category
+        currentCategory = 'all';
+        const categoryButtons = document.querySelectorAll('.category-btn');
+        categoryButtons.forEach(btn => {
+            btn.classList.remove('active');
+            if (btn.dataset.category === 'all') btn.classList.add('active');
+        });
+
+        // Reset search
+        isSearchActive = false;
+        currentSearchTerm = '';
+        searchInput.value = '';
+        searchClearBtn.classList.remove('visible');
+        searchApplyBtn.classList.remove('active');
+        searchWrapper.classList.remove('expanded');
+
+        // Re-render
+        renderPlotsGrid();
+    });
+
     // Allow Enter key to lock search
-    searchInput.addEventListener('keydown', function(e) {
+    searchInput.addEventListener('keydown', function (e) {
         if (e.key === 'Enter') {
             e.preventDefault();
-            searchLockBtn.click();
+            searchApplyBtn.click();
         }
         // Close on Escape if search is not active
-        if (e.key === 'Escape' && !isSearchActive) {
-            searchWrapper.classList.remove('expanded');
-            searchInput.value = '';
+        if (e.key === 'Escape') {
+            if (!isSearchActive) {
+                searchWrapper.classList.remove('expanded');
+            } else {
+                searchInput.blur();
+            }
         }
     });
+}
+
+// Update reset button visibility based on active filters
+function updateResetButtonVisibility() {
+    const resetFiltersBtn = document.getElementById('reset-filters-btn');
+    if (!resetFiltersBtn) return;
+
+    const hasActiveFilters = currentCategory !== 'all' || isSearchActive || (document.getElementById('search-input') && document.getElementById('search-input').value !== '');
+
+    if (hasActiveFilters) {
+        resetFiltersBtn.classList.add('visible');
+    } else {
+        resetFiltersBtn.classList.remove('visible');
+    }
 }
 
 // Render plots grid
 function renderPlotsGrid() {
     const plotsContainer = document.getElementById('plots-grid');
     if (!plotsContainer) return;
+
+    // Update reset button visibility
+    updateResetButtonVisibility();
 
     // Filter plots based on current category
     let filteredPlots = plotsData;

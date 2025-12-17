@@ -107,7 +107,6 @@
 .search-bar-expanded {
     display: flex;
     align-items: center;
-    gap: var(--spacing-xs);
     width: 0;
     opacity: 0;
     overflow: hidden;
@@ -120,9 +119,9 @@
 }
 
 .search-wrapper.expanded .search-bar-expanded {
-    width: 280px;
+    width: 320px;
     opacity: 1;
-    padding-left: var(--spacing-xs);
+    padding-left: var(--spacing-sm);
     border: 1px solid var(--accent-blue);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
@@ -141,13 +140,15 @@
     font-size: var(--font-size-sm);
     font-family: var(--font-family-primary);
     outline: none;
+    min-width: 0;
 }
 
 .search-input::placeholder {
     color: var(--text-muted);
 }
 
-.search-lock-btn {
+.search-clear-btn,
+.search-apply-btn {
     padding: 6px;
     border: none;
     background: transparent;
@@ -161,17 +162,75 @@
     width: 32px;
     height: 32px;
     flex-shrink: 0;
-    margin-right: 4px;
 }
 
-.search-lock-btn:hover {
+.search-clear-btn {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition-fast);
+}
+
+.search-clear-btn.visible {
+    opacity: 0.6;
+    pointer-events: all;
+}
+
+.search-clear-btn:hover {
+    opacity: 1;
+    color: var(--accent-red);
+}
+
+.search-divider {
+    width: 1px;
+    height: 20px;
+    background: var(--border-color);
+    margin: 0 4px;
+}
+
+.search-apply-btn:hover {
     color: var(--accent-blue);
     background: rgba(33, 150, 243, 0.1);
 }
 
-.search-lock-btn.active {
+.search-apply-btn.active {
     background: var(--accent-blue);
     color: white;
+}
+
+/* Reset Filters Button (Nullstill) */
+.reset-filters-btn {
+    display: none;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: 8px 16px;
+    border: 1px solid var(--border-color);
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+    margin-left: var(--spacing-sm);
+}
+
+.reset-filters-btn.visible {
+    display: flex;
+}
+
+.reset-filters-btn:hover {
+    border-color: var(--accent-blue);
+    color: var(--accent-blue);
+    background: rgba(33, 150, 243, 0.05);
+}
+
+.reset-filters-btn svg {
+    transition: transform var(--transition-normal);
+}
+
+.reset-filters-btn:hover svg {
+    transform: rotate(-180deg);
 }
 
 /* Plots Grid */
