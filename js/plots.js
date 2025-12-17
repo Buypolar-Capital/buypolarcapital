@@ -219,13 +219,14 @@ function initializeSearchFunctionality() {
     searchClearBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         searchInput.value = '';
-        searchInput.focus();
         searchClearBtn.classList.remove('visible');
+
+        // Always close search bar on clear
+        searchWrapper.classList.remove('expanded');
 
         if (isSearchActive) {
             isSearchActive = false;
             currentSearchTerm = '';
-            searchApplyBtn.classList.remove('active');
             renderPlotsGrid();
         }
     });

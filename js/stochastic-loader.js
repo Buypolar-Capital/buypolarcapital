@@ -262,6 +262,12 @@
 
     // Initialize
     function init() {
+        // Force scroll to top on reload
+        window.scrollTo(0, 0);
+        if ('scrollRestoration' in history) {
+            history.scrollRestoration = 'manual';
+        }
+
         // Prevent scrolling while loader is active
         document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
