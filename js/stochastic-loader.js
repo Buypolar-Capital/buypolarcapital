@@ -114,7 +114,7 @@
         // Much higher variance for dramatic movement
         // Responsive variance: slightly less on mobile
         const isMobile = canvasWidth <= 768;
-        const sigma = isMobile ? (plotAreaHeight / 12) * 4 : (plotAreaHeight / 10) * 4; // Increased volatility by 4x
+        const sigma = isMobile ? (plotAreaHeight / 12) * 3 : (plotAreaHeight / 10) * 3; // Increased volatility by 3x
         // Use pixel-based steps for consistent path density
         const pathSteps = Math.floor(loaderAreaWidth);
 
